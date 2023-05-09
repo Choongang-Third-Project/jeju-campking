@@ -173,33 +173,34 @@ classDiagram
 erDiagram
     TB_MEMBER ||--o{ TB_BOARD: member-board
     TB_BOARD ||--o{ TB_REPLY: board-reply
+    TB_MEMBER ||--o{ TB_REPLY: member-reply
+
     TB_MEMBER {
-        member_number INT(10) PK, FK
-        member_id VARCHAR(20) PK
-        member_password VARCHAR(20) "Not Null"
+        member_number INT(10) PK, FK "AUTO_INCREMENT"
+        member_email VARCHAR(50) UK "Not Null"
+        member_password VARCHAR(200) "Not Null"
         member_name VARCHAR(30) "Not Null"
         member_phone VARCHAR(13) "Not Null"
-        member_email VARCHAR(50) "Not Null"
         member_gender VARCHAR(1) "Not Null"
-        member_nickname VARCHAR(10) "Not Null"
+        member_nickname VARCHAR(50) "Not Null"
         member_age INT(3) "Not Null"
-        member_join_date DATE
+        member_join_date TIMESTAMP "Not Null default current_timestamp"
     }
 
     TB_BOARD {
-        board_number Int(10) PK, FK
-        board_title VARCHAR(50) "Not Null"
-        board_content VARCHAR(1000) "Not Null"
-        board_time DATE "Not Null"
-        member_number INT(10) FK
+        board_number Int(10) PK, FK "AUTO_INCREMENT"
+        board_title VARCHAR(200) "Not Null"
+        board_content VARCHAR(2000) "Not Null"
+        board_time TIMESTAMP "Not Null default current_timestamp"
+        member_number INT(10) FK "TB_MEMBER"
     }
 
     TB_REPLY {
-        reply_number INT(10) PK, FK
-        reply_writer VARCHAR(10) PK
-        reply_content VARCHAR(200) "Not Null"
-        reply_time DATE "Not Null"
-        board_number INT(10) FK
+        reply_number INT(10) PK "AUTO_INCREMENT"
+        reply_content VARCHAR(1000) "Not Null"
+        reply_time TIMESTAMP "Not Null default current_timestamp"
+        member_number INT(10) FK "TB_MEMBER"
+        board_number INT(10) FK "TB_BOARD"
     }
 
     TB_CAMP {
