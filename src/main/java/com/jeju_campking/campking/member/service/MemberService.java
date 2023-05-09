@@ -41,6 +41,6 @@ public class MemberService {
             throw new SQLException("memberService : 회원가입 실패 !");
         }
 
-        return memberMapper.sign(dto);
+        return isSign;
     }
 }
