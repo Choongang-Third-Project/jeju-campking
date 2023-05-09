@@ -180,9 +180,9 @@ erDiagram
         member_email VARCHAR(50) UK "Not Null"
         member_password VARCHAR(200) "Not Null"
         member_name VARCHAR(30) "Not Null"
-        member_phone VARCHAR(13) "Not Null"
+        member_phone VARCHAR(13) UK "Not Null"
         member_gender VARCHAR(1) "Not Null"
-        member_nickname VARCHAR(50) "Not Null"
+        member_nickname VARCHAR(50) UK "Not Null"
         member_age INT(3) "Not Null"
         member_join_date TIMESTAMP "Not Null default current_timestamp"
     }
