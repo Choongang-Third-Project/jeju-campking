@@ -19,33 +19,30 @@ import org.springframework.web.bind.annotation.*;
 public class BoardController {
     private final BoardService boardService;
 
-    @PostMapping()
-    public ResponseEntity<?> write(
-            @Validated @RequestBody BoardWriteRequestDTO dto,
-            BindingResult result
-    ) {
-
-        if (result.hasErrors()) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(result.toString());
-        }
-
-        log.info("경로...... : POST ! {}", dto);
-
-        Board board = dto.toEntity();
-        ResponseEntity.ok().body(board);
+    @PostMapping("/write")
+    public ResponseEntity<?> write() {
+//
+//        if (result.hasErrors()) {
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(result.toString());
+//        }
+//
+//        log.info("경로...... : POST ! {}", dto);
+//
+//        Board board = dto.toEntity();
+//        ResponseEntity.ok().body(board);
         return null;
     }
 
-    @PostMapping()
+    @PostMapping("/delete")
     public ResponseEntity<?> delete() {
 
 
         return null;
     }
 
-    @PostMapping()
+    @PostMapping("/modify")
     public ResponseEntity<?> modify() {
 
 
