@@ -4,4 +4,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jeju_campking.campking.board.repository.BoardMapper">
 
+    <!--    // 글 쓰기-->
+    <!--    boolean write(Board dto);-->
+
+    <!--    // 글 삭제-->
+    <!--    boolean delete(Member member);-->
+
+    <!--    // 글 수정-->
+    <!--    boolean modify(Member member);-->
+
+    <insert id="write">
+        INSERT INTO TB_BOARD
+        (board_title, board_content, member_number)
+        VALUES (#{boardTitle}, #{boardContent}, #{memberNumber});
+    </insert>
+
+    <select id="findAll" resultType="board">
+        SELECT *
+        FROM TB_BOARD
+    </select>
+
 </mapper>
