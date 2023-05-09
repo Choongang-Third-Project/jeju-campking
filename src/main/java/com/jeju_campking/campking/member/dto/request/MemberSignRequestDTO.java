@@ -26,12 +26,12 @@ public class MemberSignRequestDTO {
     @Email(message = "이메일 양식을 지켜주세요.")
     private String memberEmail;
     @NotBlank(message = "성별은 필수 값입니다.")
-    private Gender memberGender;
+    private String memberGender;
     @NotBlank(message = "별명은 필수 값입니다.")
     private String memberNickname;
-    @NotBlank(message = "나이는 필수 값입니다.")
+    @NotNull(message = "나이는 필수 값입니다.")
     @Min(value = 19, message = "19세 이상만 가능합니다.")
-    private int memberAge;
+    private Integer memberAge;
 
     public Member toEntity() {
         return Member.builder()
@@ -39,7 +39,7 @@ public class MemberSignRequestDTO {
                 .memberName(this.memberName)
                 .memberPhone(this.memberPhone)
                 .memberEmail(this.memberEmail)
-                .memberGender(this.memberGender)
+                .memberGender(Gender.valueOf(this.memberGender))
                 .memberAge(this.memberAge)
                 .memberJoinDate(LocalDateTime.now())
                 .build();

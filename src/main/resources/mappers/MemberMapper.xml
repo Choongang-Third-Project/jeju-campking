@@ -7,17 +7,17 @@
     <select id="login" resultType="member">
         SELECT
             *
-        FROM campking.TB_MEMBER
+        FROM TB_MEMBER
         WHERE member_email = #{memberEmail}
         AND member_password = #{memberPassword}
     </select>
 
     <insert id="sign">
-        INSERT INTO campking.TB_MEMBER
+        INSERT INTO TB_MEMBER
         (member_password, member_name, member_phone, member_email,
-        member_gender, member_nickname, member_join_date, member_age)
+        member_gender, member_nickname, member_age)
         VALUES (#{memberPassword}, #{memberName}, #{memberPhone}, #{memberEmail},
-        #{memberGender}, #{memberNickname}, now(), #{memberAge})
+        #{memberGender}, #{memberNickname}, #{memberAge})
     </insert>
 
 </mapper>
