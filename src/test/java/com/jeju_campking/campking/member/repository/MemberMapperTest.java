@@ -35,12 +35,23 @@ class MemberMapperTest {
 
     @Test
     @DisplayName("이메일이 abc123인 회원이 로그인을 성공하면 회원 객체를 리턴받고, 그 회원의 이름은 조예원이어야 한다.")
-    void loginTest() {
+    void loginSuccessTest() {
         MemberLoginRequestDTO dto = MemberLoginRequestDTO.builder()
                 .memberEmail("abc123@naver.com")
                 .memberPassword("abc123")
                 .build();
         Member member = memberMapper.login(dto);
         assertEquals("조예원", member.getMemberName());
+    }
+
+    @Test
+    @DisplayName("이메일은 맞지만 비밀번호는 틀린 경우, 리턴받은 회원 객체는 비어있어야 한다.")
+    void loginFailTest() {
+        MemberLoginRequestDTO loginFail = MemberLoginRequestDTO.builder()
+                .memberEmail("abc123@naver.com")
+                .memberPassword("ttt123")
+                .build();
+        Member member = memberMapper.login(loginFail);
+        assertNull(member);
     }
 }
