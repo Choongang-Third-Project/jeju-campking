@@ -20,5 +20,4 @@ public class Board {
     private LocalDateTime boardTime;
 
     private Long memberNumber;
-
 }
