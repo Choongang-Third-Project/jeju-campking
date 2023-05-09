@@ -20,18 +20,21 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping("/write")
-    public ResponseEntity<?> write() {
-//
-//        if (result.hasErrors()) {
-//            return ResponseEntity
-//                    .badRequest()
-//                    .body(result.toString());
-//        }
-//
-//        log.info("경로...... : POST ! {}", dto);
-//
-//        Board board = dto.toEntity();
-//        ResponseEntity.ok().body(board);
+    public ResponseEntity<?> write(
+            @Validated @RequestBody BoardWriteRequestDTO dto,
+            BindingResult result
+    ) {
+
+        if (result.hasErrors()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(result.toString());
+        }
+
+        log.info("경로...... : POST ! {}", dto);
+
+        Board board = dto.toEntity();
+        ResponseEntity.ok().body(board);
         return null;
     }
 
