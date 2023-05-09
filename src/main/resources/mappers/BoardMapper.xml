@@ -2,7 +2,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.campking.member.repository.MemberMapper">
+<mapper namespace="com.campking.member.repository.BoardMapper">
+
+    <insert id="write">
+        INSERT INTO TB_BOARD
+        (board_title, board_content, member_number)
+        VALUES (#{boardTitle}, #{boardContent}, #{})
+    </insert>
+
 
     <!--     TODO : 아래 코드는 예제 -->
     <!--    List<Board> findAll();-->
