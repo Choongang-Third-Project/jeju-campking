@@ -1,9 +1,9 @@
 package com.jeju_campking.campking.member.service;
 
 
-import com.campking.member.dto.request.MemberLoginRequestDTO;
-import com.campking.member.dto.request.MemberSignRequestDTO;
-import com.campking.member.repository.MemberMapper;
+import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
+import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
+import com.jeju_campking.campking.member.repository.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

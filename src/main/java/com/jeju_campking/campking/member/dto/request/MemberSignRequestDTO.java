@@ -1,7 +1,7 @@
 package com.jeju_campking.campking.member.dto.request;
 
-import com.campking.member.entity.Gender;
-import com.campking.member.entity.Member;
+import com.jeju_campking.campking.member.entity.Gender;
+import com.jeju_campking.campking.member.entity.Member;
 import lombok.*;
 
 import javax.validation.constraints.*;

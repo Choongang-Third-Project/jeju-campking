@@ -1,7 +1,7 @@
 package com.jeju_campking.campking.member.repository;
 
-import com.campking.member.dto.request.MemberLoginRequestDTO;
-import com.campking.member.dto.request.MemberSignRequestDTO;
+import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
+import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

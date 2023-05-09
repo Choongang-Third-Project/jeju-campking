@@ -3,9 +3,9 @@ package com.jeju_campking.campking.member.controller;
 // TODO : 멤버의 회원가입, 로그인을 담당하는 컨트롤러
 
 
-import com.campking.member.dto.request.MemberLoginRequestDTO;
-import com.campking.member.dto.request.MemberSignRequestDTO;
-import com.campking.member.service.MemberService;
+import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
+import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
+import com.jeju_campking.campking.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
