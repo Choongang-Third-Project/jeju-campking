@@ -1,0 +1,56 @@
+body {
+    /* width: 80%; */
+    display: flex;
+    justify-content: center;   
+}
+
+.wrapper {
+    margin-top: 40px;
+
+}
+
+.container {
+    margin-left: 55px;
+}
+
+.wrapper h1 {
+    font-weight: 700;
+    font-size: 3em;
+}
+
+.box {
+    margin-top: 20px;
+}
+
+body .birth_yy, body .birth_mm, body .birth_dd {
+   
+}
+
+input, select {
+    margin-top: 5px !important;
+}
+
+#birth_wrap {
+    display: flex;
+}
+
+#yy, #mm, #dd {
+    width: 105px;
+}
+
+
+.btn-area {
+    margin-top: 40px;
+    margin-right: 120px;
+    padding: 22px;
+    text-align: center;
+    justify-content: center;
+    background-color: #1f2937;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.btn-area span {
+    letter-spacing: 3px;
+}

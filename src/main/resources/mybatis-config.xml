@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <!--   자동 카멜케이스 스네이크 케이스 변환 설정     -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <!--  entity 클래스 별칭 설정      -->
+<!--     ex   <typeAlias alias="score" type="com.spring.mvc.chap04.entity.Score"/>-->
+    </typeAliases>
+
+    <mappers>
+        <!-- Mapper XML files -->
+<!--     ex   <mapper resource="mappers/ScoreMapper.xml"/>-->
+    </mappers>
+
+</configuration>

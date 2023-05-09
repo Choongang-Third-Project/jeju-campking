@@ -1,0 +1,3 @@
+CREATE TABLE MEMBER_TBL (
+
+);
