@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeju_campking.campking.board.repository.ReplyMapper">
+
+    <insert id="write">
+        INSERT INTO TB_REPLY
+        (reply_content, board_number, member_number)
+        VALUES (#{replyContent}, #{boardNumber}, #{memberNumber});
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TB_REPLY
+        WHERE REPLY_NUMBER = #{replyNumber};
+    </delete>
+
+    <update id="modify">
+        UPDATE TB_REPLY
+        SET
+        reply_content = #{replyContent}
+        WHERE reply_number = #{replyNumber};
+    </update>
+
+</mapper>

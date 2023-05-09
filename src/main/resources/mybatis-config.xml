@@ -13,6 +13,7 @@
         <!--  entity 클래스 별칭 설정      -->
         <typeAlias alias="board" type="com.jeju_campking.campking.board.entity.Board"/>
         <typeAlias alias="member" type="com.jeju_campking.campking.member.entity.Member"/>
+        <typeAlias alias="reply" type="com.jeju_campking.campking.board.entity.Reply"/>
         <!--     ex   <typeAlias alias="score" type="com.spring.mvc.chap04.entity.Score"/>-->
     </typeAliases>
 
@@ -20,6 +21,7 @@
         <!-- Mapper XML files -->
         <mapper resource="mappers/BoardMapper.xml"/>
         <mapper resource="mappers/MemberMapper.xml"/>
+        <mapper resource="mappers/ReplyMapper.xml"/>
     </mappers>
 
 </configuration>

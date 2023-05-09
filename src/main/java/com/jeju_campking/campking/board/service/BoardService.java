@@ -4,10 +4,8 @@ package com.jeju_campking.campking.board.service;
 import com.jeju_campking.campking.board.dto.request.BoardModifyRequestDTO;
 import com.jeju_campking.campking.board.entity.Board;
 import com.jeju_campking.campking.board.repository.BoardMapper;
-import com.jeju_campking.campking.member.entity.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.jdbc.SQL;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
