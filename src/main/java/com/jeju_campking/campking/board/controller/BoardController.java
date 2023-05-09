@@ -24,17 +24,17 @@ public class BoardController {
             @Validated @RequestBody BoardWriteRequestDTO dto,
             BindingResult result
     ) {
-//
-//        if (result.hasErrors()) {
-//            return ResponseEntity
-//                    .badRequest()
-//                    .body(result.toString());
-//        }
-//
-//        log.info("경로...... : POST ! {}", dto);
-//
-//        Board board = dto.toEntity();
-//        ResponseEntity.ok().body(board);
+
+        if (result.hasErrors()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(result.toString());
+        }
+
+        log.info("경로...... : POST ! {}", dto);
+
+        Board board = dto.toEntity();
+        ResponseEntity.ok().body(board);
         return null;
     }
 

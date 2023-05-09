@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.campking.member.repository.BoardMapper">
+<mapper namespace="com.jeju_campking.campking.board.repository.BoardMapper">
 
     <insert id="write">
         INSERT INTO TB_BOARD
