@@ -19,11 +19,8 @@ import org.springframework.web.bind.annotation.*;
 public class BoardController {
     private final BoardService boardService;
 
-    @PostMapping()
-    public ResponseEntity<?> write(
-            @Validated @RequestBody BoardWriteRequestDTO dto,
-            BindingResult result
-    ) {
+    @PostMapping("/write")
+    public ResponseEntity<?> write() {
 //
 //        if (result.hasErrors()) {
 //            return ResponseEntity
@@ -38,14 +35,14 @@ public class BoardController {
         return null;
     }
 
-    @PostMapping()
+    @PostMapping("/delete")
     public ResponseEntity<?> delete() {
 
 
         return null;
     }
 
-    @PostMapping()
+    @PostMapping("/modify")
     public ResponseEntity<?> modify() {
 
 
