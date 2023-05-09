@@ -19,9 +19,4 @@
         VALUES (#{boardTitle}, #{boardContent}, #{memberNumber});
     </insert>
 
-    <select id="findAll" resultType="board">
-        SELECT *
-        FROM TB_BOARD
-    </select>
-
 </mapper>

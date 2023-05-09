@@ -44,9 +44,7 @@ class BoardMapperTest {
     @DisplayName("find all")
     void findAll(){
 
-        List<Board> list = boardMapper.findAll();
 
-        System.out.println("list = " + list);
     }
 
 }
