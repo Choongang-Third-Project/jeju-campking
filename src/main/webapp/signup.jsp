@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -8,15 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <%@ include file = "../include/static-head.jsp "%>
-    
+     <!-- fontawesome icon -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script src="https://kit.fontawesome.com/68f79e919f.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/assets/include/common.css">
+
     <link rel="stylesheet" href="/assets/signup/css/signup.css">
 
-
 </head>
-
 <body>
 
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
 
 
     <div class="wrapper">
@@ -131,7 +135,7 @@
 
 
         </div>
-        
+
 
 </body>
 

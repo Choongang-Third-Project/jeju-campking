@@ -1,13 +1,13 @@
 body {
     /* width: 80%; */
     display: flex;
-    justify-content: center;   
+    justify-content: center;
 }
 
 .wrapper {
     margin-top: 40px;
 
-}
+} 
 
 .container {
     margin-left: 55px;
