@@ -3,6 +3,7 @@ package com.jeju_campking.campking.member.service;
 
 import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
 import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
+import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.member.repository.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,19 +15,20 @@ import java.sql.SQLException;
 @RequiredArgsConstructor
 @Slf4j
 public class MemberService {
+
     private final MemberMapper memberMapper;
 
-    public boolean login(MemberLoginRequestDTO dto) throws SQLException {
+    public Member login(MemberLoginRequestDTO dto) throws SQLException {
         log.info("memberService login execute : {}", dto);
 
-        boolean isLogin = memberMapper.login(dto);
+        Member loginMember = memberMapper.login(dto);
 
-        if (!isLogin) {
+        if (loginMember == null) {
             log.warn("memberService : 로그인 실패 !");
             throw new SQLException("memberService : 로그인 실패 !");
         }
 
-        return isLogin;
+        return loginMember;
     }
 
     public boolean sign(MemberSignRequestDTO dto) throws SQLException {

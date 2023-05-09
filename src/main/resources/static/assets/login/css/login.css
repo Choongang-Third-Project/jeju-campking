@@ -15,7 +15,7 @@ a {
 }
 
 .wrap {
-    background-image: url('/springpj/login_background.jpg');
+    background-image: url('../img/login_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: left;

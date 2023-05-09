@@ -3,20 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jeju_campking.campking.board.repository.BoardMapper">
+<mapper namespace="com.jeju_campking.campking.member.repository.MemberMapper">
 
-    <select id="login" resultType="MemberLoginRequestDTO">
+    <select id="login" resultType="member">
         SELECT
-        member_id, member_password
-        FROM TB_MEMBER
-        WHERE member_id = #{memberId}
+            *
+        FROM campking.TB_MEMBER
+        WHERE member_email = #{memberEmail}
         AND member_password = #{memberPassword}
     </select>
 
     <insert id="sign">
-        INSERT INTO TB_MEMBER
-        (member_id, member_password, member_name, member_phone, member_email,
+        INSERT INTO campking.TB_MEMBER
+        (member_password, member_name, member_phone, member_email,
         member_gender, member_nickname, member_join_date, member_age)
-        VALUES (#{memberId}, #{memberPassword}, #{memberName}, #{memberPhone}, #{memberEmail},
+        VALUES (#{memberPassword}, #{memberName}, #{memberPhone}, #{memberEmail},
         #{memberGender}, #{memberNickname}, now(), #{memberAge})
     </insert>
 

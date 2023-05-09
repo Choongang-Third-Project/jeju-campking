@@ -15,8 +15,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class MemberSignRequestDTO {
-    @NotBlank(message = "ID는 필수 값입니다.")
-    private String memberId;
     @NotBlank(message = "비밀번호는 필수 값입니다.")
     private String memberPassword;
     @NotBlank(message = "이름은 필수 값입니다.")
@@ -37,7 +35,6 @@ public class MemberSignRequestDTO {
 
     public Member toEntity() {
         return Member.builder()
-                .memberId(this.memberId)
                 .memberPassword(this.memberPassword)
                 .memberName(this.memberName)
                 .memberPhone(this.memberPhone)
