@@ -4,5 +4,42 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jeju_campking.campking.camp.repository.CampMapper">
 
+    <select id="findAll" resultType="camp">
+        SELECT * FROM TB_CAMP
+    </select>
+
+    <select id="allCount" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_CAMP
+    </select>
+
+    <select id="findOne" resultType="camp">
+        SELECT camp_address, camp_detail, camp_number
+        FROM TB_CAMP
+        WHERE camp_address LIKE %#{address}%
+    </select>
+
+    <select id="findByType" resultType="camp">
+        SELECT camp_address, camp_detail, camp_number
+        FROM TB_camp
+        <if test ="">
+            WHERE camp_type_normal == '1'
+        </if>
+        OR
+        <if test ="">
+            WHERE camp_type_caravan == '1'
+        </if>
+        OR
+        <if test="">
+            WHERE camp_type_glamping == '1'
+        </if>
+        OR
+        <if test="">
+            WHERE camp_type_car == '1'
+        </if>
+    </select>
+
+
+
 
 </mapper>
