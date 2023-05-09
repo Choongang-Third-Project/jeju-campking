@@ -29,7 +29,7 @@ public class MemberController {
     // 회원가입
     @PostMapping("/signup")
     public ResponseEntity<?> sign(
-            @Validated @RequestBody MemberSignRequestDTO dto,
+            @RequestBody @Validated MemberSignRequestDTO dto,
             BindingResult result
     ) {
         log.info("/member/sign {}", dto);
@@ -44,7 +44,11 @@ public class MemberController {
         // 회원 가입 성공여부 검증
         try {
             boolean isSign = memberService.sign(dto);
-
+            if(isSign) {
+                return ResponseEntity
+                        .ok()
+                        .body(dto);
+            }
         } catch (SQLException e) {
             log.warn("500 Status code response!! caused by : {}", e.getMessage());
             return ResponseEntity
@@ -52,7 +56,7 @@ public class MemberController {
                     .body(e.getMessage());
         }
 
-        return ResponseEntity.ok().body("회원가입 성공");
+        return ResponseEntity.ok().body(dto);
     }
 
     // 로그인 실패 or 성공
