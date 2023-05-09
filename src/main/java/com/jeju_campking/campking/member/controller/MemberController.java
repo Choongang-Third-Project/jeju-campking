@@ -5,51 +5,71 @@ package com.jeju_campking.campking.member.controller;
 
 import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
 import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
+import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
-@RequestMapping("/member")
+@RequestMapping("api/v1/member")
 @Slf4j
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class MemberController {
+
     private final MemberService memberService;
 
     // 회원가입
-    @GetMapping("/sign")
-    public ResponseEntity<?> sign(MemberSignRequestDTO dto) {
+    @PostMapping("/signup")
+    public ResponseEntity<?> sign(
+            @Validated @RequestBody MemberSignRequestDTO dto,
+            BindingResult result
+    ) {
         log.info("/member/sign {}", dto);
 
-        try {
-            boolean isSign = memberService.sign(dto);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        // 입력값 검증
+        if (result.hasErrors()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(result.toString());
         }
 
-        return null;
+        // 회원 가입 성공여부 검증
+        try {
+            boolean isSign = memberService.sign(dto);
+
+        } catch (SQLException e) {
+            log.warn("500 Status code response!! caused by : {}", e.getMessage());
+            return ResponseEntity
+                    .internalServerError()
+                    .body(e.getMessage());
+        }
+
+        return ResponseEntity.ok().body("회원가입 성공");
     }
 
     // 로그인 실패 or 성공
-    @PostMapping("/login")
-    public String login(MemberLoginRequestDTO dto) {
-        log.info("/member/login {}", dto);
+    @PostMapping("/signin")
+    public ResponseEntity<?> login(MemberLoginRequestDTO dto) {
+        log.info("/member/signin {}", dto);
 
         try {
-            boolean isLogin = memberService.login(dto);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Member loginMember = memberService.login(dto);
+            return ResponseEntity
+                    .ok()
+                    .body(loginMember);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .internalServerError()
+                    .body(e.getMessage());
         }
-
-
-        return null;
     }
 
 

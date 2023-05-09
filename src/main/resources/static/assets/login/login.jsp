@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
 
     <!-- js -->
-    <script src="login.js" defer></script>
+    <script src="js/login.js" defer></script>
     <script src="https://cdn.tailwindcss.com" defer></script>
 
 </head>

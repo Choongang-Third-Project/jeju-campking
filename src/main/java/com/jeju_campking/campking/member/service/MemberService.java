@@ -18,7 +18,7 @@ public class MemberService {
 
     private final MemberMapper memberMapper;
 
-    public boolean login(MemberLoginRequestDTO dto) throws SQLException {
+    public Member login(MemberLoginRequestDTO dto) throws SQLException {
         log.info("memberService login execute : {}", dto);
 
         Member loginMember = memberMapper.login(dto);
@@ -28,7 +28,7 @@ public class MemberService {
             throw new SQLException("memberService : 로그인 실패 !");
         }
 
-        return true;
+        return loginMember;
     }
 
     public boolean sign(MemberSignRequestDTO dto) throws SQLException {
