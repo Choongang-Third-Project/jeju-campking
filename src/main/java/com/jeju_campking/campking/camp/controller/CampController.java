@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.springframework.web.servlet.function.ServerResponse.ok;
 
+
 //TODO: 캠프장 관련 데이터 보여주기
 @RestController
 @RequiredArgsConstructor
