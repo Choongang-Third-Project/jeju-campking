@@ -22,8 +22,7 @@
          document.getElementById('emailChk').innerHTML = '<b style="color: red; font-size:13px; ">이메일 형식이 올바르지 않습니다.</b>';
          checkResultList[0] = false;
      } else {
-         // URL 확인할것!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         fetch('member/check?type=email&keyword=' + emailValue)
+        fetch('/member/check?type=email&keyword=' + emailValue)
              .then(res => res.json())
              .then(flag => {
                  if (flag) {
@@ -143,7 +142,7 @@
          checkResultList[4] = false;
      } else {
 
-         fetch('member/check?type=nickname&keyword=' + nicknamValue)
+         fetch('/member/check?type=nickname&keyword=' + nicknamValue)
              .then(res => res.json())
              .then(flag => {
                  if (flag) {

@@ -12,27 +12,27 @@
 
     <typeAliases>
         <!--  entity 클래스 별칭 설정      -->
-<<<<<<< HEAD
+
         <typeAlias alias="board" type="com.jeju_campking.campking.board.entity.Board"/>
         <typeAlias alias="member" type="com.jeju_campking.campking.member.entity.Member"/>
         <typeAlias alias="reply" type="com.jeju_campking.campking.board.entity.Reply"/>
         <!--     ex   <typeAlias alias="score" type="com.spring.mvc.chap04.entity.Score"/>-->
-=======
+
 <!--     ex   <typeAlias alias="score" type="com.spring.mvc.chap04.entity.Score"/>-->
         <typeAlias alias="camp" type="com.jeju_campking.campking.camp.entity.Camp"/>
->>>>>>> feat/yejin/camp
+
     </typeAliases>
 
     <mappers>
         <!-- Mapper XML files -->
-<<<<<<< HEAD
+
         <mapper resource="mappers/BoardMapper.xml"/>
         <mapper resource="mappers/MemberMapper.xml"/>
         <mapper resource="mappers/ReplyMapper.xml"/>
-=======
+
 <!--     ex   <mapper resource="mappers/ScoreMapper.xml"/>-->
         <mapper resource="mappers/CampMapper.xml" />
->>>>>>> feat/yejin/camp
+
     </mappers>
 
 </configuration>
