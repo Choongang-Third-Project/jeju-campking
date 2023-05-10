@@ -1,7 +1,271 @@
-
-
-section.main {
-    background: url('img/sm_background.jpg') no-repeat center / cover fixed;
+body{
+    /* background: #1f2937; */
+    background: url('/src/main/resources/static/assets/home/img/sm_background.jpg') no-repeat center / cover fixed;
     height: 100vh;
-    /* position: relative; */
+
+}
+
+.wrapper {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    height: 150px;
+    border: 1px solid #000;
+
+}
+
+
+/* section.main style */
+section.main {
+    position: relative;
+    /* border: 4px solid red; */
+}
+
+
+
+section.main .container {
+    
+}
+
+
+section.main .search-container  {
+    /* width: 70%; */
+    /* width: 500px; */
+    height: 65px;
+    /* background-color: #999; */
+    display: flex;
+    justify-content: center;
+
+}
+
+section.main .container p {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 100px;
+    color: #cac7c7;
+}
+
+section.main .container {
+    border: 1px solid orange;
+    
+}
+
+section.main .search-container .search {
+    border-radius: 20px;
+    width: 500px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.main .search-container .searchBtn {
+    font-size: 1.2em;
+}
+
+
+
+
+
+
+
+
+
+/* radial */
+
+section.main .radial-container {
+    width: 1000px;
+    margin: 0 auto;
+    /* background: green; */
+    display: flex;
+    justify-content: space-evenly;
+    color: #cac7c7;
+    font-weight: 700;
+}
+
+
+section.main .radial-container {
+    text-align: center;
+}
+
+
+section.main .radial-container .r1 {
+    color: #525251;
+}
+
+section.main .radial-container .r2 {
+    color: #f1550c;
+}
+
+section.main .radial-container .r3 {
+    color: #11ca0a;
+}
+
+section.main .radial-container .r4 {
+    color: #1497ee;
+}
+
+section.main .radial-container .r5 {
+    color: #bf17e9;
+}
+
+section.main .radial-container p {
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 뉴컨테이너 */
+section.main .new-container {
+    margin: 0 auto;
+    padding-top: 400px;
+    margin-bottom: 100px;
+
+}
+
+section.main .new-container h1 {
+    font-weight: 700;
+    font-size: 1.5em;
+    padding: 25px 45px;
+}
+
+section.main .new-container h1 span {
+    color: rgb(212, 35, 4);
+    font-size: 1.2em;
+
+}
+
+section.main .new-container ul {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+section.main .new-container li {
+    /* border: 1px solid #000; */
+    width: 250px;
+    height: 150px;
+
+}
+
+section.main .new-container li:hover {
+    border: 4px solid #fff;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+section.camp-type {
+    background: orange;
+    margin: 100px 0;
+
+}
+
+section.camp-type h1 {
+    font-weight: 700;
+    font-size: 1.5em;
+    padding: 25px 45px;
+}
+
+
+
+section.camp-type .sub-container {
+    /* background: orange; */
+    margin-top: 30px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.camp-type .sub-container li {
+    /* border: 1px solid #000; */
+    float: left;
+    height: 280px;
+    width: 23%;
+}
+
+section.camp-type .sub-container li .img-box {
+    /* background: red; */
+    overflow: hidden;
+    margin: 10px;
+}
+
+section.camp-type .sub-container li .img-box img {
+    width: 100%;
+    height: 200px;
+    transition: 0.6s;
+
+}
+
+section.camp-type .sub-container li a:hover .img-box img {
+    transform: scale(1.2);
+}
+
+section.camp-type ul li a .text {
+    text-align: center;
+    padding: 10px;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+section.board {
+    display: flex;
+    /* justify-content: space-around; */
+    /* justify-content: center; */
+}
+
+section.board .sub-board {
+    padding: 20px 50px;
+    border-radius: 3%;
+
+}
+section.board p {
+    font-size: 4em;
+}
+
+section.board h2 {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 1.2em;
+
+
+}
+
+
+
+section.board .sub-board{
+    width: 70%;
+    height: 700px;
+    background: #F1F3F9;
+    border: 1px solid #000;
+    margin: 10px;
 }
