@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeju_campking.campking.camp.repository.CampMapper">
+
+    <select id="findAll" resultType="camp">
+        SELECT *
+        FROM TB_CAMP
+    </select>
+
+    <select id="allCount" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_CAMP
+    </select>
+
+    <select id="findByKeyword" resultType="camp">
+        select * from tb_camp
+        where camp_address like concat('%',#{keyword},'%')
+        or camp_detail like concat('%',#{keyword},'%')
+        or camp_type_normal like concat('%',#{keyword},'%')
+        or camp_type_car like concat('%',#{keyword},'%')
+        or camp_type_caravan  like concat('%',#{keyword},'%')
+        or camp_type_glamping like concat('%',#{keyword},'%')
+    </select>
+
+</mapper>
