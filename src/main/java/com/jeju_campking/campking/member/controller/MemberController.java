@@ -29,20 +29,19 @@ public class MemberController {
     private final MemberService memberService;
 
     // 회원가입 양식 페이지 요청
-    @GetMapping("/sign")
+    @GetMapping("/signup")
     public String signUp() {
         log.info("/member/sign GET - forwarding to jsp");
-        return "members/sign";
+        return "member/signup";
     }
 
     // 회원가입 처리 요청
-    @PostMapping("/sign")
-    @ResponseBody
+    @PostMapping("/signup")
     public ResponseEntity<?> signUp(
-            @RequestBody @Validated MemberSignRequestDTO dto,
+            @Validated MemberSignRequestDTO dto,
             BindingResult result
     ) {
-        log.info("/member/sign {}", dto);
+        log.info("/member/signup {}", dto);
 
         // 입력값 검증
         if (result.hasErrors()) {

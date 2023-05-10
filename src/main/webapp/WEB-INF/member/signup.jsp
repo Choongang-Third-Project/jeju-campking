@@ -18,11 +18,11 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="/src/main/resources/static/assets/include/common.css">
+    <link rel="stylesheet" href="/assets/include/common.css">
     
-    <link rel="stylesheet" href="/src/main/resources/static/assets/signup/css/signup.css">
+    <link rel="stylesheet" href="/assets/signup/css/signup.css">
 
-    <script src="/src/main/resources/static/assets/signup/js/signup.js" defer></script>
+    <script src="/assets/signup/js/signup.js" defer></script>
 
 </head>
 
@@ -36,14 +36,14 @@
             <h1><i class="fa-solid fa-tree"></i> CAMP KING <i class="fa-solid fa-tree"></i></h1>
         </div>
 
-        <form action="" id="signUpForm" name="signUp" method="post">
+        <form action="/member/signup" id="signUpForm" name="signUp" method="post">
 
             <div class="container">
                 <!-- 이메일 -->
                 <div class="box">
                     <h2><label for="email">이메일</label></h2>
                     <p>
-                        <input type="email" id="email" name="email" maxlength="50" class="input input-bordered w-full max-w-xs" placeholder="aaa@naver.com">
+                        <input type="email" id="email" name="memberEmail" maxlength="50" class="input input-bordered w-full max-w-xs" placeholder="aaa@naver.com">
                     </p>
                     <span id="emailChk"></span>
                 </div>
@@ -78,7 +78,7 @@
                 <div class="box">
                     <h2><label for="nickname">닉네임</label></h2>
                     <p>
-                        <input type="text" id="nickname" name="nickname" maxlength="10" class="input input-bordered w-full max-w-xs">
+                        <input type="text" id="nickname" name="memberNickname" maxlength="10" class="input input-bordered w-full max-w-xs">
                     </p>
                     <span id="nicknameChk"></span>
                 </div>
@@ -88,9 +88,9 @@
                 <div class="box">
                     <h2><label for="yy">생년월일</label></h2>
     
-                    <div id="birth_wrap" name="memberAge">
+                    <div id="birth_wrap">
                         <div>
-                            <input type="text" placeholder="(테스트용)나이입력"
+                            <input type="text" name="memberAge" placeholder="(테스트용)나이입력"
                              class="input input-bordered w-full max-w-xs">
                         </div>
                         
@@ -151,7 +151,7 @@
                 <div class="box">
                     <h2><label for="phone">휴대전화</label></h2>
                     <p>
-                        <input type="text" id="phone" name="phone" oninput="autoHyphen(this)" maxlength="13" class="input input-bordered w-full max-w-xs">
+                        <input type="text" id="phone" name="memberPhone" oninput="autoHyphen(this)" maxlength="13" class="input input-bordered w-full max-w-xs">
                     </p>
                     <span id="phone"></span>
                 </div>
