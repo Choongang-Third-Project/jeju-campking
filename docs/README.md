@@ -184,7 +184,7 @@ erDiagram
         member_gender VARCHAR(1) "Not Null"
         member_nickname VARCHAR(50) UK "Not Null"
         member_age INT(3) "Not Null"
-        member_join_date TIMESTAMP "Not Null default current_timestamp"
+        member_join_date DATE "Not Null default current_timestamp"
     }
 
     TB_BOARD {
