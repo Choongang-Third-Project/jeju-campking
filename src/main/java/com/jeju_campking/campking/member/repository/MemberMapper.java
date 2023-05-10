@@ -17,4 +17,6 @@ public interface MemberMapper {
     int isDuplicate(
             @Param("type") String type
             , @Param("keyword") String keyword);
+
+    Member findMember(String memberEmail);
 }

@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
 
     <!-- js -->
-    <script src="js/login.js" defer></script>
+<%--    <script src="js/login.js" defer></script>--%>
     <script src="https://cdn.tailwindcss.com" defer></script>
 
 </head>
@@ -28,7 +28,7 @@
                 <h1>로그인</h1>
             </div>
             <!-- 전송할 데이터 -->
-            <form action="#">
+            <form action="/member/login" name="loginForm" method="post">
                 <div class="id-pw-wrap">
                     <!-- id input -->
                     <div class="login-id">
@@ -82,5 +82,13 @@
         </div>
     </footer>
 </div>
+
+<script>
+    const loginResult = '${msg}';
+
+    if (loginResult == "FAIL") {
+        alert('아이디 또는 비밀번호가 틀렸습니다.')
+    }
+</script>
 </body>
 </html>

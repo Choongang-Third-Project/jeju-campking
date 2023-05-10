@@ -34,4 +34,10 @@
         </if>
     </select>
 
+    <select id="findMember" resultType="member">
+        SELECT *
+        FROM TB_MEMBER
+        WHERE member_email = #{memberEmail}
+    </select>
+
 </mapper>

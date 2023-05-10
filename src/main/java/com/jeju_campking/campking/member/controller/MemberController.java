@@ -11,15 +11,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.SQLException;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/member")
+@RequestMapping("/member")
 @Slf4j
 //@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class MemberController {
@@ -33,7 +35,7 @@ public class MemberController {
         return "members/sign";
     }
 
-    // 회원가입 처리 요청 - REST API
+    // 회원가입 처리 요청
     @PostMapping("/sign")
     @ResponseBody
     public ResponseEntity<?> signUp(
@@ -51,19 +53,21 @@ public class MemberController {
 
         // 회원 가입 성공여부 검증
         try {
+            // 회원가입 성공
             if(memberService.sign(dto)) {
                 return ResponseEntity
                         .ok()
-                        .body(dto);
+                        .body("SUCCESS");
             }
         } catch (SQLException e) {
+            // 회원가입 실패
             log.warn("500 Status code response!! caused by : {}", e.getMessage());
             return ResponseEntity
                     .internalServerError()
-                    .body(e.getMessage());
+                    .body("FAIL");
         }
 
-        return ResponseEntity.ok().body(dto);
+        return ResponseEntity.ok().body("FAIL");
     }
 
     // 로그인 양식 페이지 요청
@@ -73,27 +77,30 @@ public class MemberController {
         return "members/login";
     }
 
-    // 로그인 실패 or 성공 검증 요청
+    // 로그인 검증 요청
     // TODO : 로그인 성공시 로그인한 회원의 정보 리턴, 로그인 실패시 실패 메세지를 리턴
     @PostMapping("/login")
-    public ResponseEntity<?> login(MemberLoginRequestDTO dto) {
+    public String login(MemberLoginRequestDTO dto
+                        , Model model) {
         log.info("/member/login {}", dto);
 
+        // 로그인 검증 서비스
+        String loginResult = memberService.authenticate(dto);
+
+        // 로그인 성공시
         try {
-            Member loginMember = memberService.login(dto);
-            return ResponseEntity
-                    .ok()
-                    .body(loginMember);
+            if (loginResult.equals("SUCCESS")) {
+                Member loginMember = memberService.login(dto);
+                model.addAttribute(loginMember);
+            }
+            return "redirect:/";
 
         } catch (Exception e) {
-            return ResponseEntity
-                    .internalServerError()
-                    .body(e.getMessage());
+            return loginResult; // FAIL
         }
     }
 
-    // 회원가입 시 이메일, 닉네임, 전화번호 중복검사
-    // 비동기 요청 처리
+    // 회원가입 시 이메일, 닉네임, 전화번호 중복검사 - REST API
     @GetMapping("/check")
     @ResponseBody
     public ResponseEntity<?> check(String type, String keyword) {
