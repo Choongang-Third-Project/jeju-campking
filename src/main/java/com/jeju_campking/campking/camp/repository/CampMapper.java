@@ -12,13 +12,10 @@ public interface CampMapper {
     List<Camp> findAll();
 
     //타입으로 보여주기
-    List<Camp> findByType(String type, String keyword);
+    List<Camp> findByKeyword(String keyword);
 
     //보유한 캠프장 수 보여주기
     int allCount();
-
-    //캠프장 하나 찾기
-    Camp findOne(String address);
 
 
 

@@ -11,29 +11,27 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@Service
-@RequiredArgsConstructor
+//@Service
+//@RequiredArgsConstructor
 public class CampService {
 
-    private final CampMapper campRepository;
+//    private final CampMapper campRepository;
 
 
 
 
     public List<CampResponseDTO> getAllList() {
-        return campRepository.findAll()
-                .stream()
-                .map((Camp t) -> new CampResponseDTO(campNUmber, campAddress, campDetail, campTypeNormal, campTypeCar, campTypeCaravan, campTypeGlamping))
-                .collect(toList())
-                ;
+        return null;
+
     }
 
 
     public CampResponseDTO getDetail(String address) {
-
+        return null;
 
     }
 
     public CampResponseDTO getList(String address) {
+        return null;
     }
 }

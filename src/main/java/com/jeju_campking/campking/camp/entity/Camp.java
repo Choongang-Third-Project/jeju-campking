@@ -21,7 +21,7 @@ import lombok.*;
 @Builder
 public class Camp {
 
-    int campNumber;
+    Long campNumber;
     String campAddress;
     String campDetail;
     String campTypeNormal;

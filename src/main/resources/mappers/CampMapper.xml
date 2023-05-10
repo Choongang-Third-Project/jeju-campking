@@ -5,7 +5,8 @@
 <mapper namespace="com.jeju_campking.campking.camp.repository.CampMapper">
 
     <select id="findAll" resultType="camp">
-        SELECT * FROM TB_CAMP
+        SELECT *
+        FROM TB_CAMP
     </select>
 
     <select id="allCount" resultType="int">
@@ -13,30 +14,15 @@
         FROM TB_CAMP
     </select>
 
-    <select id="findOne" resultType="camp">
-        SELECT camp_address, camp_detail, camp_number
-        FROM TB_CAMP
-        WHERE camp_address LIKE %#{address}%
-    </select>
+    <select id="findByKeyword" resultType="camp">
+        select * from tb_camp
 
-    <select id="findByType" resultType="camp">
-        SELECT camp_address, camp_detail, camp_number
-        FROM TB_camp
-        <if test ="">
-            WHERE camp_type_normal == '1'
-        </if>
-        OR
-        <if test ="">
-            WHERE camp_type_caravan == '1'
-        </if>
-        OR
-        <if test="">
-            WHERE camp_type_glamping == '1'
-        </if>
-        OR
-        <if test="">
-            WHERE camp_type_car == '1'
-        </if>
+        where camp_address like concat('%',#{keyword},'%')
+        or camp_detail like concat('%',#{keyword},'%')
+        or camp_type_normal like concat('%',#{keyword},'%')
+        or camp_type_car like concat('%',#{keyword},'%')
+        or camp_type_caravan  like concat('%',#{keyword},'%')
+        or camp_type_glamping like concat('%',#{keyword},'%')
     </select>
 
 

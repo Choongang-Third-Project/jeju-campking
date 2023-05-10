@@ -5,9 +5,9 @@ import com.jeju_campking.campking.camp.entity.Camp;
 //TODO: 게시판 제목 줄이기, 게시판 글 내용 줄이기
 public class CampResponseDTO {
 
-    private final int campNUmber;
-    private final String shortDetail;
-    private final String shortAddress;
+//    private final int campNUmber;
+//    private final String shortDetail;
+//    private final String shortAddress;
 
 //    public CampResponseDTO(Camp camp) {
 //        this.campNUmber = camp.getCampNumber();
