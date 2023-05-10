@@ -1,48 +1,59 @@
 package com.jeju_campking.campking.camp.controller;
 
 import com.jeju_campking.campking.camp.dto.response.CampResponseDTO;
+import com.jeju_campking.campking.camp.entity.Camp;
 import com.jeju_campking.campking.camp.service.CampService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.UpdateProvider;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.stylesheets.LinkStyle;
 
+import java.sql.SQLException;
 import java.util.List;
-
-
-import static org.springframework.web.servlet.function.ServerResponse.ok;
 
 
 //TODO: 캠프장 관련 데이터 보여주기
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/camp")
+@RequestMapping("/camps")
 @Slf4j
 public class CampController {
     private final CampService campService;
 
 
     // 전체 캠핑장 목록조회 요청
-    @GetMapping("/allsit")
+    @GetMapping("/all-list")
     public ResponseEntity<?> list() {
-        log.info("/camp/allsit  GET!!");
-        List<CampResponseDTO> campResponseDTOList = campService.getAllList();
-
-        return ResponseEntity.ok().body(campResponseDTOList);
+        log.info("/camps/all-lsit  GET!!");
+        List<Camp> list = null;
+        try {
+            list = campService.getAllList();
+            return ResponseEntity.ok().body(list);
+        } catch (SQLException e) {
+            log.warn("/camps/all-list GET : {}", list);
+            return ResponseEntity
+                    .internalServerError()
+                    .body(e.getMessage());
+        }
     }
 
     //주소로 캠프장 하나 찾기
-    @GetMapping("/{address}")
-    public String detail(@PathVariable String address){
-        log.info("/api/v1/replies/{address} : GET!! ",address);
-        CampResponseDTO campResponseDTOList = campService.getList(address);
+    @GetMapping("/{keyword}")
+    public ResponseEntity<?> detail(@PathVariable(required = false) String keyword) {
+        log.info("/camps/address : GET!! {} ", keyword);
 
-        return null;
+        List<Camp> byKeyword = null;
+        try {
+            byKeyword = campService.findByKeyword(keyword);
+
+            return ResponseEntity.ok().body(byKeyword);
+        } catch (SQLException e) {
+            log.warn("/camps/all-list GET : {}", byKeyword);
+            return ResponseEntity
+                    .internalServerError()
+                    .body(e.getMessage());
+        }
     }
-
 
 }

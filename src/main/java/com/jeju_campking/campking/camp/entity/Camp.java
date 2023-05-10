@@ -14,13 +14,14 @@ import lombok.*;
 );
 * */
 //TODO: 캠프장 엔티티
-@Setter @Getter
-@ToString @EqualsAndHashCode
+@Setter
+@Getter
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Camp {
-
     Long campNumber;
     String campAddress;
     String campDetail;
@@ -28,5 +29,4 @@ public class Camp {
     String campTypeCar;
     String campTypeCaravan;
     String campTypeGlamping;
-
 }

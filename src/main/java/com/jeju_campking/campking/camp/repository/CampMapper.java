@@ -19,8 +19,4 @@ public interface CampMapper {
     //보유한 캠프장 수 보여주기
     int allCount();
 
-
-
-
-
 }
