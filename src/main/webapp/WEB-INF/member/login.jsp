@@ -6,15 +6,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>캠프킹 로그인</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="login.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/assets/login/css/login.css">
 
     <!-- js -->
 <%--    <script src="js/login.js" defer></script>--%>
-    <script src="https://cdn.tailwindcss.com" defer></script>
+<%--    <script src="https://cdn.tailwindcss.com" defer></script>--%>
 
 </head>
 <body>
@@ -32,16 +32,17 @@
                 <div class="id-pw-wrap">
                     <!-- id input -->
                     <div class="login-id">
-                        <input type="text" name="account" id="login-id-input" class="login-id-input login-input" placeholder="아이디"/>
+                        <input type="text" name="memberEmail" id="login-id-input" class="login-id-input login-input" placeholder="아이디"/>
                         <label class="form-label" for="login-id-input"></label>
                     </div>
 
                     <!-- Password input -->
                     <div class="password-id">
-                        <input type="password" name="password" id="login-password-input" class="login-password-input login-input" placeholder="비밀번호" />
+                        <input type="password" name="memberPassword" id="login-password-input" class="login-password-input login-input" placeholder="비밀번호" />
                         <label class="form-label" for="login-password-input"></label>
                     </div>
                 </div>
+<%-- TODO : 자동 로그인 기능 추가해야 합니다. --%>
                 <div class="login-auto-check">
                     <label for="auto-login">
                         <span>
@@ -51,7 +52,7 @@
                         </span>
                     </label>
                 </div>
-<%-- TODO : 아이디 찾기, 비밀번호 찾기 기능 추가해야 합니다. --%>
+<%-- TODO : 아이디 찾기, 비밀번호 찾기 기능 및 페이지 추가해야 합니다. --%>
                 <!-- 2 column grid layout for inline styling -->
                 <div class="login-find">
                     <div class="login-find-id login-find-text">
@@ -64,10 +65,9 @@
                     </div>
                     <div class="login-sign-up login-find-text">&nbsp;&nbsp;|&nbsp;
                         <!-- Simple link -->
-                        <a href="../signup.jsp">회원가입</a>
+                        <a href="http://localhost:8181/member/signup">회원가입</a>
                     </div>
                 </div>
-
 
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-primary btn-block login-btn">로그인</button>
@@ -75,6 +75,7 @@
         </div>
     </div>
     <!-- footer -->
+<%-- TODO : footer 통일해야합니다. --%>
     <footer class="login-footer">
         <div class="logo">로고</div>
         <div class="copyright">
@@ -84,11 +85,15 @@
 </div>
 
 <script>
-    const loginResult = '${msg}';
+    const $loginBtn = document.querySelector('.login-btn');
+    const loginResult = '${loginResult}';
 
     if (loginResult == "FAIL") {
         alert('아이디 또는 비밀번호가 틀렸습니다.')
+        document.getElementById('login-id-input').textContent = '';
+        document.getElementById('login-password-input').textContent = '';
     }
+
 </script>
 </body>
 </html>

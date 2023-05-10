@@ -73,30 +73,36 @@ public class MemberController {
     @GetMapping("/login")
     public String login() {
         log.info("/member/login GET - forwarding to jsp");
-        return "members/login";
+        return "member/login";
     }
 
     // 로그인 검증 요청
-    // TODO : 로그인 성공시 로그인한 회원의 정보 리턴, 로그인 실패시 실패 메세지를 리턴
     @PostMapping("/login")
     public String login(MemberLoginRequestDTO dto
+                        , RedirectAttributes ra
                         , Model model) {
         log.info("/member/login {}", dto);
 
         // 로그인 검증 서비스
         String loginResult = memberService.authenticate(dto);
 
-        // 로그인 성공시
+        ra.addFlashAttribute("loginResult", loginResult);
+
+        // 로그인 성공
+        // TODO : 로그인한 회원 객체를 가지고 메인페이지로 돌아가야합니다.
         try {
             if (loginResult.equals("SUCCESS")) {
+                log.info("loginResult {}", loginResult);
                 Member loginMember = memberService.login(dto);
+                log.info(loginMember.getMemberNickname(), loginMember.getMemberGender());
                 model.addAttribute(loginMember);
+                return "/member/signup";
             }
-            return "redirect:/";
-
+            // 로그인 실패
         } catch (Exception e) {
-            return loginResult; // FAIL
+            return "redirect:/member/login"; // FAIL 리턴
         }
+        return "redirect:/member/login"; // FAIL 리턴
     }
 
     // 회원가입 시 이메일, 닉네임, 전화번호 중복검사 - REST API
