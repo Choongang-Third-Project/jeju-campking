@@ -16,7 +16,6 @@
 
     <select id="findByKeyword" resultType="camp">
         select * from tb_camp
-
         where camp_address like concat('%',#{keyword},'%')
         or camp_detail like concat('%',#{keyword},'%')
         or camp_type_normal like concat('%',#{keyword},'%')
@@ -24,8 +23,5 @@
         or camp_type_caravan  like concat('%',#{keyword},'%')
         or camp_type_glamping like concat('%',#{keyword},'%')
     </select>
-
-
-
 
 </mapper>

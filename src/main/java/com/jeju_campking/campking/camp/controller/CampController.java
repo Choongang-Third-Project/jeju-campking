@@ -18,34 +18,31 @@ import static org.springframework.web.servlet.function.ServerResponse.ok;
 
 
 //TODO: 캠프장 관련 데이터 보여주기
-//@RestController
-//@RequiredArgsConstructor
-//@RequestMapping("/api/v1/replies")
-//@Slf4j
-////클라이언트의 접근을 어떤 app에서만 허용할 것인가
-//@CrossOrigin(origins = {"http://127.0.0.1:5501"}) //-예시
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/camp")
+@Slf4j
 public class CampController {
-//    private final CampService campService;
-//
-//
-//    // 전체 캠핑장 목록조회 요청
-//    // URL : /api/v1/replies/3/page/3
-//    @GetMapping("/allsit")
-//    public ResponseEntity<?> list() {
-//        log.info("/api/v1/replies/allist : GET!!");
-//        List<CampResponseDTO> campResponseDTOList = campService.getAllList();
-//
-//        return ResponseEntity.ok().body(campResponseDTOList);
-//    }
-//
-//    //주소로 캠프장 하나 찾기
-//    @GetMapping("/{address}")
-//    public String detail(@PathVariable String address){
-//        log.info("/api/v1/replies/{address} : GET!! ",address);
-//        CampResponseDTO campResponseDTOList = campService.getList(address);
-//
-//        return null;
-//    }
+    private final CampService campService;
+
+
+    // 전체 캠핑장 목록조회 요청
+    @GetMapping("/allsit")
+    public ResponseEntity<?> list() {
+        log.info("/camp/allsit  GET!!");
+        List<CampResponseDTO> campResponseDTOList = campService.getAllList();
+
+        return ResponseEntity.ok().body(campResponseDTOList);
+    }
+
+    //주소로 캠프장 하나 찾기
+    @GetMapping("/{address}")
+    public String detail(@PathVariable String address){
+        log.info("/api/v1/replies/{address} : GET!! ",address);
+        CampResponseDTO campResponseDTOList = campService.getList(address);
+
+        return null;
+    }
 
 
 }
