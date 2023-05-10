@@ -31,6 +31,7 @@ public class MemberService {
         return loginMember;
     }
 
+    // 회원가입 처리 서비스
     public boolean sign(MemberSignRequestDTO dto) throws SQLException {
         log.info("memberService sign : {} ", dto);
 
