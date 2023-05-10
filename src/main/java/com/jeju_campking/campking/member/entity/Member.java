@@ -15,13 +15,12 @@ import java.time.LocalDateTime;
 @Builder
 public class Member {
     private Long memberNumber;
-    private String memberId;
+    private String memberEmail;
     private String memberPassword;
     private String memberName;
-    private String memberPhone;
-    private String memberEmail;
-    private Gender memberGender;
     private String memberNickname;
+    private String memberPhone;
+    private Gender memberGender;
     private int memberAge;
     private LocalDateTime memberJoinDate;
 }
