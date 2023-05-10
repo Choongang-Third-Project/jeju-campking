@@ -34,14 +34,14 @@ class MemberMapperTest {
     }
 
     @Test
-    @DisplayName("이메일이 abc123인 회원이 로그인을 성공하면 회원 객체를 리턴받고, 그 회원의 이름은 조예원이어야 한다.")
+    @DisplayName("이메일이 test1@test.com인 회원이 로그인을 성공하면 회원 객체를 리턴받고, 그 회원의 이름은 테스트1이어야 한다.")
     void loginSuccessTest() {
         MemberLoginRequestDTO dto = MemberLoginRequestDTO.builder()
-                .memberEmail("abc123@naver.com")
-                .memberPassword("abc123")
+                .memberEmail("test1@test.com")
+                .memberPassword("test1")
                 .build();
         Member member = memberMapper.login(dto);
-        assertEquals("조예원", member.getMemberName());
+        assertEquals("테스트1", member.getMemberName());
     }
 
     @Test

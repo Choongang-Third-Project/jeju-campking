@@ -54,7 +54,7 @@ public class MemberService {
     // 로그인 성공여부 검증 서비스
     public String authenticate(MemberLoginRequestDTO dto) {
 
-        Member foundMember = memberMapper.findMember(dto.getMemberEmail());
+        Member foundMember = memberMapper.login(dto);
 
         // 회원가입 여부 확인
         if (foundMember == null) {
@@ -63,7 +63,7 @@ public class MemberService {
         }
         // 비밀번호 일치 확인
         // TODO : 비밀번호 암호화 후 matches 로 변경
-        if (dto.getMemberPassword().equals(foundMember.getMemberPassword())) {
+        if (!dto.getMemberPassword().equals(foundMember.getMemberPassword())) {
             log.info("비밀번호 불일치", dto.getMemberEmail());
             return "FAIL";
         }
