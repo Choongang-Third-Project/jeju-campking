@@ -92,5 +92,16 @@ public class MemberController {
         }
     }
 
+    // 회원가입 시 이메일, 닉네임, 전화번호 중복검사
+    // 비동기 요청 처리
+    @GetMapping("/check")
+    @ResponseBody
+    public ResponseEntity<?> check(String type, String keyword) {
+        log.info("/member/check?type={}&keyword={} ASYNC GET", type, keyword);
+
+        boolean flag = memberService.checkSignUpValue(type, keyword);
+        return ResponseEntity.ok().body(flag);
+    }
+
 
 }

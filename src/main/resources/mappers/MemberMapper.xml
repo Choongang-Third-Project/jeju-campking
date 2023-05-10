@@ -20,4 +20,18 @@
         #{memberPhone}, #{memberAge}, #{memberGender})
     </insert>
 
+    <select id="isDuplicate" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_MEMBER
+        <if test="type == 'email'">
+            WHERE member_email = #{keyword}
+        </if>
+        <if test="type == 'nickname'">
+            WHERE member_nickname = #{keyword}
+        </if>
+        <if test="type == 'phone'">
+            WHERE member_phone = #{keyword}
+        </if>
+    </select>
+
 </mapper>
