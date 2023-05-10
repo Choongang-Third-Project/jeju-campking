@@ -51,6 +51,6 @@ input, select {
     font-weight: 700;
 }
 
-.btn-area span {
+.btn-area #btn-join {
     letter-spacing: 3px;
 }
