@@ -64,7 +64,7 @@
                     </div>
                     <div class="login-sign-up login-find-text">&nbsp;&nbsp;|&nbsp;
                         <!-- Simple link -->
-                        <a href="signup.jsp">회원가입</a>
+                        <a href="../signup.jsp">회원가입</a>
                     </div>
                 </div>
 
