@@ -25,7 +25,7 @@ class MemberMapperTest {
                 .memberPassword("abc123")
                 .memberName("조예원")
                 .memberPhone("010-1111-1111")
-                .memberGender(Gender.F)
+                .memberGender("F")
                 .memberAge(100)
                 .memberNickname("앙뇽")
                 .build();
@@ -53,5 +53,25 @@ class MemberMapperTest {
                 .build();
         Member member = memberMapper.login(loginFail);
         assertNull(member);
+    }
+
+    @Test
+    @DisplayName("회원 300명을 등록하고, 각 회원의 회원번호, 이메일, 전화번호, 닉네임은 모두 달라야 한다.")
+    void bulkSignUpTest() {
+        int phoneNumber = 1000;
+
+        for (int i = 1; i < 300; i++) {
+            MemberSignRequestDTO member = MemberSignRequestDTO.builder()
+                    .memberEmail("test" + i + "@test.com")
+                    .memberPassword("test" + i)
+                    .memberName("테스트" + i)
+                    .memberPhone("010-1111-" + phoneNumber)
+                    .memberGender("F")
+                    .memberAge(30)
+                    .memberNickname("test" + i)
+                    .build();
+            memberMapper.sign(member);
+            phoneNumber++;
+        }
     }
 }

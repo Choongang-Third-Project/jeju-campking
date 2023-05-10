@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,17 +32,26 @@
                 <div class="id-pw-wrap">
                     <!-- id input -->
                     <div class="login-id">
-                        <input type="text" id="login-id-input" class="login-id-input login-input" placeholder="아이디"/>
+                        <input type="text" name="account" id="login-id-input" class="login-id-input login-input" placeholder="아이디"/>
                         <label class="form-label" for="login-id-input"></label>
                     </div>
 
                     <!-- Password input -->
                     <div class="password-id">
-                        <input type="password" id="login-password-input" class="login-password-input login-input" placeholder="비밀번호" />
+                        <input type="password" name="password" id="login-password-input" class="login-password-input login-input" placeholder="비밀번호" />
                         <label class="form-label" for="login-password-input"></label>
                     </div>
                 </div>
-
+                <div class="login-auto-check">
+                    <label for="auto-login">
+                        <span>
+                        <i class="fas fa-sign-in-alt"></i>
+                        자동 로그인
+                        <input type="checkbox" id="auto-login" name="autoLogin">
+                        </span>
+                    </label>
+                </div>
+<%-- TODO : 아이디 찾기, 비밀번호 찾기 기능 추가해야 합니다. --%>
                 <!-- 2 column grid layout for inline styling -->
                 <div class="login-find">
                     <div class="login-find-id login-find-text">
@@ -53,7 +64,7 @@
                     </div>
                     <div class="login-sign-up login-find-text">&nbsp;&nbsp;|&nbsp;
                         <!-- Simple link -->
-                        <a href="#">회원가입</a>
+                        <a href="signup.jsp">회원가입</a>
                     </div>
                 </div>
 

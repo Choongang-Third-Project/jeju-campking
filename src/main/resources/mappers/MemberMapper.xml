@@ -14,10 +14,24 @@
 
     <insert id="sign">
         INSERT INTO TB_MEMBER
-        (member_password, member_name, member_phone, member_email,
-        member_gender, member_nickname, member_age)
-        VALUES (#{memberPassword}, #{memberName}, #{memberPhone}, #{memberEmail},
-        #{memberGender}, #{memberNickname}, #{memberAge})
+        (member_email, member_password, member_name, member_nickname,
+         member_phone, member_age, member_gender)
+        VALUES (#{memberEmail}, #{memberPassword}, #{memberName}, #{memberNickname},
+        #{memberPhone}, #{memberAge}, #{memberGender})
     </insert>
+
+    <select id="isDuplicate" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_MEMBER
+        <if test="type == 'email'">
+            WHERE member_email = #{keyword}
+        </if>
+        <if test="type == 'nickname'">
+            WHERE member_nickname = #{keyword}
+        </if>
+        <if test="type == 'phone'">
+            WHERE member_phone = #{keyword}
+        </if>
+    </select>
 
 </mapper>

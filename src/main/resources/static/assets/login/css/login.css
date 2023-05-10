@@ -72,12 +72,16 @@ a {
 }
 
 /* button */
+.login-auto-check {
+    font-size: 12px;
+    margin: 10px 0;
+    left: 0;
+}
 .wrap .login-btn {
     width: 300px;
     background-color: #5a4794;
     border: none;
 }
-
 
 /* footer */
 .login-footer {

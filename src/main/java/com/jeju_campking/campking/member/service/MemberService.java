@@ -31,6 +31,7 @@ public class MemberService {
         return loginMember;
     }
 
+    // 회원가입 처리 서비스
     public boolean sign(MemberSignRequestDTO dto) throws SQLException {
         log.info("memberService sign : {} ", dto);
 
@@ -42,5 +43,12 @@ public class MemberService {
         }
 
         return isSign;
+    }
+
+    // 회원가입 시 이메일, 닉네임, 전화번호 중복 검사 처리 서비스
+    // 중복일 시 true 리턴, 중복이 아닐 시 false 리턴
+    public boolean checkSignUpValue(String type, String keyword) {
+        int flagNum = memberMapper.isDuplicate(type, keyword);
+        return flagNum == 1;
     }
 }
