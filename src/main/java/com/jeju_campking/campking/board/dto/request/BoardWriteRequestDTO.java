@@ -14,6 +14,8 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @Builder
 @Validated
+
+
 public class BoardWriteRequestDTO {
     @NotBlank(message = "제목을 입력해주세요.")
     private String boardTitle;
