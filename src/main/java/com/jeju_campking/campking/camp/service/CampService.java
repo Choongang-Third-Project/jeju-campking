@@ -17,7 +17,7 @@ public class CampService {
 
     private final CampMapper campMapper;
 
-    public List<Camp> getAllList() throws SQLException {
+    public List<Camp> findAll() throws SQLException {
 
         List<Camp> list = campMapper.findAll();
         log.info("campService.getAllList.info {}", list);

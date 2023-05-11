@@ -71,14 +71,28 @@ timeline
             : 🎯
             : [Back] DB 설계
             : [Back] 패키지 구조
-    2023-05-09: [ ] 회원가입 기능 구현
-            : [Front] index.html
-            : [Front] login.html
+    2023-05-09: [✅] initial commit
+            : [Front] 웰컴 페이지
+            : [Front] 게시판 페이지
+            : [Front] 회원가입 페이지
             : 🎯
-            : [Back] DB 테이블 생성
-            : [Back] member
-    2023-05-10: [ ]
-    2023-05-11: [ ]
+            : [Back] camp 테이블 설계
+            : [Back] 멤버 기능 구현
+    2023-05-10: [✅] 회원가입 기능 구현
+            : [Front] 캠프 페이지
+            : [Front] 게시판 페이지
+            : [Front] 회원가입 페이지
+            : 🎯
+            : [Back] camp mapper post 테스트
+            : [Back] 회원 서비스 구현
+    2023-05-11: [✅] 서비스 시나리오 작성 
+            : [Front] 캠프장 목록 구현
+            : [Front] 캠프장 상세 보기 구현
+            : [Front] 같이 갈 사람 게시판 구현
+            : [Front] login 메인 헤더 구현
+            : 🎯
+            : [Back] 같이 갈 사람 테이블 구성
+            : [Back] 게시판 테이블 구성
     2023-05-12: [ ]
 ```
 
@@ -99,69 +113,24 @@ flowchart LR
     회원가입 --> 로그인 --> 서비스이용
 ```
 
+
 - #### V1.0 개발 전략
     - [v1.0.0] 회원가입을 성공시킨다
         - [Front] 홈페이지로부터 유저의 ID 와 password 를 입력받는다
         - [Back] 회원가입된 아이디는 DB에 저장된다
+        - [Front] 홈페이지로부터 유저의 ID 와 password 를 입력받는다
+        - [Back] 회원가입된 아이디는 DB에 저장된다
+    - [v1.0.0] 회원가입을 성공시킨다
+        - [Front] 홈페이지로부터 유저의 ID 와 password 를 입력받는다
+        - [Back] 회원가입된 아이디는 DB에 저장된다
+        - [Front] 홈페이지로부터 유저의 ID 와 password 를 입력받는다
+        - [Back] 회원가입된 아이디는 DB에 저장된다
+
 
 <br>
 <br>
 <br>
 
-### 🚀 Class Diagram
-
----
-
-```mermaid
-classDiagram
-    member --> Gender
-
-    class member {
-        - Long memberNumber
-        - String memberID
-        - String memberPassword
-        - String memberName
-        - String memberPhone
-        - String memberEmail
-        - Gender memberGender
-        - String memberNickname
-        - LocalDateTime memberJoinDate
-        - int memberBirthDate
-    }
-
-    class Gender {
-        M, F
-    }
-
-    class Board {
-        - int boardNumber
-        - String boardTitle
-        - String boardContent
-        - int memberNumber
-    }
-
-    class Reply {
-        - int replyNumber
-        - String replyWriter
-        - String replyContent
-        - int boardNumber
-    }
-
-    class Camp {
-        - int campNumber
-        - String campAdress
-        - String campDetail
-        - String campTypeNormal
-        - String campTypeCar
-        - String campTypeCaravan
-        - String campTypeGlamping
-    }
-
-```
-
-<br>
-<br>
-<br>
 
 ### 📀 DataBase Diagram
 
@@ -204,13 +173,15 @@ erDiagram
     }
 
     TB_CAMP {
-        camp_number INT(10) PK
-        camp_adress VARCHAR(80) "Not Null"
-        camp_detail VARCHAR(500) "Not Null"
-        camp_type_normal CHAR(1) "1 or 0"
-        camp_type_car CHAR(1) "1 or 0"
-        camp_type_caravan CHAR(1) "1 or 0"
-        camp_type_glamping CHAR(1) "1 or 0"
+        camp_number INT(10) PK "AUTO_INCREMENT"
+        camp_name VARCHAR(100) "NOT NULL"
+        camp_adress VARCHAR(200) "NOT NULL"
+        camp_type_normal VARCHAR(20) "일반 or Not"
+        camp_type_car VARCHAR(20) "자동차 or Not"
+        camp_type_caravan VARCHAR(20) "카라반 or Not"
+        camp_type_glamping VARCHAR(20) "글램핑 or Not"
+        camp_type_latitude VARCHAR(20) "NOT NULL"
+        camp_type_longitube VARCHAR(20) "NOT NULL"
     }
 
 ```
