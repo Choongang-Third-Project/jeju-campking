@@ -6,17 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <style>
         /* header style */
         header {
             /* background: red; */
-            background: purple;
+            background: #666;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+        }
+        header .inner-header{
+            display: flex;
         }
 
         header.on {
@@ -43,6 +48,12 @@
             width: 150px;
         }
 
+        header .inner-header .name {
+            font-family: 'Righteous', cursive;
+
+            
+        }
+
         header .inner-header .logo a {
             display: block;
         }
@@ -51,15 +62,16 @@
             height: 60px;
         }
 
-        header .inner-header .intro-text {
+        /* header .inner-header .intro-text {
             /* background: greenyellow; */
             flex: 4;
             text-transform: uppercase;
             margin-left: 40px;
-        }
+        } */
 
         header .inner-header .menu-trigger {
             /* background: skyblue; */
+            
             flex: 1;
             font-size: 16px;
             display: flex;
@@ -124,6 +136,9 @@
         .menu-trigger {
             /* margin-right: 20px; */
             margin-bottom: 50px;
+            flex: 1;
+          
+            
         }
 
         .menu-trigger,
@@ -131,20 +146,24 @@
             display: inline-block;
             transition: all .4s;
             box-sizing: border-box;
+            
         }
 
         .menu-trigger {
+            /* background: orange; */
             position: relative;
-            margin-top: 30px;
-            width: 10px;
+            margin-top: 40px;
+            width: 30%;
             height: 35px;
         }
 
         .menu-trigger span {
             position: absolute;
-            left: 0;
-            width: 20%;
+            right: 0;
+            width: 8%;
             height: 4px;
+            /* margin-left: 500px; */
+            flex-direction: row-reverse;
             background-color: #fff;
             border-radius: 4px;
         }
@@ -177,10 +196,44 @@
             -webkit-transform: translate(-1px, -13px) rotate(45deg);
             transform: translate(-1px, -13px) rotate(45deg);
         }
-        .fa-solid {
-            color: white;
-            font-size: 30px;
+        .fa-search {
+            font-size: 40px;
+            /* float: left; */
+            /* left: 300px; */
+            /* flex:1; */
+    
+            
         }
+        .search-bar{
+            /* background: orange; */
+            /* flex: 1; */
+            position: absolute;
+            left: 89%;
+            
+        }
+
+        .logo {
+
+        }
+
+        .inner-header .menu {
+            display: flex;
+            flex: 2;
+        }
+        .inner-header .menu .menu1{
+            font-size: 20px;
+            padding: 20px;
+        }
+        .inner-header .menu .menu2{
+            padding: 20px;
+            font-size: 20px;
+        }
+        .inner-header .menu .menu3{
+            font-size: 20px;
+            padding: 20px;
+        }
+
+        
     </style>
 </head>
 
@@ -188,12 +241,19 @@
     <header>
         <div class="inner-header">
             <h1 class="logo">
-                <a href="#">
-                    <img src="/main/webapp/img/camp.png" alt="로고이미지">
-                </a>
+                campking
             </h1>
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <h2 class="intro-text">W</h2>
+            <div class="menu">
+                <div class="menu1">공지사항</div>
+                <div class="menu2" >캠프장</div>
+                <div class="menu3">같이 갈 사람</div>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+            </div>
+            <div>
+                {"SiteDomain":"Required.","OwnerEmail":"Required."}
+            </div>
             <a class="menu-trigger" href="#">
                 <span></span>
                 <span></span>
@@ -227,7 +287,7 @@
 
             $this.on('click', function (e) {
                 e.preventDefault();
-                $(this).toggleClass('active-' + (index + 1));
+                $(this).toggleClass('active-8');
             })
         });
     </script>
