@@ -5,7 +5,16 @@
 <mapper namespace="com.jeju_campking.campking.camp.repository.CampMapper">
 
     <select id="findAll" resultType="camp">
-        SELECT *
+        SELECT
+        camp_number,
+        camp_address,
+        camp_name,
+        camp_type_normal,
+        camp_type_car,
+        camp_type_caravan,
+        camp_type_glamping,
+        camp_latitude,
+        camp_longitude
         FROM TB_CAMP
     </select>
 
@@ -15,13 +24,23 @@
     </select>
 
     <select id="findByKeyword" resultType="camp">
-        select * from tb_camp
-        where camp_address like concat('%',#{keyword},'%')
-        or camp_detail like concat('%',#{keyword},'%')
-        or camp_type_normal like concat('%',#{keyword},'%')
-        or camp_type_car like concat('%',#{keyword},'%')
-        or camp_type_caravan  like concat('%',#{keyword},'%')
-        or camp_type_glamping like concat('%',#{keyword},'%')
+        SELECT
+        camp_number,
+        camp_address,
+        camp_name,
+        camp_type_normal,
+        camp_type_car,
+        camp_type_caravan,
+        camp_type_glamping,
+        camp_latitude,
+        camp_longitude
+        FROM TB_CAMP
+        WHERE camp_address LIKE CONCAT('%',#{keyword},'%')
+        OR camp_name LIKE CONCAT('%',#{keyword},'%')
+        OR camp_type_normal LIKE CONCAT('%',#{keyword},'%')
+        OR camp_type_car LIKE CONCAT('%',#{keyword},'%')
+        OR camp_type_caravan LIKE CONCAT('%',#{keyword},'%')
+        OR camp_type_glamping LIKE CONCAT('%',#{keyword},'%')
     </select>
 
 </mapper>
