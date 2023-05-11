@@ -22,11 +22,13 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class Camp {
-    Long campNumber;
-    String campAddress;
-    String campDetail;
-    String campTypeNormal;
-    String campTypeCar;
-    String campTypeCaravan;
-    String campTypeGlamping;
+    private Long campNumber;
+    private String campAddress;
+    private String campName;
+    private String campTypeNormal;
+    private String campTypeCar;
+    private String campTypeCaravan;
+    private String campTypeGlamping;
+    private String campLatitude;
+    private String campLongitude;
 }
