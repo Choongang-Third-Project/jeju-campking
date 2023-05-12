@@ -1,0 +1,104 @@
+header {
+    padding-top: 15px;
+    height: 160px;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* background: #000; */
+    position: relative;
+}
+
+
+.inner-header {
+    color: #fff;
+    width: 75%;
+    margin: 0 auto;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.inner-header .logo a {
+    margin-left: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+}
+
+.inner-header .logo a p {
+    margin: 0;
+}
+
+.inner-header .logo a p:first-child {
+    color: #02813c;
+    font-size: 40px;
+}
+
+.inner-header .logo a p:last-child {
+    font-size: 28px;
+}
+
+.inner-header .logo a p:last-child span {
+    font-weight: bold;
+    font-size: 32px;
+    color: #ff6600;
+
+
+}
+
+
+
+
+
+
+.inner-header .gnb {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 30px;
+    position: relative;
+    left: -150px;
+
+}
+
+.inner-header .gnb li {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 20px;
+    /* border: 1px solid #fff; */
+    font-size: 22px;
+}
+
+.inner-header .tnb {
+    display: flex;
+    /* border: 1px solid red; */
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.inner-header .tnb li:first-child {
+    font-size: 20px;
+    height: 80px;
+    line-height: 80px;
+}
+
+.inner-header .tnb li:nth-child(3) {
+    margin-top: 15px;
+    width: 60px;
+    height: 60px;
+}
+
+.inner-header .tnb li {
+    display: inline-block;
+    margin-right: 10px;
+    /* background: lime; */
+}
+
+.inner-header .tnb li:nth-child(4) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   font-size: 15px;
+}
+
