@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <style>
+        /* header style */
+        header {
+            /* background: red; */
+            background: #666;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        header .inner-header{
+            display: flex;
+        }
+
+        header.on {
+            background: red;
+            border-bottom: 1px solid #2c2c2c;
+            transition: .4s;
+        }
+
+        header .inner-header {
+            /* background: orange; */
+            width: 92%;
+            margin: 0 auto;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        header .inner-header .logo {
+            /* background: tomato; */
+            flex: 1;
+            width: 150px;
+        }
+
+        header .inner-header .name {
+            font-family: 'Righteous', cursive;
+
+            
+        }
+
+        header .inner-header .logo a {
+            display: block;
+        }
+
+        header .inner-header .logo a img {
+            height: 60px;
+        }
+
+        /* header .inner-header .intro-text {
+            /* background: greenyellow; */
+            flex: 4;
+            text-transform: uppercase;
+            margin-left: 40px;
+        } */
+
+        header .inner-header .menu-trigger {
+            /* background: skyblue; */
+            
+            flex: 1;
+            font-size: 16px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        header .inner-header .menu-trigger .lnr-menu {
+            font-size: 33px;
+            margin-left: 15px;
+        }
+
+        /* header gnb style */
+        header .gnb {
+            background: pink;
+            color: #666;
+            height: 100vh;
+            font-size: 40px;
+            padding: 70px 100px;
+            box-sizing: border-box;
+
+            position: fixed;
+            z-index: 2000;
+            right: -100%;
+            top: 0;
+            transition: .6s;
+
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        header .gnb.on {
+            right: 0;
+        }
+
+        header .gnb .close {
+            display: block;
+            color: #fff;
+        }
+
+        header .gnb ul {
+            margin-right: 200px;
+        }
+
+        header .gnb ul li {
+            font-weight: 700;
+            line-height: 1.7;
+        }
+
+        header .gnb ul li:hover,
+        header .gnb ul li.active {
+            color: #fff;
+        }
+
+        body {
+            /* background-color: #333; */
+            /* width: 500px; */
+            /* margin: 30px auto; */
+        }
+
+        /*햄버거 버튼 */
+        .menu-trigger {
+            /* margin-right: 20px; */
+            margin-bottom: 50px;
+            flex: 1;
+          
+            
+        }
+
+        .menu-trigger,
+        .menu-trigger span {
+            display: inline-block;
+            transition: all .4s;
+            box-sizing: border-box;
+            
+        }
+
+        .menu-trigger {
+            /* background: orange; */
+            position: relative;
+            margin-top: 40px;
+            width: 30%;
+            height: 35px;
+        }
+
+        .menu-trigger span {
+            position: absolute;
+            right: 0;
+            width: 8%;
+            height: 4px;
+            /* margin-left: 500px; */
+            flex-direction: row-reverse;
+            background-color: #fff;
+            border-radius: 4px;
+        }
+
+        .menu-trigger span:nth-of-type(1) {
+            top: 0;
+        }
+
+        .menu-trigger span:nth-of-type(2) {
+            top: 15px;
+        }
+
+        .menu-trigger span:nth-of-type(3) {
+            bottom: 0;
+        }
+
+        /* type-08 */
+        /* 상하라인이 움직여 화살표 만들기 */
+        .menu-trigger.active-8 span:nth-of-type(1),
+        .menu-trigger.active-8 span:nth-of-type(3) {
+            width: 20px;
+        }
+
+        .menu-trigger.active-8 span:nth-of-type(1) {
+            -webkit-transform: translate(-1px, 13px) rotate(-45deg);
+            transform: translate(-1px, 13px) rotate(-45deg);
+        }
+
+        .menu-trigger.active-8 span:nth-of-type(3) {
+            -webkit-transform: translate(-1px, -13px) rotate(45deg);
+            transform: translate(-1px, -13px) rotate(45deg);
+        }
+        .fa-search {
+            font-size: 40px;
+            /* float: left; */
+            /* left: 300px; */
+            /* flex:1; */
+    
+            
+        }
+        .search-bar{
+            /* background: orange; */
+            /* flex: 1; */
+            position: absolute;
+            left: 89%;
+            
+        }
+
+        .logo {
+
+        }
+
+        .inner-header .menu {
+            display: flex;
+            flex: 2;
+        }
+        .inner-header .menu .menu1{
+            font-size: 20px;
+            padding: 20px;
+        }
+        .inner-header .menu .menu2{
+            padding: 20px;
+            font-size: 20px;
+        }
+        .inner-header .menu .menu3{
+            font-size: 20px;
+            padding: 20px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="inner-header">
+            <h1 class="logo">
+                campking
+            </h1>
+            <div class="menu">
+                <div class="menu1">공지사항</div>
+                <div class="menu2" >캠프장</div>
+                <div class="menu3">같이 갈 사람</div>
+            </div>
+
+            <a class="menu-trigger" href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+
+        </div>
+
+        <nav class="gnb">
+            <a href="#" class="close">
+                <span class="lnr lnr-cross"></span>
+            </a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="/board/list">Board</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="/members/sign-up">Sign Up</a></li>
+                <li><a href="/members/sign-in">Sign In</a></li>
+            </ul>
+        </nav>
+
+
+    </header>
+
+    <script>
+        var burger = $('.menu-trigger');
+
+        burger.each(function (index) {
+            var $this = $(this);
+
+            $this.on('click', function (e) {
+                e.preventDefault();
+                $(this).toggleClass('active-8');
+            })
+        });
+    </script>
+</body>
+
+</html>
