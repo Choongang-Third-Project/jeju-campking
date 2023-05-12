@@ -52,6 +52,7 @@
 - #### ✂️ Tool
 
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
+![VS Code Insiders](https://img.shields.io/badge/VS%20Code%20Insiders-35b393.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
 
 <br>
@@ -91,9 +92,14 @@ timeline
             : [Front] 같이 갈 사람 게시판 구현
             : [Front] login 메인 헤더 구현
             : 🎯
-            : [Back] 같이 갈 사람 테이블 구성
+            : [Back] party 테이블 구성
             : [Back] 게시판 테이블 구성
     2023-05-12: [ ]
+            : [Front]
+            : [Front]
+            : 🎯
+            : [Back]
+            : [Back]
 ```
 
 <br>
@@ -138,6 +144,8 @@ flowchart LR
 
 <br>
 
+### 📜 멤버, 게시판, 리플
+
 ```mermaid
 erDiagram
     TB_MEMBER ||--o{ TB_BOARD: member-board
@@ -171,6 +179,37 @@ erDiagram
         member_number INT(10) FK "TB_MEMBER"
         board_number INT(10) FK "TB_BOARD"
     }
+```
+
+### 📜 멤버, 캠프, 캠프 모집 게시판, 캠프 모집 게시판의 리플
+
+```mermaid
+erDiagram
+    TB_MEMBER ||--o{ TB_PARTY: member-party
+    TB_CAMP ||--o{ TB_PARTY: camp-party
+    TB_PARTY ||--o{ TB_PARTY_REPLY: camp-party
+
+    TB_MEMBER {
+    }
+
+    TB_PARTY {
+        party_number INT(10) PK "AUTO_INCREMENT"
+        party_title VARCHAR(200) "NOT NULL"
+        party_start_date DATE "NOT NULL"
+        party_end_date DATE "NOT NULL"
+        party_size INT(3)
+        party_write_time TIMESTAMP "default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        member_number INT(10) FK
+        camp_number INT(10) FK
+    }
+
+    TB_PARTY_REPLY {
+        party_reply_number INT(10) PK "AUTO_INCREMENT"
+        party_reply_content VARCHAR(200) "NOT NULL"
+        party_reply_time TIMESTAMP "DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        member_number INT(10) FK
+        party_number INT(10) FK
+    }
 
     TB_CAMP {
         camp_number INT(10) PK "AUTO_INCREMENT"
@@ -183,7 +222,6 @@ erDiagram
         camp_type_latitude VARCHAR(20) "NOT NULL"
         camp_type_longitube VARCHAR(20) "NOT NULL"
     }
-
 ```
 
 <br>
