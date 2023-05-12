@@ -1,6 +1,6 @@
 body{
     /* background: #1f2937; */
-    background: url('/src/main/resources/static/assets/home/img/sm_background.jpg') no-repeat center / cover fixed;
+    background: url('../img/sm_background.jpg') no-repeat center / cover fixed;
     height: 100vh;
 
 }
