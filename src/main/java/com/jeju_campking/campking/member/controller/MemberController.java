@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 
 @Controller
@@ -80,7 +81,8 @@ public class MemberController {
     @PostMapping("/login")
     public String login(MemberLoginRequestDTO dto
                         , RedirectAttributes ra
-                        , Model model) {
+                        , Model model
+                        , HttpServletRequest request) {
         log.info("/member/login {}", dto);
 
         // 로그인 검증 서비스
@@ -96,7 +98,11 @@ public class MemberController {
                 Member loginMember = memberService.login(dto);
                 log.info(loginMember.getMemberNickname(), loginMember.getMemberGender());
                 model.addAttribute(loginMember);
-                return "/member/signup";
+
+                // 세션
+                memberService.maintainLoginState(request.getSession(), dto.getMemberEmail());
+                //todo: home으로 이동해야 함!
+                return "/home";
             }
             // 로그인 실패
         } catch (Exception e) {
