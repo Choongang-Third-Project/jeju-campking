@@ -1,4 +1,4 @@
-body{
+body {
     /* background: #1f2937; */
     background: url('../img/sm_background.jpg') no-repeat center / cover fixed;
     height: 100vh;
@@ -6,34 +6,144 @@ body{
 }
 
 .wrapper {
-    width: 80%;
     margin: 0 auto;
 }
 
-header {
-    height: 150px;
-    border: 1px solid #000;
+.wrap header {
+    padding-top: 15px;
+    height: 160px;
+    /* border: 4px solid red; */
+    background-color: rgba(0, 0, 0, 0.4);
+
 
 }
+
+
+.inner-header {
+    color: #fff;
+    width: 75%;
+    margin: 0 auto;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.inner-header .logo a {
+    margin-left: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+}
+
+.inner-header .logo a p {
+    margin: 0;
+}
+
+.inner-header .logo a p:first-child {
+    color: #02813c;
+    font-size: 40px;
+}
+
+.inner-header .logo a p:last-child {
+    font-size: 28px;
+}
+
+.inner-header .logo a p:last-child span {
+    font-weight: bold;
+    font-size: 32px;
+    color: #ff6600;
+
+
+}
+
+
+
+
+
+
+.inner-header .gnb {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 30px;
+    position: relative;
+    left: -150px;
+
+}
+
+.inner-header .gnb li {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 20px;
+    /* border: 1px solid #fff; */
+    font-size: 22px;
+}
+
+.inner-header .tnb {
+    display: flex;
+    /* border: 1px solid red; */
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.inner-header .tnb li:first-child {
+    font-size: 20px;
+    height: 80px;
+    line-height: 80px;
+}
+
+.inner-header .tnb li:nth-child(3) {
+    margin-top: 15px;
+    width: 60px;
+    height: 60px;
+}
+
+.inner-header .tnb li {
+    display: inline-block;
+    margin-right: 10px;
+    /* background: lime; */
+}
+
+.inner-header .tnb li:nth-child(4) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   font-size: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* section.main style */
 section.main {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 70px;
     position: relative;
     /* border: 4px solid red; */
 }
 
 
 
-section.main .container {
-    
-}
+section.main .container {}
 
 
-section.main .search-container  {
-    /* width: 70%; */
-    /* width: 500px; */
-    height: 65px;
+section.main .search-container {
+    height: 63px;
     /* background-color: #999; */
     display: flex;
     justify-content: center;
@@ -43,31 +153,29 @@ section.main .search-container  {
 section.main .container p {
     text-align: center;
     font-weight: 700;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     color: #cac7c7;
 }
 
-section.main .container {
-    border: 1px solid orange;
-    
-}
 
 section.main .search-container .search {
-    border-radius: 20px;
+    border-radius: 10px;
     width: 500px;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 section.main .search-container .searchBtn {
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 
 
-
+section.main .hashtag {
+    margin-top: 10px;
+}
 
 
 
@@ -144,7 +252,7 @@ section.main .new-container h1 {
 }
 
 section.main .new-container h1 span {
-    color: rgb(212, 35, 4);
+    color: #ff6600;
     font-size: 1.2em;
 
 }
@@ -175,11 +283,14 @@ section.main .new-container li:hover {
 
 
 
+section.camp-type-wrapper {
 
+    background: gray;
+}
 
 section.camp-type {
-    background: orange;
-    margin: 100px 0;
+    width: 80%;
+    margin: 0 auto;
 
 }
 
@@ -194,7 +305,7 @@ section.camp-type h1 {
 section.camp-type .sub-container {
     /* background: orange; */
     margin-top: 30px;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
     padding-bottom: 30px;
     display: flex;
     justify-content: center;
@@ -236,8 +347,13 @@ section.camp-type ul li a .text {
 
 
 
+section.board-wrapper {
+    margin-top: 100px;
+}
 
 section.board {
+    width: 80%;
+    margin: 0 auto;
     display: flex;
     /* justify-content: space-around; */
     /* justify-content: center; */
@@ -248,6 +364,7 @@ section.board .sub-board {
     border-radius: 3%;
 
 }
+
 section.board p {
     font-size: 4em;
 }
@@ -262,7 +379,7 @@ section.board h2 {
 
 
 
-section.board .sub-board{
+section.board .sub-board {
     width: 70%;
     height: 700px;
     background: #F1F3F9;
