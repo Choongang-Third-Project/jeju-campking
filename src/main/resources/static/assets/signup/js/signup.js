@@ -22,7 +22,7 @@
          document.getElementById('emailChk').innerHTML = '<b style="color: red; font-size:13px; ">이메일 형식이 올바르지 않습니다.</b>';
          checkResultList[0] = false;
      } else {
-        fetch('/member/check?type=email&keyword=' + emailValue)
+         fetch('/member/check?type=email&keyword=' + emailValue)
              .then(res => res.json())
              .then(flag => {
                  if (flag) {
@@ -55,7 +55,7 @@
 
      if (pwValue.trim() === '') {
          $pwInput.style.borderColor = 'red';
-         document.getElementById('pwChk1').innerHTML = '<b style="color: red; font-size:13px; ">필수 정보입니다</b>';
+         document.getElementById('pwChk1').innerHTML = '<b style="color: red; font-size:13px; ">필수 정보입니다.</b>';
          checkResultList[1] = false;
      } else if (!passwordPattern.test(pwValue)) {
          $pwInput.style.borderColor = 'red';
@@ -82,7 +82,7 @@
 
      if (pwCheckValue.trim() === '') {
          $pwInput.style.borderColor = 'red';
-         document.getElementById('pwChk2').innerHTML = '<b style="color: red; font-size:13px;">필수 정보입니다</b>';
+         document.getElementById('pwChk2').innerHTML = '<b style="color: red; font-size:13px;">필수 정보입니다.</b>';
          checkResultList[2] = false;
      } else if ($pwCheckInput.value !== $pwInput.value) {
          $pwInput.style.borderColor = 'red';
@@ -98,7 +98,7 @@
 
 
 
- // 이름 검사 정규표현식
+ // 이름 입력값 검증
  const namePattern = /^[가-힣]+$/;
 
  const $nameInput = document.getElementById('name');
@@ -109,7 +109,7 @@
 
      if (nameValue.trim() === '') {
          $nameInput.style.borderColor = 'red';
-         document.getElementById('nameChk').innerHTML = '<b style="color: red; font-size:13px;">필수 정보입니다</b>';
+         document.getElementById('nameChk').innerHTML = '<b style="color: red; font-size:13px;">필수 정보입니다.</b>';
          checkResultList[3] = false;
      } else if (!namePattern.test(nameValue)) {
          $nameInput.style.borderColor = 'red';
@@ -123,7 +123,7 @@
  };
 
 
- // 닉네임 검사 정규표현식
+ // 닉네임 입력값 검증
  const nicknamePattern = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/;
 
  const $nicknameInput = document.getElementById('nickname');
@@ -134,7 +134,7 @@
 
      if (nicknamValue.trim() === '') {
          $nicknameInput.style.borderColor = 'red';
-         document.getElementById('nicknameChk').innerHTML = '<b style="color: red; font-size:13px;">필수 정보입니다</b>';
+         document.getElementById('nicknameChk').innerHTML = '<b style="color: red; font-size:13px;">필수 정보입니다.</b>';
          checkResultList[4] = false;
      } else if (!nicknamePattern.test(nicknamValue)) {
          $nicknameInput.style.borderColor = 'red';
@@ -149,25 +149,54 @@
                      $nicknameInput.style.borderColor = 'red';
                      document.getElementById('nicknameChk').innerHTML = '<b style="color: red; font-size:13px;">이미 존재하는 닉네임입니다.</b>';
                      checkResultList[4] = false;
-                    } else {
+                 } else {
                      $nicknameInput.style.borderColor = 'limegreen';
                      document.getElementById('nicknameChk').innerHTML = '<b style="color: limegreen; font-size:13px;">사용가능한 닉네임입니다</b>';
                      checkResultList[4] = true;
-                    }
+                 }
              });
      }
 
  };
 
- // 생일(나이)
+ // 생년월일 (나이) 입력값 검증
+function getBirth() {
 
- checkResultList[5] = true;
+    const birthInput = document.getElementById('birth');
+
+    birthInput.onchange = () => {
+        const yearValue = birthInput.value.split('-')[0]; // 년도만 추출
+
+        // 현재 날짜와의 차이 계산
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const ageDifference = currentYear - parseInt(yearValue);
+
+        if (birthInput.value === '') {
+            document.getElementById('ageChk').innerHTML = '';
+        } else if (birthInput.value > currentDate.toISOString().split('T')[0]) {
+            document.getElementById('ageChk').innerHTML = '<b style="color: red; font-size:13px;">생년월일을 확인해주세요.</b>';
+            checkResultList[5] = false;
+        } else if (ageDifference < 19) {
+            document.getElementById('ageChk').innerHTML = '<b style="color: red; font-size:13px;">만 19세 미만은 회원 가입이 불가합니다.</b>';
+            checkResultList[5] = false;
+        } else {
+            document.getElementById('ageChk').innerHTML = '<b style="color: limegreen; font-size:13px;">회원 가입이 가능합니다.</b>';
+            checkResultList[5] = true;
+        }
+    };
+}
+
+getBirth();
 
 
+ 
 
- const $gender = document.getElementById('gender');
 
+ // 성별 입력
  checkResultList[6] = true;
+
+
 
 
  // 연락처 하이픈 자동 변경
@@ -177,9 +206,45 @@
          .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
  }
 
- checkResultList[7] = true;
 
- // 연락처 검사 정규표현식
+
+ // 연락처 입력값 검증
+ const phonePattern = /^\d{3}-\d{3,4}-\d{4}$/;
+
+ const $phoneInput = document.getElementById('phone');
+
+ $phoneInput.onkeyup = e => {
+
+     const phoneValue = $phoneInput.value;
+
+     if (phoneValue.trim() === '') {
+         $phoneInput.style.borderColor = 'red';
+         document.getElementById('phoneChk').innerHTML = '<b style="color: red; font-size:13px;">필수 정보입니다.</b>';
+         checkResultList[7] = false;
+     } else if (!phonePattern.test(phoneValue)) {
+         $phoneInput.style.borderColor = 'red';
+         document.getElementById('phoneChk').innerHTML = '<b style="color: red; font-size:13px;">휴대전화 번호양식을 지켜주세요.</b>';
+         checkResultList[7] = false;
+     } else {
+         fetch('/member/check?type=phone&keyword=' + phoneValue)
+             .then(res => res.json())
+             .then(flag => {
+                 if (flag) {
+                     $phoneInput.style.borderColor = 'red';
+                     document.getElementById('phoneChk').innerHTML = '<b style="color: red; font-size:13px;">이미 등록된 연락처입니다.</b>';
+                     checkResultList[7] = false;
+                 } else {
+                     $phoneInput.style.borderColor = 'limegreen';
+                     document.getElementById('phoneChk').innerHTML = '<b style="color: limegreen; font-size:13px;">사용가능한 연락처입니다</b>';
+                     checkResultList[7] = true;
+                 }
+             });
+
+     }
+
+ };
+
+
 
 
 
@@ -187,13 +252,12 @@
  // 회원가입 버튼 클릭 이벤트
  document.getElementById('signup-btn').onclick = e => {
 
-    // 8개의 입력칸이 모두 통과되었을 경우 폼을 서브밋
-    const $form = document.getElementById('signUpForm');
-    
-    if(!checkResultList.includes(false)) {
-        $form.submit();
-    } else {
-        alert('입력란을 다시 확인하세요!');
-    }
-};
- 
+     // 8개의 입력칸이 모두 통과되었을 경우 폼을 서브밋
+     const $form = document.getElementById('signUpForm');
+
+     if (!checkResultList.includes(false)) {
+         $form.submit();
+     } else {
+         alert('입력란을 다시 확인하세요!');
+     }
+ };
