@@ -53,9 +53,7 @@ public class CampController {
             return ResponseEntity.ok().body(byKeyword);
         } catch (SQLException e) {
             log.warn("/camps/all-list GET : {}", byKeyword);
-            return ResponseEntity
-                    .internalServerError()
-                    .body(e.getMessage());
+            return null;
         }
     }
 
