@@ -1,12 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/main/resources/static/assets/party/party.css">
-    <link rel="stylesheet" href="/main/resources/static/assets/party/common.css">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/main/resources/static/assets/party/party.css">
+<link rel="stylesheet" href="/main/resources/static/assets/party/common.css">
 </head>
 <body>
     <h1 class="title"><<같이 갈 사람 게시판>></h1>
@@ -204,5 +204,10 @@
             <button>&gt;</button>
         </div>
     </section>
+
+
+
+
+
 </body>
 </html>
