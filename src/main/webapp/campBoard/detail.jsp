@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +40,7 @@
            </tr>
            <tr class="h-18 text-lg ">
             <!-- 게시판 제목 -->
-                 <td>시스템 개선 및 서비스 점검 안내</td>
+                 <td>${campBoard.campName}</td>
             </tr>
             <tr>
                 <td>
@@ -55,11 +57,10 @@
                             <span onclick="zoomOut()"><i class="fa-solid fa-minus"></i></span>
                         </div>
                     </div>
-                      
-                        안녕하세요. 스타벅스 코리아입니다.<br>
-                        보다 나은 서비스를 제공해 드리고자 시스템 점검 작업을 진행합니다.<br>
-                        - 일자 및 시간 : 2023년 5월 10일(수) 00:00 ~ 03:00 (3시간)<br>
-                        - 대상 서비스 : 스타벅스 APP<br>
+                        주소 : ${campBoard.campAddress}<br>
+                        타입 : ${campBoard.campTypeNormal} ${campBoard.campTypeCar} ${campBoard.campTypeCaravan} ${campBoard.campTypeCaravan} ${campBoard.campTypeGlamping}<br>
+
+                   
                     </div>
                 </td>
            </tr>
@@ -81,7 +82,9 @@
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        
+        center: new kakao.maps.LatLng('${campBoard.campLatitude}', '${campBoard.campLongitude}'),
+        // center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };  
 

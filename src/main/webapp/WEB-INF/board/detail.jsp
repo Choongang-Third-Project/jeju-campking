@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,28 +40,19 @@
            </tr>
            <tr class="h-18 text-lg ">
             <!-- 게시판 제목 -->
-                 <td>시스템 개선 및 서비스 점검 안내</td>
+                <td>${board.boardNumber}</td>
+                 <td>${board.boardTitle}</td>
+                 <td>${board.boardTime}</td>
+                 <td>${board.memberNumber}</td>
             </tr>
             <tr>
                 <td>
                     <!-- 30글자마다 줄바꿈 처리 -->
                     <!-- 게시판 내용 -->
                     <div class=" max-w-screen-md overflow-hidden">
-                      
-                      <div class="map_wrap">
-                        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> 
-                        
-                        <!-- 지도 확대, 축소 컨트롤 div 입니다 -->
-                        <div class="custom_zoomcontrol radius_border"> 
-                            <span onclick="zoomIn()"><i class="fa-solid fa-plus"></i></span>  
-                            <span onclick="zoomOut()"><i class="fa-solid fa-minus"></i></span>
-                        </div>
-                    </div>
-                      
-                        안녕하세요. 스타벅스 코리아입니다.<br>
-                        보다 나은 서비스를 제공해 드리고자 시스템 점검 작업을 진행합니다.<br>
-                        - 일자 및 시간 : 2023년 5월 10일(수) 00:00 ~ 03:00 (3시간)<br>
-                        - 대상 서비스 : 스타벅스 APP<br>
+              
+                      ${board.boardContent}<br>
+                       
                     </div>
                 </td>
            </tr>
@@ -172,40 +165,8 @@
             </tr>
         </table>
     </div>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b9cb138481a4bea0f094c2e5d4640c3e"></script>
+   
 <script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-    
-// 지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
-function setMapType(maptype) { 
-    var roadmapControl = document.getElementById('btnRoadmap');
-    var skyviewControl = document.getElementById('btnSkyview'); 
-    if (maptype === 'roadmap') {
-        map.setMapTypeId(kakao.maps.MapTypeId.ROADMAP);    
-        roadmapControl.className = 'selected_btn';
-        skyviewControl.className = 'btn';
-    } else {
-        map.setMapTypeId(kakao.maps.MapTypeId.HYBRID);    
-        skyviewControl.className = 'selected_btn';
-        roadmapControl.className = 'btn';
-    }
-}
-
-// 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
-function zoomIn() {
-    map.setLevel(map.getLevel() - 1);
-}
-
-// 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
-function zoomOut() {
-    map.setLevel(map.getLevel() + 1);
-}
 
 </script>
     
