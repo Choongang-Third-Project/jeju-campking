@@ -22,9 +22,6 @@ body {
     margin-top: 20px;
 }
 
-body .birth_yy, body .birth_mm, body .birth_dd {
-   
-}
 
 input, select {
     margin-top: 5px !important;
@@ -34,23 +31,40 @@ input, select {
     display: flex;
 }
 
-#yy, #mm, #dd {
-    width: 105px;
-}
+
 
 
 .btn-area {
     margin-top: 40px;
-    margin-right: 120px;
-    padding: 22px;
-    text-align: center;
-    justify-content: center;
-    background-color: #1f2937;
+    display: flex;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    gap: 10px; /* 버튼 사이의 간격 설정 */
+  }
+  
+  .btn-area input[type="button"] {
     color: #fff;
-    font-size: 1.2em;
-    font-weight: 700;
-}
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 15px 22px; /* 상하 15px, 좌우 30px */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .btn-area #signup-btn {
+    background-color: #1f2937;
+  }
+  
+  .btn-area #login-btn {
+    background-color: #546e92;
+  }
+  
+  .btn-area input[type="button"]:hover {
+    transform: scale(1.05);
+  }
 
-.btn-area #btn-join {
-    letter-spacing: 3px;
-}
+  
+  

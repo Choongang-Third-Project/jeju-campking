@@ -90,7 +90,7 @@
     
                     <div id="birth_wrap">
 
-                        <input type="date" id="birth" name="memberAge">   
+                        <input type="date" id="birth" name="memberAge" class="input input-bordered w-full max-w-xs">   
      
                     </div>
                     <div>
@@ -123,6 +123,7 @@
                 <!-- 가입하기 버튼 -->
                 <div class="btn-area">
                     <input type="button" id="signup-btn" value="가입하기">
+                    <input type="button" id="login-btn" value="바로 로그인하기">
                 </div>
         </form>
         
