@@ -4,11 +4,13 @@ package com.jeju_campking.campking.board.service;
 import com.jeju_campking.campking.board.dto.request.BoardModifyRequestDTO;
 import com.jeju_campking.campking.board.entity.Board;
 import com.jeju_campking.campking.board.repository.BoardMapper;
+import com.jeju_campking.campking.camp.entity.Camp;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -47,5 +49,32 @@ public class BoardService {
         }
 
         return true;
+    }
+
+    public List<Board> findAll() {
+        log.info("boardService.findAll.info");
+        List<Board> list = boardMapper.findAll();
+        log.info("boardService.getAllList.info {}", list);
+
+        return list;
+    }
+
+    public List<Board> findByKeyword(String keyword) {
+        log.info("boardService/findByKeyword : {}", keyword);
+
+        List<Board> list = boardMapper.findByKeyword(keyword);
+
+        log.info("boardService.findByKeyword.info {}", list);
+
+        return list;
+    }
+
+    public Board findOne(Long boardNumber) {
+        log.info("boardService/findOne : {}", boardNumber);
+
+        Board board = boardMapper.findOne(boardNumber);
+        log.info("boardService.findOne.info {}", board);
+
+        return board;
     }
 }

@@ -5,15 +5,18 @@ import com.jeju_campking.campking.camp.service.CampService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 
 //TODO: 캠프장 관련 데이터 보여주기
-@RestController
+@Controller
 // response JSON , XML
 // server 에 만들 수 있는 view template : jsp.... 서버사이드렌더링
 // REST API : 서버는 데이터만 정제해서 client
@@ -26,6 +29,7 @@ public class CampController {
 
     // 전체 캠핑장 목록조회 요청
     @GetMapping("/all-list")
+    @ResponseBody
     public ResponseEntity<?> findAll() {
         log.info("/camps/all-lsit  GET!!");
         List<Camp> list = null;
@@ -42,7 +46,7 @@ public class CampController {
 
     //주소로 캠프장 하나 찾기
     @GetMapping("/{keyword}")
-
+    @ResponseBody
     public ResponseEntity<?> findByKeyword(@PathVariable(required = false) String keyword) {
         log.info("/camps/address : GET!! {} ", keyword);
 
@@ -56,6 +60,26 @@ public class CampController {
             return null;
         }
     }
+
+
+    // GetMapping 제목 전송하면 campBoard/detail.jsp로 이동
+    @GetMapping("/detail")
+    public ModelAndView detailCampBoard(String title) {
+        log.info("/camps/detail/address : POST!! {} ", title);
+        ModelAndView mv = new ModelAndView("/campBoard/detail");
+        List<Camp> byKeyword = null;
+        try {
+            byKeyword = campService.findByKeyword(title);
+            mv.addObject("campBoard",byKeyword.get(0));
+            return mv;
+        } catch (SQLException e) {
+            log.warn("/camps/all-list POST : {}", byKeyword);
+            return null;
+        }
+    }
+
+
+
 
     @GetMapping("/test")
     public ModelAndView test() {
