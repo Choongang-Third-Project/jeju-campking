@@ -38,11 +38,6 @@ public class CampService {
 
         log.info("campService.getAllList.info {}", list);
 
-        if (list.size() == 0) {
-            log.warn("campService.getAllList.warn {}", list);
-            throw new SQLException();
-        }
-
         return list;
     }
 
