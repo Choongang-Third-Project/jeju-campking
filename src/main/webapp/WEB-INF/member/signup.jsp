@@ -89,49 +89,13 @@
                     <h2><label for="yy">생년월일</label></h2>
     
                     <div id="birth_wrap">
-                        <div>
-                            <input type="text" name="memberAge" placeholder="(테스트용)나이입력"
-                             class="input input-bordered w-full max-w-xs">
-                        </div>
-                        
-                        <!-- birth yy -->
-                        <!-- <div class="birth-yy">
-                            <span class="box">
-                                <input type="text" id="yy" maxlength="4" placeholder="년(4자)"
-                                    class="input input-bordered w-full max-w-xs">
-                            </span>
-                        </div> -->
-    
-                        <!-- birth mm -->
-                        <!-- <div class="birth-mm">
-                            <span class="box">
-                                <select id="mm" class="select select-bordered w-full max-w-xs">
-                                    <option>월</option>
-                                    <option value="01">1</option>
-                                    <option value="02">2</option>
-                                    <option value="03">3</option>
-                                    <option value="04">4</option>
-                                    <option value="05">5</option>
-                                    <option value="06">6</option>
-                                    <option value="07">7</option>
-                                    <option value="08">8</option>
-                                    <option value="09">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </span>
-                        </div> -->
-    
-                        <!-- bith dd -->
-                        <!-- <div class="birth-dd">
-                            <span class="box">
-                                <input type="text" id="dd" maxlength="2" placeholder="일" class="input input-bordered w-full max-w-xs">
-                            </span>
-                        </div> -->
-    
+
+                        <input type="date" id="birth" name="memberAge" class="input input-bordered w-full max-w-xs">   
+     
                     </div>
-            
+                    <div>
+                        <span id="ageChk"></span>
+                    </div>
                 </div>
     
     
@@ -143,7 +107,7 @@
                         <option value="M">남자</option>
                         <option value="F">여자</option>
                     </select>
-                    <span id="gender"></span>
+                    <span id="genderChk"></span>
                 </div>
     
     
@@ -153,12 +117,13 @@
                     <p>
                         <input type="text" id="phone" name="memberPhone" oninput="autoHyphen(this)" maxlength="13" class="input input-bordered w-full max-w-xs">
                     </p>
-                    <span id="phone"></span>
+                    <span id="phoneChk"></span>
                 </div>
     
                 <!-- 가입하기 버튼 -->
                 <div class="btn-area">
                     <input type="button" id="signup-btn" value="가입하기">
+                    <input type="button" id="login-btn" value="바로 로그인하기">
                 </div>
         </form>
         
