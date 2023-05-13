@@ -150,7 +150,8 @@ section.main .search-container {
 
 }
 
-section.main .container p {
+section.main .container .slideshow {
+    margin-top: 20px;
     text-align: center;
     font-weight: 700;
     margin-bottom: 70px;
@@ -276,6 +277,18 @@ section.main .new-container li:hover {
 }
 
 
+/*슬라이드쇼*/
+section.main .new-container ul#slideshow {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+section.main .new-container ul#slideshow li:first-child {
+    display: block;
+}
 
 
 
