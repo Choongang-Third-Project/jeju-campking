@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+       
+
+        .new-container ul {
+            display: flex;
+            justify-content: space-evenly;
+
+        }
+
+        .new-container ul#slideshow {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        
+
+        .new-container ul#slideshow li:first-child {
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="new-container">
+        <h1><span>New</span>&Update</h1>
+        <ul id="slideshow">
+            <li>
+                <a href="#">
+                    <div class="new-img-box">
+                        <img src="/src/main/resources/static/assets/home/img/camp1.jpg" alt="">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="new-img-box">
+                        <img src="/src/main/resources/static/assets/home/img/camp2.jpg" alt="">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="new-img-box">
+                        <img src="/src/main/resources/static/assets/home/img/camp3.jpg" alt="">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="new-img-box">
+                        <img src="/src/main/resources/static/assets/home/img/camp4.jpg" alt="">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="new-img-box">
+                        <img src="/src/main/resources/static/assets/home/img/camp5.jpg" alt="">
+                    </div>
+                </a>
+            </li>
+        
+        </ul>
+    </div>
+
+
+    <script>
+// 자동 슬라이드 쇼 구현
+const slides = document.querySelectorAll(".new-container ul#slideshow li");
+const slideCount = slides.length;
+let currentSlide = 0;
+
+function showSlide() {
+  // 현재 슬라이드를 보이지 않도록 설정
+  slides[currentSlide].style.display = "none";
+
+  // 다음 슬라이드로 이동
+  currentSlide = (currentSlide + 1) % slideCount;
+
+  // 다음 슬라이드를 5번째 위치로 이동하여 보이도록 설정
+  slides[currentSlide].style.display = "block";
+  slides[currentSlide].style.order = slideCount - 1;
+}
+
+// 1초마다 슬라이드 전환
+setInterval(showSlide, 1000);
+    </script>
+
+</body>
+
+</html>

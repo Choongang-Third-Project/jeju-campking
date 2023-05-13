@@ -1,5 +1,6 @@
 package com.jeju_campking.campking.camp.controller;
 
+import com.jeju_campking.campking.camp.dto.response.CampTypeCountResponseDTO;
 import com.jeju_campking.campking.camp.entity.Camp;
 import com.jeju_campking.campking.camp.service.CampService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -86,5 +86,19 @@ public class CampController {
         // JSP 로 응답할 때
         return new ModelAndView("index");
     }
+
+
+    // 홈화면에 표시 할 캠프타입별 카운트, 퍼센트
+    @GetMapping("/home")
+    public String camps(Model model) {
+
+        CampTypeCountResponseDTO campCount = campService.getCampCount();
+        model.addAttribute("c", campCount);
+
+        return "/home";
+    }
+
+
+
 
 }

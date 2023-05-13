@@ -1,5 +1,6 @@
 package com.jeju_campking.campking.camp.service;
 
+import com.jeju_campking.campking.camp.dto.response.CampTypeCountResponseDTO;
 import com.jeju_campking.campking.camp.entity.Camp;
 import com.jeju_campking.campking.camp.repository.CampMapper;
 import lombok.RequiredArgsConstructor;
@@ -52,4 +53,30 @@ public class CampService {
     }
 
 
-}
+
+
+    // 홈화면에 표시 할 캠프타입별 카운트, 퍼센트
+    public CampTypeCountResponseDTO getCampCount() {
+
+        int totalCount = campMapper.allCount();
+        int normalCount = campMapper.getCampCountByType("normal");
+        int carCount = campMapper.getCampCountByType("car");
+        int caravanCount = campMapper.getCampCountByType("caravan");
+        int glampingCount = campMapper.getCampCountByType("glamping");
+
+        CampTypeCountResponseDTO dto = CampTypeCountResponseDTO.builder()
+                .totalCount(totalCount)
+                .normalCount(normalCount)
+                .carCount(carCount)
+                .caravanCount(caravanCount)
+                .glampingCount(glampingCount)
+                .build();
+
+        dto.calculatePercentages();
+        return dto;
+    }
+
+
+    }
+
+

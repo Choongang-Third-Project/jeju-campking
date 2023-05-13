@@ -43,4 +43,30 @@
         OR camp_type_glamping LIKE CONCAT('%',#{keyword},'%')
     </select>
 
+    <select id="countByType" resultType="int">
+        select count(*) from tb_camp
+        where camp_type_car like '자동차';
+    </select>
+
+    <select id="getCampCountByType" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_CAMP
+        WHERE
+            <if test="type == 'normal'">
+                camp_type_normal LIKE '일반'
+            </if>
+            <if test="type == 'car'">
+                camp_type_car LIKE '자동차'
+            </if>
+            <if test="type == 'caravan'">
+                camp_type_caravan LIKE '글램핑'
+            </if>
+            <if test="type == 'glamping'">
+                camp_type_glamping LIKE '카라반'
+            </if>
+    </select>
+
+
+
+
 </mapper>
