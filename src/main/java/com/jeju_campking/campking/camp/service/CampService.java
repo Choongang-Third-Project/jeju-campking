@@ -55,6 +55,7 @@ public class CampService {
 
 
 
+    // 홈화면에 표시 할 캠프타입별 카운트, 퍼센트
     public CampTypeCountResponseDTO getCampCount() {
 
         int totalCount = campMapper.allCount();
