@@ -86,11 +86,11 @@
                 <!-- 생년월일 입력  -->
     
                 <div class="box">
-                    <h2><label for="yy">생년월일</label></h2>
+                    <h2><label for="birth">생년월일</label></h2>
     
                     <div id="birth_wrap">
-
-                        <input type="date" id="birth" name="memberAge" class="input input-bordered w-full max-w-xs">   
+                        <input type="hidden" id="memberAge" name="memberAge">
+                        <input type="date" id="birth" name="birth" class="input input-bordered w-full max-w-xs">
      
                     </div>
                     <div>
