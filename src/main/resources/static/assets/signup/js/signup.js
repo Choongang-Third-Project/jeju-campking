@@ -172,6 +172,10 @@ function getBirth() {
         const currentYear = currentDate.getFullYear();
         const ageDifference = currentYear - parseInt(yearValue);
 
+        const $memberAge = document.getElementById('memberAge');
+        $memberAge.value = ageDifference;
+        // console.log(ageDifference);
+
         if (birthInput.value === '') {
             document.getElementById('ageChk').innerHTML = '';
         } else if (birthInput.value > currentDate.toISOString().split('T')[0]) {
