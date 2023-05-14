@@ -297,12 +297,24 @@ section.main .new-container ul#slideshow {
     overflow: hidden;
 }
 
-
-section.main .new-container ul#slideshow li:first-child {
-    display: block;
+section.main .new-container ul#slideshow li {
+    border: 2px solid transparent;
+    transition: border-color 0.5s;
 }
 
+section.main .new-container ul#slideshow li.selected {
+    border:5px solid #fff;
+}
 
+section.notice {
+    /*display: flex;*/
+    /*justify-content: space-around;*/
+    border: 4px solid red;
+}
+
+section.notice .notice-box {
+    /*border: 4px solid orange;*/
+}
 
 
 
