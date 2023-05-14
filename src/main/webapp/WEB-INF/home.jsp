@@ -225,6 +225,17 @@
 
         </section>
 
+        <section class="notice">
+            <div class="notice-box">
+
+            </div>
+            <div class="notice-box">
+
+            </div>
+
+        </section>
+
+
 
         <section class="camp-type">
             <div class="title">
@@ -279,11 +290,11 @@
             </div>
             <div class="sub-board">
                 <p><i class="fa-solid fa-tents"></i></p>
-                <h2>캠핑리뷰</h2>
+                <h2>금주의 캠프킹</h2>
             </div>
             <div class="sub-board">
                 <p><i class="fa-solid fa-people-roof"></i></p>
-                <h2>자유게시판</h2>
+                <h2>같이 갈 사람</h2>
             </div>
         </section>
 
