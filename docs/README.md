@@ -65,6 +65,43 @@
 
 ```mermaid
 timeline
+    title Develop history [2023-05-15 ~ 2023-05-19]
+    2023-05-15: []
+            : [Front]
+            : [Front]
+            : 🎯
+            : [Back]
+            : [Back]
+    2023-05-16: []
+            : [Front]
+            : [Front]
+            : 🎯
+            : [Back]
+            : [Back]
+    2023-05-17: []
+            : [Front]
+            : [Front]
+            : 🎯
+            : [Back]
+            : [Back]
+    2023-05-18: []
+            : [Front]
+            : [Front]
+            : 🎯
+            : [Back]
+            : [Back]
+    2023-05-19: []
+            : [Front]
+            : [Front]
+            : 🎯
+            : [Back]
+            : [Back] 
+```
+
+#
+
+```mermaid
+timeline
     title Develop history [2023-05-08 ~ 2023-05-12]
     2023-05-08: [✅] initial commit
             : [Front] 메인 페이지
@@ -86,7 +123,7 @@ timeline
             : 🎯
             : [Back] camp mapper post 테스트
             : [Back] 회원 서비스 구현
-    2023-05-11: [✅] 서비스 시나리오 작성 
+    2023-05-11: [✅] 서비스 시나리오 작성
             : [Front] 캠프장 목록 구현
             : [Front] 캠프장 상세 보기 구현
             : [Front] 같이 갈 사람 게시판 구현
@@ -94,12 +131,13 @@ timeline
             : 🎯
             : [Back] party 테이블 구성
             : [Back] 게시판 테이블 구성
-    2023-05-12: [ ]
-            : [Front]
-            : [Front]
+    2023-05-12: [✅]
+            : [Front] 헤더 구현
+            : [Front] 공지사항 게시판
+            : [Front] 캠프 파티 게시판
+            : [Front] 캠프 파티 상세보기
             : 🎯
-            : [Back]
-            : [Back]
+            : [Back] party 테이블 POSTMAN 테스트 완료
 ```
 
 <br>
@@ -119,7 +157,6 @@ flowchart LR
     회원가입 --> 로그인 --> 서비스이용
 ```
 
-
 - #### V1.0 개발 전략
     - [v1.0.0] 회원가입을 성공시킨다
         - [Front] 홈페이지로부터 유저의 ID 와 password 를 입력받는다
@@ -132,11 +169,9 @@ flowchart LR
         - [Front] 홈페이지로부터 유저의 ID 와 password 를 입력받는다
         - [Back] 회원가입된 아이디는 DB에 저장된다
 
-
 <br>
 <br>
 <br>
-
 
 ### 📀 DataBase Diagram
 
@@ -153,7 +188,7 @@ erDiagram
     TB_MEMBER ||--o{ TB_REPLY: member-reply
 
     TB_MEMBER {
-        member_number INT(10) PK, FK "AUTO_INCREMENT"
+        member_number INT(10) PK "AUTO_INCREMENT"
         member_email VARCHAR(50) UK "Not Null"
         member_password VARCHAR(200) "Not Null"
         member_name VARCHAR(30) "Not Null"
@@ -165,7 +200,7 @@ erDiagram
     }
 
     TB_BOARD {
-        board_number Int(10) PK, FK "AUTO_INCREMENT"
+        board_number Int(10) PK "AUTO_INCREMENT"
         board_title VARCHAR(200) "Not Null"
         board_content VARCHAR(2000) "Not Null"
         board_time TIMESTAMP "Not Null default current_timestamp"
@@ -181,7 +216,9 @@ erDiagram
     }
 ```
 
-### 📜 멤버, 캠프, 캠프 모집 게시판, 캠프 모집 게시판의 리플
+#
+
+### 📜 멤버, 캠프, 파티 모집 게시판, 파티 모집 게시판의 리플
 
 ```mermaid
 erDiagram
@@ -199,16 +236,18 @@ erDiagram
         party_end_date DATE "NOT NULL"
         party_size INT(3)
         party_write_time TIMESTAMP "default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-        member_number INT(10) FK
-        camp_number INT(10) FK
+
+        member_number INT(10) FK "TB_MEMBER"
+        camp_number INT(10) FK "TB_CAMP"
     }
 
     TB_PARTY_REPLY {
         party_reply_number INT(10) PK "AUTO_INCREMENT"
         party_reply_content VARCHAR(200) "NOT NULL"
         party_reply_time TIMESTAMP "DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-        member_number INT(10) FK
-        party_number INT(10) FK
+
+        member_number INT(10) FK "TB_MEMBER"
+        party_number INT(10) FK "TB_PARTY"
     }
 
     TB_CAMP {
@@ -222,6 +261,34 @@ erDiagram
         camp_type_latitude VARCHAR(20) "NOT NULL"
         camp_type_longitube VARCHAR(20) "NOT NULL"
     }
+```
+
+#
+
+### 📜 파티 모집 메시지
+
+```mermaid
+erDiagram
+    TB_MEMBER ||--o{ TB_PARTY_MESSAGE: member-party
+    TB_PARTY ||--o{ TB_PARTY_MESSAGE: party-message
+
+    TB_MEMBER {
+    }
+
+
+    TB_PARTY {
+    }
+
+
+    TB_PARTY_MESSAGE {
+        party_message_number INT(10) PK "AUTO_INCREMENT"
+        party_message_content VARCHAR(2000) "NOT NULL"
+        party_message_sender INT(10) FK "TB_MEMBER"
+        party_message_recipient INT(10) FK "TB_MEMBER"
+
+        party_number INT(10) FK "TB_PARTY"
+    }
+
 ```
 
 <br>
@@ -285,7 +352,7 @@ mindmap
      $git switch -c feat/lkd/member  
      $작업중...  
      $작업 완료...  
-     $git branch develop  
+     $git switch develop  
      $git merge --no-ff feat/lkd/member
 
 - #### hotfix : 출시 버전에서 발생한 버그를 수정하는 브랜치
