@@ -9,7 +9,7 @@ public class HomeController {
     @GetMapping("/")
     public String home() {
         //todo: 나중에 index 파일로 변경하기!
-        return "login";
+        return "/";
     }
 
 }

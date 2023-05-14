@@ -21,7 +21,7 @@ function showNextLi() {
     $lis[nextIndex].style.display = 'block';
 }
 
-setInterval(showNextLi, 1000);
+setInterval(showNextLi, 3000);
 
 
 
