@@ -7,7 +7,6 @@
     <settings>
         <!--   자동 카멜케이스 스네이크 케이스 변환 설정     -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
-
     </settings>
 
     <typeAliases>
@@ -18,6 +17,7 @@
         <typeAlias alias="camp" type="com.jeju_campking.campking.camp.entity.Camp"/>
         <typeAlias alias="partyDTO" type="com.jeju_campking.campking.party.dto.response.PartyAllListResponseDTO"/>
         <typeAlias alias="partyReply" type="com.jeju_campking.campking.party.entity.PartyReply"/>
+        <typeAlias alias="partyMessage" type="com.jeju_campking.campking.party.entity.PartyMessage"/>
     </typeAliases>
 
     <mappers>
@@ -28,6 +28,7 @@
         <mapper resource="mappers/CampMapper.xml"/>
         <mapper resource="mappers/PartyMapper.xml"/>
         <mapper resource="mappers/PartyReplyMapper.xml"/>
+        <mapper resource="mappers/PartyMessageMapper.xml"/>
     </mappers>
 
 </configuration>
