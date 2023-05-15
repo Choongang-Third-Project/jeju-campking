@@ -63,7 +63,7 @@
         const $write = document.getElementById('write');
 
         $write.onclick = e => {
-            location.href = '/boards/write';
+            location.href = '/jeju-camps/notices/write';
         }
 
 
@@ -77,7 +77,7 @@
 
 
             // fetch(URL + '/' + bno + '/page/' + page)
-            fetch('/boards/' + $idInput.value)
+            fetch('/jeju-camps/notices/' + $idInput.value)
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);
@@ -110,7 +110,7 @@
                     }
 
 
-                    tag+='<a href="/boards/detail?boardNumber='+boardNumber+'">';
+                    tag+='<a href="/jeju-camps/notices/details?boardNumber='+boardNumber+'">';
                     tag+='<div id="campBoard" class="card lg:card-side bg-base-100 shadow-xl relative mb-1 h-40">';       
                     tag+='<div id="#" class="self-center pl-3" >'+ boardNumber+'</div>';
                     tag+='<div class="card-body">';
@@ -141,7 +141,7 @@
         
          // 캠핑 목록 불러오기 함수 
          function getBoardList() {
-            fetch('/boards')
+            fetch('/jeju-camps/notices/all')
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);

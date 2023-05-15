@@ -15,7 +15,7 @@ import java.util.List;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/parties")
+@RequestMapping("/jeju-camps/parties")
 @Slf4j
 public class PartyController {
     private final PartyService partyService;

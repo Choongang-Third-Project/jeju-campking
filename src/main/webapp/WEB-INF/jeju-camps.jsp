@@ -37,7 +37,7 @@
             <div class="inner-header">
                 <div class="logo">
                     <!-- 여기 홈으로 가는거~ -->
-                    <a href="/camps/home">
+                    <a href="/jeju-camps">
                         <p><i class="fa-solid fa-mountain-sun"></i></p>
                         <p>CAMP<span>KING</span></p>
                     </a>
@@ -45,9 +45,9 @@
 
                 <nav class="gnb">
                     <ul>
-                        <li><a href="/notice">공지사항</a></li>
-                        <li><a href="/camp">캠핑장</a></li>
-                        <li><a href="/party">같이갈사람</a></li>
+                        <li><a href="/jeju-camps/notices">공지사항</a></li>
+                        <li><a href="/jeju-camps/info">캠핑장</a></li>
+                        <li><a href="/jeju-camps/parties">같이갈사람</a></li>
 
                     </ul>
                 </nav>
@@ -78,7 +78,7 @@
 
                         <li>
                             <div class="profile">
-                                <a href="#">
+                                <a href="/jeju-camps/mypage">
                                     <img src="/assets/header/img/soongu.jpg" alt="프로필사진">
                                 </a>
                             </div>
