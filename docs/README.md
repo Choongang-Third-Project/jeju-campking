@@ -66,12 +66,13 @@
 ```mermaid
 timeline
     title Develop history [2023-05-15 ~ 2023-05-19]
-    2023-05-15: []
-            : [Front]
-            : [Front]
+    2023-05-15: [✅] v1.0.0 배포
+            : [Front] URL 설계
+            : [Front] Main page
+            : [Front] My page
             : 🎯
-            : [Back]
-            : [Back]
+            : [Back] dummy data + SQL
+            : [Back] interceptor initial commit
     2023-05-16: []
             : [Front]
             : [Front]
@@ -148,6 +149,56 @@ timeline
 
 <br>
 
+#### ✅ v2.0.0
+
+```mermaid
+flowchart LR
+    서비스이용 --> 공지사항
+    서비스이용 --> 캠프장
+    서비스이용 --> 파티모집
+```
+
+- #### V2.0.0 개발 전략
+    - [v2.0.0] 공지사항 서비스
+      - 관리자는 공지사항을 등록, 읽기, 수정, 삭제 할 수 있다.
+      - 일반 회원은 공지사항을 읽기 할 수 있다.
+        - 공지사항 목록은 SSR 방식으로 페이징 처리 한다. 
+      - 일반 회원은 공지사항에 댓글을 달 수 있다.
+        - 댓글 작성은 CSR 방식으로 처리 한다.
+      - 페이징 처리
+    - [v2.0.0] 캠프장 서비스
+      - 관리자는 캠프장을 등록, 읽기, 수정, 삭제 할 수 있다.
+      - 일반 회원은 캠프장 목록을 볼 수 있다.
+        - 검색, 정렬 기능
+        - 검색 결과는 CSR 방식으로 제공 한다.
+      - 일반 회원은 캠프장 상세보기 기능을 이용할 수 있다.
+        - 지도뷰
+        - 로드뷰
+    - [v2.0.0] 파티 서비스
+      - 같이 갈 멤버를 구하는 게시글을 작성, 수정, 삭제할 수 있다.
+        - 모든 회원은 작성이 가능하다.
+        - 본인이 작성한 글이 아니면 수정, 삭제는 불가하다.
+      - 게시글에 쪽지를 보낼 수 있다.
+        - 모든 회원은 파티 게시글에 대해 쪽지를 보낼 수 있다.
+        - 본인이 작성한 글에는 쪽지를 보낼 수 없다.
+        - 한 번 보낸 쪽지는 수정, 삭제가 불가하다. (보낸 사람 기준으로)
+    - [v2.0.0] 마이 페이지 서비스
+      - 내 정보를 수정할 수 있다.
+        - 비밀번호, 닉네임, 핸드폰 번호
+      - 내가 쓴 글을 조회할 수 있다.
+        - 파티 게시판 글
+      - 내가 보낸 쪽지를 조회할 수 있다.
+        - 파티 게시판 쪽지
+      - 내가 받은 쪽지를 조회할 수 있다.
+        - 파티 게시판 쪽지
+      
+
+<br>
+<br>
+<br>
+
+
+
 #### ✅ v1.0.0
 
 ---
@@ -195,9 +246,12 @@ erDiagram
         member_phone VARCHAR(13) UK "Not Null"
         member_gender VARCHAR(1) "Not Null"
         member_nickname VARCHAR(50) UK "Not Null"
+        member_session_id VARCHAR(200) "DEFAULT 'none'"
+        member_cookie_date DATETIME
         member_age INT(3) "Not Null"
         member_join_date DATE "Not Null default current_timestamp"
     }
+
 
     TB_BOARD {
         board_number Int(10) PK "AUTO_INCREMENT"
@@ -232,6 +286,7 @@ erDiagram
     TB_PARTY {
         party_number INT(10) PK "AUTO_INCREMENT"
         party_title VARCHAR(200) "NOT NULL"
+        party_content VARCHAR(2000) "NOT NULL"
         party_start_date DATE "NOT NULL"
         party_end_date DATE "NOT NULL"
         party_size INT(3)
@@ -285,7 +340,7 @@ erDiagram
         party_message_content VARCHAR(2000) "NOT NULL"
         party_message_sender INT(10) FK "TB_MEMBER"
         party_message_recipient INT(10) FK "TB_MEMBER"
-
+        
         party_number INT(10) FK "TB_PARTY"
     }
 
@@ -299,6 +354,38 @@ erDiagram
 ### 📍 MindMap
 
 ---
+
+<br>
+
+#### 📌 2023.05.15 ~ 2023.05.19 V2.0.0
+
+```mermaid
+mindmap
+  root((main Service))
+    공지사항 v2.0
+      등록
+      읽기
+      수정
+      삭제
+    캠프장 서비스 v2.0
+      등록
+      읽기
+      수정
+      삭제
+    파티 서비스 v2.0
+      등록
+      읽기
+      수정
+      삭제
+      쪽지 보내기
+    마이 페이지 서비스 v2.0
+      정보 수정
+```
+
+<br>
+<br>
+
+
 
 #### 📌 2023.05.08 ~ 2023.05.12 V1.0.0
 
