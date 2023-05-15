@@ -23,7 +23,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/join", "/login"); // 어떤 경로에서 인터셉터할 것인가 모든 페이지
 
 
-
 //        registry.addInterceptor(null)
 //                .addPathPatterns("");
 //
@@ -31,7 +30,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
 //
 //        registry.addInterceptor(null)
 //                .addPathPatterns("");
-
 
 
     }
