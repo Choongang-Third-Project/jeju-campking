@@ -15,7 +15,6 @@ public class PartyMessage {
     private String partyMessageContent;
     private LocalDateTime partyMessageTime;
 
-
     private Long partyMessageSender;
     private Long partyMessageRecipient;
     private Long partyNumber;

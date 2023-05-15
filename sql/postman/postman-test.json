@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "b7a82c07-b3d7-4451-ac4c-8999782927d5",
+		"_postman_id": "c0fff68c-10cd-42ad-96de-09d687fe9fff",
 		"name": "제주캠프킹",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27234265"
 	},
 	"item": [
 		{
@@ -19,7 +20,18 @@
 						}
 					}
 				},
-				"url": "http://localhost:8181/boards/write"
+				"url": {
+					"raw": "http://localhost:8181/boards/write",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"boards",
+						"write"
+					]
+				}
 			},
 			"response": []
 		},
@@ -37,7 +49,18 @@
 						}
 					}
 				},
-				"url": "http://localhost:8181/boards/10"
+				"url": {
+					"raw": "http://localhost:8181/boards/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"boards",
+						"10"
+					]
+				}
 			},
 			"response": []
 		},
@@ -55,7 +78,17 @@
 						}
 					}
 				},
-				"url": "http://localhost:8181/boards"
+				"url": {
+					"raw": "http://localhost:8181/boards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"boards"
+					]
+				}
 			},
 			"response": []
 		},
@@ -73,7 +106,17 @@
 						}
 					}
 				},
-				"url": "http://localhost:8181/replies"
+				"url": {
+					"raw": "http://localhost:8181/replies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"replies"
+					]
+				}
 			},
 			"response": []
 		},
@@ -91,7 +134,18 @@
 						}
 					}
 				},
-				"url": "http://localhost:8181/replies/write"
+				"url": {
+					"raw": "http://localhost:8181/replies/write",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"replies",
+						"write"
+					]
+				}
 			},
 			"response": []
 		},
@@ -100,7 +154,18 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8181/camps/램"
+				"url": {
+					"raw": "http://localhost:8181/camps/램",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"camps",
+						"램"
+					]
+				}
 			},
 			"response": []
 		},
@@ -109,7 +174,80 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8181/camps/all-list"
+				"url": {
+					"raw": "http://localhost:8181/camps/all-list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"camps",
+						"all-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "파티 메세지 전송 POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"partyMessageContent\": \"게하 같이 갈래영~~~\",\r\n    \"partyMessageSender\" : 4,\r\n    \"partyMessageRecipient\": 1,   \r\n    \"partyNumber\" : 24\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/party-message/send",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"party-message",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "파티 메세지 전체보기 GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/party-message/all-list/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"party-message",
+						"all-list",
+						"11"
+					]
+				}
 			},
 			"response": []
 		}
