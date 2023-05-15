@@ -33,8 +33,8 @@
         </div>
     </nav>
 
-    <section class="content">
-        <c:forEach var="b" items="${bList}">
+    <c:forEach var="b" items="${bList}">
+        <section class="content">
             <ul id="party-list">
                 <li>
                     <div class="item_card clearfix">
@@ -51,8 +51,8 @@
                     </div>
                 </li>
             </ul>
-        </c:forEach>
-    </section>
+        </section>
+    </c:forEach>
 </body>
 <script>
     // 댓글 목록 렌더링 함수
@@ -82,26 +82,19 @@
                     campNumber
                 } = party;
 
-                if(campNumber){
-                    
-                }
+    
 
-                tag += "<ul id='party-list'>" +
-                "<li>"
-                    +"<div class='item_card clearfix'>" 
-                        +"<div class='img-box'>"
-                    +        "<img src='/main/resources/static/assets/home/img/sm_normal.jpg' >"
-                    +    "</div>"
-                    +    "<div class='small_title'>"
-                    +      "<div>"+ partyTitle+ "</div>"
-                    +        "<span>" +준비물은 텐트와 버너... +"</span>"
-                    +    "</div>"
-                    +    <div class='wirter'>"
-                    +        by 작성자
-                    +    "</div>"
-                    +"</div>"
-                +"</li>"
-            +"</ul>"
+                tag += "<div id='replyContent' class='card-body' data-replyId='" + rno + "'>" +
+                    "    <div class='row user-block'>" +
+                    "       <span class='col-md-3'>" +
+                    "         <b>" + writer + "</b>" +
+                    "       </span>" +
+                    "       <span class='offset-md-6 col-md-3 text-right'><b>" + regDate +
+                    "</b></span>" +
+                    "    </div><br>" +
+                    "    <div class='row'>" +
+                    "       <div class='col-md-6'>" + text + "</div>" +
+                    "       <div et-md-2 col-md-4 text-right'>";
 
                 // if (currentAccount === rep.account || auth === 'ADMIN') 
                 tag +=
