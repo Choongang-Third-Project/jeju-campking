@@ -33,9 +33,9 @@
         </div>
     </nav>
 
-    <c:forEach var="b" items="${bList}">
-        <section class="content">
-            <ul>
+    <section class="content">
+        <c:forEach var="b" items="${bList}">
+            <ul id="party-list">
                 <li>
                     <div class="item_card clearfix">
                         <div class="img-box">
@@ -51,8 +51,8 @@
                     </div>
                 </li>
             </ul>
-        </section>
-    </c:forEach>
+        </c:forEach>
+    </section>
 </body>
 <script>
     // 댓글 목록 렌더링 함수
@@ -66,7 +66,7 @@
         let tag = '';
 
         if (allBySort === null || allBySort.length === 0) {
-            tag += "<div id='#' class='card-body'>게시물이 아직 없습니다! ㅠㅠ</div>";
+            tag += " ";
 
         } else {
             for (let party of allBySort) {
@@ -82,19 +82,28 @@
                     campNumber
                 } = party;
 
-                tag += "<div id='replyContent' class='card-body' data-replyId='" + rno + "'>" +
-                    "    <div class='row user-block'>" +
-                    "       <span class='col-md-3'>" +
-                    "         <b>" + writer + "</b>" +
-                    "       </span>" +
-                    "       <span class='offset-md-6 col-md-3 text-right'><b>" + regDate +
-                    "</b></span>" +
-                    "    </div><br>" +
-                    "    <div class='row'>" +
-                    "       <div class='col-md-6'>" + text + "</div>" +
-                    "       <div et-md-2 col-md-4 text-right'>";
+                if(campNumber){
+                    
+                }
 
-                // if (currentAccount === rep.account || auth === 'ADMIN') {
+                tag += "<ul id='party-list'>" +
+                "<li>"
+                    +"<div class='item_card clearfix'>" 
+                        +"<div class='img-box'>"
+                    +        "<img src='/main/resources/static/assets/home/img/sm_normal.jpg' >"
+                    +    "</div>"
+                    +    "<div class='small_title'>"
+                    +      "<div>"+ partyTitle+ "</div>"
+                    +        "<span>" +준비물은 텐트와 버너... +"</span>"
+                    +    "</div>"
+                    +    <div class='wirter'>"
+                    +        by 작성자
+                    +    "</div>"
+                    +"</div>"
+                +"</li>"
+            +"</ul>"
+
+                // if (currentAccount === rep.account || auth === 'ADMIN') 
                 tag +=
                     "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
                     "         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>";
@@ -105,7 +114,7 @@
             }
 
             // 생성된 파티 tag 렌더링
-            document.getElementById('content').innerHTML = tag;
+            document.getElementById('party-list').innerHTML = tag;
         }
 
         // 같이갈 사람 구하는 게시물 목록 불러오는 함수 
