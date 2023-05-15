@@ -43,7 +43,7 @@ class PartyMessageMapperTest {
         String content = "회 같이 먹으실래요?";
         Long sendMemberNumber = 11L;
         Long recipientMemberNumber = 13L;
-        Long partyNumber = 1L;
+        Long partyNumber = 20L;
 
         // when
 

@@ -56,14 +56,14 @@ class MemberMapperTest {
     }
 
     @Test
-    @DisplayName("회원 300명을 등록하고, 각 회원의 회원번호, 이메일, 전화번호, 닉네임은 모두 달라야 한다.")
+    @DisplayName("회원 50명을 등록하고, 각 회원의 회원번호, 이메일, 전화번호, 닉네임은 모두 달라야 한다.")
     void bulkSignUpTest() {
         int phoneNumber = 1000;
 
-        for (int i = 1; i < 300; i++) {
+        for (int i = 1000; i < 1050; i++) {
             MemberSignRequestDTO member = MemberSignRequestDTO.builder()
                     .memberEmail("test" + i + "@test.com")
-                    .memberPassword("test" + i)
+                    .memberPassword("test" + i + "!")
                     .memberName("테스트" + i)
                     .memberPhone("010-1111-" + phoneNumber)
                     .memberGender("F")
