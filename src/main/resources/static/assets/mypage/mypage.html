@@ -6,8 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>마이페이지</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css"/>
 
     <style>
         .mp-wrap {
@@ -17,40 +17,256 @@
             display: flex;
             justify-content: center;
         }
-        .mp-main {
+
+        .mp-box {
             background-color: #fff;
             width: 1100px;
             height: 700px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mp-box .mp-info {
+            background-color: red;
+            width: 95%;
+            height: 93%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .mp-info-content {
+            width: 100%;
+        }
+
+        .mp-box .mp-info .mp-info-text .mp-info-content.mp-info-profile {
+            width: 100px;
+        }
+
+        .mp-box .mp-info .mp-info-text .mp-info-content {
+            background-color: orange;
+            padding: 15px;
+        }
+
+        .mp-box .mp-info .mp-info-text .mp-info-content .btn {
+            width: 200px;
+        }
+
+        .mp-main-content {
+            background-color: gray;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .mp-main-content.mp-board {
+            height: 50%;
+        }
+
+        .mp-main-content .mp-board-list {
+            height: 100%;
+            border: 1px solid #bfbfbf;
+            overflow: auto;
             border-radius: 10px;
+        }
+
+        .mp-main-content .mp-board-list::-webkit-scrollbar {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="mp-wrap">
-        <!-- header -->
-        <header>
+<div class="mp-wrap">
+    <!-- header -->
+    <header>
 
-        </header>
-        <!-- main -->
-        <div class="mp-main">
-            <!-- 간단 회원 정보 (프로필사진, 이름, 닉네임) -->
-            <div class="mp-info">
+    </header>
 
+    <div class="mp-box">
+        <!-- 간단 회원 정보 (프로필사진, 닉네임, 회원등급) -->
+        <div class="mp-info">
+            <div class="mp-info-text">
+                <div class="mp-info-content mp-info-profile w-24 mask mask-squircle">
+                    <!-- 프로필 사진 -->
+                    <img src="img/profile.png"/>
+                </div>
+                <div class="mp-info-content mp-info-name">닉네임 님</div>
+                <div class="mp-info-content mp-info-nickname">일반회원</div>
+                <div class="mp-info-content mp-info-withdrawal">
+                    <button class="btn btn-wide bg-primary">개인정보 수정</button>
+                    <div class="mp-info-content mp-info-withdrawal">
+                        <button class="btn btn-wide bg-primary">회원 탈퇴</button>
+                    </div>
+                </div>
             </div>
-            <!-- 내가 쓴 글 -->
-            <div class="mp-board">
-
+            <!-- 메인 -->
+            <div class="mp-main-content mp-main">
+                <!-- 내가 쓴 글 -->
+                <div class="mp-main-content mp-board">
+                    <div class="mp-board-title">내가 쓴 글</div>
+                    <!--                    <li class="mp-board-li">게시글1</li>-->
+                    <!--                    <li class="mp-board-li">게시글2</li>-->
+                    <!--                    <li class="mp-board-li">게시글3</li>-->
+                    <div class="overflow-x-auto w-full mp-board-list">
+                        <table class="table w-full mp-board-li">
+                            <thead class="mp-board-header">
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox" class="checkbox" />
+                                    </label>
+                                </th>
+                                <th>게시판</th>
+                                <th>내용</th>
+                                <th>작성일자</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <!-- head -->
+                            <tbody>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox" class="checkbox" />
+                                    </label>
+                                </th>
+                                <td>
+                                    <div class="flex items-center space-x-3">
+                                        <div>
+                                            <div class="font-bold">자유게시판</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    같이놀러가여ㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕ
+                                </td>
+                                <td>2023.05.01</td>
+                                <th>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox" class="checkbox" />
+                                    </label>
+                                </th>
+                                <td>
+                                    <div class="flex items-center space-x-3">
+                                        <div>
+                                            <div class="font-bold">자유게시판</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    같이놀러가여ㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕ
+                                </td>
+                                <td>2023.05.01</td>
+                                <th>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox" class="checkbox" />
+                                    </label>
+                                </th>
+                                <td>
+                                    <div class="flex items-center space-x-3">
+                                        <div>
+                                            <div class="font-bold">자유게시판</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    같이놀러가여ㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕ
+                                </td>
+                                <td>2023.05.01</td>
+                                <th>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox" class="checkbox" />
+                                    </label>
+                                </th>
+                                <td>
+                                    <div class="flex items-center space-x-3">
+                                        <div>
+                                            <div class="font-bold">자유게시판</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    같이놀러가여ㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕ
+                                </td>
+                                <td>2023.05.01</td>
+                                <th>
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- 쪽지함 -->
+                <div class="mp-main-content mp-board mp-msg">
+                    <div class="mp-board-title">내가 쓴 글</div>
+                    <!--                    <li class="mp-board-li">게시글1</li>-->
+                    <!--                    <li class="mp-board-li">게시글2</li>-->
+                    <!--                    <li class="mp-board-li">게시글3</li>-->
+                    <div class="overflow-x-auto w-full mp-board-list">
+                        <table class="table w-full mp-board-li">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox" class="checkbox" />
+                                    </label>
+                                </th>
+                                <th>보낸사람</th>
+                                <th>쪽지내용</th>
+                                <th>보낸일자</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <!-- head -->
+                            <tbody>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox" class="checkbox" />
+                                    </label>
+                                </th>
+                                <td>
+                                    <div class="flex items-center space-x-3">
+                                        <div>
+                                            <div class="font-bold">보낸사람</div>
+                                            <div class="text-sm opacity-50">일반회원</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    같이놀러가여ㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕ
+                                </td>
+                                <td>2023.05.01</td>
+                                <th>
+                                    <button class="btn btn-ghost btn-xs">답장하기</button>
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <!-- 쪽지함 -->
-            <div class="mp-msg">
+            <!-- footer -->
+            <footer>
 
-            </div>
-            <!-- 내정보 수정, 회원탈퇴 버튼 -->
-            <div class="mp-info-modify-btn">
-
-            </div>
+            </footer>
         </div>
-        <!-- footer -->
-    </div>
 </body>
 </html>
