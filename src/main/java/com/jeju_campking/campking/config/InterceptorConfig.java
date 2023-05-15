@@ -24,13 +24,13 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
 
 
-        registry.addInterceptor(null)
-                .addPathPatterns("");
-
-
-
-        registry.addInterceptor(null)
-                .addPathPatterns("");
+//        registry.addInterceptor(null)
+//                .addPathPatterns("");
+//
+//
+//
+//        registry.addInterceptor(null)
+//                .addPathPatterns("");
 
 
 
