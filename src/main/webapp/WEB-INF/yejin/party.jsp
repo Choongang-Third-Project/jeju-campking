@@ -82,28 +82,21 @@
                     campNumber
                 } = party;
 
-    
-
-                tag += "<div id='replyContent' class='card-body' data-replyId='" + rno + "'>" +
-                    "    <div class='row user-block'>" +
-                    "       <span class='col-md-3'>" +
-                    "         <b>" + writer + "</b>" +
-                    "       </span>" +
-                    "       <span class='offset-md-6 col-md-3 text-right'><b>" + regDate +
-                    "</b></span>" +
-                    "    </div><br>" +
-                    "    <div class='row'>" +
-                    "       <div class='col-md-6'>" + text + "</div>" +
-                    "       <div et-md-2 col-md-4 text-right'>";
-
+                tag += "<li>"
+                    +"<div class='item_card clearfix'>"
+                    +   "<div class='img-box'>"
+                    +        "<img src='/main/resources/static/assets/home/img/sm_normal.jpg' alt=''>"
+                    +    "</div>"
+                    +    "<div class='small_title'>"
+                    +        "<div>"+글램핑 같이 갈분 모집해요~!!+"</div>"
+                    +        "<span>"+준비물은 텐트와 버너...+"</span>"
+                    +    "</div>"
+                    +    "<div class='wirter'>"
+                    +        by 작성자
+                    +    "</div>"
+                    + "</div>"
+                + "</li>";
                 // if (currentAccount === rep.account || auth === 'ADMIN') 
-                tag +=
-                    "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
-                    "         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>";
-                // }
-                tag += "       </div>" +
-                    "    </div>" +
-                    " </div>";
             }
 
             // 생성된 파티 tag 렌더링
