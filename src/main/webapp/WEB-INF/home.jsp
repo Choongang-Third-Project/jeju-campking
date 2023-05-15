@@ -37,7 +37,7 @@
             <div class="inner-header">
                 <div class="logo">
                     <!-- 여기 홈으로 가는거~ -->
-                    <a href="#">
+                    <a href="/camps/home">
                         <p><i class="fa-solid fa-mountain-sun"></i></p>
                         <p>CAMP<span>KING</span></p>
                     </a>
@@ -45,9 +45,9 @@
 
                 <nav class="gnb">
                     <ul>
-                        <li><a href="#">공지사항</a></li>
-                        <li><a href="#">캠핑장</a></li>
-                        <li><a href="#">같이갈사람</a></li>
+                        <li><a href="/notice">공지사항</a></li>
+                        <li><a href="/camp">캠핑장</a></li>
+                        <li><a href="/party">같이갈사람</a></li>
 
                     </ul>
                 </nav>
