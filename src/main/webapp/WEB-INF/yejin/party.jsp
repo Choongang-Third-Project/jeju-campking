@@ -35,7 +35,7 @@
 
     <c:forEach var="b" items="${bList}">
         <section class="content">
-            <ul>
+            <ul id="party-list">
                 <li>
                     <div class="item_card clearfix">
                         <div class="img-box">
@@ -66,7 +66,7 @@
         let tag = '';
 
         if (allBySort === null || allBySort.length === 0) {
-            tag += "<div id='#' class='card-body'>게시물이 아직 없습니다! ㅠㅠ</div>";
+            tag += " ";
 
         } else {
             for (let party of allBySort) {
@@ -82,6 +82,8 @@
                     campNumber
                 } = party;
 
+    
+
                 tag += "<div id='replyContent' class='card-body' data-replyId='" + rno + "'>" +
                     "    <div class='row user-block'>" +
                     "       <span class='col-md-3'>" +
@@ -94,7 +96,7 @@
                     "       <div class='col-md-6'>" + text + "</div>" +
                     "       <div et-md-2 col-md-4 text-right'>";
 
-                // if (currentAccount === rep.account || auth === 'ADMIN') {
+                // if (currentAccount === rep.account || auth === 'ADMIN') 
                 tag +=
                     "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
                     "         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>";
@@ -105,7 +107,7 @@
             }
 
             // 생성된 파티 tag 렌더링
-            document.getElementById('content').innerHTML = tag;
+            document.getElementById('party-list').innerHTML = tag;
         }
 
         // 같이갈 사람 구하는 게시물 목록 불러오는 함수 
