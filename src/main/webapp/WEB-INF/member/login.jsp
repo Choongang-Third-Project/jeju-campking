@@ -65,7 +65,7 @@
                     </div>
                     <div class="login-sign-up login-find-text">&nbsp;&nbsp;|&nbsp;
                         <!-- Simple link -->
-                        <a href="http://localhost:8181/member/signup">회원가입</a>
+                        <a href="/join">회원가입</a>
                     </div>
                 </div>
 

@@ -25,7 +25,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/boards")
+@RequestMapping("/jeju-camps/notices")
 @Slf4j
 public class BoardController {
     private final BoardService boardService;
@@ -34,7 +34,7 @@ public class BoardController {
     // 공지사항 목록 조회 요청
     // URL : /boards
     @ResponseBody
-    @GetMapping()
+    @GetMapping("/all")
     public ResponseEntity<?> findAll(){
         log.info("/boards : findAll() GET!!");
         List<Board> list = boardService.findAll();
@@ -55,7 +55,7 @@ public class BoardController {
     }
 
     // /boards/detail?boardNumber=1  게시물 한개 조회
-    @GetMapping("/detail")
+    @GetMapping("/details")
     public String findOne(long boardNumber, Model model){
         log.info("/boards : findOne() GET!!");
         Board board = boardService.findOne(boardNumber);

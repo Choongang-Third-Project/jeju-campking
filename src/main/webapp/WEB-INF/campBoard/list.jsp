@@ -77,7 +77,7 @@
 
 
             // fetch(URL + '/' + bno + '/page/' + page)
-            fetch('/camps/' + $idInput.value)
+            fetch('/jeju-camps/info/' + $idInput.value)
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);
@@ -101,7 +101,7 @@
             } else {
                 for (let camp of list){
                     const {campNumber, campAddress, campName, campTypeNormal, campTypeCar, campTypeCaravan, campTypeGlamping} = camp;
-                    tag+='<a href="/camps/detail?title='+campName+'">';
+                    tag+='<a href="/jeju-camps/info/details?title='+campName+'">';
                     tag+='<div id="campBoard" class="card lg:card-side bg-base-100 shadow-xl relative mb-1 h-40">';       
                     tag+='<div id="#" class="self-center pl-3" >'+ campNumber+'</div>';
                     tag+='<div class="card-body">';
@@ -131,7 +131,7 @@
         
          // 캠핑 목록 불러오기 함수 
          function getCampList() {
-            fetch('/camps/all-list')
+            fetch('/jeju-camps/info/all-list')
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);

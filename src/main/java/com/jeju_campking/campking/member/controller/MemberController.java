@@ -9,12 +9,14 @@ import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,15 +32,15 @@ public class MemberController {
     private final MemberService memberService;
 
     // 회원가입 양식 페이지 요청
-    @GetMapping("/signup")
-    public String signUp() {
-        log.info("/member/sign GET - forwarding to jsp");
-        return "member/signup";
-    }
+//    @GetMapping("/signup")
+//    public String signUp() {
+//        log.info("/member/sign GET - forwarding to jsp");
+//        return "member/signup";
+//    }
 
     // 회원가입 처리 요청
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(
+    public String signUp(
             @Validated MemberSignRequestDTO dto,
             BindingResult result
     ) {
@@ -46,36 +48,42 @@ public class MemberController {
 
         // 입력값 검증
         if (result.hasErrors()) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(result.toString());
+            return "redirect:/login";
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(result.toString());
         }
 
         // 회원 가입 성공여부 검증
         try {
             // 회원가입 성공
             if(memberService.sign(dto)) {
-                return ResponseEntity
-                        .ok()
-                        .body("SUCCESS");
+
+               return "redirect:/login";
+//                return ResponseEntity
+//                        .ok()
+//                        .body("SUCCES156156156156S");   // jsp 파일
             }
         } catch (SQLException e) {
             // 회원가입 실패
             log.warn("500 Status code response!! caused by : {}", e.getMessage());
-            return ResponseEntity
-                    .internalServerError()
-                    .body("FAIL");
+            return "redirect:/login";
+//            return ResponseEntity
+//                    .internalServerError()
+//                    .body("FAIL");
         }
 
-        return ResponseEntity.ok().body("FAIL");
+//        return ResponseEntity.ok().body("FAIL");
+        return "redirect:/login";
     }
 
     // 로그인 양식 페이지 요청
-    @GetMapping("/login")
-    public String login() {
-        log.info("/member/login GET - forwarding to jsp");
-        return "member/login";
-    }
+//    @GetMapping("/login")
+//    public String login() {
+//        log.info("/member/login GET - forwarding to jsp");
+//        return "member/login";
+//    }
+
 
     // 로그인 검증 요청
     @PostMapping("/login")
@@ -102,7 +110,7 @@ public class MemberController {
                 // 세션
                 memberService.maintainLoginState(request.getSession(), dto.getMemberEmail());
                 //todo: home으로 이동해야 함!
-                return "redirect:/camps/home";
+                return "redirect:/jeju-camps";
             }
             // 로그인 실패
         } catch (Exception e) {

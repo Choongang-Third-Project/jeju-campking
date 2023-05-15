@@ -21,14 +21,14 @@ import java.util.List;
 // server 에 만들 수 있는 view template : jsp.... 서버사이드렌더링
 // REST API : 서버는 데이터만 정제해서 client
 @RequiredArgsConstructor
-@RequestMapping("/camps")
+//@RequestMapping("/jeju-camps/info")
 @Slf4j
 public class CampController {
     private final CampService campService;
 
 
     // 전체 캠핑장 목록조회 요청
-    @GetMapping("/all-list")
+    @GetMapping("/jeju-camps/info/all-list")
     @ResponseBody
     public ResponseEntity<?> findAll() {
         log.info("/camps/all-lsit  GET!!");
@@ -45,7 +45,7 @@ public class CampController {
     }
 
     //주소로 캠프장 하나 찾기
-    @GetMapping("/{keyword}")
+    @GetMapping("/jeju-camps/info/{keyword}")
     @ResponseBody
     public ResponseEntity<?> findByKeyword(@PathVariable(required = false) String keyword) {
         log.info("/camps/address : GET!! {} ", keyword);
@@ -63,7 +63,7 @@ public class CampController {
 
 
     // GetMapping 제목 전송하면 campBoard/detail.jsp로 이동
-    @GetMapping("/detail")
+    @GetMapping("/jeju-camps/info/details")
     public ModelAndView detailCampBoard(String title) {
         log.info("/camps/detail/address : POST!! {} ", title);
         ModelAndView mv = new ModelAndView("/campBoard/detail");
@@ -89,13 +89,13 @@ public class CampController {
 
 
     // 홈화면에 표시 할 캠프타입별 카운트, 퍼센트
-    @GetMapping("/home")
+    @GetMapping("/jeju-camps")
     public String camps(Model model) {
 
         CampTypeCountResponseDTO campCount = campService.getCampCount();
         model.addAttribute("c", campCount);
 
-        return "/home";
+        return "/jeju-camps";
     }
 
 
