@@ -176,8 +176,8 @@
 
 
 
-              <!-- section.notice -->
-              <section class="notice">
+            <!-- section.notice -->
+            <section class="notice">
 
                 <div class="notice-inner">
 
@@ -186,8 +186,8 @@
                             <i class="fa-regular fa-clipboard"></i> 공지사항
                         </p>
                         <div>
-                            <p><span>2023/00/00</span> 여기는 공지글~</p>
-                            <p><span>2023/00/00</span> 여기는 공지글~</p>
+                            <a href=""><p><span class="date">2023/00/00</span> <span class="line">여기는 공지글~ 냥냥냥냥</span></p></a>
+                            <a href=""><p><span class="date">2023/00/00</span> <span class="line">여기는 공지글~</span></p></a>
                         </div>
                     </div>
 
@@ -224,16 +224,16 @@
 
 
 
-        
 
-          
+
+
 
 
 
             <!-- section.camp-type -->
             <section class="camp-type">
                 <div class="title">
-                    <h1>야영지 선택!</h1>
+                    <h1><i class="fa-solid fa-map-location-dot"></i> 어디로 갈까?</h1>
                 </div>
 
                 <ul class="sub-container clearfix">
@@ -283,7 +283,7 @@
 
 
 
-            
+
             <section class="new">
 
                 <div class="new-container">
@@ -325,26 +325,37 @@
                                 </div>
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <div class="new-img-box">
-                                    <img src="/src/main/resources/static/assets/home/img/camp5.jpg" alt="">
-                                </div>
-                            </a>
-                        </li>
-                     
+
                     </ul>
 
-                    <ul>
-                        <li>
-                            <p>유료캠핑장</p>
-                            <p>수하리 캠핑파크</p>
-                        </li>
-                        <li></li>
-                    </ul>
+                    <div class="camp-name">
+
+                        <ul>
+                            <li>
+                                <p>유료캠핑장</p>
+                                <p>수하리 캠핑파크</p>
+                            </li>
+                            <li>
+                                <p>유료캠핑장</p>
+                                <p>사계절 캠핑&펜션</p>
+                            </li>
+                            <li>
+                                <p>유료캠핑장</p>
+                                <p>연천재인폭포 오토캠핑장</p>
+                            </li>
+                            <li>
+                                <p>글램핑/카라반</p>
+                                <p>제천 테라리조트 글램핑</p>
+                            </li>
+                            <li>
+                                <p>유료캠핑장</p>
+                                <p>송호관광지 야영장</p>
+                            </li>
+
+                        </ul>
+                    </div>
 
                 </div>
-
 
             </section>
 
@@ -353,33 +364,68 @@
 
 
 
+            <!-- section.board-wrapper -->
+            <section class="board-wrapper">
 
-
-
-
-              <!-- section.board -->
-            <section class="board">
-                <div class="sub-board">
-                    <p><i class="fa-solid fa-flag"></i></p>
-                    <h2>공지사항</h2>
-                </div>
-                <div class="sub-board">
-                    <p><i class="fa-solid fa-tents"></i></p>
-                    <h2>금주의 캠프킹</h2>
-                </div>
-                <div class="sub-board">
-                    <p><i class="fa-solid fa-people-roof"></i></p>
-                    <h2>같이 갈 사람</h2>
+                <div class="board">
+                    <div class="sub-board">
+                        <p><i class="fa-solid fa-tents"></i></p>
+                        <h2>금주의 캠프킹</h2>
+                    </div>
+                    <div class="sub-board">
+                        <p><i class="fa-solid fa-screwdriver-wrench"></i></p>
+                        <h2>장비대여</h2>
+                    </div>
+                    <div class="sub-board">
+                        <p><i class="fa-solid fa-people-roof"></i></p>
+                        <h2>같이 갈 사람</h2>
+                    </div>
                 </div>
             </section>
+                
+
+
+            <!-- section.ppl-wrapper -->
+            <section class="ppl-wrapper">
+
+                <div class="ppl">
+                    <h3>PARTNER</h3>
+                    <p>상생 파트너와 함께 새로운 문화를 만들어 갑니다.</p>
+                    <ul class="img-box">
+                        <li><img src="/src/main/resources/static/assets/home/img/ppl01.png" alt=""></li>
+                        <li><img src="/src/main/resources/static/assets/home/img/ppl02.png" alt=""></li>
+                        <li><img src="/src/main/resources/static/assets/home/img/ppl03.png" alt=""></li>
+                    </ul>
+                    <ul class="img-box">
+                        <li><img src="/src/main/resources/static/assets/home/img/ppl04.png" alt=""></li>
+                        <li><img src="/src/main/resources/static/assets/home/img/ppl05.png" alt=""></li>
+                        <li><img src="/src/main/resources/static/assets/home/img/ppl06.png" alt=""></li>
+                    </ul>
+    
+                </div>
+            </section>
+
 
 
             <!-- footer 시작 -->
-            <footer></footer>
-            <!-- footer 끝 -->
+            <footer>
+
+                <div class="foot-wrapper">
+                    <h3>CAMPKING</h3>
+                    <div class="foot">
+                        <p>주식회사 캠프킹 | 대표이사 : 홍순구 | 사업자 등록번호 : 000-00-000000</p>
+                        <p>국내여행업 등록번호 : 2023-0000000호 | 자동차대여사업 등록번호 : 서울시 2023-00호 | 통신판매 신고번호 : 2023-서울강남-00000호</p>
+                        <p>대표전화 : 02-000-0000 | 팩스 : 0000-000-0000 | E-mail : info@campking.cooom</p>
+                        <p>Copyright ⓒ CampKing inc.</p>
+                    </div>
+                </div>
 
 
-            <!-- wrapper 끝 -->
+            </footer>
+           
+            
+
+
         </div>
 
 
