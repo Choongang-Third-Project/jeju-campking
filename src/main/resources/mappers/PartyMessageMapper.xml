@@ -13,7 +13,7 @@
         party_message_recipient,
         party_number
         FROM TB_PARTY_MESSAGE
-        WHERE party_message_sender = #{memberId}
+        WHERE party_message_sender = #{memberNumber}
     </select>
 
     <insert id="send">
