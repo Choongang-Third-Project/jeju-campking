@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .new-container ul {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .new-container ul#slideshow {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .new-container ul#slideshow li {
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+
+    .new-container ul#slideshow li.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="new-container">
+    <h1><span>New</span>&Update</h1>
+    <ul id="slideshow">
+      <li class="show">
+        <a href="#">
+          <div class="new-img-box">
+            <img src="/src/main/resources/static/assets/home/img/camp1.jpg" alt="">
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <div class="new-img-box">
+            <img src="/src/main/resources/static/assets/home/img/camp2.jpg" alt="">
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <div class="new-img-box">
+            <img src="/src/main/resources/static/assets/home/img/camp3.jpg" alt="">
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <div class="new-img-box">
+            <img src="/src/main/resources/static/assets/home/img/camp4.jpg" alt="">
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <div class="new-img-box">
+            <img src="/src/main/resources/static/assets/home/img/camp5.jpg" alt="">
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll(".new-container ul#slideshow li");
+    const slideCount = slides.length;
+    let currentSlide = 0;
+
+    function showSlide() {
+    
+      slides[currentSlide].classList.remove("show");
+      currentSlide = (currentSlide + 1) % slideCount;
+      slides[currentSlide].classList.add("show");
+    }
+
+    slides[currentSlide].classList.add("show");
+
+    setInterval(showSlide, 1000);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "c0fff68c-10cd-42ad-96de-09d687fe9fff",
+		"name": "제주캠프킹",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27234265"
+	},
+	"item": [
+		{
+			"name": "게시글 작성 POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"boardTitle\" : \"develop포33스트맨\",\n    \"boardContent\" : \"develop포44스트맨 테스트로 작성했어요!\",\n    \"memberNumber\" : 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/boards/write",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"boards",
+						"write"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "게시글 삭제 DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"boardNumber\" : 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/boards/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"boards",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "게시글 수정 PUT, PATCH",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"boardTitle\" : \"develop풋 패치 포스트맨 제목\",\n    \"boardContent\" : \"develop PUT PATCH 로 했다!!\",\n    \"boardNumber\" : 8\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/boards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"boards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "댓글 수정 PUT, PATCH",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"replyContent\" : \"수정수정댓글수정\",\n    \"replyNumber\" : 8\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/replies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"replies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "댓글 작성 POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"replyContent\": \"post reply\",\n    \"boardNumber\": 1,\n    \"memberNumber\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/replies/write",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"replies",
+						"write"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "캠프 키워드 조회 GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/camps/램",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"camps",
+						"램"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "캠프 전체 조회 GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/camps/all-list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"camps",
+						"all-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "파티 메세지 전송 POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"partyMessageContent\": \"게하 같이 갈래영~~~\",\r\n    \"partyMessageSender\" : 4,\r\n    \"partyMessageRecipient\": 1,   \r\n    \"partyNumber\" : 24\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/party-message/send",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"party-message",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "파티 메세지 전체보기 GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/party-message/all-list/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"party-message",
+						"all-list",
+						"11"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeju_campking.campking.party.repository.PartyMapper">
+    <select id="findAllBySort" resultType="partyDTO">
+        SELECT
+        P.party_number ,
+        C.camp_name ,
+        P.party_title ,
+        M.member_nickname ,
+        P.party_start_date ,
+        P.party_end_date ,
+        P.party_size ,
+        P.party_write_time ,
+        C.camp_type_normal ,
+        C.camp_type_car ,
+        C.camp_type_caravan ,
+        C.camp_type_glamping
+        FROM TB_PARTY AS P
+        JOIN TB_MEMBER AS M ON P.member_number = M.member_number
+        JOIN TB_CAMP AS C ON P.camp_number = C.camp_number
+        <if test="type == 'normal'">
+            WHERE camp_type_normal != ''
+        </if>
+        <if test="type == 'car'">
+            WHERE camp_type_car != ''
+        </if>
+        <if test="type == 'caravan'">
+            WHERE camp_type_caravan != ''
+        </if>
+        <if test="type == 'glamping'">
+            WHERE camp_type_glamping != ''
+        </if>
+        <if test="sort == 'writeTimeASC'">
+            ORDER BY P.party_write_time ASC , P.party_number DESC
+        </if>
+        <if test="sort == 'writeTimeDESC'">
+            ORDER BY P.party_write_time DESC , P.party_number DESC
+        </if>
+        <if test="sort == 'startASC'">
+            ORDER BY P.party_start_date ASC , P.party_number DESC
+        </if>
+        <if test="sort == 'startDESC'">
+            ORDER BY P.party_start_date DESC , P.party_number DESC
+        </if>
+        <if test="sort == 'endASC'">
+            ORDER BY P.party_end_date ASC , P.party_number DESC
+        </if>
+        <if test="sort == 'endDESC'">
+            ORDER BY P.party_end_date DESC , P.party_number DESC
+        </if>
+    </select>
+</mapper>

@@ -2,66 +2,57 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.campking.member.repository.MemberMapper">
-
-    <!--     TODO : 아래 코드는 예제 -->
-    <!--    List<Board> findAll();-->
+<mapper namespace="com.jeju_campking.campking.board.repository.BoardMapper">
     <select id="findAll" resultType="board">
-        SELECT
-        board_no, title,
-        content, view_count, reg_date_time
-        FROM tbl_board
-        <if test="type == 'title'">
-            WHERE title LIKE CONCAT('%', #{keyword}, '%')
-        </if>
-        <if test="type == 'content'">
-            WHERE content LIKE CONCAT('%', #{keyword}, '%')
-        </if>
-        <if test="type == 'tc'">
-            WHERE title LIKE CONCAT('%', #{keyword}, '%')
-            OR content LIKE CONCAT('%', #{keyword}, '%')
-        </if>
-        ORDER BY board_no DESC
-        LIMIT #{pageStart}, #{amount}
+        select
+        board_number,
+        board_title ,
+        board_content ,
+        board_time ,
+        member_number
+        FROM TB_BOARD
+        ORDER BY board_number desc;
     </select>
 
-    <!--    게시물 상세 조회-->
-    <!--    Board findByBoardNo(int boardNo);-->
-    <select id="findByBoardNo" resultType="board">
+    <select id="findByKeyword" resultType="board">
         SELECT
-        board_no, title, content, view_count, reg_date_time
-        FROM tbl_board
-        WHERE board_no = #{boardNo}
+        board_number,
+        board_title ,
+        board_content ,
+        board_time ,
+        member_number
+        FROM TB_BOARD
+        WHERE board_title LIKE CONCAT('%',#{keyword},'%')
+        OR board_content LIKE CONCAT('%',#{keyword},'%');
     </select>
 
-    <!--    게시물 등록-->
-    <!--    boolean save(Board board);-->
-    <insert id="save">
-        INSERT INTO tbl_board
-        (title, content)
-        VALUES (#{title}, #{content})
+    <select id="findOne" resultType="board">
+        SELECT
+        board_number,
+        board_title,
+        board_content,
+        board_time,
+        member_number
+        FROM TB_BOARD
+        WHERE board_number = #{boardNumber};
+    </select>
+    <insert id="write">
+        INSERT INTO TB_BOARD
+        (board_title, board_content, member_number)
+        VALUES (#{boardTitle}, #{boardContent}, #{memberNumber});
     </insert>
 
-    <!--    게시물 삭제-->
-    <!--    boolean delete(int boardNo);-->
-    <insert id="delete">
-        DELETE FROM tbl_board
-        WHERE board_no = #{boardNo}
-    </insert>
+    <delete id="delete">
+        DELETE FROM TB_BOARD
+        WHERE BOARD_NUMBER = #{boardNumber};
+    </delete>
 
-    <select id="count" resultType="int">
-        SELECT COUNT(*)
-        FROM tbl_board
-        <if test="type == 'title'">
-            WHERE title LIKE CONCAT('%', #{keyword}, '%')
-        </if>
-        <if test="type == 'content'">
-            WHERE content LIKE CONCAT('%', #{keyword}, '%')
-        </if>
-        <if test="type == 'tc'">
-            WHERE title LIKE CONCAT('%', #{keyword}, '%')
-            OR content LIKE CONCAT('%', #{keyword}, '%')
-        </if>
+    <update id="modify">
+        UPDATE TB_BOARD
+        SET
+        board_title = #{boardTitle},
+        board_content = #{boardContent}
+        WHERE board_number = #{boardNumber};
+    </update>
 
-    </select>
 </mapper>

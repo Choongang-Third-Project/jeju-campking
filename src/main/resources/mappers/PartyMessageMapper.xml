@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeju_campking.campking.party.repository.PartyMessageMapper">
+
+    <select id="findAll" resultType="partyMessage">
+        SELECT
+        party_message_number,
+        party_message_content,
+        party_message_time,
+        party_message_sender,
+        party_message_recipient,
+        party_number
+        FROM TB_PARTY_MESSAGE
+        WHERE party_message_sender = #{memberNumber}
+    </select>
+
+    <insert id="send">
+        INSERT INTO TB_PARTY_MESSAGE
+        (party_message_content, party_message_sender,
+        party_message_recipient, party_number)
+        VALUES
+        (#{partyMessageContent}, #{partyMessageSender},
+        #{partyMessageRecipient}, #{partyNumber})
+    </insert>
+
+</mapper>

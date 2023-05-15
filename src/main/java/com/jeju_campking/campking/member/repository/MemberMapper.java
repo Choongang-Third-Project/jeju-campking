@@ -1,8 +1,10 @@
 package com.jeju_campking.campking.member.repository;
 
-import com.campking.member.dto.request.MemberLoginRequestDTO;
-import com.campking.member.dto.request.MemberSignRequestDTO;
+import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
+import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
+import com.jeju_campking.campking.member.entity.Member;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface MemberMapper {
@@ -10,5 +12,11 @@ public interface MemberMapper {
     // TODO : 회원가입 기능, 로그인 기능
     boolean sign(MemberSignRequestDTO dto);
 
-    boolean login(MemberLoginRequestDTO dto);
+    Member login(MemberLoginRequestDTO dto);
+
+    int isDuplicate(
+            @Param("type") String type
+            , @Param("keyword") String keyword);
+
+    Member findMember(String memberEmail);
 }

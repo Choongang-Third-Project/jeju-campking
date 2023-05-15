@@ -11,6 +11,7 @@ import lombok.*;
 @Builder
 public class MemberLoginRequestDTO {
     // TODO : 로그인 정보
-    private String memberId;
+    private String memberEmail;
     private String memberPassword;
+    private boolean autoLogin;
 }

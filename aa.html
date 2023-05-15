@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+
+
+
+// 총 데이터의 개수 2300개
+
+        
+        var arr =[];
+        
+
+        for (let page = 1; page <= 23; page++) {
+            fetch(`https://api.odcloud.kr/api/15037499/v1/uddi:1fe51f51-e956-425b-a9e3-e4555cb57880?page=${page}&perPage=100&serviceKey=SJQl8CX2C3La2Cp0fOiLZwExk6mPixmtX0kji9%2Fd7M0d7VQDHN9QkeUN1xDKEAyYEnSlfla1yPx5m3vswNK0RQ%3D%3D`)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                const array = data.data;
+
+                array.filter(info => {
+                    console.log(info['주소']);
+                    console.log(info['글램핑']);
+                    console.log(info['카라반']);
+                    console.log(info['캠핑(야영)장구분']);
+                    console.log(info['캠핑(야영)장명']);
+                    console.log(info['위도']);
+                    console.log(info['경도']);
+                    console.log();
+                    console.log();
+                    console.log();
+                    console.log();
+                    return info['주소'].includes('제주');
+                })
+                .forEach(j => {
+                    // console.log(j);
+                    arr.push(j);
+                });
+                
+            })
+        }
+
+   
+
+        setTimeout(()=>{
+            console.log(arr);
+        }, 1000)
+
+
+    </script>
+    
+</body>
+</html>

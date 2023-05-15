@@ -1,0 +1,15 @@
+main {
+    width: 60%;
+    margin: 0 auto;
+}
+
+main figure img{
+    width: 200px;
+    height: 200px;
+}
+
+.page{
+    margin-top:20px;
+    display: flex;
+    justify-content: center;
+}

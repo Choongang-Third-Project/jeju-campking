@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeju_campking.campking.camp.repository.CampMapper">
+
+    <select id="findAll" resultType="camp">
+        SELECT
+        camp_number,
+        camp_address,
+        camp_name,
+        camp_type_normal,
+        camp_type_car,
+        camp_type_caravan,
+        camp_type_glamping,
+        camp_latitude,
+        camp_longitude
+        FROM TB_CAMP
+    </select>
+
+    <select id="allCount" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_CAMP
+    </select>
+
+    <select id="findByKeyword" resultType="camp">
+        SELECT
+        camp_number,
+        camp_address,
+        camp_name,
+        camp_type_normal,
+        camp_type_car,
+        camp_type_caravan,
+        camp_type_glamping,
+        camp_latitude,
+        camp_longitude
+        FROM TB_CAMP
+        WHERE camp_address LIKE CONCAT('%',#{keyword},'%')
+        OR camp_name LIKE CONCAT('%',#{keyword},'%')
+        OR camp_type_normal LIKE CONCAT('%',#{keyword},'%')
+        OR camp_type_car LIKE CONCAT('%',#{keyword},'%')
+        OR camp_type_caravan LIKE CONCAT('%',#{keyword},'%')
+        OR camp_type_glamping LIKE CONCAT('%',#{keyword},'%')
+    </select>
+
+    <select id="countByType" resultType="int">
+        select count(*) from tb_camp
+        where camp_type_car like '자동차';
+    </select>
+
+    <select id="getCampCountByType" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_CAMP
+        WHERE
+            <if test="type == 'normal'">
+                camp_type_normal LIKE '일반'
+            </if>
+            <if test="type == 'car'">
+                camp_type_car LIKE '자동차'
+            </if>
+            <if test="type == 'caravan'">
+                camp_type_caravan LIKE '글램핑'
+            </if>
+            <if test="type == 'glamping'">
+                camp_type_glamping LIKE '카라반'
+            </if>
+    </select>
+
+
+
+
+</mapper>
