@@ -182,7 +182,7 @@ section.main .hashtag {
     margin: 0 auto;
     color: #cac7c7;
     font-weight: 700;
-    
+
 }
 
 section.main .hashtag li {
@@ -242,90 +242,93 @@ section.main .radial-container p {
 
 
 
-
-
-
-
-
-
-
-
-/* 뉴컨테이너 */
-section.main .new-container {
-    margin: 0 auto;
-    padding-top: 400px;
-    margin-bottom: 100px;
-
-}
-
-section.main .new-container h1 {
-    font-weight: 700;
-    font-size: 1.5em;
-    padding: 25px 45px;
-}
-
-section.main .new-container h1 span {
-    color: #ff6600;
-    font-size: 1.2em;
-
-}
-
-section.main .new-container ul {
-    display: flex;
-    justify-content: space-evenly;
-
-}
-
-section.main .new-container li {
-    /* border: 1px solid #000; */
-    width: 250px;
-    height: 150px;
-
-}
-
-section.main .new-container li:hover {
-    border: 4px solid #fff;
-    cursor: pointer;
-}
-
-
-/*슬라이드쇼*/
-section.main .new-container ul#slideshow {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-section.main .new-container ul#slideshow li {
-    border: 2px solid transparent;
-    transition: border-color 0.5s;
-}
-
-section.main .new-container ul#slideshow li.selected {
-    border:5px solid #fff;
-}
-
+/* section.notice style */
 section.notice {
-    /*display: flex;*/
-    /*justify-content: space-around;*/
-    border: 4px solid red;
+    margin-top: 340px;
+    /* border: 1px solid #000; */
+    background: #eceef6;
+    
+}
+
+section.notice .notice-inner {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+    height: 230px;
+    /* border: 4px solid red; */
+    /* padding: 20px; */
+
 }
 
 section.notice .notice-box {
-    /*border: 4px solid orange;*/
+    /* border: 4px solid orange; */
+    /* background: aquamarine; */
+    margin: 40px;
+    width: 50%;
+    height: 200px;
+    position: relative;
+    /* padding: 20px; */
+}
+
+
+
+section.notice .nb1 {
+    flex: 1.5;
+    /* background: lime; */
+    padding: 0 40px;
+
+}
+
+section.notice .notice-box .notic{
+    font-size: 1.4em;
+}
+
+section.notice .notice-box div {
+    /* border: 1px solid #000; */
+    /* padding: 0 20px; */
+    /* margin-left: 40px; */
+}
+
+section.notice .notice-box div p {
+    margin-top: 10px;
+    padding: 10px;
+
+}
+section.notice .notice-box div p span {
+    border: 1px solid #000;
+    background: #546e92;
+    box-shadow: 2px 2px 1px #222;
+    width: fit-content;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+
+
+section.notice .nb2 {
+    flex: 2.4;
+    /* background: magenta; */
+}
+
+section.notice .notice-box .banner{
+    height: 110px;
+    
 }
 
 
 
 
 
-section.camp-type-wrapper {
 
-    background: gray;
-}
 
+
+
+/* section.camp-type */
 section.camp-type {
+    /* background: gray; */
     width: 80%;
     margin: 0 auto;
 
@@ -334,7 +337,8 @@ section.camp-type {
 section.camp-type h1 {
     font-weight: 700;
     font-size: 1.5em;
-    padding: 25px 45px;
+    padding-top: 40px;
+    /* border: 1px solid #000; */
 }
 
 
@@ -382,9 +386,80 @@ section.camp-type ul li a .text {
 
 
 
+/* 뉴컨테이너 */
+
+section.new {
+    /* margin: 80%; */
+    /* border: 1px solid #000; */
+    /* background: #eceef6; */
+    /* height: 300px; */
+}
+
+section.new .new-container {
+    width: 80%;
+    margin: 0 auto;
+    /* padding-top: 300px; */
+    /* margin-bottom: 100px; */
+    
+}
+
+section.new .new-container h1 {
+    font-weight: 700;
+    font-size: 1.5em;
+    padding: 20px;
+}
+
+section.new .new-container h1 span {
+    color: #ff6600;
+    font-size: 1.2em;
+    
+}
+
+section.new .new-container ul {
+    display: flex;
+    justify-content: space-evenly;
 
 
-section.board-wrapper {
+}
+
+section.new .new-container li {
+    /* border: 1px solid #000; */
+    width: 250px;
+    height: 133px;
+
+}
+
+section.new .new-container li:hover {
+    border: 4px solid #fff;
+    cursor: pointer;
+}
+
+
+/*슬라이드쇼*/
+section.new .new-container ul#slideshow {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+section.new .new-container ul#slideshow li {
+    border: 2px solid transparent;
+    transition: border-color 0.5s;
+}
+
+section.new .new-container ul#slideshow li.selected {
+    border: 4px solid #fff;
+}
+
+
+
+
+
+
+
+/* section.board */
+section.board {
     margin-top: 100px;
 }
 

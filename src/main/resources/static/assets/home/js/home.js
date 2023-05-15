@@ -39,3 +39,28 @@ function showSlide() {
 slides[currentSlide].classList.add("selected");
 
 setInterval(showSlide, 1000);
+
+
+
+// notice banner
+function showNextBanner() {
+    var $lis = document.querySelectorAll('section.notice .notice-box .banner li');
+    var visibleIndex = -1;
+
+    for (var i = 0; i < $lis.length; i++) {
+        if ($lis[i].style.display !== 'none') {
+            visibleIndex = i;
+            break;
+        }
+    }
+
+    if (visibleIndex >= 0) {
+        $lis[visibleIndex].style.display = 'none';
+    }
+
+    let nextIndex = (visibleIndex + 1) % $lis.length;
+    $lis[nextIndex].style.display = 'block';
+}
+
+
+setInterval(showNextBanner, 5000);

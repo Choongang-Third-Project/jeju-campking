@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="../../include/common.css">
     <link rel="stylesheet" href="../css/home.css">
 
+    <script src="../js/home.js" defer></script>
+
 </head>
 
 <body>
@@ -52,7 +54,11 @@
                         <ul>
 
                             <li>
-                                <p>슌구님</p>
+                                <p>
+                                    <c:if test="${sessionScope.login != null}">
+                                        ${sessionScope.login.memberNickname}님
+                                    </c:if>
+                                </p>
                             </li>
 
                             <li>
@@ -85,8 +91,6 @@
 
                 </div>
             </header>
-
-
             <!-- header 끝 -->
 
             <!-- section.main -->
@@ -99,15 +103,25 @@
                                 class="fa-solid fa-magnifying-glass"></i></button>
 
                     </div>
-                    <p class="hashtag">
-                        #올레길 #제주 #한라산 #성산일출봉 #천지연폭포 #해녀
-                    </p>
+
+                    <ul class="hashtag">
+                        <li>
+                            #올레길 #제주 #한라산 #성산일출봉 #천지연폭포 #해녀
+                        </li>
+                        <li>
+                            #천지연폭포 #해녀 #제주맛집 #한라산등반 #성산일출봉 #서귀포맛집
+                        </li>
+                        <li>
+                            #제주여행 #제주관광지 #제주해변 #제주풍경 #제주문화 #제주맛집추천
+                        </li>
+                    </ul>
 
                 </div>
 
                 <div class="radial-container flex">
                     <div>
-                        <div class="radial-progress r1" style="--value:100; --size:9rem; --thickness: 0.7rem;">4,000
+                        <div class="radial-progress r1" style="--value:100; --size:9rem; --thickness: 0.7rem;">
+                            ${c.totalCount}개
                         </div>
                         <div class="text">
                             <p>전체</p>
@@ -115,155 +129,223 @@
 
                     </div>
                     <div>
-                        <div class="radial-progress r2" style="--value:70; --size:9rem; --thickness: 0.7rem;">70%</div>
+                        <div class="radial-progress r2"
+                            style="--value:${c.normalPercentage}; --size:9rem; --thickness: 0.7rem;">
+                            ${c.normalPercentage}%
+                        </div>
                         <div class="text">
                             <p>일반야영장</p>
+                            <p>(${c.normalCount}개)</p>
                         </div>
 
                     </div>
                     <div>
-                        <div class="radial-progress r3" style="--value:70; --size:9rem; --thickness: 0.7rem;">70%</div>
+                        <div class="radial-progress r3"
+                            style="--value:${c.carPercentage}; --size:9rem; --thickness: 0.7rem;">${c.carPercentage}%
+                        </div>
                         <div class="text">
                             <p>자동차야영장</p>
+                            <p>(${c.carCount}개)</p>
                         </div>
 
                     </div>
                     <div>
-                        <div class="radial-progress r4" style="--value:70; --size:9rem; --thickness: 0.7rem;">70%</div>
+                        <div class="radial-progress r4"
+                            style="--value:${c.caravanPercentage}; --size:9rem; --thickness: 0.7rem;">
+                            ${c.caravanPercentage}%
+                        </div>
                         <div class="text">
                             <p>카라반</p>
+                            <p>(${c.caravanCount}개)</p>
                         </div>
 
                     </div>
                     <div>
-                        <div class="radial-progress r5" style="--value:70; --size:9rem; --thickness: 0.7rem;">70%</div>
+                        <div class="radial-progress r5"
+                            style="--value:${c.glampingPercentage}; --size:9rem; --thickness: 0.7rem;">
+                            ${c.glampingPercentage}%
+                        </div>
                         <div class="text">
                             <p>글램핑</p>
+                            <p>(${c.glampingCount}개)</p>
                         </div>
                     </div>
                 </div>
 
+            </section>
 
 
+
+              <!-- section.notice -->
+              <section class="notice">
+
+                <div class="notice-inner">
+
+                    <div class="notice-box nb1">
+                        <p class="notic">
+                            <i class="fa-regular fa-clipboard"></i> 공지사항
+                        </p>
+                        <div>
+                            <p><span>2023/00/00</span> 여기는 공지글~</p>
+                            <p><span>2023/00/00</span> 여기는 공지글~</p>
+                        </div>
+                    </div>
+
+                    <div class="notice-box nb2">
+                        <ul class="banner">
+                            <li>
+                                <a href="#">
+                                    <div class="banner-img-box">
+                                        <img src="/src/main/resources/static/assets/home/img/banner1.png" alt="">
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="banner-img-box">
+                                        <img src="/src/main/resources/static/assets/home/img/banner2.png" alt="">
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="banner-img-box">
+                                        <img src="/src/main/resources/static/assets/home/img/banner3.png" alt="">
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+
+        
+
+          
+
+
+
+            <!-- section.camp-type -->
+            <section class="camp-type">
+                <div class="title">
+                    <h1>야영지 선택!</h1>
+                </div>
+
+                <ul class="sub-container clearfix">
+                    <li>
+                        <a href="#">
+                            <div class="img-box"><img src="/src/main/resources/static/assets/home/img/sm_normal.jpg"
+                                    alt="">
+                            </div>
+                            <div class="text">
+                                <p><i class="fa-solid fa-tree"></i> 일반야영장</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="img-box"><img src="/src/main/resources/static/assets/home/img/sm_car.jpg"
+                                    alt="">
+                            </div>
+                            <div class="text">
+                                <p><i class="fa-solid fa-campground"></i> 자동차야영장</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="img-box"><img src="/src/main/resources/static/assets/home/img/sm_caraban.jpg"
+                                    alt=""></div>
+                            <div class="text">
+                                <p><i class="fa-solid fa-caravan"></i> 카라반</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="img-box"><img src="/src/main/resources/static/assets/home/img/sm_glamping.jpg"
+                                    alt=""></div>
+                            <div class="text">
+                                <p><i class="fa-solid fa-tent"></i> 글램핑</p>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+
+
+            
+            <section class="new">
 
                 <div class="new-container">
                     <h1><span>New</span>&Update</h1>
-                    <ul>
+                    <ul id="slideshow">
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <div class="new-img-box">
                                     <img src="/src/main/resources/static/assets/home/img/camp1.jpg" alt="">
                                 </div>
                             </a>
                         </li>
+
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <div class="new-img-box">
                                     <img src="/src/main/resources/static/assets/home/img/camp2.jpg" alt="">
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <div class="new-img-box">
                                     <img src="/src/main/resources/static/assets/home/img/camp3.jpg" alt="">
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <div class="new-img-box">
                                     <img src="/src/main/resources/static/assets/home/img/camp4.jpg" alt="">
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <div class="new-img-box">
                                     <img src="/src/main/resources/static/assets/home/img/camp5.jpg" alt="">
                                 </div>
                             </a>
                         </li>
+                        <li>
+                            <a href="#">
+                                <div class="new-img-box">
+                                    <img src="/src/main/resources/static/assets/home/img/camp5.jpg" alt="">
+                                </div>
+                            </a>
+                        </li>
+                     
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <p>유료캠핑장</p>
+                            <p>수하리 캠핑파크</p>
+                        </li>
+                        <li></li>
                     </ul>
 
                 </div>
 
 
-
-
-            </section>
-
-
-            <section class="camp-type-wrapper">
-
-                <section class="camp-type">
-                    <div class="title">
-                        <h1>야영지 선택!</h1>
-                    </div>
-
-                    <ul class="sub-container clearfix">
-                        <li>
-                            <a href="#">
-                                <div class="img-box"><img src="/src/main/resources/static/assets/home/img/sm_normal.jpg"
-                                        alt="">
-                                </div>
-                                <div class="text">
-                                    <p><i class="fa-solid fa-tree"></i> 일반야영장</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img-box"><img src="/src/main/resources/static/assets/home/img/sm_car.jpg"
-                                        alt="">
-                                </div>
-                                <div class="text">
-                                    <p><i class="fa-solid fa-campground"></i> 자동차야영장</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img-box"><img
-                                        src="/src/main/resources/static/assets/home/img/sm_caraban.jpg" alt=""></div>
-                                <div class="text">
-                                    <p><i class="fa-solid fa-caravan"></i> 카라반</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="img-box"><img
-                                        src="/src/main/resources/static/assets/home/img/sm_glamping.jpg" alt=""></div>
-                                <div class="text">
-                                    <p><i class="fa-solid fa-tent"></i> 글램핑</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-
-                </section>
-
-            </section>
-
-
-            <section class="board-wrapper">
-
-                <section class="board">
-                    <div class="sub-board">
-                        <p> <i class="fa-solid fa-flag"></i></p>
-                        <h2>공지사항</h2>
-                    </div>
-                    <div class="sub-board">
-                        <p><i class="fa-solid fa-tents"></i></p>
-                        <h2>캠핑리뷰</h2>
-                    </div>
-                    <div class="sub-board">
-                        <p><i class="fa-solid fa-people-roof"></i></p>
-                        <h2>자유게시판</h2>
-                    </div>
-                </section>
-                
             </section>
 
 
@@ -275,6 +357,21 @@
 
 
 
+              <!-- section.board -->
+            <section class="board">
+                <div class="sub-board">
+                    <p><i class="fa-solid fa-flag"></i></p>
+                    <h2>공지사항</h2>
+                </div>
+                <div class="sub-board">
+                    <p><i class="fa-solid fa-tents"></i></p>
+                    <h2>금주의 캠프킹</h2>
+                </div>
+                <div class="sub-board">
+                    <p><i class="fa-solid fa-people-roof"></i></p>
+                    <h2>같이 갈 사람</h2>
+                </div>
+            </section>
 
 
             <!-- footer 시작 -->
@@ -282,25 +379,11 @@
             <!-- footer 끝 -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             <!-- wrapper 끝 -->
         </div>
 
+
     </div>
-
-
 
 </body>
 
