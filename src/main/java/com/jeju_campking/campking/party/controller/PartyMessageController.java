@@ -49,14 +49,17 @@ public class PartyMessageController {
                     .body(result.toString());
         }
         // 메세지 전송 성공여부 검증
-        // 성공시
-        if (partyMessageService.send(dto)) {
-            return ResponseEntity
-                    .ok()
-                    .body(dto);
+        // 성공
+        try {
+            if (partyMessageService.send(dto)) {
+                return ResponseEntity
+                        .ok()
+                        .body(dto);
+            }
+        } catch (Exception e) {
+            log.warn("partyMessageService.send.warn {}", dto);
         }
-        // 실패시
-        log.warn("partyMessageService.send.warn {}", dto);
+        // 실패
         return ResponseEntity
                 .internalServerError().body("FAIL");
     }
