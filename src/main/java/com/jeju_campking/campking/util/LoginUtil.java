@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class LoginUtil {
-    private static final String LOGIN_KEY = "LOGIN";
-    private static final String AUTO_LOGIN_COOKIE = "AUTO";
+    public static final String LOGIN_KEY = "LOGIN";
+    public static final String AUTO_LOGIN_COOKIE = "AUTO";
 
 
     // 로그인 여부 확인
