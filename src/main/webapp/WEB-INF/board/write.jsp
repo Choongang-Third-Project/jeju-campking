@@ -78,7 +78,7 @@
                             // 마지막페이지 번호
                             // const lastPageNo = document.querySelector('.pagination').dataset.fp;
                             // getReplyList(lastPageNo);
-							location.href = 'http://localhost:8181/';
+							 location.href = '/notice';
                         } else {
                             alert('게시글 등록에 실패함!');
                         }

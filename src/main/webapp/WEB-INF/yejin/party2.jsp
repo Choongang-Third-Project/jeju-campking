@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/main/resources/static/assets/party/party.css">
-<link rel="stylesheet" href="/main/resources/static/assets/party/common.css">
+<link rel="stylesheet" href="/assets/party/party.css">
+<link rel="stylesheet" href="/assets/party/common.css">
 </head>
 <body>
     <h1 class="title"><<같이 갈 사람 게시판>></h1>
@@ -29,7 +29,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
@@ -43,7 +43,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
@@ -57,7 +57,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
@@ -71,7 +71,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
@@ -85,7 +85,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
@@ -99,7 +99,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
@@ -113,7 +113,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
@@ -127,7 +127,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
@@ -141,7 +141,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
@@ -155,7 +155,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
@@ -169,7 +169,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
@@ -183,7 +183,7 @@
             <li>
                 <div class="item_card clearfix">
                     <div class="img-box">
-                        <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
+                        <img src="/assets/home/img/sm_normal.jpg" alt="">
                     </div>
                     <div class="small_title">    
                         <div>글램핑 같이 갈분 모집해요~!!</div>
