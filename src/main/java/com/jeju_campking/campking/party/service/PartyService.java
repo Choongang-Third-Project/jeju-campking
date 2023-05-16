@@ -6,8 +6,6 @@ import com.jeju_campking.campking.party.dto.response.PartyAllListResponseDTO;
 import com.jeju_campking.campking.party.repository.PartyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.jdbc.SQL;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -40,8 +38,14 @@ public class PartyService {
         return true;
     }
 
-    public boolean deleteByNumber(Long partyNumber) throws SQLException {
+    public boolean deleteByNumber(Long partyNumber, Long memberNumber) throws SQLException {
         log.info("partyService/deleteByNumber : {}", partyNumber);
+
+        Long foundNumber = findMemberNumberByPartyNumber(partyNumber);
+
+        if (!memberNumber.equals(foundNumber)) {
+            return false;
+        }
 
         boolean isDelete = partyMapper.deleteByNumber(partyNumber);
 
@@ -53,15 +57,26 @@ public class PartyService {
         return true;
     }
 
-    public boolean modify(PartyModifyRequestDTO dto) throws SQLException {
+    public boolean modify(PartyModifyRequestDTO dto, Long memberNumber) throws SQLException {
         log.info("partyService/modify : {}", dto);
 
+        Long foundNumber = findMemberNumberByPartyNumber(dto.getPartyNumber());
+
+        if (!memberNumber.equals(foundNumber)) {
+            return false;
+        }
+
         boolean isModify = partyMapper.modify(dto);
+
         if (!isModify) {
             log.warn("party/Service/modify WARN ! : {}", dto);
             throw new SQLException();
         }
 
         return true;
+    }
+
+    private Long findMemberNumberByPartyNumber(Long partyNumber) {
+        return partyMapper.findMemberNumberByPartyNumber(partyNumber);
     }
 }

@@ -31,7 +31,6 @@ public class PartyController {
         return ResponseEntity.ok().body(allBySort);
     }
 
-
     @PostMapping()
     public ModelAndView save(
             @Validated @RequestBody PartySaveRequestDTO dto
@@ -47,13 +46,15 @@ public class PartyController {
         return redirectList();
     }
 
-    @DeleteMapping("/{partyNumber}")
+    @DeleteMapping("/{partyNumber}/{memberNumber}")
     public ModelAndView deleteByNumber(
-            @PathVariable Long partyNumber
+            @PathVariable Long partyNumber,
+            @PathVariable Long memberNumber
     ) {
 
         try {
-            boolean isDelete = partyService.deleteByNumber(partyNumber);
+            boolean isDelete = partyService.deleteByNumber(partyNumber, memberNumber);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -61,13 +62,14 @@ public class PartyController {
         return redirectList();
     }
 
-    @RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH})
+    @RequestMapping(path = "/{memberNumber}", method = {RequestMethod.PUT, RequestMethod.PATCH})
     public ModelAndView modify(
-            @Validated @RequestBody PartyModifyRequestDTO dto
+            @Validated @RequestBody PartyModifyRequestDTO dto,
+            @PathVariable Long memberNumber
     ) {
 
         try {
-            boolean isModify = partyService.modify(dto);
+            boolean isModify = partyService.modify(dto, memberNumber);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -78,8 +80,10 @@ public class PartyController {
     private ModelAndView redirectList() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/jeju-camps/parties/all-list/*/*");
-
+        modelAndView.addObject("test", "test!!");
         return modelAndView;
     }
+
+
 }
 
