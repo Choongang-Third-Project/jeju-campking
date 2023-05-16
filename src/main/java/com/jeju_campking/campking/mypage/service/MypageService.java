@@ -24,15 +24,26 @@ public class MypageService {
         return memberInfo;
     }
 
-    public List<Board> findBoard(Long memberNumber) {
-        List<Board> boardList = mypageMapper.findBoard(memberNumber);
-        log.info("MypageService.findBoard : {}", boardList);
-        return boardList;
+    public List<Party> findParty(Long memberNumber) {
+        List<Party> party = mypageMapper.findParty(memberNumber);
+
+        log.info("MypageService.findBoard : {}", memberNumber);
+        log.info("party : {}", party);
+
+        return party;
+    }
+
+    public List<PartyMessage> findSendMessage(Long memberNumber) {
+        List<PartyMessage> sendMessageList = mypageMapper.findReceiveMessage(memberNumber);
+
+        log.info("MypageService.findSendMessage : {}");
+        return sendMessageList;
     }
 
     public List<PartyMessage> findReceiveMessage(Long memberNumber) {
-        List<PartyMessage> sendMessageList = mypageMapper.findReceiveMessage(Long.valueOf(memberNumber));
-        log.info("MypageService.findBoard : {}");
+        List<PartyMessage> sendMessageList = mypageMapper.findSendMessage(memberNumber);
+
+        log.info("MypageService.findReceiveMessage : {}");
         return sendMessageList;
     }
 }

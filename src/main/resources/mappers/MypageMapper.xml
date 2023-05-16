@@ -11,35 +11,42 @@
 
     <select id="findPartyBoard" resultType="partyDTO">
         select
-            party_number,
-            party_title,
-            party_write_time
+        party_number,
+        party_title,
+        party_write_time
         FROM TB_PARTY
         WHERE member_number = #{memberNumber}
         ORDER BY party_write_time desc;
     </select>
 
+    <select id="findParty" resultType="party">
+        SELECT * FROM TB_PARTY
+        WHERE member_number = #{memberNumber};
+    </select>
+
     <select id="findSendMessage" resultType="partyMessage">
         SELECT
-            party_message_number,
-            party_message_content,
-            party_message_time,
-            party_message_sender,
-            party_message_recipient,
-            party_number
+        party_message_number,
+        party_message_content,
+        party_message_time,
+        party_message_sender,
+        party_message_recipient,
+        party_number
         FROM TB_PARTY_MESSAGE
         WHERE party_message_sender = #{memberNumber}
     </select>
 
     <select id="findReceiveMessage" resultType="partyMessage">
         SELECT
-            party_message_number,
-            party_message_content,
-            party_message_time,
-            party_message_sender,
-            party_message_recipient,
-            party_number
+        party_message_number,
+        party_message_content,
+        party_message_time,
+        party_message_sender,
+        party_message_recipient,
+        party_number
         FROM TB_PARTY_MESSAGE
         WHERE party_message_sender = #{memberNumber}
     </select>
+
+
 </mapper>
