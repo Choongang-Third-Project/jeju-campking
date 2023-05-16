@@ -20,43 +20,36 @@ class MypageMapperTest {
 
 
     @Test
-    @DisplayName("내가 쓴 글 조회")
+    @DisplayName("회원번호가 14인 회원이 받은 쪽지의 개수는 22개여야 한다.")
     void findPartyTest() {
         // given
         Long memberNumber = 14L;
         // when
-        List<Party> party = mypageMapper.findParty(memberNumber);
-
-        for (Party party1 : party) {
-            System.out.println(party1);
-        }
+        List<PartyMessage> receiveMessage = mypageMapper.findReceiveMessage(memberNumber);
         // then
-
+        assertEquals(22, receiveMessage.size());
     }
 
     @Test
-    @DisplayName("내가 보낸 쪽지")
+    @DisplayName("회원번호가 14인 회원이 보낸 쪽지의 개수는 28개여야 한다.")
     void sendTest() {
         // given
         Long memberNumber = 14L;
         // when
-
         List<PartyMessage> sendMessage = mypageMapper.findSendMessage(memberNumber);
-
-        for (PartyMessage partyMessage : sendMessage) {
-
-            System.out.println(partyMessage);
-        }
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        mypageMapper.findReceiveMessage(memberNumber).forEach(System.out::println);
-
-
         // then
-
+        assertEquals(22, sendMessage.size());
     }
 
+    @Test
+    @DisplayName("회원번호가 10인 회원이 작성한 파티 게시글의 개수는 17개여야 한다.")
+    void partyTest() {
+        // given
+        Long memberNumber = 10L;
+        // when
+        List<Party> partyList = mypageMapper.findParty(memberNumber);
+        // then
+        assertEquals(17, partyList.size());
+    }
 
 }

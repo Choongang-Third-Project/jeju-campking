@@ -45,7 +45,7 @@
         party_message_recipient,
         party_number
         FROM TB_PARTY_MESSAGE
-        WHERE party_message_sender = #{memberNumber}
+        WHERE party_message_recipient = #{memberNumber}
     </select>
 
 
