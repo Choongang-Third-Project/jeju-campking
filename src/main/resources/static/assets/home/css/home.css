@@ -302,7 +302,7 @@ section.notice .notice-box div p {
 
 
 section.notice .notice-box div p .date {
-    background: #bc2cf5;
+    background: #570df8;
     box-shadow: 2px 2px 1px #380a4b;
     color: #eee;
     width: fit-content;
@@ -537,6 +537,16 @@ section.board-wrapper .board .sub-board p {
 section.board-wrapper .board .sub-board h2 {
     margin-top: 20px;
     font-weight: 700;
+}
+
+section.board-wrapper .board .sub-board .update {
+    /* border: 1px solid #000; */
+    width: 350px;
+    height: 430px;
+    border-radius: 10px;
+    margin: 10px;
+    background: #fffafa;
+    cursor: not-allowed;
 }
 
 
