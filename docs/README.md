@@ -73,12 +73,13 @@ timeline
             : 🎯
             : [Back] dummy data + SQL
             : [Back] interceptor initial commit
-    2023-05-16: []
-            : [Front]
-            : [Front]
+    2023-05-16: [✅]
+            : [Front] Home, header
+            : [Front] My Page
             : 🎯
-            : [Back]
-            : [Back]
+            : [Back] My Page PostMan
+            : [Back] party 글 작성, 삭제, 수정 PostMan
+            : [Back] 비밀번호 암호화
     2023-05-17: []
             : [Front]
             : [Front]
@@ -341,7 +342,7 @@ erDiagram
         party_message_sender INT(10) FK "TB_MEMBER"
         party_message_recipient INT(10) FK "TB_MEMBER"
         
-        party_number INT(10) FK "TB_PARTY"
+        party_number INT(10) FK "TB_PARTY ON UPDATE SET NULL"
     }
 
 ```
