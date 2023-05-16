@@ -28,7 +28,7 @@
                     <!-- 프로필 사진 -->
                     <img src="../../../resources/static/assets/mypage/img/profile.png"/>
                 </div>
-                <div class="mp-info-content"><span class="mp-info-name">닉네임</span> 님</div>
+                <div class="mp-info-content"><span class="mp-info-name">${member.memberNickname}</span> 님</div>
                 <div class="mp-info-content mp-info-nickname">일반회원</div>
                 <div class="mp-info-content mp-info-withdrawal">
                     <button class="btn btn-wide bg-primary">개인정보 수정</button>
@@ -58,30 +58,32 @@
                             </tr>
                             </thead>
                             <!-- head -->
-                            <tbody>
-                            <tr>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" class="checkbox mp-board-check" />
-                                    </label>
-                                </th>
-                                <td>
-                                    <div class="flex items-center space-x-3">
-                                        <div>
-                                            <div class="font-bold">자유게시판</div>
+                            <c:forEach var="board" items="${boardList}">
+                                <tbody>
+                                <tr>
+                                    <th>
+                                        <label>
+                                            <input type="checkbox" class="checkbox mp-board-check" />
+                                        </label>
+                                    </th>
+                                    <td>
+                                        <div class="flex items-center space-x-3">
+                                            <div>
+                                                <div class="font-bold">같이 갈 사람</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="" class=" class="mp-board-content"">
-                                        게시글제목게시글제목게시글제목게시글제목
-                                    </a>
-                                </td>
-                                <td>2023.05.01</td>
-                                <th>
-                                </th>
-                            </tr>
-                            </tbody>
+                                    </td>
+                                    <td>
+                                        <a href="" class=" class="mp-board-content"">
+                                            ${board.boardContent}
+                                        </a>
+                                    </td>
+                                    <td>${board.boardTime}</td>
+                                    <th>
+                                    </th>
+                                </tr>
+                                </tbody>
+                            </c:forEach>
                         </table>
                     </div>
                 </div>
@@ -111,30 +113,32 @@
                             </tr>
                             </thead>
                             <!-- head -->
-                            <tbody>
-                            <tr>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" class="checkbox mp-msg-check" />
-                                    </label>
-                                </th>
-                                <td>
-                                    <div class="flex items-center space-x-3">
-                                        <div>
-                                            <div class="font-bold">보낸사람</div>
-                                            <div class="text-sm opacity-50">일반회원</div>
+                            <c:forEach var="msg">
+                                <tbody>
+                                <tr>
+                                    <th>
+                                        <label>
+                                            <input type="checkbox" class="checkbox mp-msg-check" />
+                                        </label>
+                                    </th>
+                                    <td>
+                                        <div class="flex items-center space-x-3">
+                                            <div>
+                                                <div class="font-bold">${msg.partyMessageSender}</div>
+                                                <div class="text-sm opacity-50">일반회원</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="mp-msg-content">
-                                    같이놀러가여ㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕ
-                                </td>
-                                <td>2023.05.01</td>
-                                <th>
-                                    <button class="btn btn-ghost btn-xs">답장하기</button>
-                                </th>
-                            </tr>
-                            </tbody>
+                                    </td>
+                                    <td class="mp-msg-content">
+                                        ${msg.partyMessageContent}
+                                    </td>
+                                    <td>${msg.partyMessageTime}</td>
+                                    <th>
+                                        <button class="btn btn-ghost btn-xs">답장하기</button>
+                                    </th>
+                                </tr>
+                                </tbody>
+                            </c:forEach>
                         </table>
                     </div>
                 </div>
@@ -147,7 +151,34 @@
 
         <%---------------------- 스크립트 ------------------------%>
         <script>
-            
+            // 받은 쪽지함 버튼
+            const $receiveMessageBtn = document.querySelector('.mp-msg-receive-btn');
+            // 보낸 쪽지함 버튼
+            const $sendMessageBtn = document.querySelector('.mp-msg-send-btn');
+
+            $sendMessageBtn.onclick = e => {
+                fetch(`/jeju-camps/mypage/receiveMessage/${member.memberNumber}`)
+                    .then(res => res.json());
+            }
+
+            $receiveMessageBtn.onclick = e => {
+                fetch(`/jeju-camps/mypage/receiveMessage?${member.memberNumber}`)
+                    .then(res => res.json());
+            }
+
+            fetch(`http://localhost:8181/jeju-camps/mypage/${member.memberNumber}`)
+                .then(res => res.json())
+                .then(responseResult => {
+
+                });
+
+            fetch(`http://localhost:8181/jeju-camps/sendMessage?${member.memberNumber}`)
+                .then(res => res.json());
+
+            // 메인 실행부
+            (function () {
+                make
+            })();
         </script>
 </body>
 </html>
