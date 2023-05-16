@@ -23,5 +23,5 @@ public class Member {
     private Gender memberGender;
     private int memberAge;
     private LocalDateTime memberJoinDate;
-    MemberInfo info;
+    MemberAuth memebrAuth;
 }

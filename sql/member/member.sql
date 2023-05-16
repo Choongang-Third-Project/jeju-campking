@@ -9,10 +9,18 @@ CREATE TABLE TB_MEMBER (
     member_age       INT(3)         NOT NULL,
     member_session_id  VARCHAR(200)    DEFAULT 'none',
     member_cookie_date   DATETIME,
-    member_info VARCHAR(10) NOT NULL,
     member_join_date DATE 		NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (member_number)
 );
+
+--관리자 속성추가
+alter table TB_MEMBER
+add member_auth VARCHAR(10) default 'COMMON';
+
+update TB_MEMBER
+set member_auth = 'ADMIN'
+where member_email= 'a0@naver.com';
+
 
 insert into TB_MEMBER (
     member_email,
