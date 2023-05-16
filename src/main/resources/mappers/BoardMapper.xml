@@ -11,7 +11,8 @@
         board_time ,
         member_number
         FROM TB_BOARD
-        ORDER BY board_number desc;
+        ORDER BY board_number desc
+        LIMIT #{pageStart}, #{amount};
     </select>
 
     <select id="findByKeyword" resultType="board">
@@ -23,7 +24,8 @@
         member_number
         FROM TB_BOARD
         WHERE board_title LIKE CONCAT('%',#{keyword},'%')
-        OR board_content LIKE CONCAT('%',#{keyword},'%');
+        OR board_content LIKE CONCAT('%',#{keyword},'%')
+        ORDER BY board_number desc;
     </select>
 
     <select id="findOne" resultType="board">
@@ -36,6 +38,18 @@
         FROM TB_BOARD
         WHERE board_number = #{boardNumber};
     </select>
+
+    <select id="count" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM TB_BOARD
+        <if test="keyword != null">
+            WHERE board_title LIKE CONCAT('%',#{keyword},'%')
+            OR board_content LIKE CONCAT('%',#{keyword},'%');
+        </if>
+    </select>
+
+
     <insert id="write">
         INSERT INTO TB_BOARD
         (board_title, board_content, member_number)

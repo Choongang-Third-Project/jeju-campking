@@ -1,6 +1,7 @@
 package com.jeju_campking.campking.board.controller;
 
 
+import com.jeju_campking.campking.board.dto.page.Page;
 import com.jeju_campking.campking.board.dto.request.BoardModifyRequestDTO;
 import com.jeju_campking.campking.board.dto.request.BoardWriteRequestDTO;
 import com.jeju_campking.campking.board.entity.Board;
@@ -35,10 +36,20 @@ public class BoardController {
     // URL : /boards
     @ResponseBody
     @GetMapping("/all")
-    public ResponseEntity<?> findAll(){
+    public ResponseEntity<?> findAll(Page page){
         log.info("/boards : findAll() GET!!");
-        List<Board> list = boardService.findAll();
+
+//        log.info("{} {}", page.getPageNo(), page.getAmount());
+        List<Board> list = boardService.findAll(page);
         return ResponseEntity.ok().body(list);
+    }
+
+    // 공지사항 게시물 합계
+    @ResponseBody
+    @GetMapping("/count")
+    public ResponseEntity<?> count(String keyword){
+        int count = boardService.getCount(keyword);
+        return ResponseEntity.ok().body(count);
     }
 
 
@@ -56,7 +67,7 @@ public class BoardController {
 
     // /boards/detail?boardNumber=1  게시물 한개 조회
     @GetMapping("/details")
-    public String findOne(long boardNumber, Model model){
+        public String findOne(long boardNumber, Model model){
         log.info("/boards : findOne() GET!!");
         Board board = boardService.findOne(boardNumber);
         model.addAttribute("board", board);

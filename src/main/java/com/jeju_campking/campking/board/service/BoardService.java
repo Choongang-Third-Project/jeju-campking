@@ -1,6 +1,7 @@
 package com.jeju_campking.campking.board.service;
 
 
+import com.jeju_campking.campking.board.dto.page.Page;
 import com.jeju_campking.campking.board.dto.request.BoardModifyRequestDTO;
 import com.jeju_campking.campking.board.entity.Board;
 import com.jeju_campking.campking.board.repository.BoardMapper;
@@ -51,9 +52,9 @@ public class BoardService {
         return true;
     }
 
-    public List<Board> findAll() {
+    public List<Board> findAll(Page page) {
         log.info("boardService.findAll.info");
-        List<Board> list = boardMapper.findAll();
+        List<Board> list = boardMapper.findAll(page);
         log.info("boardService.getAllList.info {}", list);
 
         return list;
@@ -76,5 +77,9 @@ public class BoardService {
         log.info("boardService.findOne.info {}", board);
 
         return board;
+    }
+
+    public int getCount(String keyword) {
+        return boardMapper.count(keyword);
     }
 }

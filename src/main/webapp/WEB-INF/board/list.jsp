@@ -37,8 +37,8 @@
         <div class="page">
             <div class="btn-group  ">
                 <button class="btn btn-md">&lt;&lt;</button>
-                <button class="btn btn-md">1</button>
-                <button class="btn btn-md btn-active">2</button>
+                <button class="btn btn-md btn-active">1</button>
+                <button class="btn btn-md">2</button>
                 <button class="btn btn-md">3</button>
                 <button class="btn btn-md">4</button>
                 <button class="btn btn-md">5</button>
@@ -61,7 +61,32 @@
         
         const $idInput = document.getElementById('search');
         const $write = document.getElementById('write');
+        const $btnGroup = document.querySelector('.btn-group');
+
+        let $pageNo = 1;
         
+
+        // 페이지네이션 처리중
+        $btnGroup.addEventListener('click', e => {
+            if(e.target.matches('.btn-group *')){
+                // console.log('페이지 클릭');
+                for(let $button of [...$btnGroup.children]){
+                    $button.classList.remove('btn-active');
+                }
+                let $curButton = e.target.closest('.btn-md');
+
+                $pageNo = e.target.closest('.btn-md').innerText;
+                $curButton.classList.add('btn-active');
+
+                // console.log($pageNo);
+                getBoardList();
+                
+
+            }
+        })
+       
+
+
         $write.onclick = e => {
             location.href = '/jeju-camps/notices/write';
         }
@@ -205,7 +230,7 @@
         
          // 캠핑 목록 불러오기 함수 
          function getBoardList() {
-            fetch('/jeju-camps/notices/all')
+            fetch('/jeju-camps/notices/all' + '?pageNo='+ $pageNo +' & amount=10')
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);
