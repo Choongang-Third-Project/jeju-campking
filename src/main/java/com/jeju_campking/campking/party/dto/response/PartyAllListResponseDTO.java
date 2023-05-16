@@ -1,8 +1,10 @@
 package com.jeju_campking.campking.party.dto.response;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Setter
@@ -16,8 +18,10 @@ public class PartyAllListResponseDTO {
     private String campName;
     private String partyTitle;
     private String memberNickName;
-    private LocalDateTime partyStartDate;
-    private LocalDateTime partyEndDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate partyStartDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate partyEndDate;
     private Long partySize;
     private LocalDateTime partyWriteTime;
     private String campTypeNormal;

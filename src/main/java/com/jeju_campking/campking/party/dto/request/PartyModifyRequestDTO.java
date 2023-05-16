@@ -3,7 +3,7 @@ package com.jeju_campking.campking.party.dto.request;
 import com.jeju_campking.campking.party.entity.Party;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -16,8 +16,8 @@ public class PartyModifyRequestDTO {
     private Long partyNumber;
     private String partyTitle;
     private String partyContent;
-    private LocalDateTime partyStartDate;
-    private LocalDateTime partyEndDate;
+    private LocalDate partyStartDate;
+    private LocalDate partyEndDate;
     private Long partySize;
 
     private Long campNumber;

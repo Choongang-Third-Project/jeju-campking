@@ -2,6 +2,7 @@ package com.jeju_campking.campking.party.entity;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -15,8 +16,8 @@ public class Party {
     private Long partyNumber;
     private String partyTitle;
     private String partyContent;
-    private LocalDateTime partyStartDate;
-    private LocalDateTime partyEndDate;
+    private LocalDate partyStartDate;
+    private LocalDate partyEndDate;
     private Long partySize;
     private LocalDateTime partyWriteTime;
 
