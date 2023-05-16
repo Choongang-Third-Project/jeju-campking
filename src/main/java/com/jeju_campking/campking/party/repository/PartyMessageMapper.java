@@ -10,9 +10,12 @@ import java.util.List;
 public interface PartyMessageMapper {
 
     // 내가 받은 메시지를 모두 조회하는 기능
-    // 받은 사람의 아이디로 조회
+    // 받은 사람의 회원번호로 조회
     List<PartyMessage> findAll(Long memberId);
 
+    // 내가 보낸 메시지를 모두 조회하는 기능
+    // 보낸 사람의 회원번호로 조회
+    List<PartyMessage> findAllReceive(Long memberId);
 
     // 메시지 보내기
     // 보내는 사람, 받는 사람, 내용, 쪽지 번호 등
