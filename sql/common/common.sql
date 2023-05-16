@@ -1,6 +1,7 @@
 CREATE DATABASE jejucampking;
 
 --멤버
+
 CREATE TABLE TB_MEMBER (
     member_number 	 INT(10) 		AUTO_INCREMENT,
     member_email     VARCHAR(50)    NOT NULL UNIQUE KEY,
@@ -48,10 +49,9 @@ values
 ("a18@naver.com", "1234","캠프킹이름18",  "0101111118","M","닉네임18",38,"2023-06-24"),
 ("a19@naver.com", "1234","캠프킹이름19",  "0101111119","M","닉네임19",39,"2023-06-5");
 
-종료 코드 0(으)로 완료된 프로세스
-
 
 -- 공지사항 데이터
+
 CREATE TABLE TB_BOARD (
 	board_number INT(10) AUTO_INCREMENT,
 	board_title VARCHAR(200) NOT NULL,
@@ -172,6 +172,7 @@ values
 
 
 -- TODO : TB_CAMP 테이블 생성 쿼리
+
 create TABLE TB_CAMP (
     camp_number int(10) AUTO_INCREMENT,
     camp_name VARCHAR(100) NOT NULL,
@@ -188,13 +189,14 @@ create TABLE TB_CAMP (
 
 
 -- TODO : TB_CAMP 테이블 데이터 추가 쿼리
+
 insert into TB_CAMP (
     camp_address,
     camp_name,
     camp_type_normal,
     camp_type_car,
-    camp_type_caravan,
     camp_type_glamping,
+    camp_type_caravan,
     camp_latitude,
     camp_longitude
 )
@@ -242,6 +244,7 @@ values ('제주시 애월읍 고내리 41', '마레보 카라반', '일반','','
 ;
 
 -- TODO : TB_PARTY 테이블 생성 쿼리
+
 CREATE TABLE TB_PARTY (
 	party_number INT(10) AUTO_INCREMENT,
 	party_title VARCHAR(200) NOT NULL,
@@ -568,14 +571,11 @@ VALUES
 ("글램핑할려?298", "party 게시판내용 !!!!!","2023-08-8","2023-09-8",1,"2023-08-8",20,34),
 ("글램핑할려?299", "party 게시판내용 !!!!!","2023-07-28","2023-08-28",1,"2023-07-28",14,15);
 
-종료 코드 0(으)로 완료된 프로세스
 
-
-종료 코드 0(으)로 완료된 프로세스
-
-
+DROP TABLE TB_PARTY_MESSAGE;
 
 --파티 메세지
+
 CREATE TABLE TB_PARTY_MESSAGE (
 	party_message_number INT(10) AUTO_INCREMENT,
 	party_message_content VARCHAR(1000) NOT NULL,
@@ -585,7 +585,7 @@ CREATE TABLE TB_PARTY_MESSAGE (
 	party_message_read VARCHAR(1) DEFAULT 'N',
 	party_number INT(10),
 	PRIMARY KEY (party_message_number),
-	FOREIGN KEY (party_number) REFERENCES TB_PARTY(party_number),
+	FOREIGN KEY (party_number) REFERENCES TB_PARTY(party_number) ON DELETE SET NULL,
 	FOREIGN KEY (party_message_sender) REFERENCES TB_MEMBER(member_number),
 	FOREIGN KEY (party_message_recipient) REFERENCES TB_MEMBER(member_number)
 );
@@ -1098,11 +1098,3 @@ values
 ("저랑 함께해유!497 ", "2023-03-1",13,14,213),
 ("저랑 함께해유!498 ", "2023-01-3",19,20,226),
 ("저랑 함께해유!499 ", "2023-04-5",14,15,19);
-
-
-
-
-
-
-
-
