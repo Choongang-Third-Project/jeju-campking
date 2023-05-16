@@ -8,6 +8,7 @@ import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.member.repository.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,8 @@ import java.sql.SQLException;
 @Slf4j
 public class MemberService {
 
+    //비밀번호 암호화
+    private final PasswordEncoder encoder;
     private final MemberMapper memberMapper;
 
     public Member login(MemberLoginRequestDTO dto) throws SQLException {
@@ -36,6 +39,10 @@ public class MemberService {
     // 회원가입 처리 서비스
     public boolean sign(MemberSignRequestDTO dto) throws SQLException {
         log.info("memberService sign : {} ", dto);
+
+        //패스워드 암호화하기
+        String encodedPassword = encoder.encode(dto.getMemberPassword());
+        dto.setMemberPassword(encodedPassword);
 
         boolean isSign = memberMapper.sign(dto);
 
