@@ -52,7 +52,7 @@
         </if>
     </select>
 
-    <select id="findMemberIdByPartyNumber" resultType="Long">
+    <select id="findMemberNumberByPartyNumber" resultType="Long">
         SELECT member_number
         FROM TB_PARTY
         WHERE party_number = #{partyNumber};

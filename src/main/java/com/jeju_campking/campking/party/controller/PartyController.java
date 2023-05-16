@@ -11,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -31,7 +30,6 @@ public class PartyController {
         List<PartyAllListResponseDTO> allBySort = partyService.findAllBySort(type, sort);
         return ResponseEntity.ok().body(allBySort);
     }
-
 
     @PostMapping()
     public ModelAndView save(
@@ -56,6 +54,7 @@ public class PartyController {
 
         try {
             boolean isDelete = partyService.deleteByNumber(partyNumber, memberNumber);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -63,13 +62,14 @@ public class PartyController {
         return redirectList();
     }
 
-    @RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH})
+    @RequestMapping(path = "/{memberNumber}", method = {RequestMethod.PUT, RequestMethod.PATCH})
     public ModelAndView modify(
-            @Validated @RequestBody PartyModifyRequestDTO dto
+            @Validated @RequestBody PartyModifyRequestDTO dto,
+            @PathVariable Long memberNumber
     ) {
 
         try {
-            boolean isModify = partyService.modify(dto);
+            boolean isModify = partyService.modify(dto, memberNumber);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -80,8 +80,10 @@ public class PartyController {
     private ModelAndView redirectList() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/jeju-camps/parties/all-list/*/*");
-
+        modelAndView.addObject("test", "test!!");
         return modelAndView;
     }
+
+
 }
 

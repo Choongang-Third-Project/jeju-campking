@@ -41,10 +41,13 @@ public class PartyService {
     public boolean deleteByNumber(Long partyNumber, Long memberNumber) throws SQLException {
         log.info("partyService/deleteByNumber : {}", partyNumber);
 
-        boolean isDelete = partyMapper.deleteByNumber(partyNumber);
+        Long foundNumber = findMemberNumberByPartyNumber(partyNumber);
 
-        // db에서 partyNumber 를 기준으로 데이터를 꺼내오고
-        // 그 해당 게시물의 멤버번호와 비교한다.
+        if (!memberNumber.equals(foundNumber)) {
+            return false;
+        }
+
+        boolean isDelete = partyMapper.deleteByNumber(partyNumber);
 
         if (!isDelete) {
             log.warn("party/Service/deleteByNumber WARN ! : {}", partyNumber);
@@ -54,15 +57,26 @@ public class PartyService {
         return true;
     }
 
-    public boolean modify(PartyModifyRequestDTO dto) throws SQLException {
+    public boolean modify(PartyModifyRequestDTO dto, Long memberNumber) throws SQLException {
         log.info("partyService/modify : {}", dto);
 
+        Long foundNumber = findMemberNumberByPartyNumber(dto.getPartyNumber());
+
+        if (!memberNumber.equals(foundNumber)) {
+            return false;
+        }
+
         boolean isModify = partyMapper.modify(dto);
+
         if (!isModify) {
             log.warn("party/Service/modify WARN ! : {}", dto);
             throw new SQLException();
         }
 
         return true;
+    }
+
+    private Long findMemberNumberByPartyNumber(Long partyNumber) {
+        return partyMapper.findMemberNumberByPartyNumber(partyNumber);
     }
 }

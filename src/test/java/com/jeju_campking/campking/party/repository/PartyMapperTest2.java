@@ -3,7 +3,6 @@ package com.jeju_campking.campking.party.repository;
 
 import com.jeju_campking.campking.party.dto.request.PartyModifyRequestDTO;
 import com.jeju_campking.campking.party.dto.request.PartySaveRequestDTO;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -110,7 +108,7 @@ public class PartyMapperTest2 {
         Long partyNumber = 3L;
 
         // when
-        Long memberIdByPartyNumber = partyMapper.findMemberIdByPartyNumber(partyNumber);
+        Long memberIdByPartyNumber = partyMapper.findMemberNumberByPartyNumber(partyNumber);
 
         // then
         assertThat(memberIdByPartyNumber).isEqualTo(9L);
