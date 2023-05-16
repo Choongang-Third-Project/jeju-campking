@@ -10,7 +10,7 @@
     <title>마이페이지</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css"/>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css"/>
-<!--    css -->
+    <!--    css -->
     <link rel="stylesheet" href="../../../resources/static/assets/mypage/css/mypage.css">
 </head>
 <body>
@@ -48,22 +48,23 @@
                             <tr>
                                 <th>
                                     <label>
-                                        <input type="checkbox" class="checkbox mp-board-check-all" />
+                                        <input type="checkbox" class="checkbox mp-board-check-all"/>
                                     </label>
                                 </th>
-                                <th>게시판</th>
+                                <th>파티 번호</th>
                                 <th>내용</th>
                                 <th>작성일자</th>
                                 <th></th>
                             </tr>
                             </thead>
-                            <!-- head -->
-                            <c:forEach var="board" items="${boardList}">
+                            <div id="mp-board-list">
+                                <!-- head -->
+                                <%--                            <c:forEach var="board" items="${boardList}">--%>
                                 <tbody>
                                 <tr>
                                     <th>
                                         <label>
-                                            <input type="checkbox" class="checkbox mp-board-check" />
+                                            <input type="checkbox" class="checkbox mp-board-check"/>
                                         </label>
                                     </th>
                                     <td>
@@ -74,7 +75,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="" class=" class="mp-board-content"">
+                                        <a href="" class="mp-board-content">
                                             ${board.boardContent}
                                         </a>
                                     </td>
@@ -83,7 +84,8 @@
                                     </th>
                                 </tr>
                                 </tbody>
-                            </c:forEach>
+                                <%--                            </c:forEach>--%>
+                            </div>
                         </table>
                     </div>
                 </div>
@@ -103,7 +105,7 @@
                             <tr>
                                 <th>
                                     <label>
-                                        <input type="checkbox" class="checkbox mp-msg-check-all" />
+                                        <input type="checkbox" class="checkbox mp-msg-check-all"/>
                                     </label>
                                 </th>
                                 <th>보낸사람</th>
@@ -118,7 +120,7 @@
                                 <tr>
                                     <th>
                                         <label>
-                                            <input type="checkbox" class="checkbox mp-msg-check" />
+                                            <input type="checkbox" class="checkbox mp-msg-check"/>
                                         </label>
                                     </th>
                                     <td>
@@ -130,7 +132,7 @@
                                         </div>
                                     </td>
                                     <td class="mp-msg-content">
-                                        ${msg.partyMessageContent}
+                                            ${msg.partyMessageContent}
                                     </td>
                                     <td>${msg.partyMessageTime}</td>
                                     <th>
@@ -156,28 +158,74 @@
             // 보낸 쪽지함 버튼
             const $sendMessageBtn = document.querySelector('.mp-msg-send-btn');
 
-            $sendMessageBtn.onclick = e => {
-                fetch(`/jeju-camps/mypage/receiveMessage/${member.memberNumber}`)
-                    .then(res => res.json());
+            // 로그인한 회원의 회원 번호
+            const memberNum = '${memberNumber}';
+
+            // 작성 파티게시글 목록 렌더링 함수
+            function renderPartyList(responseResult) {
+
+                let tag = '';
+
+                if (responseResult === null) {
+
+                } else {
+                    for (let response of responseResult) {
+
+                        const {partyNumber, partyTitle, partyWriteTime} = response;
+                        tag += "<tbody>" +
+                            "<tr>" +
+                            "<th>" +
+                            "<label><input type='checkbox' class='checkbox mp-board-check' /></label>" +
+                            "</th>" +
+                            "<td>" +
+                            "<div class='flex items-center space-x-3'>" +
+                            "<div>" +
+                            "<div class='font-bold'>" +
+                            partyNumber +
+                            "</div>" +
+                            "</div>" +
+                            "</div>" +
+                            "</td>" +
+                            "<td>" +
+                            "<a href='' class='mp-board-content'>" +
+                            partyTitle +
+                            "</a>" +
+                            "</td>" +
+                            "<td>" +
+                            partyWriteTime +
+                            "</td>" +
+                            "<th>" +
+                            "</th>" +
+                            "</tr>" +
+                            "</tbody>";
+                    }
+                }
+
+                // 생성한 tag 렌더링
+                document.getElementById('mp-board-list').innerHTML = tag;
+
             }
 
-            $receiveMessageBtn.onclick = e => {
-                fetch(`/jeju-camps/mypage/receiveMessage?${member.memberNumber}`)
-                    .then(res => res.json());
+            // 작성 파티게시글 목록 불러오기 함수
+            function getPartyList(memberNum) {
+                fetch('/jeju-camps/mypage/party/' + memberNum)
+                    .then(res => res.json())
+                    .then(responseResult => {
+                        renderPartyList(responseResult)
+                    });
             }
 
-            fetch(`http://localhost:8181/jeju-camps/mypage/${member.memberNumber}`)
-                .then(res => res.json())
-                .then(responseResult => {
+            // 받은 쪽지함 목록 렌더링 함수
 
-                });
+            // 받은 쪽지함 목록 불러오기 함수
 
-            fetch(`http://localhost:8181/jeju-camps/sendMessage?${member.memberNumber}`)
-                .then(res => res.json());
+            // 보낸 쪽지함 목록 렌더링 함수
+
+            // 보낸 쪽지함 목록 불러오기 함수
 
             // 메인 실행부
             (function () {
-                make
+                getPartyList(memberNum);
             })();
         </script>
 </body>

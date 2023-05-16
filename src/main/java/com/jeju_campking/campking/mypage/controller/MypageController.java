@@ -1,15 +1,13 @@
 package com.jeju_campking.campking.mypage.controller;
 
 import com.jeju_campking.campking.mypage.dto.response.MypageMemberResponseDTO;
+import com.jeju_campking.campking.mypage.dto.response.MypagePartyResponseDTO;
 import com.jeju_campking.campking.mypage.service.MypageService;
 import com.jeju_campking.campking.party.entity.PartyMessage;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -27,20 +25,26 @@ public class MypageController {
         return ResponseEntity.ok().body(member);
     }
 
+    @GetMapping("/party/{memberNumber}")
+    public ResponseEntity<?> findParty(@PathVariable Long memberNumber) {
+        List<MypagePartyResponseDTO> partyList = mypageService.findParty(memberNumber);
+        log.info("mypage partyList ; {}", partyList);
+        return ResponseEntity.ok().body(partyList);
+    }
 
     @GetMapping("/send/{memberNumber}")
     public ResponseEntity<?> findSendMessage(@PathVariable Long memberNumber) {
         List<PartyMessage> sendMessageList = mypageService.findSendMessage(memberNumber);
-
+        log.info("mypage sendMessageList : {}", sendMessageList);
         return ResponseEntity.ok().body(sendMessageList);
     }
     @GetMapping("/receive/{memberNumber}")
     public ResponseEntity<?> findReceiveMessage(@PathVariable Long memberNumber) {
-        List<PartyMessage> sendMessageList = mypageService.findReceiveMessage(memberNumber);
-
-        return ResponseEntity.ok().body(sendMessageList);
+        List<PartyMessage> receiveMessageList = mypageService.findReceiveMessage(memberNumber);
+        log.info("mypage sendMessageList : {}", receiveMessageList);
+        return ResponseEntity.ok().body(receiveMessageList);
     }
-    @GetMapping("/asdfadsf")
+/*    @GetMapping("/asdfadsf")
     public ModelAndView test() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("redirect:/");
@@ -48,6 +52,6 @@ public class MypageController {
         mv.addObject("data", null);
 
         return mv;
-    }
+    }*/
 
 }

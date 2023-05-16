@@ -1,15 +1,15 @@
 package com.jeju_campking.campking.mypage.service;
 
-import com.jeju_campking.campking.board.entity.Board;
 import com.jeju_campking.campking.mypage.dto.response.MypageMemberResponseDTO;
+import com.jeju_campking.campking.mypage.dto.response.MypagePartyResponseDTO;
 import com.jeju_campking.campking.mypage.repository.MypageMapper;
-import com.jeju_campking.campking.party.entity.Party;
 import com.jeju_campking.campking.party.entity.PartyMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,13 +24,16 @@ public class MypageService {
         return memberInfo;
     }
 
-    public List<Party> findParty(Long memberNumber) {
-        List<Party> party = mypageMapper.findParty(memberNumber);
+    public List<MypagePartyResponseDTO> findParty(Long memberNumber) {
+        List<MypagePartyResponseDTO> partyList = mypageMapper.findParty(memberNumber)
+                        .stream()
+                        .map(party -> new MypagePartyResponseDTO(party))
+                        .collect(Collectors.toList());
 
         log.info("MypageService.findBoard : {}", memberNumber);
-        log.info("party : {}", party);
+        log.info("party : {}", partyList);
 
-        return party;
+        return partyList;
     }
 
     public List<PartyMessage> findSendMessage(Long memberNumber) {
