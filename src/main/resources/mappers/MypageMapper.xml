@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeju_campking.campking.mypage.repository.MypageMapper">
+    <select id="findMemberInfo" resultType="mypageMemberDTO">
+        SELECT member_number, member_nickname
+        FROM TB_MEMBER
+        WHERE member_number = #{memberNumber}
+    </select>
+
+    <select id="findPartyBoard" resultType="partyDTO">
+        select
+            party_number,
+            party_title,
+            party_write_time
+        FROM TB_PARTY
+        WHERE member_number = #{memberNumber}
+        ORDER BY party_write_time desc;
+    </select>
+
+    <select id="findSendMessage" resultType="partyMessage">
+        SELECT
+            party_message_number,
+            party_message_content,
+            party_message_time,
+            party_message_sender,
+            party_message_recipient,
+            party_number
+        FROM TB_PARTY_MESSAGE
+        WHERE party_message_sender = #{memberNumber}
+    </select>
+
+    <select id="findReceiveMessage" resultType="partyMessage">
+        SELECT
+            party_message_number,
+            party_message_content,
+            party_message_time,
+            party_message_sender,
+            party_message_recipient,
+            party_number
+        FROM TB_PARTY_MESSAGE
+        WHERE party_message_sender = #{memberNumber}
+    </select>
+</mapper>

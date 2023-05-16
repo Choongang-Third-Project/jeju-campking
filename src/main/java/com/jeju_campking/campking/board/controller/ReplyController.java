@@ -50,7 +50,6 @@ public class ReplyController {
         }
     }
 
-
     @DeleteMapping("/{replyNumber}")
     public ResponseEntity<?> delete(
             @PathVariable(required = false) Long replyNumber
