@@ -91,19 +91,32 @@ body {
 
 .inner-header .tnb li:first-child {
     font-size: 20px;
+    width: fit-content;
     height: 80px;
+    /* border: 1px solid yellow; */
+    /* margin-top: -40px; */
+    position: relative;
+    top: -5px;
     line-height: 80px;
+}
+
+
+.inner-header .tnb li:nth-child(2) {
+    margin-right: 15px;
+    /* border: 1px solid orange; */
+    position: relative;
+    top: -8px;
 }
 
 .inner-header .tnb li:nth-child(3) {
     margin-top: 15px;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
 }
 
 .inner-header .tnb li {
     display: inline-block;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     /* background: lime; */
 }
 
@@ -111,8 +124,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* border: 1px solid orange; */
+    margin-top: -20px;
     font-size: 15px;
 }
+
+
+
 
 
 .dropdown {
