@@ -33,7 +33,7 @@
             
         </div>
       
-
+        
         <div class="page">
             <div class="btn-group  ">
                 <button class="btn btn-md">&lt;&lt;</button>
@@ -61,7 +61,7 @@
         
         const $idInput = document.getElementById('search');
         const $write = document.getElementById('write');
-
+        
         $write.onclick = e => {
             location.href = '/jeju-camps/notices/write';
         }
@@ -85,8 +85,70 @@
              });
 
         }
+        
+
+        // 공지사항 삭제 버튼
+        const $board = document.getElementById('board');
+
+        $board.addEventListener('click', e => {
+            // 삭제 버튼을 눌렀다면~
+            if (e.target.matches('.card-actions #delete')) {
+                console.log('삭제버튼 클릭');
+            //     modal.style.display = 'flex'; // 모달 창 띄움
+
+                 const $delBtn = e.target.closest('#delete').dataset.no;
+                 console.log($delBtn);
 
 
+                 // 서버에 삭제 비동기 요청
+                 fetch('/jeju-camps/notices' + '/' + $delBtn, {
+                        method: 'DELETE'
+                    }).then(res => {
+                        if (res.status === 200) {
+                            alert('공지사항 정상 삭제됨!');
+                            return res.json();
+                        } else {
+                            alert('공지사항 삭제 실패!');
+                        }
+                    }).then(responseResult => {
+                        getBoardList();
+                    });
+
+            //     const deleteLocation = $delBtn.dataset.href;
+
+            //     // 확인 버튼 이벤트
+            //     confirmDelete.onclick = e => {
+            //         // 삭제 처리 로직
+            //         window.location.href = deleteLocation;
+
+            //         modal.style.display = 'none'; // 모달 창 닫기
+            //     };
+
+
+            //     // 취소 버튼 이벤트
+            //     cancelDelete.onclick = e => {
+            //         modal.style.display = 'none'; // 모달 창 닫기
+            //     };
+            // } else { // 삭제 버튼 제외한 부분은 글 상세조회 요청
+
+            //     // section태그에 붙은 글번호 읽기
+            //     const bno = e.target.closest('section.card').dataset.bno;
+            //     // 상세 조회 요청 보내기
+            //     window.location.href= '/board/detail?bno=' + bno + '&pageNo=${s.pageNo}&type=${s.type}&keyword=${s.keyword}';
+            }
+        });
+
+        // 공지사항 수정 버튼
+        $board.addEventListener('click', e => {
+            // 삭제 버튼을 눌렀다면~
+            if (e.target.matches('.card-actions #modify')) {
+             //   console.log('수정 버튼 클릭');
+                 const $modifyBtn = e.target.closest('#modify').dataset.no;
+            //     console.log($modifyBtn);
+                location.href='/jeju-camps/notices/modify?boardNumber='+$modifyBtn; // GET방식 detail 호출
+            
+             }
+        });
 
 
         // 공지사항 목록 렌더링 함수
@@ -110,10 +172,11 @@
                     }
 
 
-                    tag+='<a href="/jeju-camps/notices/details?boardNumber='+boardNumber+'">';
+                    
                     tag+='<div id="campBoard" class="card lg:card-side bg-base-100 shadow-xl relative mb-1 h-40">';       
-                    tag+='<div id="#" class="self-center pl-3" >'+ boardNumber+'</div>';
+                    tag+='<div id="bno" class="self-center pl-3" >'+ boardNumber+'</div>';
                     tag+='<div class="card-body">';
+                    tag+='<a href="/jeju-camps/notices/details?boardNumber='+boardNumber+'">';
                     tag+='<h2 class="card-title" id="campName">'+boardTitle+'</h2>';
                     tag+='<div class="absolute top-8 right-0 w-2/6 flex justify-around pr-3">';
                         tag+='<div><i class="fa-solid fa-circle-user"></i>&nbsp;<span id="#">admin</span></div>';
@@ -121,15 +184,16 @@
                         tag+='<div><i class="fa-solid fa-star"></i>&nbsp;&nbsp;<span id="#">1</span></div>';
                     tag+='</div>';
                     tag+='<p>'+ boardContent +'</p>';
+                    tag+='</a>';
                     tag+='<div class="card-actions justify-end">';
-                      tag+='<button class="btn btn-primary" id="modify">수정하기</button>';
-                      tag+='<button class="btn btn-secondary" id="delete">삭제하기</button>';
+                      tag+='<button class="btn btn-primary" id="modify" data-no="'+boardNumber+'">수정하기</button>';
+                      tag+='<button class="btn btn-secondary" id="delete" data-no="'+boardNumber+'">삭제하기</button>';
                      
                       tag+='</div>';
                       tag+='</div>';
                     tag+='</div>';
                     tag+='</div>';
-                    tag+='</a>';
+                    
                 }
             }
 

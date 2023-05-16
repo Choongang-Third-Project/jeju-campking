@@ -121,6 +121,15 @@ public class BoardController {
         }
     }
 
+
+    @GetMapping("/modify")
+    public String modify(Long boardNumber, Model model){
+        log.info("/jeju-camps/notice : modify() GET!!");
+        Board board = boardService.findOne(boardNumber);
+        model.addAttribute("board", board);
+        return "/board/modify";
+    }
+
     //    @PostMapping("/modify")
     @RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH})
     public ResponseEntity<?> modify(
