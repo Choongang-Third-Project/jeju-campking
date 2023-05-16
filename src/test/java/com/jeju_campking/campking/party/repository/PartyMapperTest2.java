@@ -3,6 +3,7 @@ package com.jeju_campking.campking.party.repository;
 
 import com.jeju_campking.campking.party.dto.request.PartyModifyRequestDTO;
 import com.jeju_campking.campking.party.dto.request.PartySaveRequestDTO;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -28,8 +31,8 @@ public class PartyMapperTest2 {
         // given
         String partyTitle = "테스트 제목이빈다";
         String partyContent = "테스트 내용입니다";
-        LocalDateTime partyStartDate = LocalDateTime.now();
-        LocalDateTime partyEndDate = LocalDateTime.now();
+        LocalDate partyStartDate = LocalDate.now();
+        LocalDate partyEndDate = LocalDate.now();
 
         System.out.println(partyStartDate);
         System.out.println(partyEndDate);
@@ -76,11 +79,9 @@ public class PartyMapperTest2 {
         Long partyNumber = 5L;
         String partyTitle = "수정 테스트 제목입니다";
         String partyContent = "수정 테스트 내용입니다";
-        LocalDateTime partyStartDate = LocalDateTime.now();
-        LocalDateTime partyEndDate = LocalDateTime.now();
+        LocalDate partyStartDate = LocalDate.now();
+        LocalDate partyEndDate = LocalDate.now();
 
-        System.out.println(partyStartDate);
-        System.out.println(partyEndDate);
         Long partySize = 10L;
 
         Long campNumber = 40L;
@@ -100,6 +101,19 @@ public class PartyMapperTest2 {
 
         // then
         assertTrue(ifModify);
+    }
+
+    @Test
+    @DisplayName("파티 게시글 번호로 멤버 아이디 조회에 성공할 것이다")
+    void findMemberNumberByPartyNumberTest() {
+        // given
+        Long partyNumber = 3L;
+
+        // when
+        Long memberIdByPartyNumber = partyMapper.findMemberIdByPartyNumber(partyNumber);
+
+        // then
+        assertThat(memberIdByPartyNumber).isEqualTo(9L);
     }
 
 }

@@ -6,8 +6,6 @@ import com.jeju_campking.campking.party.dto.response.PartyAllListResponseDTO;
 import com.jeju_campking.campking.party.repository.PartyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.jdbc.SQL;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -40,10 +38,13 @@ public class PartyService {
         return true;
     }
 
-    public boolean deleteByNumber(Long partyNumber) throws SQLException {
+    public boolean deleteByNumber(Long partyNumber, Long memberNumber) throws SQLException {
         log.info("partyService/deleteByNumber : {}", partyNumber);
 
         boolean isDelete = partyMapper.deleteByNumber(partyNumber);
+
+        // db에서 partyNumber 를 기준으로 데이터를 꺼내오고
+        // 그 해당 게시물의 멤버번호와 비교한다.
 
         if (!isDelete) {
             log.warn("party/Service/deleteByNumber WARN ! : {}", partyNumber);

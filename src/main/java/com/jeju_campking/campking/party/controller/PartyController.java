@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -47,13 +48,14 @@ public class PartyController {
         return redirectList();
     }
 
-    @DeleteMapping("/{partyNumber}")
+    @DeleteMapping("/{partyNumber}/{memberNumber}")
     public ModelAndView deleteByNumber(
-            @PathVariable Long partyNumber
+            @PathVariable Long partyNumber,
+            @PathVariable Long memberNumber
     ) {
 
         try {
-            boolean isDelete = partyService.deleteByNumber(partyNumber);
+            boolean isDelete = partyService.deleteByNumber(partyNumber, memberNumber);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -15,6 +15,7 @@ public interface PartyMapper {
     // 정렬이 가능한 전체 조회
     List<PartyAllListResponseDTO> findAllBySort(@Param("type") String type, @Param("sort") String sort);
 
+    Long findMemberIdByPartyNumber(Long campNumber);
 
     boolean save(PartySaveRequestDTO dto);
 

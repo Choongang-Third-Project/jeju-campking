@@ -52,6 +52,12 @@
         </if>
     </select>
 
+    <select id="findMemberIdByPartyNumber" resultType="Long">
+        SELECT member_number
+        FROM TB_PARTY
+        WHERE party_number = #{partyNumber};
+    </select>
+
 
     <insert id="save">
         INSERT INTO TB_PARTY
@@ -78,6 +84,5 @@
         party_size = #{partySize}, camp_number = #{campNumber}
         WHERE party_number = #{partyNumber}
     </update>
-
 
 </mapper>
