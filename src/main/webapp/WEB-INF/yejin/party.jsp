@@ -6,12 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-
     <link rel="stylesheet" href="/main/resources/static/assets/party/party.css">
     <link rel="stylesheet" href="/main/resources/static/assets/party/common.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <style>
 
     </style>
@@ -21,6 +21,7 @@
     <h1 class="title">
         같이 갈 사람 😁
     </h1>
+    <button class="write" id="writebtn">글쓰기</button>
     <div class="orderby">정렬</div>
     <nav>
         <div class="roundbar">
@@ -30,7 +31,11 @@
             <div><a href="#">날짜</a></div>
             <div><a href="#">타입</a></div>
             <div><a href="#">정원</a></div>
-        </div>
+            <input class="search" type="text"> 
+            <span class="material-symbols-outlined">
+                search
+                </span>
+            </div>
     </nav>
 
     <c:forEach var="b" items="${bList}">
@@ -115,6 +120,11 @@
                 .then(responseResult => {
                     renderCampList(responseResult)
                 })
+        }
+
+        const $writebtn = document.getElementById('.wirtebtn');
+        $writebtn.onclick{
+            
         }
 </script>
 
