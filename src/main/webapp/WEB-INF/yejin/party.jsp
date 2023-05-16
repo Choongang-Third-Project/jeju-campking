@@ -74,6 +74,7 @@
                 const {
                     partyNumber,
                     partyTitle,
+                    parrtyContent,
                     partyStartDate,
                     partyEndDate,
                     partySize,
@@ -84,19 +85,23 @@
 
                 tag += "<li>"
                     +"<div class='item_card clearfix'>"
-                    +   "<div class='img-box'>"
-                    +        "<img src='/main/resources/static/assets/home/img/sm_normal.jpg' alt=''>"
-                    +    "</div>"
+                    +   "<div class='img-box'>";
+
+                if(){
+                    tag += "<img src='/assets/home/img/sm_normal.jpg' alt=''>";
+                } else {
+                    tag += "<img src='/assets/home/img/sm_normal.jpg' alt=''>";
+                }
+                tag +="</div>"
                     +    "<div class='small_title'>"
-                    +        "<div>"+글램핑 같이 갈분 모집해요~!!+"</div>"
-                    +        "<span>"+준비물은 텐트와 버너...+"</span>"
+                    +        "<div>"+ partyTitle +"</div>"
+                    +        "<span>"+ parrtyContent +"</span>"
                     +    "</div>"
                     +    "<div class='wirter'>"
                     +        by 작성자
                     +    "</div>"
                     + "</div>"
                 + "</li>";
-                // if (currentAccount === rep.account || auth === 'ADMIN') 
             }
 
             // 생성된 파티 tag 렌더링

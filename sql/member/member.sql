@@ -9,6 +9,7 @@ CREATE TABLE TB_MEMBER (
     member_age       INT(3)         NOT NULL,
     member_session_id  VARCHAR(200)    DEFAULT 'none',
     member_cookie_date   DATETIME,
+    member_info VARCHAR(10) NOT NULL,
     member_join_date DATE 		NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (member_number)
 );
