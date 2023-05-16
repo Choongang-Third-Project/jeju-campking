@@ -115,7 +115,36 @@ body {
 }
 
 
+.dropdown {
+    width: fit-content;
+    margin: 0 auto;
+    position: relative;
+}
 
+#drop-content {
+    display: none;
+    position: absolute;
+    z-index: 99;
+}
+
+#drop-content a {
+    display: block;
+    font-size: 20px;
+    background: #fff;
+    color: #3600ac;
+    text-shadow: 1px 1px 1px #3d4451;
+    text-decoration: none;
+    border-radius: 10px;
+    width: 170px;
+    padding: 20px 25px;
+    margin-top: 2px;
+}
+
+#drop-content a:hover {
+    background: #ead0f5;
+    color: #fff;
+
+}
 
 
 
@@ -302,12 +331,12 @@ section.notice .notice-box div p {
 
 
 section.notice .notice-box div p .date {
-    background: #570df8;
+    background: #3600ac;
     box-shadow: 2px 2px 1px #380a4b;
     color: #eee;
     width: fit-content;
     border-radius: 10px;
-    padding: 5px;
+    padding: 5px 12px;
 }
 
 
@@ -325,11 +354,11 @@ section.notice .notice-box div p .date {
     width: 100%;
     height: 2px;
     background-color: transparent;
-  }
+}
 
-  .line:hover::after {
-    background-color: #c300ff; 
-  }
+.line:hover::after {
+    background-color: #c300ff;
+}
 
 
 
