@@ -35,7 +35,24 @@
         <h1><i class="fa-solid fa-tree"></i> CAMP KING <i class="fa-solid fa-tree"></i></h1>
     </div>
 
-    <form action="/member/signup" id="signUpForm" name="signUp" method="post">
+    <form action="/member/signup" id="signUpForm" name="signUp" method="post" enctype="multipart/form-data">
+
+        <div class="profile">
+            <div class="thumbnail-box">
+                <img src="/assets/signup/img/img-add.png" alt="프로필 썸네일">
+            </div>
+
+            <label>프로필 이미지 추가</label>
+
+            <input 
+                type="file" 
+                id="profile-img" 
+                accept="image/*" 
+                style="display: none;"
+                name="profileImage"
+            >
+        </div>
+
 
         <div class="container">
             <!-- 이메일 -->
