@@ -379,7 +379,6 @@
 
 
 
-
             <!-- section.board-wrapper -->
             <section class="board-wrapper">
 
@@ -387,10 +386,32 @@
                     <div class="sub-board">
                         <p><i class="fa-solid fa-tents"></i></p>
                         <h2>금주의 캠프킹</h2>
+                        <c:forEach var="c" items="${campRank}" varStatus="status">
+                      
+                            <a href="/jeju-camps/info/details?title=${c.campName}">
+                                <div class="rank">
+                                    <h4>
+                                        <span id="rank${status.index+1}" class="rank-text">${status.index+1}위</span>
+                                    </h4>
+                                    <span class="ranklist" id="campName${status.index+1}">${c.campName}</span>
+                            
+                                </div>
+                            </a>
+                        </c:forEach>
+
                     </div>
                     <div class="sub-board">
                         <p><i class="fa-solid fa-people-roof"></i></p>
                         <h2>같이 갈 사람</h2>
+                        <c:forEach var="p" items="${partyRank}">
+                            <a href="#">
+                                <div class="rank">
+                                    <h4>${p.partyNumber}</h4>
+                                    <span class="ranklist">${p.partyTitle}</span>
+                                </div>
+                            </a>
+                        </c:forEach>
+
                     </div>
                     <div class="sub-board">
                         <p><i class="fa-solid fa-screwdriver-wrench"></i></p>
