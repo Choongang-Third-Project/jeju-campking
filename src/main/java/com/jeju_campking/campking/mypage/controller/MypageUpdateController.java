@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/jeju-camps/api/v1/mypages/update")
+@RequestMapping("/jeju-camps/api/v1/mypages-update")
 @Slf4j
 public class MypageUpdateController {
 
-    MypageUpdateService mypageUpdateService;
+    private final MypageUpdateService mypageUpdateService;
 
     @GetMapping("/{memberNumber}")
     public ResponseEntity<?> findMember(

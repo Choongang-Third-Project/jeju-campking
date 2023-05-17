@@ -17,8 +17,8 @@
 
         .mp-box {
             background-color: #fff;
-            width: 1100px;
-            height: 800px;
+            width: 600px;
+            height: 1000px;
             margin: 30px;
             border-radius: 20px;
             display: flex;
@@ -32,6 +32,38 @@
 <div class="mp-wrap">
 
     <div class="mp-box">
+
+        <div class="column-box">
+            <span class="column-title">이메일</span>
+            <label for="email">
+                <input type="email" id="email" name="memberEmail" value="뫄뫄" readonly>
+            </label>
+            <span id="password-check1"></span>
+        </div>
+
+        <div class="column-box">
+            <span class="column-title">비밀번호</span>
+            <label for="password">
+                <input type="password" id="password" name="memberPassword" maxlength="20" placeholder="영문자, 숫자, 특수문자 포함 (8~15자)">
+            </label>
+            <span id="password-check2"></span>
+        </div>
+
+        <div class="column-box">
+            <span class="column-title">닉네임</span>
+            <label for="nickname">
+                <input type="text" id="nickname" name="memberPassword" maxlength="10" maxlength="50">
+            </label>
+            <span id="nickname-check"></span>
+        </div>
+
+        <div class="column-box">
+            <span class="column-title">생년월일</span>
+            <label for="birth-date">
+                <input type="text" id="birth-date" name="memberPassword" maxlength="10" readonly>
+            </label>
+            <span id="birth-date-check"></span>
+        </div>
 
     </div>
 

@@ -39,6 +39,7 @@
         <mapper resource="mappers/PartyMessageMapper.xml"/>
         <mapper resource="mappers/MypageMapper.xml"/>
         <mapper resource="mappers/RankMapper.xml"/>
+        <mapper resource="mappers/MypageUpdateMapper.xml"/>
     </mappers>
 
 </configuration>

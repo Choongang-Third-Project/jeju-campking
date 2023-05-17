@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class MypageUpdateService {
 
-    MypageUpdateMapper mypageUpdateMapper;
+    private final MypageUpdateMapper mypageUpdateMapper;
 
     public Member findMember(Long memberNumber) {
         log.info("MypageService findMember : {}", memberNumber);
