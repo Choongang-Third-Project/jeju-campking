@@ -20,7 +20,7 @@
         <typeAlias alias="partyMessage" type="com.jeju_campking.campking.party.entity.PartyMessage"/>
         <typeAlias alias="mypageMemberDTO" type="com.jeju_campking.campking.mypage.dto.response.MypageMemberResponseDTO"/>
         <typeAlias alias="party" type="com.jeju_campking.campking.party.entity.Party"/>
-
+        <typeAlias alias="partyPartyMessageDTO" type="com.jeju_campking.campking.mypage.dto.response.MypagePartyMessageResponseDTO"/>
         <typeAlias alias="campRank" type="com.jeju_campking.campking.rank.dto.response.CampRankResponseDTO"/>
         <typeAlias alias="partyRank" type="com.jeju_campking.campking.rank.dto.response.PartyListResponseDTO"/>
 
