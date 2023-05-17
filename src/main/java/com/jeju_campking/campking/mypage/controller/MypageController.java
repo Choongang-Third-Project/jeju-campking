@@ -8,7 +8,9 @@ import com.jeju_campking.campking.party.entity.PartyMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -21,31 +23,54 @@ public class MypageController {
     private final MypageService mypageService;
 
     @GetMapping("/{memberNumber}")
-    public ResponseEntity<?> findMember(@PathVariable Long memberNumber) {
+    public ResponseEntity<?> findMember(
+            @PathVariable Long memberNumber
+    ) {
         MypageMemberResponseDTO member = mypageService.findMember(memberNumber);
         log.info("MypageController findMember : {}", member);
         return ResponseEntity.ok().body(member);
     }
 
     @GetMapping("/party/{memberNumber}")
-    public ResponseEntity<?> findParty(@PathVariable Long memberNumber) {
+    public ResponseEntity<?> findParty(
+            @PathVariable Long memberNumber
+    ) {
         List<MypagePartyResponseDTO> partyList = mypageService.findParty(memberNumber);
-        log.info("mypage partyList ; {}", partyList);
+        log.info("MypageController partyList ; {}", partyList);
         return ResponseEntity.ok().body(partyList);
     }
 
     @GetMapping("/send/{memberNumber}")
-    public ResponseEntity<?> findSendMessage(@PathVariable Long memberNumber) {
+    public ResponseEntity<?> findSendMessage(
+            @PathVariable Long memberNumber
+    ) {
         List<MypagePartyMessageResponseDTO> sendMessageList = mypageService.findSendMessage(memberNumber);
-        log.info("mypage sendMessageList : {}", sendMessageList);
+        log.info("MypageController sendMessageList : {}", sendMessageList);
         return ResponseEntity.ok().body(sendMessageList);
     }
     @GetMapping("/receive/{memberNumber}")
-    public ResponseEntity<?> findReceiveMessage(@PathVariable Long memberNumber) {
+    public ResponseEntity<?> findReceiveMessage(
+            @PathVariable Long memberNumber
+    ) {
         List<MypagePartyMessageResponseDTO> receiveMessageList = mypageService.findReceiveMessage(memberNumber);
-        log.info("mypage sendMessageList : {}", receiveMessageList);
+        log.info("MypageController sendMessageList : {}", receiveMessageList);
         return ResponseEntity.ok().body(receiveMessageList);
     }
+
+    @RequestMapping(path = "/party/delete/{partyNumber}/{memberNumber}", method = {RequestMethod.DELETE, RequestMethod.GET})
+    public ResponseEntity<?> removeParty(
+           @PathVariable Long partyNumber,
+           @PathVariable Long memberNumber
+    ) {
+        log.info("MypageController removeParty : partyNum = {}", partyNumber);
+        boolean isDelete = mypageService.removeParty(partyNumber);
+        return findParty(memberNumber);
+    }
+
+    private ModelAndView redirectPartyList(Long memberNumber) {
+        return new ModelAndView("redirect:/jeju-camps/mypage/party/" + memberNumber);
+    }
+
 /*    @GetMapping("/asdfadsf")
     public ModelAndView test() {
         ModelAndView mv = new ModelAndView();

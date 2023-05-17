@@ -10,8 +10,13 @@
     <title>마이페이지</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css"/>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css"/>
-    <!--    css -->
+    <!-- css -->
     <link rel="stylesheet" href="/assets/mypage/css/mypage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <%-- js --%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 <body>
 <div class="mp-wrap">
@@ -25,8 +30,8 @@
         <div class="mp-info">
             <div class="mp-info-text">
                 <div class="mp-info-content mp-info-profile w-24 mask mask-squircle">
-                    <!-- 프로필 사진 -->
-                    <img src="../../../resources/static/assets/mypage/img/profile.png"/>
+                    <%-- 프로필사진 경로 추가해야합니다. --%>
+<%--                    <img src="/local${login.profile}"/>--%>
                 </div>
                 <div class="mp-info-content"><span class="mp-info-name"></span> 님</div>
                 <div class="mp-info-content mp-info-nickname">일반회원</div>
@@ -41,16 +46,18 @@
             <div class="mp-main-content mp-main">
                 <!-- 내가 쓴 글 -->
                 <div class="mp-main-content mp-board">
-                    <div class="mp-board-title">내 게시글</div>
+                    <div class="mp-board-title">
+                        내 게시글
+                    </div>
                     <div class="overflow-x-auto w-full mp-board-list">
                         <table class="table w-full mp-board-li">
-                            <thead>
+                            <thead class="mp-board-header">
                             <tr>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" class="checkbox mp-board-check-all"/>
-                                    </label>
-                                </th>
+<%--                                <th>--%>
+<%--                                    <label>--%>
+<%--                                        <input type="checkbox" class="checkbox mp-board-check-all"/>--%>
+<%--                                    </label>--%>
+<%--                                </th>--%>
                                 <th>파티 번호</th>
                                 <th><a>제목</a></th>
                                 <th>작성일자</th>
@@ -77,11 +84,11 @@
                         <table class="table w-full mp-board-li">
                             <thead>
                             <tr>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" class="checkbox mp-msg-check-all"/>
-                                    </label>
-                                </th>
+<%--                                <th colspan='2'>--%>
+<%--&lt;%&ndash;                                    <label>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <input type="checkbox" class="checkbox mp-msg-check-all"/>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </label>&ndash;%&gt;--%>
+<%--                                </th>--%>
                                 <th>파티번호</th>
                                 <th id="mp-msg-person">보낸사람</th>
                                 <th>쪽지내용</th>
@@ -104,6 +111,24 @@
 
         <%---------------------- 스크립트 ------------------------%>
         <script>
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "100",
+                "hideDuration": "1000",
+                "timeOut": "1500",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            /* ------------------- 게시글, 쪽지함 로드 -------------------- */
             // 받은 쪽지함 버튼
             const $receiveMessageBtn = document.querySelector('.mp-msg-receive-btn');
             // 보낸 쪽지함 버튼
@@ -113,9 +138,12 @@
             const memberNum = '${memberNumber}';
 
             // 좌측 닉네임, 회원등급, 프로필사진 렌더링 함수
-            function renderMypageInfo({memberNumber, memberNickname}) {
+            function renderMypageInfo({memberNumber, memberNickname, profile}) {
+                let tag = '';
+                <%--tag += `<img src="/local${login.profile}"/>`--%>
                 // console.log(memberNickname);
                 document.querySelector('.mp-info-name').textContent = memberNickname;
+                document.querySelector('.mp-info-profile').innerHTML = tag;
             }
 
             // 작성 파티게시글 목록 렌더링 함수
@@ -129,15 +157,15 @@
 
                         const {partyNumber, partyTitle, partyWriteTime} = response;
                         tag += `<tr>
-                                    <th>
-                                        <label>
-                                            <input type="checkbox" class="checkbox mp-board-check"/>
-                                        </label>
-                                    </th>
+<!--                                    <th>-->
+<!--                                        <label>-->
+<!--                                            <input type="checkbox" class="checkbox mp-board-check"/>-->
+<!--                                        </label>-->
+<!--                                    </th>-->
                                     <td>
-                                        <div class="flex items-center space-x-3">
+                                        <div class="space-x-3">
                                             <div>
-                                                <div class="font-bold">\${partyNumber}</div>
+                                                <div class="font-bold party-num">\${partyNumber}</div>
                                             </div>
                                         </div>
                                     </td>
@@ -148,6 +176,7 @@
                                     </td>
                                     <td>\${partyWriteTime}</td>
                                     <th>
+                                        <button class="btn btn-xs delete-btn" data-party-no=\${partyNumber}>삭제</button>
                                     </th>
                                 </tr>`
                     }
@@ -156,6 +185,20 @@
                 // 생성한 tag 를 thead 아래에 렌더링
                 document.getElementById('mp-party-list').innerHTML = tag;
 
+                // 삭제 버튼 클릭시 게시글 삭제
+                const $deleteBtns = document.querySelectorAll('.delete-btn');
+                for(const deleteBtn of $deleteBtns) {
+                    deleteBtn.onclick = e => {
+                        if (!confirm('정말 삭제하시겠습니까?')) return;
+                        const deleteParty = deleteBtn.dataset.partyNo; // 삭제하려는 파티게시글의 번호
+                        fetch('/jeju-camps/api/v1/mypages/party/delete/' + deleteParty + `/` + memberNum)
+                            .then(res => res.json())
+                            .then(responseResult => {
+                                toastr.success('삭제되었습니다.');
+                               renderPartyList(responseResult);
+                            });
+                    };
+                }
             }
 
             // 좌측 회원정보 불러오기 함수
@@ -193,14 +236,14 @@
                     for(let res of responseResult) {
                         // console.log(res);
                         contentTag += `<tr>
-                                    <th>
-                                        <label>
-                                            <input type="checkbox" class="checkbox mp-msg-check"/>
-                                        </label>
-                                    </th>
+<!--                                    <th>-->
+<!--                                        <label>-->
+<!--                                            <input type="checkbox" class="checkbox mp-msg-check"/>-->
+<!--                                        </label>-->
+<!--                                    </th>-->
                                     <td><b>\${res.partyNumber}</b></td>
                                     <td>
-                                        <div class="flex items-center space-x-3">
+                                        <div class="space-x-3">
                                             <div>
                                                 <div class="font-bold"></div>
                                                 <div class="text-sm opacity-50">\${res.memberNickname}</div>
@@ -217,7 +260,7 @@
                                     </th>
                                 </tr>`;
                     }
-                    console.log('tag : ' + contentTag);
+                    // console.log('tag : ' + contentTag);
                     MessageContent.innerHTML = contentTag;
                 }
             }
@@ -233,14 +276,14 @@
                     for(let res of responseResult) {
                         // console.log(res);
                         contentTag += `<tr>
-                                    <th>
-                                        <label>
-                                            <input type="checkbox" class="checkbox mp-msg-check"/>
-                                        </label>
-                                    </th>
+<!--                                    <th>-->
+<!--                                        <label>-->
+<!--                                            <input type="checkbox" class="checkbox mp-msg-check"/>-->
+<!--                                        </label>-->
+<!--                                    </th>-->
                                     <td><b>\${res.partyNumber}</b></td>
                                     <td>
-                                        <div class="flex items-center space-x-3">
+                                        <div class="space-x-3">
                                             <div>
                                                 <div class="font-bold"></div>
                                                 <div class="text-sm opacity-50">\${res.memberNickname}</div>
@@ -258,7 +301,7 @@
                                     </th>
                                 </tr>`;
                     }
-                    console.log('tag : ' + contentTag);
+                    // console.log('tag : ' + contentTag);
                     MessageContent.innerHTML = contentTag;
                 }
             }
@@ -267,7 +310,7 @@
                 fetch('/jeju-camps/api/v1/mypages/receive/' + memberNum)
                     .then(res => res.json())
                     .then(responseResult => {
-                        console.log(responseResult);
+                        // console.log(responseResult);
                         renderReceiveMessageList(responseResult);
                     })
             }
@@ -286,7 +329,7 @@
                 fetch('/jeju-camps/api/v1/mypages/send/' + memberNum)
                     .then(res => res.json())
                     .then(responseResult => {
-                        console.log(responseResult);
+                        // console.log(responseResult);
                         renderSendMessageList(responseResult);
                     })
             }

@@ -1,5 +1,6 @@
 package com.jeju_campking.campking.mypage.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jeju_campking.campking.party.entity.Party;
 import lombok.*;
 
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 public class MypagePartyResponseDTO {
     private Long partyNumber;
     private String partyTitle;
+    @JsonFormat(pattern = "yyyy-MM-dd  HH:mm:ss")
     private LocalDateTime partyWriteTime;
 
     // entity 를 DTO 로 변환하는 생성자

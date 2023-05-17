@@ -50,4 +50,21 @@
         WHERE party_message_recipient = #{memberNumber}
     </select>
 
+    <delete id="removeParty">
+        DELETE FROM TB_PARTY
+        WHERE party_number = #{partyNumber}
+    </delete>
+
+    <insert id="updateMember">
+        INSERT INTO TB_MEMBER
+        (member_email,
+         member_password,
+         member_name,
+         member_phone,
+         member_gender,
+         member_nickname,
+         member_age)
+        VALUES ()
+    </insert>
+
 </mapper>
