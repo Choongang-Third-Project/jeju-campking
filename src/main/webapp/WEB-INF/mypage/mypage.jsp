@@ -107,8 +107,6 @@
         <%---------------------- 스크립트 ------------------------%>
         <script>
 
-
-
             /* ------------------- 게시글, 쪽지함 로드 -------------------- */
             // 받은 쪽지함 버튼
             const $receiveMessageBtn = document.querySelector('.mp-msg-receive-btn');
@@ -154,7 +152,7 @@
                                     </td>
                                     <td>\${partyWriteTime}</td>
                                     <th>
-                                        <button class="btn btn-xs delete-btn">삭제</button>
+                                        <button class="btn btn-xs delete-btn" data-party-no=\${partyNumber}>삭제</button>
                                     </th>
                                 </tr>`
                     }
@@ -163,6 +161,19 @@
                 // 생성한 tag 를 thead 아래에 렌더링
                 document.getElementById('mp-party-list').innerHTML = tag;
 
+                // 삭제 버튼 클릭시 게시글 삭제
+                const $deleteBtns = document.querySelectorAll('.delete-btn');
+                for(const deleteBtn of $deleteBtns) {
+                    deleteBtn.onclick = e => {
+                        if (!confirm('정말 삭제하시겠습니까?')) return;
+                        const deleteParty = deleteBtn.dataset.partyNo; // 삭제하려는 파티게시글의 번호
+                        fetch('/jeju-camps/api/v1/mypages/party/delete/' + deleteParty + `/` + memberNum)
+                            .then(res => res.json())
+                            .then(responseResult => {
+                               renderPartyList(responseResult);
+                            });
+                    };
+                }
             }
 
             // 좌측 회원정보 불러오기 함수

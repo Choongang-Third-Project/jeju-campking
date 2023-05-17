@@ -49,14 +49,15 @@ public class MypageController {
         return ResponseEntity.ok().body(receiveMessageList);
     }
 
-    @DeleteMapping("/party/delete/{partyNumber}")
-    public ModelAndView removeParty(
+    @RequestMapping(path = "/party/delete/{partyNumber}/{memberNumber}", method = {RequestMethod.DELETE, RequestMethod.GET})
+    public ResponseEntity<?> removeParty(
            @PathVariable Long partyNumber,
-           Long memberNumber
+           @PathVariable Long memberNumber
     ) {
         log.info("mypage removeParty : partyNum = {}", partyNumber);
         boolean isDelete = mypageService.removeParty(partyNumber);
-        return redirectPartyList(memberNumber);
+//        return redirectPartyList(memberNumber);
+        return findParty(memberNumber);
     }
 
     private ModelAndView redirectPartyList(Long memberNumber) {
