@@ -112,6 +112,11 @@ body {
     margin-top: 15px;
     width: 50px;
     height: 50px;
+    overflow: hidden;
+}
+
+.inner-header .tnb li:nth-child(3) {
+    width: 100%;
 }
 
 .inner-header .tnb li {
@@ -119,6 +124,14 @@ body {
     /* margin-right: 10px; */
     /* background: lime; */
 }
+
+.inner-header .tnb .profile-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
 
 .inner-header .tnb li:nth-child(4) {
     display: flex;

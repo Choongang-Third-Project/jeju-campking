@@ -56,7 +56,10 @@
 
                             <li>
                                 <p>
-                                    <c:if test="${sessionScope.login != null}">
+                                    <c:if test="${login == null}">
+                                        침입자
+                                    </c:if>
+                                    <c:if test="${login != null}">
                                         ${sessionScope.login.memberNickname}님
                                     </c:if>
                                 </p>
@@ -78,7 +81,14 @@
                             <li>
                                 <div class="profile dropdown">
                                     <button class="smbtn">
-                                        <img src="/assets/header/img/soongu.jpg" alt="프로필사진">
+                                        <div class="profile-box">
+                                            <c:if test="${login == null}">
+                                                <img src="/assets/header/img/soongu.png" alt="미로그인">
+                                            </c:if>
+                                            <c:if test="${login != null}">
+                                                <img src="/local${login.profile}" alt="프사">
+                                            </c:if>
+                                        </div>
                                     </button>
                                     <div id="drop-content">
                                         <a href='#'>마이페이지</a>
@@ -386,7 +396,7 @@
                         <p><i class="fa-solid fa-screwdriver-wrench"></i></p>
                         <h2>장비대여</h2>
                         <p class="update">
-                            <img src="../img/update.png" alt="">
+                            <img src="/assets/home/img/update.png" alt="">
                         </p>
                     </div>
                 </div>
