@@ -45,7 +45,8 @@ public class UploadController {
 //            e.printStackTrace();
 //        }
 
-        String filePath = FileUtil.uploadFile(file, rootPath);
+        // TODO : 빌드 오류 나서 잠시 주석처리해뒀습니다..! - 예원
+//        String filePath = FileUtil.uploadFile(file, rootPath);
 
         return "redirect:/upload-form";
     }
