@@ -23,4 +23,6 @@ public class Member {
     private Gender memberGender;
     private int memberAge;
     private LocalDateTime memberJoinDate;
+
+    private String profileImage;
 }

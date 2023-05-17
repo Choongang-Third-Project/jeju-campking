@@ -9,6 +9,7 @@ import com.jeju_campking.campking.member.repository.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
@@ -34,16 +35,17 @@ public class MemberService {
     }
 
     // 회원가입 처리 서비스
-    public boolean sign(MemberSignRequestDTO dto) throws SQLException {
-        log.info("memberService sign : {} ", dto);
+    public boolean sign(Member member) throws SQLException {
+        log.info("memberService sign : {} ", member.getProfileImage());
 
-        boolean isSign = memberMapper.sign(dto);
+        boolean isSign = memberMapper.sign(member);
 
         if (!isSign) {
             log.warn("memberService : 회원가입 실패 !");
-//            throw new SQLException("memberService : 회원가입 실패 !");
+            throw new SQLException("memberService : 회원가입 실패 !");
         }
-        return isSign;
+
+        return true;
     }
 
     // 회원가입 시 이메일, 닉네임, 전화번호 중복 검사 처리 서비스

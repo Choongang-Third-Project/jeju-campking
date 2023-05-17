@@ -14,10 +14,14 @@
 
     <insert id="sign">
         INSERT INTO TB_MEMBER
-        (member_email, member_password, member_name, member_nickname,
-         member_phone, member_age, member_gender)
-        VALUES (#{memberEmail}, #{memberPassword}, #{memberName}, #{memberNickname},
-        #{memberPhone}, #{memberAge}, #{memberGender})
+        (member_email, member_password,
+        member_name, member_nickname,
+         member_phone, member_age,
+        member_gender, profile_image)
+        VALUES (#{memberEmail}, #{memberPassword},
+        #{memberName}, #{memberNickname},
+        #{memberPhone}, #{memberAge},
+        #{memberGender}, #{profileImage})
     </insert>
 
     <select id="isDuplicate" resultType="int">

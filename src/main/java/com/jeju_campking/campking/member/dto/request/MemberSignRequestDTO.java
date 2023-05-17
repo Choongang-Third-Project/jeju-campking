@@ -3,6 +3,7 @@ package com.jeju_campking.campking.member.dto.request;
 import com.jeju_campking.campking.member.entity.Gender;
 import com.jeju_campking.campking.member.entity.Member;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
@@ -34,15 +35,19 @@ public class MemberSignRequestDTO {
     @Min(value = 19, message = "19세 이상만 가능합니다.")
     private Integer memberAge;
 
+    private MultipartFile profileImage;
+
     public Member toEntity() {
         return Member.builder()
                 .memberPassword(this.memberPassword)
                 .memberName(this.memberName)
+                .memberNickname(this.memberNickname)
                 .memberPhone(this.memberPhone)
                 .memberEmail(this.memberEmail)
                 .memberGender(Gender.valueOf(this.memberGender))
                 .memberAge(this.memberAge)
                 .memberJoinDate(LocalDateTime.now())
+                .profileImage(String.valueOf(this.profileImage))
                 .build();
     }
 
