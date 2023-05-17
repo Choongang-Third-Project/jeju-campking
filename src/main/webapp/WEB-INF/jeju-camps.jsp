@@ -82,10 +82,10 @@
                                 <div class="profile dropdown">
                                     <button class="smbtn">
                                         <div class="profile-box">
-                                            <c:if test="${login == null}">
+                                            <c:if test="${login == null || login.profile == null}">
                                                 <img src="/assets/header/img/soongu.jpg" alt="미로그인">
                                             </c:if>
-                                            <c:if test="${login != null}">
+                                            <c:if test="${login != null && login.profile != null}">
                                                 <img src="/local${login.profile}" alt="프사">
                                             </c:if>
                                         </div>
@@ -149,7 +149,7 @@
                         </div>
                         <div class="text">
                             <p>일반야영장</p>
-                            <p>(${c.normalCount}개)</p>
+                            <p class="count">(${c.normalCount}개)</p>
                         </div>
 
                     </div>
@@ -159,7 +159,7 @@
                         </div>
                         <div class="text">
                             <p>자동차야영장</p>
-                            <p>(${c.carCount}개)</p>
+                            <p class="count">(${c.carCount}개)</p>
                         </div>
 
                     </div>
@@ -170,7 +170,7 @@
                         </div>
                         <div class="text">
                             <p>카라반</p>
-                            <p>(${c.caravanCount}개)</p>
+                            <p class="count">(${c.caravanCount}개)</p>
                         </div>
 
                     </div>
@@ -181,7 +181,7 @@
                         </div>
                         <div class="text">
                             <p>글램핑</p>
-                            <p>(${c.glampingCount}개)</p>
+                            <p class="count">(${c.glampingCount}개)</p>
                         </div>
                     </div>
                 </div>

@@ -259,8 +259,12 @@ section.main .radial-container {
 
 section.main .radial-container {
     text-align: center;
+    text-shadow: 1px 1px 1px #202020;
 }
 
+section.main .radial-container .radial-progress, section.main .radial-container .img-box {
+    text-shadow: 1px 1px 1px #202020;
+}
 
 section.main .radial-container .r1 {
     color: #525251;
@@ -287,6 +291,10 @@ section.main .radial-container p {
     letter-spacing: 2px;
 }
 
+section.main .radial-container p.count{
+    padding-top: -15px;
+    font-size: 13px;
+}
 
 
 
