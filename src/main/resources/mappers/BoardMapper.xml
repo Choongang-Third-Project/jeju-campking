@@ -9,7 +9,9 @@
         board_title ,
         board_content ,
         board_time ,
-        member_number
+        member_number,
+        board_view,
+        board_recommend
         FROM TB_BOARD
         ORDER BY board_number desc
         LIMIT #{pageStart}, #{amount};
@@ -21,21 +23,28 @@
         board_title ,
         board_content ,
         board_time ,
-        member_number
+        member_number,
+        board_view,
+        board_recommend
         FROM TB_BOARD
         WHERE board_title LIKE CONCAT('%',#{keyword},'%')
         OR board_content LIKE CONCAT('%',#{keyword},'%')
-        ORDER BY board_number desc;
+        ORDER BY board_number desc
+        LIMIT #{p.pageStart}, #{p.amount};
     </select>
 
-    <select id="findOne" resultType="board">
+    <select id="findOne" resultType="boardDetailDTO">
         SELECT
-        board_number,
-        board_title,
-        board_content,
-        board_time,
-        member_number
-        FROM TB_BOARD
+        b.board_number,
+        b.board_title,
+        b.board_content,
+        b.board_time,
+        b.board_view,
+        b.board_recommend,
+        m.member_number,
+        m.member_nickname
+        from tb_board b
+        join tb_member m using(member_number)
         WHERE board_number = #{boardNumber};
     </select>
 
@@ -49,6 +58,12 @@
         </if>
     </select>
 
+    <select id="recommendCount" resultType="int">
+        SELECT board_recommend
+        from tb_board
+        where board_number = #{boardNumber};
+    </select>
+
 
     <insert id="write">
         INSERT INTO TB_BOARD
@@ -60,6 +75,24 @@
         DELETE FROM TB_BOARD
         WHERE BOARD_NUMBER = #{boardNumber};
     </delete>
+
+    <update id="upViewCount">
+        UPDATE TB_BOARD
+        SET BOARD_VIEW = BOARD_VIEW+1
+        WHERE BOARD_NUMBER = #{boardNumber};
+    </update>
+
+    <update id="upRecommendCount">
+        UPDATE TB_BOARD
+        SET BOARD_RECOMMEND = BOARD_RECOMMEND+1
+        WHERE BOARD_NUMBER = #{boardNumber};
+    </update>
+
+    <update id="downRecommendCount">
+        UPDATE TB_BOARD
+        SET BOARD_RECOMMEND = BOARD_RECOMMEND-1
+        WHERE BOARD_NUMBER = #{boardNumber};
+    </update>
 
     <update id="modify">
         UPDATE TB_BOARD

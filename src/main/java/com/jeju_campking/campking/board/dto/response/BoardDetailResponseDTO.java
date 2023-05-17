@@ -1,24 +1,25 @@
-package com.jeju_campking.campking.board.entity;
+package com.jeju_campking.campking.board.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
-@Getter
 @Setter
+@Getter
 @ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Board {
+public class BoardDetailResponseDTO {
     private Long boardNumber;
     private String boardTitle;
     private String boardContent;
+    @JsonFormat(pattern = "yy-MM-dd")
     private LocalDateTime boardTime;
-    private Long memberNumber;
     private Integer boardView;
     private Integer boardRecommend;
+    private Long memberNumber;
+    private String memberNickname;
+
 }

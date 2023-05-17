@@ -2,7 +2,10 @@ package com.jeju_campking.campking.board.service;
 
 
 import com.jeju_campking.campking.board.dto.page.Page;
+import com.jeju_campking.campking.board.dto.page.PageMaker;
 import com.jeju_campking.campking.board.dto.request.BoardModifyRequestDTO;
+import com.jeju_campking.campking.board.dto.response.BoardDetailResponseDTO;
+import com.jeju_campking.campking.board.dto.response.BoardResponseDTO;
 import com.jeju_campking.campking.board.entity.Board;
 import com.jeju_campking.campking.board.repository.BoardMapper;
 import com.jeju_campking.campking.camp.entity.Camp;
@@ -52,28 +55,50 @@ public class BoardService {
         return true;
     }
 
-    public List<Board> findAll(Page page) {
+    public BoardResponseDTO findAll(Page page) {
         log.info("boardService.findAll.info");
         List<Board> list = boardMapper.findAll(page);
-        log.info("boardService.getAllList.info {}", list);
 
-        return list;
+        int count = boardMapper.count(null);
+        log.info("boardService.getAllList.info {}", list);
+        return BoardResponseDTO.builder()
+                .count(count)
+                .pageInfo(new PageMaker(page, count))
+                .list(list)
+                .build();
+       // return list;
     }
 
-    public List<Board> findByKeyword(String keyword) {
+    public BoardResponseDTO findByKeyword(String keyword, Page page) {
         log.info("boardService/findByKeyword : {}", keyword);
 
-        List<Board> list = boardMapper.findByKeyword(keyword);
+        List<Board> list = boardMapper.findByKeyword(keyword, page);
+        int count = boardMapper.count(keyword);
 
         log.info("boardService.findByKeyword.info {}", list);
 
-        return list;
+        return BoardResponseDTO.builder()
+                .count(count)
+                .pageInfo(new PageMaker(page, count))
+                .list(list)
+                .build();
     }
 
-    public Board findOne(Long boardNumber) {
+    public BoardDetailResponseDTO detail(Long boardNumber) {
+        log.info("boardService/findOne : {}", boardNumber);
+        boardMapper.upViewCount(boardNumber);
+        BoardDetailResponseDTO board = boardMapper.findOne(boardNumber);
+
+        log.info("boardService.findOne.info {}", board);
+        return board;
+    }
+
+
+
+    public BoardDetailResponseDTO findOne(Long boardNumber) {
         log.info("boardService/findOne : {}", boardNumber);
 
-        Board board = boardMapper.findOne(boardNumber);
+        BoardDetailResponseDTO board = boardMapper.findOne(boardNumber);
         log.info("boardService.findOne.info {}", board);
 
         return board;
@@ -81,5 +106,15 @@ public class BoardService {
 
     public int getCount(String keyword) {
         return boardMapper.count(keyword);
+    }
+
+    public int recommendUp(Long boardNumber) {
+        boardMapper.upRecommendCount(boardNumber);
+        return boardMapper.recommendCount(boardNumber);
+    }
+
+    public int recommendDown(Long boardNumber) {
+        boardMapper.downRecommendCount(boardNumber);
+        return boardMapper.recommendCount(boardNumber);
     }
 }
