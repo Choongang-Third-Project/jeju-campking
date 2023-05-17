@@ -87,6 +87,7 @@ public class MemberService {
                 .memberName(member.getMemberName())
                 .memberNickname(member.getMemberNickname())
                 .memberGender(member.getMemberGender())
+                .profile(member.getProfileImage())
                 .build();
 
         // 위 정보 세션에 저장
