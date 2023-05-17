@@ -172,22 +172,8 @@
              </div>
         </div>
 
-        <div class="reply-container">
-            <div class="reply-display">
-                <div class="reply-title">
-                    <div class="reply-profile">
-                        프사
-                    </div> 
-                    <div class="reply-author">
-                        댓글작성자
-                    </div> 
-                    <div class="reply-btn-group">
-                        <button class="btn">수정</button>
-                        <button class="btn">삭제</button>
-                    </div>
-                  </div>
-                <div class="reply-text">해당 게시물은 관리자에 의해 사는 얘기에서 Tech 뉴스로 이동 되었습니다.</div>
-            </div>
+        <div class="reply-container" id="reply-box">
+            
         </div>
 
         
@@ -262,6 +248,73 @@
            
         }
 
+
+
+        // 댓글 목록 렌더링 함수
+        function renderReplyList(
+            list
+         ) {
+             console.log(list);
+            let tag = '';
+
+            if (list === null || list.length === 0) {
+                tag += "<div id='#' class='card-body'>댓글이 아직 없습니다! ㅠㅠ</div>";
+            } else {
+                for (let con of list){
+                    let {replyNumber, replyContent, replyTime, boardNumber, memberNumber, memberNickname} = con;
+                            
+                    tag+='<div class="reply-display">';       
+                    tag+='    <div class="reply-title">';
+                    tag+='<div class="reply-profile">';
+                    tag+='    프사';
+                    tag+='</div>'; 
+                    tag+='<div class="reply-author">'
+                       tag+='<span>'+memberNickname+'</span>';
+                    tag+='</div>'; 
+                    tag+='<div class="reply-btn-group">';
+                        tag+='<button class="btn">수정</button>';
+                        tag+='<button class="btn">삭제</button>';
+                    tag+='</div>';
+                  tag+='</div>';
+                tag+='<div class="reply-text">'+replyContent+'</div>';
+            tag+='</div>';
+                }
+            }
+
+
+            // 생성된 캠핑 tag 렌더링
+            document.getElementById('reply-box').innerHTML = tag;
+            //renderPage(pageInfo);
+           
+        }
+
+
+
+
+        ////http://localhost:8181/jeju-camps/notices/detail/reply/995
+        
+        // 댓글 목록 불러오기 함수 
+        function getReplyList() {
+            fetch('/jeju-camps/notices/detail/reply/' + $boardNumber)
+                .then(res => res.json())
+                .then(responseResult => {
+                    // console.log(responseResult);
+                    renderReplyList(responseResult);
+               });
+            }
+
+
+
+
+
+
+        
+        //========= 메인 실행부 =========//
+        (function() {
+             // 첫 댓글 페이지 불러오기
+             getReplyList();
+        
+        })();
 
     </script>
     

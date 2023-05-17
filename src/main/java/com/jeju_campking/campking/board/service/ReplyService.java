@@ -3,6 +3,7 @@ package com.jeju_campking.campking.board.service;
 
 import com.jeju_campking.campking.board.dto.request.ReplyModifyRequestDTO;
 import com.jeju_campking.campking.board.dto.request.ReplyWriteRequestDTO;
+import com.jeju_campking.campking.board.dto.response.ReplyResponseDTO;
 import com.jeju_campking.campking.board.entity.Reply;
 import com.jeju_campking.campking.board.repository.ReplyMapper;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +21,11 @@ import java.sql.SQLException;
 public class ReplyService {
 
     private final ReplyMapper replyMapper;
+
+
+    public List<ReplyResponseDTO> findAll(Long boardNumber) {
+        return replyMapper.findAll(boardNumber);
+    }
 
 
     public Reply write(ReplyWriteRequestDTO dto) throws SQLException {

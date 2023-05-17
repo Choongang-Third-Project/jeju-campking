@@ -1100,10 +1100,18 @@ values
 ("저랑 함께해유!499 ", "2023-04-5",14,15,19);
 
 
-// 게시판 조회수, 추천수 컬럼 추가하기 
+// 게시판 조회수, 추천수 컬럼 추가하기
 alter table tb_board add column board_view INT(6) default 0;
 alter table tb_board add column board_recommend INT(6) default 0;
 
 
-
+// 게시판 댓글 테이블
+create table tb_reply(
+	reply_number INT(10) auto_increment,
+	reply_content varchar(10) not null,
+	reply_time timestamp not null default current_timestamp,
+	member_number INT(10),
+	board_number INT(10),
+	primary key(reply_number)
+);
 

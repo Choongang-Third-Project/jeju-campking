@@ -16,7 +16,6 @@ public class Reply {
     private Long replyNumber;
     private String replyContent;
     private LocalDateTime replyTime;
-
     private Long boardNumber;
     private Long memberNumber;
 }

@@ -19,6 +19,7 @@
         <typeAlias alias="partyReply" type="com.jeju_campking.campking.party.entity.PartyReply"/>
         <typeAlias alias="partyMessage" type="com.jeju_campking.campking.party.entity.PartyMessage"/>
         <typeAlias alias="boardDetailDTO" type="com.jeju_campking.campking.board.dto.response.BoardDetailResponseDTO"/>
+        <typeAlias alias="replyDTO" type="com.jeju_campking.campking.board.dto.response.ReplyResponseDTO"/>
     </typeAliases>
 
     <mappers>
