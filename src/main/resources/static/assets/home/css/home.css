@@ -581,12 +581,44 @@ section.board-wrapper .board {
 }
 
 section.board-wrapper .sub-board {
-    /* border: 1px solid #000; */
+    border: 4px solid red;
     width: 400px;
     height: 600px;
-    padding: 20px;
+    padding: 15px;
     cursor: pointer;
 }
+
+section.board-wrapper .sub-board .rank-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+section.board-wrapper .sub-board .rank {
+    margin-left: 10px;
+    /* border: 1px solid #000; */
+    display: flex;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 700;
+
+}
+
+section.board-wrapper .sub-board .rank h4{
+    background: aqua;
+    width: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.board-wrapper .sub-board .rank .ranklist {
+    background: limegreen;
+    width: 280px;
+
+}
+
 
 section.board-wrapper .board .sub-board p {
     font-size: 3em;
@@ -598,7 +630,7 @@ section.board-wrapper .board .sub-board h2 {
 }
 
 section.board-wrapper .board .sub-board .update {
-    /* border: 1px solid #000; */
+    border: 1px solid #000;
     width: 350px;
     height: 430px;
     border-radius: 10px;
