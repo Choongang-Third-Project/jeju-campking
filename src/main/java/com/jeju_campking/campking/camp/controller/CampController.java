@@ -3,6 +3,9 @@ package com.jeju_campking.campking.camp.controller;
 import com.jeju_campking.campking.camp.dto.response.CampTypeCountResponseDTO;
 import com.jeju_campking.campking.camp.entity.Camp;
 import com.jeju_campking.campking.camp.service.CampService;
+import com.jeju_campking.campking.rank.dto.response.CampRankResponseDTO;
+import com.jeju_campking.campking.rank.dto.response.PartyListResponseDTO;
+import com.jeju_campking.campking.rank.service.RankService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +28,7 @@ import java.util.List;
 @Slf4j
 public class CampController {
     private final CampService campService;
+    private final RankService rankService;
 
 
     // 전체 캠핑장 목록조회 요청
@@ -70,15 +74,13 @@ public class CampController {
         List<Camp> byKeyword = null;
         try {
             byKeyword = campService.findByKeyword(title);
-            mv.addObject("campBoard",byKeyword.get(0));
+            mv.addObject("campBoard", byKeyword.get(0));
             return mv;
         } catch (SQLException e) {
             log.warn("/camps/all-list POST : {}", byKeyword);
             return null;
         }
     }
-
-
 
 
     @GetMapping("/test")
@@ -93,12 +95,15 @@ public class CampController {
     public String camps(Model model) {
 
         CampTypeCountResponseDTO campCount = campService.getCampCount();
+        List<CampRankResponseDTO> campRankList = rankService.getCampRankList();
+        List<PartyListResponseDTO> partyList = rankService.getPartyList();
         model.addAttribute("c", campCount);
+        model.addAttribute("campRank", campRankList);
+        model.addAttribute("partyRank", partyList);
+
 
         return "/jeju-camps";
     }
-
-
 
 
 }
