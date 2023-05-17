@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 public interface MemberMapper {
 
     // TODO : 회원가입 기능, 로그인 기능
-    boolean sign(MemberSignRequestDTO dto);
+    boolean sign(Member member);
 
     Member login(MemberLoginRequestDTO dto);
 
