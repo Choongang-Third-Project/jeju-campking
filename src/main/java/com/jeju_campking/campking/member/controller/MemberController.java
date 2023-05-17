@@ -7,16 +7,17 @@ import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
 import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
 import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.member.service.MemberService;
+import com.jeju_campking.campking.util.upload.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,8 @@ import java.sql.SQLException;
 //@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class MemberController {
 
+    @Value("${file.upload.root-path}")
+    private String rootPath;
     private final MemberService memberService;
 
     // 회원가입 양식 페이지 요청
@@ -46,34 +49,24 @@ public class MemberController {
     ) {
         log.info("/member/signup {}", dto);
 
-        // 입력값 검증
-        if (result.hasErrors()) {
-            return "redirect:/login";
-//            return ResponseEntity
-//                    .badRequest()
-//                    .body(result.toString());
+        MultipartFile profileImage = dto.getProfileImage();
+        log.info("프로필사진 이름: {}", dto.getProfileImage().getOriginalFilename());
+
+        String savePath = null;
+        if (!profileImage.isEmpty()) {
+
+            savePath = FileUtil.uploadFile(profileImage, rootPath);
         }
 
-        // 회원 가입 성공여부 검증
+        Member member = dto.toEntity();
+        member.setProfileImage(savePath);
+
         try {
-            // 회원가입 성공
-            if(memberService.sign(dto)) {
-
-               return "redirect:/login";
-//                return ResponseEntity
-//                        .ok()
-//                        .body("SUCCES156156156156S");   // jsp 파일
-            }
+            boolean flag = memberService.sign(member);
         } catch (SQLException e) {
-            // 회원가입 실패
-            log.warn("500 Status code response!! caused by : {}", e.getMessage());
-            return "redirect:/login";
-//            return ResponseEntity
-//                    .internalServerError()
-//                    .body("FAIL");
+            e.printStackTrace();
         }
 
-//        return ResponseEntity.ok().body("FAIL");
         return "redirect:/login";
     }
 
