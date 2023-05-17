@@ -91,7 +91,15 @@
     .form-group {
       font-size: 30px;     
     }
-    
+    #people_count{
+        width: 100px;
+    }
+    #enddate{
+      
+    }
+    #startdate{
+      margin-right: 30px;
+    }
 
   </style>
 <!-- 
@@ -99,7 +107,7 @@
  -->
   <body>
 <div class="container">
-  <h2>캠퍼 모집 작성</h2>
+  <h2>🌲캠퍼 모집 작성🌲</h2>
   <form action="write.jsp" method="post">
     <div class="total">
       <label for="title">제목</label>
@@ -117,7 +125,7 @@
     <div class="dropdown">
       <button class="dropbtn">
         <span class="dropbtn_icon">more_horiz</span>
-        <span class="dropbtn_content">Select a menu...</span>
+        <span class="dropbtn_content">캠핑장 선택</span>
         <span class="dropbtn_click" style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;"
           onclick="dropdown()">arrow_drop_down</span>
       </button>
@@ -134,6 +142,26 @@
         <div class="fastfood" onclick="showMenu(this.innerText)">10</div>
       </div>
     </div>
+    <br>
+    <label for="people">파티 정원</label>
+    <input type="text" class="form-control" id="people_count"
+    placeholder="2명~10명" name="writer">
+    <br>
+    <label for="date" id="startdate">시작날짜를 선택하세요:
+      <input type="date"
+             id="date"
+             max="2025-12-31"
+             min="2000-01-01"
+             value="2023-05-21">
+    </label>
+    <label for="date" id="enddate">마감날짜를 선택하세요:
+      <input type="date"
+             id="date"
+             max="2025-12-31"
+             min="2000-01-01"
+             value="2023-05-21">
+    </label>
+
     <div class="form-group">
    <label for="content">내용</label>
 <!--  여러줄의 데이터를 입력하고 하고자 할때 textarea 태그를 사용한다. -->
@@ -141,11 +169,6 @@
    <textarea class="form-control" rows="5" id="content"
     name="content" placeholder="내용 작성"></textarea>
  </div>
-    <div class="form-group">
-      <label for="writer">작성자</label>
-      <input type="text" class="form-control" id="writer"
-       placeholder="작성자(2자-10자)" name="writer">
-    </div>
     <button type="submit" class="btn btn-default">등록</button>
   </form>
 </div>
