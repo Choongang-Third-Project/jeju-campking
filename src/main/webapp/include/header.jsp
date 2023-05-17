@@ -248,10 +248,10 @@
                                 <div class="profile dropdown">
                                     <button class="smbtn">
                                         <div class="profile-box">
-                                            <c:if test="${login == null}">
+                                            <c:if test="${login == null || login.profile == null}">
                                                 <img src="/assets/header/img/soongu.jpg" alt="미로그인">
                                             </c:if>
-                                            <c:if test="${login != null}">
+                                            <c:if test="${login != null && login.profile != null}">
                                                 <img src="/local${login.profile}" alt="프사">
                                             </c:if>
                                         </div>

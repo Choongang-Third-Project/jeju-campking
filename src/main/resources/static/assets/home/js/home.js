@@ -77,3 +77,10 @@ function showNextBanner() {
 
 
 setInterval(showNextBanner, 5000);
+
+
+// 금주의 캠프킹 게시글 번호 rank.campNumber, 캠프이름 rank.campName
+// 같이 갈사람 게시글 번호 rank.partyNumber, 게시글제목 rank.partyTitle
+const rank = '${rank.campNumber}'
+
+const URL = ''
