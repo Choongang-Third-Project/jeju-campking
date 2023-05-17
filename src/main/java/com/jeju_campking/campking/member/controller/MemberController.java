@@ -7,6 +7,7 @@ import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
 import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
 import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.member.service.MemberService;
+import com.jeju_campking.campking.util.LoginUtil;
 import com.jeju_campking.campking.util.upload.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.net.http.HttpResponse;
 import java.sql.SQLException;
 
 @Controller
@@ -120,6 +124,22 @@ public class MemberController {
 
         boolean flag = memberService.checkSignUpValue(type, keyword);
         return ResponseEntity.ok().body(flag);
+    }
+
+
+    // 로그아웃 요청 처리
+    @GetMapping("logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+
+        HttpSession session = request.getSession();
+
+        // 로그인 중인지 확인
+        if (LoginUtil.isLogin(session)) {
+            session.removeAttribute(LoginUtil.LOGIN_KEY);
+            session.invalidate();
+            return "redirect:/";
+        }
+        return "redirect:/";
     }
 
 

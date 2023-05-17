@@ -105,19 +105,17 @@ body {
     margin-right: 15px;
     /* border: 1px solid orange; */
     position: relative;
-    top: -8px;
+    top: -5px;
 }
 
 .inner-header .tnb li:nth-child(3) {
     margin-top: 15px;
     width: 50px;
     height: 50px;
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* border: 4px solid red; */
 }
 
-.inner-header .tnb li:nth-child(3) {
-    width: 100%;
-}
 
 .inner-header .tnb li {
     display: inline-block;
@@ -125,19 +123,11 @@ body {
     /* background: lime; */
 }
 
-.inner-header .tnb .profile-box {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-
 .inner-header .tnb li:nth-child(4) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* border: 1px solid orange; */
+    /* border: 4px solid blue; */
     margin-top: -20px;
     font-size: 15px;
 }

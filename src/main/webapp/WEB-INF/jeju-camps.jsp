@@ -60,7 +60,7 @@
                                         침입자
                                     </c:if>
                                     <c:if test="${login != null}">
-                                        ${sessionScope.login.memberNickname}님
+                                        ${login.memberNickname}님
                                     </c:if>
                                 </p>
                             </li>
@@ -83,7 +83,7 @@
                                     <button class="smbtn">
                                         <div class="profile-box">
                                             <c:if test="${login == null}">
-                                                <img src="/assets/header/img/soongu.png" alt="미로그인">
+                                                <img src="/assets/header/img/soongu.jpg" alt="미로그인">
                                             </c:if>
                                             <c:if test="${login != null}">
                                                 <img src="/local${login.profile}" alt="프사">
@@ -92,7 +92,7 @@
                                     </button>
                                     <div id="drop-content">
                                         <a href='#'>마이페이지</a>
-                                        <a href='#'>로그아웃</a>
+                                        <a href='/member/logout'>로그아웃</a>
                                     </div>
                                 </div>
                             </li>
