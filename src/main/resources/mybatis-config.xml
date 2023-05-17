@@ -24,6 +24,8 @@
         <typeAlias alias="campRank" type="com.jeju_campking.campking.rank.dto.response.CampRankResponseDTO"/>
         <typeAlias alias="partyRank" type="com.jeju_campking.campking.rank.dto.response.PartyListResponseDTO"/>
 
+        <typeAlias alias="boardDetailDTO" type="com.jeju_campking.campking.board.dto.response.BoardDetailResponseDTO"/>
+        <typeAlias alias="replyDTO" type="com.jeju_campking.campking.board.dto.response.ReplyResponseDTO"/>
     </typeAliases>
 
     <mappers>

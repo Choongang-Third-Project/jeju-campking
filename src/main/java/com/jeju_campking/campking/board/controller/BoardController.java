@@ -1,8 +1,11 @@
 package com.jeju_campking.campking.board.controller;
 
 
+import com.jeju_campking.campking.board.dto.page.Page;
 import com.jeju_campking.campking.board.dto.request.BoardModifyRequestDTO;
 import com.jeju_campking.campking.board.dto.request.BoardWriteRequestDTO;
+import com.jeju_campking.campking.board.dto.response.BoardDetailResponseDTO;
+import com.jeju_campking.campking.board.dto.response.BoardResponseDTO;
 import com.jeju_campking.campking.board.entity.Board;
 import com.jeju_campking.campking.board.service.BoardService;
 import com.jeju_campking.campking.camp.entity.Camp;
@@ -10,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,33 +39,52 @@ public class BoardController {
     // URL : /boards
     @ResponseBody
     @GetMapping("/all")
-    public ResponseEntity<?> findAll(){
+    public ResponseEntity<?> findAll(Page page){
         log.info("/boards : findAll() GET!!");
-        List<Board> list = boardService.findAll();
+
+//        log.info("{} {}", page.getPageNo(), page.getAmount());
+        BoardResponseDTO list = boardService.findAll(page);
+//        List<Board> list = boardService.findAll(page);
         return ResponseEntity.ok().body(list);
+    }
+
+    // 공지사항 게시물 합계
+    @ResponseBody
+    @GetMapping("/count")
+    public ResponseEntity<?> count(String keyword){
+        int count = boardService.getCount(keyword);
+        return ResponseEntity.ok().body(count);
     }
 
 
     //공지사항 찾기
-    @GetMapping("/{keyword}")
+    @GetMapping("/{keyword}/page/{pageNo}")
     @ResponseBody
-    public ResponseEntity<?> findByKeyword(@PathVariable(required = false) String keyword) {
+    public ResponseEntity<?> findByKeyword(@PathVariable(required = false) String keyword, @PathVariable int pageNo) {
         log.info("/camps/address : GET!! {} ", keyword);
 
-        List<Board> byKeyword = null;
-        byKeyword = boardService.findByKeyword(keyword);
+        Page page = new Page();
+        page.setPageNo(pageNo);
+        page.setAmount(10);
 
-        return ResponseEntity.ok().body(byKeyword);
+//        List<Board> byKeyword = null;
+//        byKeyword = boardService.findByKeyword(keyword);
+
+        BoardResponseDTO list = boardService.findByKeyword(keyword, page);
+
+        return ResponseEntity.ok().body(list);
     }
 
     // /boards/detail?boardNumber=1  게시물 한개 조회
     @GetMapping("/details")
-    public String findOne(long boardNumber, Model model){
+        public String findOne(long boardNumber, Model model){
         log.info("/boards : findOne() GET!!");
-        Board board = boardService.findOne(boardNumber);
+        BoardDetailResponseDTO board = boardService.detail(boardNumber);
         model.addAttribute("board", board);
         return "/board/detail";
     }
+
+
 
     // 글 작성 페이지
     @GetMapping("/write")
@@ -121,6 +144,15 @@ public class BoardController {
         }
     }
 
+
+    @GetMapping("/modify")
+    public String modify(Long boardNumber, Model model){
+        log.info("/jeju-camps/notice : modify() GET!!");
+        BoardDetailResponseDTO board = boardService.findOne(boardNumber);
+        model.addAttribute("board", board);
+        return "/board/modify";
+    }
+
     //    @PostMapping("/modify")
     @RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH})
     public ResponseEntity<?> modify(
@@ -153,5 +185,31 @@ public class BoardController {
                     .body(e.getMessage());
         }
     }
+
+
+    // 게시물 추천 상승 기능
+    // http://localhost:8181/jeju-camps/notices/up/995
+    @ResponseBody
+    @PostMapping("/up/{boardNumber}")
+    public ResponseEntity<?> recommendUp(@PathVariable Long boardNumber){
+        log.info("/up {}", boardNumber);
+        // 현재 추천 게시물의 추천이 상승되면 비동기적으로 업데이트됨
+        // 그 추천값을 select로 가지고 와서 ResponseEntity로 담아서 줌
+        int recommend = boardService.recommendUp(boardNumber);
+        return ResponseEntity.ok().body(recommend);
+    }
+    // http://localhost:8181/jeju-camps/notices/down/995
+    // 게시물 추천 다운 기능
+    @ResponseBody
+    @PostMapping("/down/{boardNumber}")
+    public ResponseEntity<?> recommendDown(@PathVariable Long boardNumber){
+        log.info("/up {}", boardNumber);
+        // 현재 추천 게시물의 추천이 하강되면 비동기적으로 업데이트됨
+        // 그 추천값을 select로 가지고 와서 ResponseEntity로 담아서 줌
+        int recommend = boardService.recommendDown(boardNumber);
+        return ResponseEntity.ok().body(recommend);
+    }
+
+
 
 }
