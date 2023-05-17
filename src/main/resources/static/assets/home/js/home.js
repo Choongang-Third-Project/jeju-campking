@@ -79,8 +79,20 @@ function showNextBanner() {
 setInterval(showNextBanner, 5000);
 
 
-// 금주의 캠프킹 게시글 번호 rank.campNumber, 캠프이름 rank.campName
-// 같이 갈사람 게시글 번호 rank.partyNumber, 게시글제목 rank.partyTitle
-const rank = '${rank.campNumber}'
+// 순위에 따라 텍스트 색상 변경
+const rank1 = document.getElementById('rank1');
+const rank2 = document.getElementById('rank2');
+const rank3 = document.getElementById('rank3');
 
-const URL = ''
+rank1.style.color = 'red';
+rank2.style.color = 'orange';
+rank3.style.color = 'green';
+
+// campName에도 순위에 따라 텍스트 색상 변경
+const campName1 = document.getElementById('campName1');
+const campName2 = document.getElementById('campName2');
+const campName3 = document.getElementById('campName3');
+
+campName1.style.color = 'red';
+campName2.style.color = 'orange';
+campName3.style.color = 'green';
