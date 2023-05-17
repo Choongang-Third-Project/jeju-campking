@@ -1,8 +1,8 @@
 package com.jeju_campking.campking.mypage.repository;
 
+import com.jeju_campking.campking.mypage.dto.response.MypagePartyMessageResponseDTO;
 import com.jeju_campking.campking.party.entity.Party;
 import com.jeju_campking.campking.party.entity.PartyMessage;
-import com.sun.source.tree.BinaryTree;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ class MypageMapperTest {
         // given
         Long memberNumber = 14L;
         // when
-        List<PartyMessage> receiveMessage = mypageMapper.findReceiveMessage(memberNumber);
+        List<MypagePartyMessageResponseDTO> receiveMessage = mypageMapper.findReceiveMessage(memberNumber);
         // then
         assertEquals(22, receiveMessage.size());
     }
@@ -36,7 +36,7 @@ class MypageMapperTest {
         // given
         Long memberNumber = 14L;
         // when
-        List<PartyMessage> sendMessage = mypageMapper.findSendMessage(memberNumber);
+        List<MypagePartyMessageResponseDTO> sendMessage = mypageMapper.findSendMessage(memberNumber);
         // then
         assertEquals(22, sendMessage.size());
     }

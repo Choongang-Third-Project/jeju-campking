@@ -2,6 +2,7 @@ package com.jeju_campking.campking.mypage.service;
 
 import com.jeju_campking.campking.mypage.dto.response.MypageMemberResponseDTO;
 import com.jeju_campking.campking.mypage.dto.response.MypagePartyResponseDTO;
+import com.jeju_campking.campking.mypage.dto.response.MypagePartyMessageResponseDTO;
 import com.jeju_campking.campking.mypage.repository.MypageMapper;
 import com.jeju_campking.campking.party.entity.PartyMessage;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class MypageService {
     private final MypageMapper mypageMapper;
 
     public MypageMemberResponseDTO findMember(Long memberNumber) {
-        MypageMemberResponseDTO memberInfo = mypageMapper.findMemberInfo(memberNumber);
+        MypageMemberResponseDTO memberInfo = mypageMapper.findMember(memberNumber);
         log.info("MypageService.findMember : {}", memberInfo);
         return memberInfo;
     }
@@ -36,17 +37,17 @@ public class MypageService {
         return partyList;
     }
 
-    public List<PartyMessage> findSendMessage(Long memberNumber) {
-        List<PartyMessage> sendMessageList = mypageMapper.findReceiveMessage(memberNumber);
+    public List<MypagePartyMessageResponseDTO> findSendMessage(Long memberNumber) {
+        List<MypagePartyMessageResponseDTO> sendMessageList = mypageMapper.findSendMessage(memberNumber);
 
         log.info("MypageService.findSendMessage : {}");
         return sendMessageList;
     }
 
-    public List<PartyMessage> findReceiveMessage(Long memberNumber) {
-        List<PartyMessage> sendMessageList = mypageMapper.findSendMessage(memberNumber);
+    public List<MypagePartyMessageResponseDTO> findReceiveMessage(Long memberNumber) {
+        List<MypagePartyMessageResponseDTO> receiveMessageList = mypageMapper.findReceiveMessage(memberNumber);
 
         log.info("MypageService.findReceiveMessage : {}");
-        return sendMessageList;
+        return receiveMessageList;
     }
 }

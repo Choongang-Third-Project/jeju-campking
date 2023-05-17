@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jeju_campking.campking.mypage.repository.MypageMapper">
-    <select id="findMemberInfo" resultType="mypageMemberDTO">
+    <select id="findMember" resultType="mypageMemberDTO">
         SELECT member_number, member_nickname
         FROM TB_MEMBER
         WHERE member_number = #{memberNumber}
@@ -24,29 +24,30 @@
         WHERE member_number = #{memberNumber};
     </select>
 
-    <select id="findSendMessage" resultType="partyMessage">
+    <select id="findSendMessage" resultType="partyPartyMessageDTO">
         SELECT
-        party_message_number,
-        party_message_content,
-        party_message_time,
-        party_message_sender,
-        party_message_recipient,
-        party_number
-        FROM TB_PARTY_MESSAGE
+            P.party_message_number,
+            P.party_message_content,
+            P.party_message_time,
+            P.party_number,
+            M.member_nickname
+        FROM TB_PARTY_MESSAGE P
+        JOIN tb_member M
+        ON P.party_message_sender = M.member_number
         WHERE party_message_sender = #{memberNumber}
     </select>
 
-    <select id="findReceiveMessage" resultType="partyMessage">
+    <select id="findReceiveMessage" resultType="partyPartyMessageDTO">
         SELECT
-        party_message_number,
-        party_message_content,
-        party_message_time,
-        party_message_sender,
-        party_message_recipient,
-        party_number
-        FROM TB_PARTY_MESSAGE
+            P.party_message_number,
+            P.party_message_content,
+            P.party_message_time,
+            P.party_number,
+            M.member_nickname
+        FROM TB_PARTY_MESSAGE P
+        JOIN tb_member M
+        ON P.party_message_sender = M.member_number
         WHERE party_message_recipient = #{memberNumber}
     </select>
-
 
 </mapper>
