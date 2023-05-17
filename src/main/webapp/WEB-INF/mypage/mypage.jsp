@@ -41,16 +41,18 @@
             <div class="mp-main-content mp-main">
                 <!-- 내가 쓴 글 -->
                 <div class="mp-main-content mp-board">
-                    <div class="mp-board-title">내 게시글</div>
+                    <div class="mp-board-title">
+                        내 게시글
+                    </div>
                     <div class="overflow-x-auto w-full mp-board-list">
                         <table class="table w-full mp-board-li">
-                            <thead>
+                            <thead class="mp-board-header">
                             <tr>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" class="checkbox mp-board-check-all"/>
-                                    </label>
-                                </th>
+<%--                                <th>--%>
+<%--                                    <label>--%>
+<%--                                        <input type="checkbox" class="checkbox mp-board-check-all"/>--%>
+<%--                                    </label>--%>
+<%--                                </th>--%>
                                 <th>파티 번호</th>
                                 <th><a>제목</a></th>
                                 <th>작성일자</th>
@@ -77,11 +79,11 @@
                         <table class="table w-full mp-board-li">
                             <thead>
                             <tr>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" class="checkbox mp-msg-check-all"/>
-                                    </label>
-                                </th>
+<%--                                <th colspan='2'>--%>
+<%--&lt;%&ndash;                                    <label>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <input type="checkbox" class="checkbox mp-msg-check-all"/>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </label>&ndash;%&gt;--%>
+<%--                                </th>--%>
                                 <th>파티번호</th>
                                 <th id="mp-msg-person">보낸사람</th>
                                 <th>쪽지내용</th>
@@ -104,6 +106,10 @@
 
         <%---------------------- 스크립트 ------------------------%>
         <script>
+
+
+
+            /* ------------------- 게시글, 쪽지함 로드 -------------------- */
             // 받은 쪽지함 버튼
             const $receiveMessageBtn = document.querySelector('.mp-msg-receive-btn');
             // 보낸 쪽지함 버튼
@@ -129,15 +135,15 @@
 
                         const {partyNumber, partyTitle, partyWriteTime} = response;
                         tag += `<tr>
-                                    <th>
-                                        <label>
-                                            <input type="checkbox" class="checkbox mp-board-check"/>
-                                        </label>
-                                    </th>
+<!--                                    <th>-->
+<!--                                        <label>-->
+<!--                                            <input type="checkbox" class="checkbox mp-board-check"/>-->
+<!--                                        </label>-->
+<!--                                    </th>-->
                                     <td>
-                                        <div class="flex items-center space-x-3">
+                                        <div class="space-x-3">
                                             <div>
-                                                <div class="font-bold">\${partyNumber}</div>
+                                                <div class="font-bold party-num">\${partyNumber}</div>
                                             </div>
                                         </div>
                                     </td>
@@ -148,6 +154,7 @@
                                     </td>
                                     <td>\${partyWriteTime}</td>
                                     <th>
+                                        <button class="btn btn-xs delete-btn">삭제</button>
                                     </th>
                                 </tr>`
                     }
@@ -193,14 +200,14 @@
                     for(let res of responseResult) {
                         // console.log(res);
                         contentTag += `<tr>
-                                    <th>
-                                        <label>
-                                            <input type="checkbox" class="checkbox mp-msg-check"/>
-                                        </label>
-                                    </th>
+<!--                                    <th>-->
+<!--                                        <label>-->
+<!--                                            <input type="checkbox" class="checkbox mp-msg-check"/>-->
+<!--                                        </label>-->
+<!--                                    </th>-->
                                     <td><b>\${res.partyNumber}</b></td>
                                     <td>
-                                        <div class="flex items-center space-x-3">
+                                        <div class="space-x-3">
                                             <div>
                                                 <div class="font-bold"></div>
                                                 <div class="text-sm opacity-50">\${res.memberNickname}</div>
@@ -217,7 +224,7 @@
                                     </th>
                                 </tr>`;
                     }
-                    console.log('tag : ' + contentTag);
+                    // console.log('tag : ' + contentTag);
                     MessageContent.innerHTML = contentTag;
                 }
             }
@@ -233,14 +240,14 @@
                     for(let res of responseResult) {
                         // console.log(res);
                         contentTag += `<tr>
-                                    <th>
-                                        <label>
-                                            <input type="checkbox" class="checkbox mp-msg-check"/>
-                                        </label>
-                                    </th>
+<!--                                    <th>-->
+<!--                                        <label>-->
+<!--                                            <input type="checkbox" class="checkbox mp-msg-check"/>-->
+<!--                                        </label>-->
+<!--                                    </th>-->
                                     <td><b>\${res.partyNumber}</b></td>
                                     <td>
-                                        <div class="flex items-center space-x-3">
+                                        <div class="space-x-3">
                                             <div>
                                                 <div class="font-bold"></div>
                                                 <div class="text-sm opacity-50">\${res.memberNickname}</div>
@@ -258,7 +265,7 @@
                                     </th>
                                 </tr>`;
                     }
-                    console.log('tag : ' + contentTag);
+                    // console.log('tag : ' + contentTag);
                     MessageContent.innerHTML = contentTag;
                 }
             }
@@ -267,7 +274,7 @@
                 fetch('/jeju-camps/api/v1/mypages/receive/' + memberNum)
                     .then(res => res.json())
                     .then(responseResult => {
-                        console.log(responseResult);
+                        // console.log(responseResult);
                         renderReceiveMessageList(responseResult);
                     })
             }
@@ -286,7 +293,7 @@
                 fetch('/jeju-camps/api/v1/mypages/send/' + memberNum)
                     .then(res => res.json())
                     .then(responseResult => {
-                        console.log(responseResult);
+                        // console.log(responseResult);
                         renderSendMessageList(responseResult);
                     })
             }

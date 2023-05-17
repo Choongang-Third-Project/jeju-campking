@@ -90,3 +90,7 @@
 .mp-board-contents {
     background-color: orange;
 }
+
+th, td, .party-num {
+    text-align: center;
+}

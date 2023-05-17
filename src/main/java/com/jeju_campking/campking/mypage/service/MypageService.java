@@ -4,7 +4,7 @@ import com.jeju_campking.campking.mypage.dto.response.MypageMemberResponseDTO;
 import com.jeju_campking.campking.mypage.dto.response.MypagePartyResponseDTO;
 import com.jeju_campking.campking.mypage.dto.response.MypagePartyMessageResponseDTO;
 import com.jeju_campking.campking.mypage.repository.MypageMapper;
-import com.jeju_campking.campking.party.entity.PartyMessage;
+import com.jeju_campking.campking.party.entity.Party;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -49,5 +49,17 @@ public class MypageService {
 
         log.info("MypageService.findReceiveMessage : {}");
         return receiveMessageList;
+    }
+
+    public boolean removeParty(Long partyNumber) {
+        log.info("MypageService.removeParty : {}", partyNumber);
+        boolean isDelete = mypageMapper.removeParty(partyNumber);
+
+        if (!isDelete) {
+            log.warn("mypage.service.removeParty WARN : {}", partyNumber);
+            return false;
+        }
+
+        return true;
     }
 }

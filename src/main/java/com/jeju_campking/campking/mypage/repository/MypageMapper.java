@@ -19,4 +19,6 @@ public interface MypageMapper {
     List<MypagePartyMessageResponseDTO> findSendMessage(Long memberNumber); // 내가 보낸 메시지 보기
 
     List<MypagePartyMessageResponseDTO> findReceiveMessage(Long memberNumber); // 내가 받은 메시지 보기
+
+    boolean removeParty(Long partyNumber);
 }

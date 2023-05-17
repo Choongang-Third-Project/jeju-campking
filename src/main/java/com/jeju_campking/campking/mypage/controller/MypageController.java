@@ -8,7 +8,9 @@ import com.jeju_campking.campking.party.entity.PartyMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -46,6 +48,21 @@ public class MypageController {
         log.info("mypage sendMessageList : {}", receiveMessageList);
         return ResponseEntity.ok().body(receiveMessageList);
     }
+
+    @DeleteMapping("/party/delete/{partyNumber}")
+    public ModelAndView removeParty(
+           @PathVariable Long partyNumber,
+           Long memberNumber
+    ) {
+        log.info("mypage removeParty : partyNum = {}", partyNumber);
+        boolean isDelete = mypageService.removeParty(partyNumber);
+        return redirectPartyList(memberNumber);
+    }
+
+    private ModelAndView redirectPartyList(Long memberNumber) {
+        return new ModelAndView("redirect:/jeju-camps/mypage/party/" + memberNumber);
+    }
+
 /*    @GetMapping("/asdfadsf")
     public ModelAndView test() {
         ModelAndView mv = new ModelAndView();

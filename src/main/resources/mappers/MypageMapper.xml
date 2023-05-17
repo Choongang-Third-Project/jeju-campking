@@ -50,4 +50,9 @@
         WHERE party_message_recipient = #{memberNumber}
     </select>
 
+    <delete id="removeParty">
+        DELETE FROM TB_PARTY
+        WHERE party_number = #{partyNumber}
+    </delete>
+
 </mapper>
