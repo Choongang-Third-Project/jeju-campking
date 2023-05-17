@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeju_campking.campking.rank.repository.RankMapper">
+
+    <select id="getCampRankList" resultType="campRank">
+        SELECT
+        C.camp_number
+        ,C.camp_name
+        FROM TB_CAMP C
+        JOIN TB_PARTY P
+        ON C.camp_number = P.camp_number
+        GROUP BY P.camp_number
+        ORDER BY count(*) DESC, C.camp_name
+        LIMIT 10
+    </select>
+
+    <select id="getPartyList" resultType="partyRank">
+        SELECT * FROM TB_PARTY
+        WHERE DATEDIFF(party_start_date, now()) > 0
+        ORDER BY party_start_date
+        LIMIT 10
+    </select>
+
+</mapper>
