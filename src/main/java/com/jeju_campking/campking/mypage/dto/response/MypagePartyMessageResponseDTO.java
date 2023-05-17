@@ -1,5 +1,6 @@
 package com.jeju_campking.campking.mypage.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class MypagePartyMessageResponseDTO {
 
     private Long partyMessageNumber;
     private String partyMessageContent;
+    @JsonFormat(pattern = "yyyy-MM-dd  HH:mm:ss")
     private LocalDateTime partyMessageTime;
     private Long partyNumber;
     private String memberNickname;

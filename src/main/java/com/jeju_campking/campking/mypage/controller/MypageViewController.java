@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/*
+    데이터 전송없이 마이페이지 화면만 띄워주는 용도의 컨트롤러입니다.
+ */
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/jeju-camps/mypage")
@@ -20,8 +24,12 @@ public class MypageViewController {
 
     @GetMapping("/{memberNumber}")
     public String findMember(@PathVariable Long memberNumber) {
-//        MypageMemberResponseDTO member = mypageService.findMember(memberNumber);
         return "mypage/mypage";
+    }
+
+    @GetMapping("/update/{memberNumber}")
+    public String updateMember(@PathVariable Long memberNumber) {
+        return "mypage/update";
     }
 }
 

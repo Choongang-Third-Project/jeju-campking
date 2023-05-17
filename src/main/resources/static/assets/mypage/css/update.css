@@ -1,0 +1,17 @@
+.mp-wrap {
+    background: url("../img/mypage.jpg") no-repeat center / cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.mp-box {
+    background-color: #fff;
+    width: 1100px;
+    height: 800px;
+    margin: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

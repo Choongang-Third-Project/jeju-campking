@@ -21,7 +21,7 @@ public class MypageService {
 
     public MypageMemberResponseDTO findMember(Long memberNumber) {
         MypageMemberResponseDTO memberInfo = mypageMapper.findMember(memberNumber);
-        log.info("MypageService.findMember : {}", memberInfo);
+        log.info("MypageService findMember : {}", memberInfo);
         return memberInfo;
     }
 
@@ -31,7 +31,7 @@ public class MypageService {
                         .map(party -> new MypagePartyResponseDTO(party))
                         .collect(Collectors.toList());
 
-        log.info("MypageService.findBoard : {}", memberNumber);
+        log.info("MypageService findBoard : {}", memberNumber);
         log.info("party : {}", partyList);
 
         return partyList;
@@ -40,14 +40,14 @@ public class MypageService {
     public List<MypagePartyMessageResponseDTO> findSendMessage(Long memberNumber) {
         List<MypagePartyMessageResponseDTO> sendMessageList = mypageMapper.findSendMessage(memberNumber);
 
-        log.info("MypageService.findSendMessage : {}");
+        log.info("MypageService findSendMessage : {}");
         return sendMessageList;
     }
 
     public List<MypagePartyMessageResponseDTO> findReceiveMessage(Long memberNumber) {
         List<MypagePartyMessageResponseDTO> receiveMessageList = mypageMapper.findReceiveMessage(memberNumber);
 
-        log.info("MypageService.findReceiveMessage : {}");
+        log.info("MypageService findReceiveMessage : {}");
         return receiveMessageList;
     }
 
@@ -56,7 +56,7 @@ public class MypageService {
         boolean isDelete = mypageMapper.removeParty(partyNumber);
 
         if (!isDelete) {
-            log.warn("mypage.service.removeParty WARN : {}", partyNumber);
+            log.warn("MypageService removeParty WARN : {}", partyNumber);
             return false;
         }
 

@@ -23,29 +23,37 @@ public class MypageController {
     private final MypageService mypageService;
 
     @GetMapping("/{memberNumber}")
-    public ResponseEntity<?> findMember(@PathVariable Long memberNumber) {
+    public ResponseEntity<?> findMember(
+            @PathVariable Long memberNumber
+    ) {
         MypageMemberResponseDTO member = mypageService.findMember(memberNumber);
         log.info("MypageController findMember : {}", member);
         return ResponseEntity.ok().body(member);
     }
 
     @GetMapping("/party/{memberNumber}")
-    public ResponseEntity<?> findParty(@PathVariable Long memberNumber) {
+    public ResponseEntity<?> findParty(
+            @PathVariable Long memberNumber
+    ) {
         List<MypagePartyResponseDTO> partyList = mypageService.findParty(memberNumber);
-        log.info("mypage partyList ; {}", partyList);
+        log.info("MypageController partyList ; {}", partyList);
         return ResponseEntity.ok().body(partyList);
     }
 
     @GetMapping("/send/{memberNumber}")
-    public ResponseEntity<?> findSendMessage(@PathVariable Long memberNumber) {
+    public ResponseEntity<?> findSendMessage(
+            @PathVariable Long memberNumber
+    ) {
         List<MypagePartyMessageResponseDTO> sendMessageList = mypageService.findSendMessage(memberNumber);
-        log.info("mypage sendMessageList : {}", sendMessageList);
+        log.info("MypageController sendMessageList : {}", sendMessageList);
         return ResponseEntity.ok().body(sendMessageList);
     }
     @GetMapping("/receive/{memberNumber}")
-    public ResponseEntity<?> findReceiveMessage(@PathVariable Long memberNumber) {
+    public ResponseEntity<?> findReceiveMessage(
+            @PathVariable Long memberNumber
+    ) {
         List<MypagePartyMessageResponseDTO> receiveMessageList = mypageService.findReceiveMessage(memberNumber);
-        log.info("mypage sendMessageList : {}", receiveMessageList);
+        log.info("MypageController sendMessageList : {}", receiveMessageList);
         return ResponseEntity.ok().body(receiveMessageList);
     }
 
@@ -54,9 +62,8 @@ public class MypageController {
            @PathVariable Long partyNumber,
            @PathVariable Long memberNumber
     ) {
-        log.info("mypage removeParty : partyNum = {}", partyNumber);
+        log.info("MypageController removeParty : partyNum = {}", partyNumber);
         boolean isDelete = mypageService.removeParty(partyNumber);
-//        return redirectPartyList(memberNumber);
         return findParty(memberNumber);
     }
 

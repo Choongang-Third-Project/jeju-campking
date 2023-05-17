@@ -10,8 +10,13 @@
     <title>마이페이지</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css"/>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css"/>
-    <!--    css -->
+    <!-- css -->
     <link rel="stylesheet" href="/assets/mypage/css/mypage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <%-- js --%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 <body>
 <div class="mp-wrap">
@@ -25,8 +30,8 @@
         <div class="mp-info">
             <div class="mp-info-text">
                 <div class="mp-info-content mp-info-profile w-24 mask mask-squircle">
-                    <!-- 프로필 사진 -->
-                    <img src="../../../resources/static/assets/mypage/img/profile.png"/>
+                    <%-- 프로필사진 경로 추가해야합니다. --%>
+<%--                    <img src="/local${login.profile}"/>--%>
                 </div>
                 <div class="mp-info-content"><span class="mp-info-name"></span> 님</div>
                 <div class="mp-info-content mp-info-nickname">일반회원</div>
@@ -106,7 +111,23 @@
 
         <%---------------------- 스크립트 ------------------------%>
         <script>
-
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "100",
+                "hideDuration": "1000",
+                "timeOut": "1500",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
             /* ------------------- 게시글, 쪽지함 로드 -------------------- */
             // 받은 쪽지함 버튼
             const $receiveMessageBtn = document.querySelector('.mp-msg-receive-btn');
@@ -117,9 +138,12 @@
             const memberNum = '${memberNumber}';
 
             // 좌측 닉네임, 회원등급, 프로필사진 렌더링 함수
-            function renderMypageInfo({memberNumber, memberNickname}) {
+            function renderMypageInfo({memberNumber, memberNickname, profile}) {
+                let tag = '';
+                <%--tag += `<img src="/local${login.profile}"/>`--%>
                 // console.log(memberNickname);
                 document.querySelector('.mp-info-name').textContent = memberNickname;
+                document.querySelector('.mp-info-profile').innerHTML = tag;
             }
 
             // 작성 파티게시글 목록 렌더링 함수
@@ -170,6 +194,7 @@
                         fetch('/jeju-camps/api/v1/mypages/party/delete/' + deleteParty + `/` + memberNum)
                             .then(res => res.json())
                             .then(responseResult => {
+                                toastr.success('삭제되었습니다.');
                                renderPartyList(responseResult);
                             });
                     };
