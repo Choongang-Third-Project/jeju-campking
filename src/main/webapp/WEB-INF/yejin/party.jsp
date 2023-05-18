@@ -6,12 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" href="/main/resources/static/assets/party/party.css">
-    <link rel="stylesheet" href="/main/resources/static/assets/party/common.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="/assets/include/common.css">
+    <link rel="stylesheet" href="/assets/party/css/susu.css">
     <style>
 
     </style>
@@ -59,15 +59,11 @@
         </section>
     </c:forEach>
 </body>
+
+
 <script>
     // 댓글 목록 렌더링 함수
-    function renderReplyList({
-        allBySort
-    }) {
-
-        // 총 댓글 수 렌더링
-        document.renderPartyList('replyCnt').textContent = count;
-
+    function renderCampList({ allBySort }) {
         let tag = '';
 
         if (allBySort === null || allBySort.length === 0) {
@@ -75,12 +71,11 @@
 
         } else {
             for (let party of allBySort) {
-
                 const {
                     partyNumber,
                     memberNickName,
                     partyTitle,
-                    parrtyContent,
+                    partyContent, // 수정: parrtyContent -> partyContent
                     partyStartDate,
                     partyEndDate,
                     campTypeNormal,
@@ -93,53 +88,57 @@
                     campNumber
                 } = party;
 
-                tag += "<li>"
-                    +"<div class='item_card clearfix'>"
-                    +   "<div class='img-box'>";
+                tag += "<li>" +
+                    "<div class='item_card clearfix'>" +
+                    "<div class='img-box'>";
 
-                if(campTypeNormal === "nomarl"){
+                if (campTypeNormal === "nomarl") {
                     tag += "<img src='/assets/home/img/sm_normal.jpg' alt='normal'>";
-                } else if(campTypeGlamping === "glamping"){
+                } else if (campTypeGlamping === "glamping") {
                     tag += "<img src='/assets/home/img/sm_glamping.jpg' alt='glamping'>";
-                } else if(campTypeCaravan === "caraven"){
-                    tag += "<img src='/assets/home/img/sm_caraban.jpg' alt='caraven'>";
-                }else{
+                } else if (campTypeCaravan === "caravan") {
+                    tag += "<img src='/assets/home/img/sm_caraban.jpg' alt='caravan'>";
+                } else {
                     tag += "<img src='/assets/home/img/sm_car.jpg' alt='car'>";
                 }
-                tag +="</div>"
-                    +    "<div class='small_title'>"
-                    +        "<div>"+ partyTitle +"</div>"
-                    +        "<span>"+ parrtyContent +"</span>"
-                    +    "</div>"
-                    +    "<div class='wirter'>"
-                    +        "by" + memberNickName
-                    +    "</div>"
-                    + "</div>"
-                + "</li>";
+                tag += "</div>" +
+                    "<div class='small_title'>" +
+                    "<div>" + partyTitle + "</div>" +
+                    "<span>" + partyContent + "</span>" +
+                    "</div>" +
+                    "<div class='wirter'>" +
+                    "by" + memberNickName +
+                    "</div>" +
+                    "</div>" +
+                    "</li>";
             }
 
             // 생성된 파티 tag 렌더링
             document.getElementById('party-list').innerHTML = tag;
         }
+    }
 
-        // 같이갈 사람 구하는 게시물 목록 불러오는 함수 
-        function getPartyList() {
-            fetch(`/parties/all-list/${type}/${sort}`)
-                .then(res => res.json())
-                .then(responseResult => {
-                    renderCampList(responseResult)
-                })
-        }
+    // 같이갈 사람 구하는 게시물 목록 불러오는 함수 
+    function getPartyList() {
+        fetch(`/parties/all-list/${type}/${sort}`)
+            .then(res => res.json())
+            .then(responseResult => {
+                renderCampList(responseResult);
+            });
+    }
 
-        const $writebtn = document.getElementById('.wirtebtn');
-        $writebtn.onclick{
-            // 글쓰기 버튼 누르면 작성폼으로 넘어가기 
-            window.location.href = "party_write.jsp"; //페이지로 넘어가야한다 
-        }
+    const writebtn = document.getElementById('writebtn'); // 수정: .wirtebtn -> writebtn
+    writebtn.onclick = e => {
+        // 글쓰기 버튼을 누르면 작성폼으로 이동
+        window.location.href = "party_write.jsp"; // 페이지로 이동해야 합니다.
+    };
 
-
-
-        
+    // 메인 실행부
+    (function() {
+        // 파티원 게시물 리스트 불러오기
+        getPartyList();
+    })();
 </script>
+
 
 </html>
