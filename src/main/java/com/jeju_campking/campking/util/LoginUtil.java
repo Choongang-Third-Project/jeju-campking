@@ -1,6 +1,6 @@
 package com.jeju_campking.campking.util;
 
-import com.jeju_campking.campking.member.entity.Member;
+import com.jeju_campking.campking.member.dto.response.LoginUserResponseDTO;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +25,9 @@ public class LoginUtil {
 
     // 로그인한 사람의 계정명을 반환하는 메서드
     public static String getCurrentLoginMemberId(HttpSession session) {
-        Member member = (Member) session.getAttribute(LOGIN_KEY);
-        return member.getMemberEmail();
+        LoginUserResponseDTO loginUser = (LoginUserResponseDTO) session.getAttribute(LOGIN_KEY);
+        System.out.println("member.getMemberEmail() = " + loginUser.getMemberEmail());
+        return loginUser.getMemberEmail();
     }
 
 

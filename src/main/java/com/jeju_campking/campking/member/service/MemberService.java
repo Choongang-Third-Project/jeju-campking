@@ -156,9 +156,9 @@ public class MemberService {
 
             memberMapper.saveAutoLogin(
                     AutoLoginDTO.builder()
-                            .account(LoginUtil.getCurrentLoginMemberId(request.getSession()))
-                            .memberCookieDate(LocalDateTime.now())
                             .sessionId("none")
+                            .memberCookieDate(LocalDateTime.now())
+                            .account(LoginUtil.getCurrentLoginMemberId(request.getSession()))
                             .build()
             );
         }
