@@ -28,14 +28,14 @@ public class MemberService {
     private final MemberMapper memberMapper;
     private final PasswordEncoder encoder;
 
-    public Member login(MemberLoginRequestDTO dto) throws SQLException {
+    public Member login(MemberLoginRequestDTO dto) {
         log.info("memberService login execute : {}", dto);
 
         Member loginMember = memberMapper.login(dto);
 
         if (loginMember == null) {
             log.warn("memberService : 로그인 실패 !");
-            throw new SQLException("memberService : 로그인 실패 !");
+//            throw new SQLException("memberService : 로그인 실패 !");
         }
 
         return loginMember;
@@ -80,7 +80,6 @@ public class MemberService {
             return NO_ACC;
         }
         // 비밀번호 일치 확인
-        // TODO : 비밀번호 암호화 후 matches 로 변경
         if (!encoder.matches(dto.getMemberPassword(), foundMember.getMemberPassword())) {
             log.info("비밀번호 불일치", dto.getMemberEmail());
             return NO_PW;
@@ -132,6 +131,7 @@ public class MemberService {
                 .memberName(member.getMemberName())
                 .memberNickname(member.getMemberNickname())
                 .memberGender(member.getMemberGender())
+                .auth(member.getMemberAuth())
                 .profile(member.getProfileImage())
                 .build();
 
@@ -139,8 +139,6 @@ public class MemberService {
         session.setAttribute(LOGIN_KEY, dto);
         // 세션 수명 설정
         session.setMaxInactiveInterval(60 * 60); //1시간
-
-
     }
 
     // 멤버의 모든 정보를 가져오는 서비스

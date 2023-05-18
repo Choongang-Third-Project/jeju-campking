@@ -1,6 +1,7 @@
 package com.jeju_campking.campking.member.dto.response;
 
 import com.jeju_campking.campking.member.entity.Gender;
+import com.jeju_campking.campking.member.entity.MemberAuth;
 import lombok.*;
 
 @Setter @Getter
@@ -15,6 +16,6 @@ public class LoginUserResponseDTO {
     private String memberName;
     private String memberNickname;
     private Gender memberGender;
-    private String auth;
+    private MemberAuth auth;
     private String profile;
 }

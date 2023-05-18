@@ -99,7 +99,6 @@ public class MemberController {
     public String login(
             MemberLoginRequestDTO dto
             , RedirectAttributes ra
-            , Model model
             , HttpServletRequest request
             , HttpServletResponse response
     ) {
@@ -111,24 +110,19 @@ public class MemberController {
 
         // 로그인 성공
         // TODO : 로그인한 회원 객체를 가지고 메인페이지로 돌아가야합니다.
-        try {
-            if (loginResult == SUCCESS) {
-                log.info("loginResult {}", loginResult);
-                Member loginMember = memberService.login(dto);
-                model.addAttribute(loginMember);
+        if (loginResult == SUCCESS) {
+            log.info("loginResult {}", loginResult);
+//            Member loginMember = memberService.login(dto);
+//            model.addAttribute(loginMember);
 
-                // 세션
-                memberService.maintainLoginState(request.getSession(), dto.getMemberEmail());
-                //todo: home으로 이동해야 함!
-                return "redirect:/jeju-camps";
-            }
-            // 로그인 실패
-        } catch (Exception e) {
-            return "redirect:/login"; // FAIL 리턴
+            // 세션
+            memberService.maintainLoginState(request.getSession(), dto.getMemberEmail());
+            //todo: home으로 이동해야 함!
+            return "redirect:/jeju-camps";
         }
+        // 로그인 실패
 
         ra.addFlashAttribute("loginResult", loginResult);
-
         return "redirect:/login"; // FAIL 리턴
     }
 

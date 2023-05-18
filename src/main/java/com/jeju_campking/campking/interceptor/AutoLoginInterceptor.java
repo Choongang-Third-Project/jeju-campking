@@ -43,6 +43,7 @@ public class AutoLoginInterceptor implements HandlerInterceptor {
             if (foundMember != null && LocalDateTime.now().isBefore(foundMember.getMemberCookieDate())) {
                 // 5. 로그인 처리
                 memberService.maintainLoginState(request.getSession(), foundMember.getMemberEmail());
+                response.sendRedirect("/jeju-camps");
             }
 
         }
