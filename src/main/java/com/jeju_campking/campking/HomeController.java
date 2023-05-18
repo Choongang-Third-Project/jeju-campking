@@ -39,7 +39,7 @@ public class HomeController {
     @GetMapping("/jeju-camps/parties")
     public String party(){
         //todo : 같이갈 사람 페이지로 이동하기
-        return "/yejin/party2";
+        return "/yejin/party";
     }
 
     @GetMapping("/jeju-camps/notices")
