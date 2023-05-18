@@ -9,7 +9,6 @@
             *
         FROM TB_MEMBER
         WHERE member_email = #{memberEmail}
-        AND member_password = #{memberPassword}
     </select>
 
     <insert id="sign">

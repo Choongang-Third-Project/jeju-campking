@@ -2,14 +2,13 @@ package com.jeju_campking.campking.member.service;
 
 
 import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
-import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
 import com.jeju_campking.campking.member.dto.response.LoginUserResponseDTO;
 import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.member.repository.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
@@ -22,6 +21,7 @@ import static com.jeju_campking.campking.member.service.LoginResult.*;
 public class MemberService {
 
     private final MemberMapper memberMapper;
+    private final PasswordEncoder encoder;
 
     public Member login(MemberLoginRequestDTO dto) throws SQLException {
         log.info("memberService login execute : {}", dto);
@@ -39,12 +39,14 @@ public class MemberService {
     // 회원가입 처리 서비스
     public boolean sign(Member member) throws SQLException {
         log.info("memberService sign : {} ", member.getProfileImage());
+        member.setMemberPassword(encoder.encode(member.getMemberPassword()));
 
         boolean isSign = memberMapper.sign(member);
 
         if (!isSign) {
             log.warn("memberService : 회원가입 실패 !");
-            throw new SQLException("memberService : 회원가입 실패 !");
+            return false;
+//            throw new SQLException("memberService : 회원가입 실패 !");
         }
 
         return true;
@@ -59,8 +61,10 @@ public class MemberService {
 
     // 로그인 성공여부 검증 서비스
     public LoginResult authenticate(MemberLoginRequestDTO dto) {
-
+        log.info("memberService/authenticate : {}", dto);
         Member foundMember = memberMapper.login(dto);
+        log.info("memberService/authenticate : {}", foundMember);
+
 
         // 회원가입 여부 확인
         if (foundMember == null) {
@@ -69,7 +73,7 @@ public class MemberService {
         }
         // 비밀번호 일치 확인
         // TODO : 비밀번호 암호화 후 matches 로 변경
-        if (!dto.getMemberPassword().equals(foundMember.getMemberPassword())) {
+        if (!encoder.matches(dto.getMemberPassword(), foundMember.getMemberPassword())) {
             log.info("비밀번호 불일치", dto.getMemberEmail());
             return NO_PW;
         }
