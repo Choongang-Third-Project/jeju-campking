@@ -236,6 +236,7 @@
         const $replyWriteBtn = document.getElementById('replyWriteBtn');
         const $replyBtnGroup = document.getElementById('replyBtnGroup');
         const $replyBox = document.getElementById('reply-box');
+        
         // 댓글 삭제, 수정 처리?
         $replyBox.addEventListener('click', e => {
            
@@ -258,6 +259,40 @@
                     });
             
             }
+
+            if (e.target.matches('.reply-container #replyModiBtn')) {
+                
+                console.log('수정버튼 클릭');
+                //console.log(e.target.getAttribute('data-replyNum')); 
+                const repNum = e.target.getAttribute('data-replyNum')
+                // console.log(e.target.parentElement.parentElement.parentElement.querySelector('.reply-text'));
+                // console.log(e.target.parentElement.parentElement.parentElement.querySelector('.reply-text2'));
+
+
+                const $repText = e.target.parentElement.parentElement.parentElement.querySelector('.reply-text');
+                const $repModify = e.target.parentElement.parentElement.parentElement.querySelector('.reply-text2');
+                const $repOkBtn = $repModify.querySelector('#replyOk');
+
+                
+                if($repText.style.display==='block'){
+                    $repText.style.display = 'none';
+                    $repModify.style.display = 'block';
+                } else {
+                    $repText.style.display = 'block';
+                    $repModify.style.display = 'none';
+                }
+                
+
+                $repOkBtn.onclick = e => {
+                    console.log('ㅎㅇㅎㅇ');
+                    console.log($repOkBtn.getAttribute('data-replyNum'));
+                }
+
+            }   
+            
+
+
+
         });
 
         // 댓글 쓰기 처리
@@ -385,11 +420,15 @@
                        tag+='<span>'+memberNickname+'</span>';
                     tag+='</div>'; 
                     tag+='<div class="reply-btn-group" id="replyBtnGroup">';
-                        tag+='<button class="btn">수정</button>';
+                        tag+='<button class="btn" id="replyModiBtn" data-replyNum='+replyNumber+'>수정</button>';
                         tag+='<button class="btn" id="replyDelBtn" data-replyNum='+replyNumber+'>삭제</button>';
                     tag+='</div>';
                   tag+='</div>';
-                tag+='<div class="reply-text">'+replyContent+'</div>';
+                tag+='<div class="reply-text" style="display:block">'+replyContent+'</div>';
+                tag+='<div class="reply-text2" style="display:none">';
+                    tag+='<input type="text" value="'+replyContent+'" class=" input input-bordered input-primary w-full max-w-xs"/>';
+                    tag+='<button class="btn btn-primary" id="replyOk" data-replyNum='+replyNumber+'>확인</button>';
+                tag+='</div>';
             tag+='</div>';
                 }
             }
