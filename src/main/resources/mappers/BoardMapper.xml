@@ -20,9 +20,9 @@
     <select id="findRecentTwo" resultType="board">
         select
         board_number,
-        board_title,
-        board_content,
-        board_title,
+        board_title ,
+        board_content ,
+        board_time ,
         member_number,
         board_view,
         board_recommend

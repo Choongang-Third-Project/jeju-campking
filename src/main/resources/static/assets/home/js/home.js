@@ -97,7 +97,3 @@ campName1.style.color = 'red';
 campName2.style.color = 'orange';
 campName3.style.color = 'green';
 
-// (function() {
-//     let date = new Date('${n.boardTime}').toLocaleDateString();
-//     document.querySelector('.date').innerText = date; 
-// })();
