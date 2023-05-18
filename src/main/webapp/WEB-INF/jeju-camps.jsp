@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -201,12 +202,16 @@
                                 <i class="fa-regular fa-clipboard"></i> 공지사항
                             </p>
                         </a>
-                        <div>
+                        <div id="noticeTwo">
                             <c:forEach var="n" items="${notice}">
                                 <a href="#">
-                                    <p><span class="date">
-                                     
-                                </span> <span class="line">${n.boardTitle}</span></p>
+                                    <p>
+                                        <span class="date"> 
+                                            ${fn:substring(n.boardTime,0,10)}
+                                            
+                                        </span>
+                                        <span class="line">${n.boardTitle}</span>
+                                    </p>
                                 </a>
                             </c:forEach>
                         </div>
@@ -471,6 +476,8 @@
 
 
     </div>
+
+  
 
 </body>
 
