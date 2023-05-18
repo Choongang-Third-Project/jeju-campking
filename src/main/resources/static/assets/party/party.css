@@ -16,7 +16,6 @@ body {
   /* background: orange; */
   text-align: center;
   font-family: 'Black Han Sans', sans-serif;
-
 }
 
 .orderby {
@@ -32,6 +31,21 @@ body {
   right: 100px;
 }
 
+/* 글쓰기  버튼 */
+.write {
+  font-family: 'Black Han Sans', sans-serif;
+  background: lightgray;
+  width: fit-content;
+  float: right;
+  font-size: 30px;
+  border-radius: 15px;
+  padding: 5px;
+  position: relative;
+  top: 30px;
+  right: 100px;
+  margin-left: 20px;
+  border: 0px solid #000;
+}
 /* nav */
 .gear {
     margin-bottom: 60px;
@@ -54,14 +68,14 @@ nav .roundbar {
   margin-top: 50px;
   display: flex;
   /* background: #000; */
-  margin-left: 20%;
+  margin-left: 12%;
   margin-right: auto;
 
 }
 nav .roundbar a{
     float: left;
-    background:lightgray;
     display: block;
+    background:lightgray;
     padding: 10px;
     margin-left: 10px;
     margin-bottom: 20px;
@@ -193,5 +207,22 @@ nav .roundbar a{
     border: 0px solid #000;
     border-radius: 20px;
     padding: 20px;
+  }
+
+  /* 검색창 */
+  .search {
+    margin-left: 120px;
+    width: 300px;
+    height: 40px;
+    
+  }
+  nav .roundbar .material-symbols-outlined {
+    font-size: 40px;
+    font-weight: 700;
+    margin-left: 20px;
+  }
+
+  nav .roundbar .material-symbols-outlined:hover {
+    font-size: 50px;
 
   }

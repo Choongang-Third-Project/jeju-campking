@@ -17,6 +17,14 @@ CREATE TABLE TB_MEMBER (
     PRIMARY KEY (member_number)
 );
 
+--관리자 속성추가
+alter table TB_MEMBER
+add member_auth VARCHAR(10) default 'COMMON';
+
+update TB_MEMBER
+set member_auth = 'ADMIN'
+where member_email= 'a0@naver.com';
+
 insert into TB_MEMBER (
     member_email,
     member_password,

@@ -25,4 +25,5 @@ public class Member {
     private LocalDateTime memberJoinDate;
 
     private String profileImage;
+    MemberAuth memebrAuth;
 }
