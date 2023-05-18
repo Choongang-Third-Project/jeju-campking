@@ -78,10 +78,15 @@
 
                 const {
                     partyNumber,
+                    memberNickName,
                     partyTitle,
                     parrtyContent,
                     partyStartDate,
                     partyEndDate,
+                    campTypeNormal,
+                    campTypeCar,
+                    campTypeCaravan,
+                    campTypeGlamping,
                     partySize,
                     partyWriteTime,
                     memberNumber,
@@ -92,10 +97,14 @@
                     +"<div class='item_card clearfix'>"
                     +   "<div class='img-box'>";
 
-                if(){
-                    tag += "<img src='/assets/home/img/sm_normal.jpg' alt=''>";
-                } else {
-                    tag += "<img src='/assets/home/img/sm_normal.jpg' alt=''>";
+                if(campTypeNormal === "nomarl"){
+                    tag += "<img src='/assets/home/img/sm_normal.jpg' alt='normal'>";
+                } else if(campTypeGlamping === "glamping"){
+                    tag += "<img src='/assets/home/img/sm_glamping.jpg' alt='glamping'>";
+                } else if(campTypeCaravan === "caraven"){
+                    tag += "<img src='/assets/home/img/sm_caraban.jpg' alt='caraven'>";
+                }else{
+                    tag += "<img src='/assets/home/img/sm_car.jpg' alt='car'>";
                 }
                 tag +="</div>"
                     +    "<div class='small_title'>"
@@ -103,7 +112,7 @@
                     +        "<span>"+ parrtyContent +"</span>"
                     +    "</div>"
                     +    "<div class='wirter'>"
-                    +        by 작성자
+                    +        "by" + memberNickName
                     +    "</div>"
                     + "</div>"
                 + "</li>";
@@ -124,8 +133,13 @@
 
         const $writebtn = document.getElementById('.wirtebtn');
         $writebtn.onclick{
-            
+            // 글쓰기 버튼 누르면 작성폼으로 넘어가기 
+            window.location.href = "party_write.jsp"; //페이지로 넘어가야한다 
         }
+
+
+
+        
 </script>
 
 </html>
