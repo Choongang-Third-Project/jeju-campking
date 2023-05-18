@@ -103,7 +103,7 @@ public class CampController {
         model.addAttribute("c", campCount);
         model.addAttribute("campRank", campRankList);
         model.addAttribute("partyRank", partyList);
-
+        model.addAttribute("notice", recentTwo);
 
         return "/jeju-camps";
     }
