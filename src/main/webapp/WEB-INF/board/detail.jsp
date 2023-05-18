@@ -235,12 +235,30 @@
         const $downBtn = document.getElementById('down-btn');
         const $replyWriteBtn = document.getElementById('replyWriteBtn');
         const $replyBtnGroup = document.getElementById('replyBtnGroup');
-
+        const $replyBox = document.getElementById('reply-box');
         // 댓글 삭제, 수정 처리?
-        $replyBtnGroup.onclick = e => {
-            console.log('ㅎㅇㅎㅇ');
-            //console.log($replyDelBtn.dataset.replyNum);
-        }
+        $replyBox.addEventListener('click', e => {
+           
+            //replyDelBtn
+            if (e.target.matches('.reply-container #replyDelBtn')) {
+                console.log('삭제버튼 클릭');
+                //console.log(e.target.getAttribute('data-replyNum')); 
+                const $delRep = e.target.getAttribute('data-replyNum');
+                fetch('/jeju-camps/notices/detail/reply' + '/' + $delRep, {
+                        method: 'DELETE'
+                    }).then(res => {
+                        if (res.status === 200) {
+                            toastr.success('댓글 삭제 성공! good');
+                            return res.json();
+                        } else {
+                            toastr.error('댓글 삭제 실패! ㅜㅜ');
+                        }
+                    }).then(responseResult => {
+                        getReplyList();
+                    });
+            
+            }
+        });
 
         // 댓글 쓰기 처리
         $replyWriteBtn.onclick = e =>{
