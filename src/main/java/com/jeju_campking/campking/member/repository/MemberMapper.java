@@ -21,6 +21,8 @@ public interface MemberMapper {
 
     Member findMember(String memberEmail);
 
-
     void saveAutoLogin(AutoLoginDTO dto);
+
+    Member findMemberByCookie(String sessionId);
+
 }

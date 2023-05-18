@@ -51,4 +51,23 @@
         WHERE member_email = #{account}
     </insert>
 
+    <select id="findMemberByCookie" resultType="member">
+        SELECT
+        member_number,
+        member_email,
+        member_password,
+        member_name,
+        member_phone,
+        member_gender,
+        member_nickname,
+        member_age,
+        member_session_id,
+        member_cookie_date,
+        member_join_date,
+        member_auth,
+        profile_image
+        FROM TB_MEMBER
+        WHERE member_session_id = #{sessionId};
+    </select>
+
 </mapper>
