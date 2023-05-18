@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,13 +15,11 @@
     <!-- css -->
     <link rel="stylesheet" href="/assets/mypage/css/update.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <%-- js --%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <style>
-
-    </style>
 
 </head>
 <body>
@@ -36,7 +36,12 @@
 
         <div class="profile">
             <div class="thumbnail-box">
-                <img src="/assets/signup/img/img-add.png" alt="프로필 썸네일">
+                <c:if test="${member.profileImage == null}">
+                    <img src="/assets/signup/img/img-add.png" alt="프로필 썸네일">
+                </c:if>
+                <c:if test="${member.profileImage != null}">
+                    <img src="" alt="프로필 사진">
+                </c:if>
             </div>
 
             <label>프로필 이미지 변경</label>
@@ -58,7 +63,7 @@
                 <p>
                     <span id="email" class="w-full not-change-column">${member.memberEmail}</span>
                 </p>
-                <%--                <span id="emailChk"></span>--%>
+<%--                <span id="emailChk"></span>--%>
             </div>
 
             <!-- 비밀번호 입력  -->
@@ -72,7 +77,7 @@
             </div>
 
             <div class="box">
-                <h2><label for="pw2">비밀번호 재확인</label></h2>
+                <h2><label for="pw2">${member.memberPassword}</label></h2>
                 <p>
                     <input type="password" id="pw2" name="memberPasswordChk" maxlength="20"
                            class="input input-bordered w-full">
@@ -87,7 +92,7 @@
                 <p>
                     <span id="name" class="w-full not-change-column">${member.memberName}</span>
                 </p>
-                <%--                <span id="nameChk"></span>--%>
+<%--                <span id="nameChk"></span>--%>
             </div>
 
             <div class="box">
@@ -123,7 +128,7 @@
                         </c:if>
                     </span>
                 </div>
-                <%--                <span id="genderChk"></span>--%>
+<%--                <span id="genderChk"></span>--%>
             </div>
 
 
@@ -169,7 +174,8 @@
     }
 
     // 수정할 태그 가져오기
-    const $password = document.getElementById('password');
+    const $password = document.getElementById('pw1');
+    const $passwordCheck = document.getElementById('pw2');
     const $nickname = document.getElementById('nickname');
     const $phone = document.getElementById('phone');
 
@@ -181,8 +187,6 @@
     // 비밀번호 입력값 검증
     // 비밀번호 검사 정규 표현식
     const passwordPattern = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-
-    const $password = document.getElementById('pw1');
 
     $password.onkeyup = e => {
         const pwValue = $password.value;
@@ -204,17 +208,16 @@
     };
 
     // 비밀번호 확인란 입력값 검증
-    const $pwCheckInput = document.getElementById('pw2');
 
-    $pwCheckInput.onkeyup = e => {
+    $passwordCheck.onkeyup = e => {
 
-        const pwCheckValue = $pwCheckInput.value;
+        const pwCheckValue = $passwordCheck.value;
 
         if (pwCheckValue.trim() === '') {
             $password.style.borderColor = 'red';
             document.getElementById('pwChk2').innerHTML = '<b style="color: red; font-size:13px;">필수 정보입니다.</b>';
             checkResultList[2] = false;
-        } else if ($pwCheckInput.value !== $password.value) {
+        } else if ($passwordCheck.value !== $password.value) {
             $password.style.borderColor = 'red';
             document.getElementById('pwChk2').innerHTML = '<b style="color: red; font-size:13px;">비밀번호가 일치하지 않습니다.</b>';
             checkResultList[2] = false;
@@ -288,9 +291,13 @@
         }
     };
 
+    // 뒤로가기 버튼 클릭 이벤트
+    document.querySelector('.back-btn').onclick = e => {
+        window.history.back();
+    }
 
-    <%-- 메인 실행부 --%>
-    (function (memberNum) {
+<%-- 메인 실행부 --%>
+    (function () {
     })();
 
 </script>

@@ -3,9 +3,31 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jeju_campking.campking.mypage.repository.MypageUpdateMapper">
+
     <select id="findMember" resultType="member">
-        SELECT *
-        FROM TB_MEMBER
+        SELECT
+            member_number,
+            member_email,
+            member_password,
+            member_name,
+            member_nickname,
+            member_phone,
+            member_gender,
+            member_age,
+            member_join_date
+        FROM tb_member
         WHERE member_number = #{memberNumber}
     </select>
+
+    <select id="isDuplicate" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_MEMBER
+        <if test="type == 'nickname'">
+            WHERE member_nickname = #{keyword}
+        </if>
+        <if test="type == 'phone'">
+            WHERE member_phone = #{keyword}
+        </if>
+    </select>
+
 </mapper>
