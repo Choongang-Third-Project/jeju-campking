@@ -18,16 +18,20 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/jeju-camps/parties")
 @Slf4j
+// TODO: // 체크하기
 public class PartyController {
     private final PartyService partyService;
 
     @GetMapping("/all-list/{type}/{sort}")
     public ResponseEntity<?> findAllBySort(
-            @PathVariable String type,
-            @PathVariable String sort
+            @PathVariable(required = false) String type,
+            @PathVariable(required = false) String sort
     ) {
         log.info("partyController/findAllBySort : type= {}, sort= {}", type, sort);
         List<PartyAllListResponseDTO> allBySort = partyService.findAllBySort(type, sort);
+
+        log.info("{}", allBySort.get(0));
+
         return ResponseEntity.ok().body(allBySort);
     }
 
