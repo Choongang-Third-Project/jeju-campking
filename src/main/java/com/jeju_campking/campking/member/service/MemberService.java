@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
+import static com.jeju_campking.campking.member.service.LoginResult.*;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -56,23 +58,23 @@ public class MemberService {
     }
 
     // 로그인 성공여부 검증 서비스
-    public String authenticate(MemberLoginRequestDTO dto) {
+    public LoginResult authenticate(MemberLoginRequestDTO dto) {
 
         Member foundMember = memberMapper.login(dto);
 
         // 회원가입 여부 확인
         if (foundMember == null) {
             log.info("{} - 회원가입 필요", dto.getMemberEmail());
-            return "FAIL";
+            return NO_ACC;
         }
         // 비밀번호 일치 확인
         // TODO : 비밀번호 암호화 후 matches 로 변경
         if (!dto.getMemberPassword().equals(foundMember.getMemberPassword())) {
             log.info("비밀번호 불일치", dto.getMemberEmail());
-            return "FAIL";
+            return NO_PW;
         }
         log.info("{}님 로그인 성공", dto.getMemberEmail());
-        return "SUCCESS";
+        return SUCCESS;
     }
 
     // 세션
