@@ -33,7 +33,8 @@
 
 <body>
     <div class="detail-board w-3/5" style="margin: 0 auto;">
-       
+        
+
         <table class="table w-full overflow-x-hidden mb-9">
            <tr class="h-24 text-3xl">
                 <td>캠프장</td>
@@ -66,18 +67,11 @@
                 </td>
            </tr>
         </table>
-        
+        <div>
+            <button class="btn w-full" onclick="history.back()">캠핑 목록 보기</button>
+        </div>
 
-        <table class="table w-full">
-            <tr>
-                <th>윗글</th>
-                <td><a href="#">해당글이 없습니다.</a></td>
-            </tr>
-            <tr>
-                <th>아랫글</th>
-                <td><a href="#">시스템 개선 및 서비스 점검 안내</a></td>
-            </tr>
-        </table>
+        
     </div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b9cb138481a4bea0f094c2e5d4640c3e"></script>
 <script>

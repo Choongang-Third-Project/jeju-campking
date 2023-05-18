@@ -68,6 +68,30 @@
             
             
         }
+
+        .prev-next-container{
+            border: 1px solid #000;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .prev-next-container div{
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-family: monospace;
+            font-weight: 700;
+        }
+
+        
+
+
+
+
+
+
+
+
+
         .reply{
             padding: 30px;
             border: 1px solid #000;
@@ -142,7 +166,7 @@
             </div>
             <div class="notice-info">
                 <div class="row"><i class="fa-solid fa-bookmark"></i> <span class="board-no" id="boardNumber">${board.boardNumber}</span> ㆍ<i class="fa-regular fa-user"></i> <span class="user-name">${board.memberNickname}</span></div>
-                <div class="row"><i class="fa-solid fa-face-smile"></i> <span class="good" id="good">${board.boardRecommend}</span>ㆍ<i class="fa-solid fa-calendar"></i> <span class="date">${board.boardTime}</span>ㆍ<i class="fa-solid fa-users"></i> <span class="read">${board.boardView}</span> </div>
+                <div class="row"><i class="fa-solid fa-face-smile"></i> <span class="good" id="good">${board.boardRecommend}</span>ㆍ<i class="fa-solid fa-calendar"></i> <span class="date"></span>ㆍ<i class="fa-solid fa-users"></i> <span class="read">${board.boardView}</span> </div>
             </div>
         </div>
         <div class="title">
@@ -156,19 +180,43 @@
         <div class="button-group">
             <button class="btn btn-primary" id="up-btn">추천</button>
             <button class="btn btn-secondary" id="down-btn">비추천</button>
-            <button class="btn" onclick="history.back()">목록조회</button>
+            <button class="btn" onclick="location.href='/jeju-camps/notices'">목록조회</button>
         </div>
         
+        <div class="prev-next-container">
+            <div class="prev-box">이전 게시판 : 
+                <c:choose>
+                    <c:when test="${p.boardTitle eq null}" >
+                        <span>이전글이 없습니다..</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/jeju-camps/notices/details?boardNumber=${p.boardNumber}">${p.boardTitle}</a> 
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div class="next-box">다음 게시판 : 
+                <c:choose>
+                    <c:when test="${n.boardTitle eq null}" >
+                        <span>다음글이 없습니다..</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/jeju-camps/notices/details?boardNumber=${n.boardNumber}">${n.boardTitle}</a>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </div>
+
+
 
         <div class="reply">
             <div class="reply-content">
                 <div class="reply-profile">
                     프로필
                 </div>
-                 <input class="input input-bordered input-info w-full" type="text" placeholder="댓글창">
+                 <input class="input input-bordered input-info w-full" id="replyWriteBox" type="text" placeholder="댓글창">
             </div>
             <div class="reply-button">
-                <button class="btn btn-primary">댓글 쓰기</button>
+                <button class="btn btn-primary" id="replyWriteBtn">댓글 쓰기</button>
              </div>
         </div>
 
@@ -185,7 +233,54 @@
         const $boardNumber = '${board.boardNumber}';
         const $upBtn = document.getElementById('up-btn');
         const $downBtn = document.getElementById('down-btn');
+        const $replyWriteBtn = document.getElementById('replyWriteBtn');
+        const $replyBtnGroup = document.getElementById('replyBtnGroup');
 
+        // 댓글 삭제, 수정 처리?
+        $replyBtnGroup.onclick = e => {
+            console.log('ㅎㅇㅎㅇ');
+            //console.log($replyDelBtn.dataset.replyNum);
+        }
+
+        // 댓글 쓰기 처리
+        $replyWriteBtn.onclick = e =>{
+            const $replyWriteBox = document.getElementById('replyWriteBox');
+
+            if(!$replyWriteBox.value){
+                toastr.error('댓글 내용이 없어요 ,,,');
+                return;
+            }
+
+
+            const payload = {
+				replyContent: $replyWriteBox.value,
+                boardNumber : '${board.boardNumber}',
+                memberNumber : 1
+            };
+
+		        console.log(payload);
+                
+                
+                const requestInfo = {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                };
+
+                // # 서버에 POST요청 보내기
+                fetch('/jeju-camps/notices/detail/reply/write', requestInfo)
+                    .then(res => res.json())
+                      .then(responseResult => {
+                        toastr.success('댓글 등록 성공! nice');
+                        $replyWriteBox.value ='';
+                        getReplyList();
+                     });
+                
+
+        }
+    
         
         // 추천 기능
         $upBtn.onclick = e => {
@@ -271,9 +366,9 @@
                     tag+='<div class="reply-author">'
                        tag+='<span>'+memberNickname+'</span>';
                     tag+='</div>'; 
-                    tag+='<div class="reply-btn-group">';
+                    tag+='<div class="reply-btn-group" id="replyBtnGroup">';
                         tag+='<button class="btn">수정</button>';
-                        tag+='<button class="btn">삭제</button>';
+                        tag+='<button class="btn" id="replyDelBtn" data-replyNum='+replyNumber+'>삭제</button>';
                     tag+='</div>';
                   tag+='</div>';
                 tag+='<div class="reply-text">'+replyContent+'</div>';
@@ -311,9 +406,13 @@
         
         //========= 메인 실행부 =========//
         (function() {
+
+            let date = new Date('${board.boardTime}').toLocaleDateString();
+            document.querySelector('.date').innerText = date;
              // 첫 댓글 페이지 불러오기
              getReplyList();
-        
+             console.log('${p.boardTitle}');
+            
         })();
 
     </script>

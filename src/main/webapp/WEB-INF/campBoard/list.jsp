@@ -8,6 +8,11 @@
     <%@ include file="../include/static-head.jsp" %>
     <link rel="stylesheet" href="/assets/board/css/list.css">
     
+    <style>
+        #campBoard:hover{
+            background-color: #fba700;
+        }
+    </style>
 </head>
 <body>
     
@@ -17,7 +22,7 @@
         <div class="input-box flex  mb-1 justify-center ">
             
             <form action="#" method="post" class="flex">
-                <select class="select select-accent min-w-max max-w-xs">
+                <select class="select select-accent min-w-max max-w-xs" disabled>
                     <option selected>제목</option>
                     <option>내용</option>  
                     <option>제목+내용</option>
@@ -34,22 +39,7 @@
         </div>
       
 
-        <div class="page">
-            <div class="btn-group  ">
-                <button class="btn btn-md">&lt;&lt;</button>
-                <button class="btn btn-md">1</button>
-                <button class="btn btn-md btn-active">2</button>
-                <button class="btn btn-md">3</button>
-                <button class="btn btn-md">4</button>
-                <button class="btn btn-md">5</button>
-                <button class="btn btn-md">6</button>
-                <button class="btn btn-md">7</button>
-                <button class="btn btn-md">8</button>
-                <button class="btn btn-md">9</button>
-                <button class="btn btn-md">10</button>
-                <button class="btn btn-md">&gt;&gt;</button>
-            </div>
-         </div>
+        
     </main>
 
 
@@ -106,15 +96,13 @@
                     tag+='<div id="#" class="self-center pl-3" >'+ campNumber+'</div>';
                     tag+='<div class="card-body">';
                     tag+='<h2 class="card-title" id="campName">'+campName+'</h2>';
-                    tag+='<div class="absolute top-8 right-0 w-2/6 flex justify-around pr-3">';
+                    tag+='<div class="absolute top-8 right-0 w-2/6 flex pr-3">';
                         tag+='<div><i class="fa-solid fa-circle-user"></i>&nbsp;<span id="#">admin</span></div>';
-                        tag+='<div><i class="fa-solid fa-user"></i>&nbsp;&nbsp;<span id="#">200</span></div>';
-                        tag+='<div><i class="fa-solid fa-star"></i>&nbsp;&nbsp;<span id="#">1</span></div>';
                     tag+='</div>';
                     tag+='<p> 주소 : '+ campAddress + ' | 타입 : ' + campTypeNormal +' '+ campTypeCar +' '+ campTypeCaravan +' '+ campTypeGlamping +'</p>';
                     tag+='<div class="card-actions justify-end">';
                       tag+='<button class="btn btn-primary">자세히 보기</button>';
-                     
+
                       tag+='</div>';
                       tag+='</div>';
                     tag+='</div>';

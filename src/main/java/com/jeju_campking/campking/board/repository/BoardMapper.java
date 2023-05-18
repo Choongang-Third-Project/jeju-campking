@@ -34,4 +34,9 @@ public interface BoardMapper {
     boolean downRecommendCount(Long boardNumber); // 추천수 하강
     int recommendCount(Long boardNumber); // 현재 게시판의 추천 수
     int count(String keyword); // 게시글 수
+
+    Board findPrev(Long boardNumber); // 이전글
+    Board findNext(Long boardNumber); // 다음글
+
+
 }
