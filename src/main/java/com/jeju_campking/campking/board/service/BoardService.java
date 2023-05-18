@@ -126,4 +126,12 @@ public class BoardService {
         boardMapper.downRecommendCount(boardNumber);
         return boardMapper.recommendCount(boardNumber);
     }
+
+    public Board prevBoard(Long boardNumber){
+        return boardMapper.findPrev(boardNumber);
+    }
+    public Board nextBoard(Long boardNumber){
+        return boardMapper.findNext(boardNumber);
+    }
+
 }

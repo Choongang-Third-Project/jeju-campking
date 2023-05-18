@@ -62,6 +62,35 @@
         WHERE board_number = #{boardNumber};
     </select>
 
+    <select id="findPrev" resultType="board">
+        select
+        board_number,
+        board_title,
+        board_content,
+        board_title,
+        member_number,
+        board_view,
+        board_recommend
+        from tb_board
+        where board_number &lt; #{boardNumber}
+        order by board_number desc
+        limit 1;
+    </select>
+
+    <select id="findNext" resultType="board">
+        select
+        board_number,
+        board_title,
+        board_content,
+        board_title,
+        member_number,
+        board_view,
+        board_recommend
+        from tb_board
+        where board_number &gt; #{boardNumber}
+        limit 1;
+    </select>
+
     <select id="count" resultType="int">
         SELECT
         COUNT(*)

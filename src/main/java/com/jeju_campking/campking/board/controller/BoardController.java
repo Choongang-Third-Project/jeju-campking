@@ -81,6 +81,8 @@ public class BoardController {
         log.info("/boards : findOne() GET!!");
         BoardDetailResponseDTO board = boardService.detail(boardNumber);
         model.addAttribute("board", board);
+        model.addAttribute("p", boardService.prevBoard(boardNumber));
+        model.addAttribute("n", boardService.nextBoard(boardNumber));
         return "/board/detail";
     }
 

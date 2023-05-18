@@ -68,6 +68,30 @@
             
             
         }
+
+        .prev-next-container{
+            border: 1px solid #000;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .prev-next-container div{
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-family: monospace;
+            font-weight: 700;
+        }
+
+        
+
+
+
+
+
+
+
+
+
         .reply{
             padding: 30px;
             border: 1px solid #000;
@@ -142,7 +166,7 @@
             </div>
             <div class="notice-info">
                 <div class="row"><i class="fa-solid fa-bookmark"></i> <span class="board-no" id="boardNumber">${board.boardNumber}</span> ㆍ<i class="fa-regular fa-user"></i> <span class="user-name">${board.memberNickname}</span></div>
-                <div class="row"><i class="fa-solid fa-face-smile"></i> <span class="good" id="good">${board.boardRecommend}</span>ㆍ<i class="fa-solid fa-calendar"></i> <span class="date">${board.boardTime}</span>ㆍ<i class="fa-solid fa-users"></i> <span class="read">${board.boardView}</span> </div>
+                <div class="row"><i class="fa-solid fa-face-smile"></i> <span class="good" id="good">${board.boardRecommend}</span>ㆍ<i class="fa-solid fa-calendar"></i> <span class="date"></span>ㆍ<i class="fa-solid fa-users"></i> <span class="read">${board.boardView}</span> </div>
             </div>
         </div>
         <div class="title">
@@ -156,9 +180,33 @@
         <div class="button-group">
             <button class="btn btn-primary" id="up-btn">추천</button>
             <button class="btn btn-secondary" id="down-btn">비추천</button>
-            <button class="btn" onclick="history.back()">목록조회</button>
+            <button class="btn" onclick="location.href='/jeju-camps/notices'">목록조회</button>
         </div>
         
+        <div class="prev-next-container">
+            <div class="prev-box">이전 게시판 : 
+                <c:choose>
+                    <c:when test="${p.boardTitle eq null}" >
+                        <span>이전글이 없습니다..</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/jeju-camps/notices/details?boardNumber=${p.boardNumber}">${p.boardTitle}</a> 
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div class="next-box">다음 게시판 : 
+                <c:choose>
+                    <c:when test="${n.boardTitle eq null}" >
+                        <span>다음글이 없습니다..</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/jeju-camps/notices/details?boardNumber=${n.boardNumber}">${n.boardTitle}</a>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </div>
+
+
 
         <div class="reply">
             <div class="reply-content">
@@ -311,9 +359,13 @@
         
         //========= 메인 실행부 =========//
         (function() {
+
+            let date = new Date('${board.boardTime}').toLocaleDateString();
+            document.querySelector('.date').innerText = date;
              // 첫 댓글 페이지 불러오기
              getReplyList();
-        
+             console.log('${p.boardTitle}');
+            
         })();
 
     </script>
