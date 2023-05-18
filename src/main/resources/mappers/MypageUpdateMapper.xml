@@ -14,10 +14,21 @@
             member_phone,
             member_gender,
             member_age,
-            member_join_date
+            member_join_date,
+            member_auth,
+            profile_image
         FROM tb_member
         WHERE member_number = #{memberNumber}
     </select>
+
+    <update id="updateMember">
+        UPDATE tb_member
+        SET member_password=#{memberPassword},
+            member_nickname=#{memberNickname},
+            member_phone=#{memberPhone},
+            profile_image=#{profileImage}
+        WHERE member_number=#{memberNumber}
+    </update>
 
     <select id="isDuplicate" resultType="int">
         SELECT COUNT(*)

@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class MypagePartyResponseDTO {
     private Long partyNumber;
     private String partyTitle;
-    @JsonFormat(pattern = "yyyy-MM-dd  HH:mm:ss")
+    @JsonFormat(pattern = "yyyy년 MM월 dd일  HH:mm:ss")
     private LocalDateTime partyWriteTime;
 
     // entity 를 DTO 로 변환하는 생성자

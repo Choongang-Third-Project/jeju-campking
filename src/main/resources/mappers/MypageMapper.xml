@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jeju_campking.campking.mypage.repository.MypageMapper">
     <select id="findMember" resultType="mypageMemberDTO">
-        SELECT member_number, member_nickname
+        SELECT member_number, member_nickname, profile_image
         FROM TB_MEMBER
         WHERE member_number = #{memberNumber}
     </select>
@@ -57,14 +57,11 @@
 
     <insert id="updateMember">
         INSERT INTO TB_MEMBER
-        (member_email,
-         member_password,
-         member_name,
-         member_phone,
-         member_gender,
+        (member_password,
          member_nickname,
-         member_age)
-        VALUES ()
+         member_phone,
+         profile_image)
+        VALUES (#{memberPassword}, #{memberNickname}, #{memberPhone}, #{profileImage})
     </insert>
 
 </mapper>

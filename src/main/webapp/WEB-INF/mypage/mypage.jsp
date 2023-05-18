@@ -31,8 +31,7 @@
         <div class="mp-info">
             <div class="mp-info-text">
                 <div class="mp-info-content mp-info-profile w-24 mask mask-squircle">
-                    <%-- 프로필사진 경로 추가해야합니다. --%>
-<%--                    <img src="/local${login.profile}"/>--%>
+                    <%--<img src="/local${login.profile}"/>--%>
                 </div>
                 <div class="mp-info-content"><span class="mp-info-name"></span> 님</div>
                 <div class="mp-info-content mp-info-nickname">일반회원</div>
@@ -139,9 +138,14 @@
             const memberNum = '${memberNumber}';
 
             // 좌측 닉네임, 회원등급, 프로필사진 렌더링 함수
-            function renderMypageInfo({memberNumber, memberNickname, profile}) {
+            function renderMypageInfo({memberNumber, memberNickname, profileImage}) {
+                console.log(profileImage);
                 let tag = '';
-                <%--tag += `<img src="/local${login.profile}"/>`--%>
+                if (profileImage !== null) {
+                    tag += `<img src="/local\${profileImage}" alt="프로필 사진"/>`;
+                } else {
+                    tag += `<img src="/assets/mypage/img/profile.png" alt="프로필 사진"/>`;
+                }
                 // console.log(memberNickname);
                 document.querySelector('.mp-info-name').textContent = memberNickname;
                 document.querySelector('.mp-info-profile').innerHTML = tag;

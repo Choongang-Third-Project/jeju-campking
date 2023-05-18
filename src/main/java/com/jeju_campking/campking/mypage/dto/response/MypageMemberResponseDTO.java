@@ -13,6 +13,6 @@ import lombok.*;
 public class MypageMemberResponseDTO {
     private Long memberNumber;
     private String memberNickname;
-    private String profile;
+    private String profileImage;
     // TODO : 회원의 프로필 사진, 회원등급(일반회원 or 관리자) 추가해야합니다.
 }

@@ -15,7 +15,7 @@ public class MypagePartyMessageResponseDTO {
 
     private Long partyMessageNumber;
     private String partyMessageContent;
-    @JsonFormat(pattern = "yyyy-MM-dd  HH:mm:ss")
+    @JsonFormat(pattern = "yyyy년 MM월 dd일  HH:mm:ss")
     private LocalDateTime partyMessageTime;
     private Long partyNumber;
     private String memberNickname;

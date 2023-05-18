@@ -3,10 +3,13 @@ package com.jeju_campking.campking.mypage.controller;
 import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.mypage.dto.request.MypageUpdateMemberRequestDTO;
 import com.jeju_campking.campking.mypage.service.MypageUpdateService;
+import com.jeju_campking.campking.util.upload.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /*
     마이페이지의 회원 정보 수정을 관리하는 컨트롤러입니다.
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class MypageUpdateController {
 
+    @Value("D:/campking-prj/upload/")
+    private String rootPath;
     private final MypageUpdateService mypageUpdateService;
 
     @GetMapping("/{memberNumber}")
@@ -28,14 +33,27 @@ public class MypageUpdateController {
         return ResponseEntity.ok().body(foundMember);
     }
 
-    // 회원의 비밀번호,
-    @PatchMapping("/{memberNumber}")
+    // 회원의 비밀번호, 닉네임, 전화번호, 프로필사진 수정
+    @PostMapping("/{memberNumber}")
     public ResponseEntity<?> updateMember(
             @PathVariable Long memberNumber,
-            @PathVariable MypageUpdateMemberRequestDTO dto
+            MypageUpdateMemberRequestDTO dto
     ) {
         log.info("MypageController updateMember : {}", memberNumber);
-        boolean isUpdated = mypageUpdateService.updateMember(memberNumber);
+
+        MultipartFile profileImage = dto.getProfileImage();
+
+        String savePath = null;
+
+        if(!profileImage.isEmpty()) {
+            savePath = FileUtil.uploadFile(profileImage, rootPath);
+        }
+
+//        log.info("저장경로 이름: {}", savePath);
+
+        boolean isUpdated = mypageUpdateService.updateMember(dto, savePath);
+
+        // 변경 성공 여부 전달
         return ResponseEntity.ok().body(isUpdated);
     }
 
