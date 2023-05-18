@@ -120,7 +120,7 @@ public class MemberController {
                 // 세션
                 memberService.maintainLoginState(request.getSession(), dto.getMemberEmail());
                 //todo: home으로 이동해야 함!
-                return "/jeju-camps";
+                return "redirect:/jeju-camps";
             }
             // 로그인 실패
         } catch (Exception e) {
