@@ -145,6 +145,11 @@ public class MemberController {
 
         // 로그인 중인지 확인
         if (LoginUtil.isLogin(session)) {
+
+            if (LoginUtil.isAutoLogin(request)) {
+                memberService.autoLoginClear(request, response);
+            }
+
             session.removeAttribute(LoginUtil.LOGIN_KEY);
             session.invalidate();
             return "redirect:/";
