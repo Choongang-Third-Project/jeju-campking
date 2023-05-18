@@ -85,6 +85,13 @@ public class BoardController {
     }
 
 
+    // 최근 게시물 2개를 담음
+    // /jeju-camps/notices/top
+    @GetMapping("/top")
+    public ResponseEntity<?> findRecentTwo(){
+        List<Board> list = boardService.findRecentTwo();
+        return ResponseEntity.ok().body(list);
+    }
 
     // 글 작성 페이지
     @GetMapping("/write")

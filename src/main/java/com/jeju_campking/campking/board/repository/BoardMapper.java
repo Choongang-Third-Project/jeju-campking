@@ -27,6 +27,8 @@ public interface BoardMapper {
 
     BoardDetailResponseDTO findOne(Long boardNumber);
 
+    List<Board> findRecentTwo();
+
     boolean upViewCount(Long boardNumber); // 조회수 상승
     boolean upRecommendCount(Long boardNumber); // 추천수 상승
     boolean downRecommendCount(Long boardNumber); // 추천수 하강

@@ -104,6 +104,15 @@ public class BoardService {
         return board;
     }
 
+
+    public List<Board> findRecentTwo(){
+        log.info("boardService/findRecentTwo");
+        List<Board> board = boardMapper.findRecentTwo();
+        log.info("boardService.findRectTwo.info {}", board);
+        return board;
+    }
+
+
     public int getCount(String keyword) {
         return boardMapper.count(keyword);
     }

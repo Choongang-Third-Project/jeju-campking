@@ -17,6 +17,20 @@
         LIMIT #{pageStart}, #{amount};
     </select>
 
+    <select id="findRecentTwo" resultType="board">
+        select
+        board_number,
+        board_title,
+        board_content,
+        board_title,
+        member_number,
+        board_view,
+        board_recommend
+        from tb_board
+        order by board_number desc
+        limit 2;
+    </select>
+
     <select id="findByKeyword" resultType="board">
         SELECT
         board_number,

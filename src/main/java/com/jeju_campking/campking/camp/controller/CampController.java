@@ -1,5 +1,7 @@
 package com.jeju_campking.campking.camp.controller;
 
+import com.jeju_campking.campking.board.entity.Board;
+import com.jeju_campking.campking.board.service.BoardService;
 import com.jeju_campking.campking.camp.dto.response.CampTypeCountResponseDTO;
 import com.jeju_campking.campking.camp.entity.Camp;
 import com.jeju_campking.campking.camp.service.CampService;
@@ -29,7 +31,7 @@ import java.util.List;
 public class CampController {
     private final CampService campService;
     private final RankService rankService;
-
+    private final BoardService boardService;
 
     // 전체 캠핑장 목록조회 요청
     @GetMapping("/jeju-camps/info/all-list")
@@ -97,6 +99,7 @@ public class CampController {
         CampTypeCountResponseDTO campCount = campService.getCampCount();
         List<CampRankResponseDTO> campRankList = rankService.getCampRankList();
         List<PartyListResponseDTO> partyList = rankService.getPartyList();
+        List<Board> recentTwo = boardService.findRecentTwo();
         model.addAttribute("c", campCount);
         model.addAttribute("campRank", campRankList);
         model.addAttribute("partyRank", partyList);
