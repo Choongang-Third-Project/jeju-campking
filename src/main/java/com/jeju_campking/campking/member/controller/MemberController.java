@@ -52,7 +52,8 @@ public class MemberController {
     @PostMapping("/signup")
     public String signUp(
             @Validated MemberSignRequestDTO dto,
-            BindingResult result
+            Model model
+            , BindingResult result
     ) {
         log.info("/member/signup {}", dto);
 
@@ -68,14 +69,20 @@ public class MemberController {
         Member member = dto.toEntity();
         member.setProfileImage(savePath);
 
+        boolean isSign = false;
         try {
-            boolean flag = memberService.sign(member);
-            if (!flag) return "redirect:/join";
+            isSign = memberService.sign(member);
+            if (!isSign) {
+                model.addAttribute("signup", isSign);
+                return "redirect:/join";
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            model.addAttribute("signup", isSign);
             return "redirect:/join";
         }
 
+        model.addAttribute("signup", isSign);
         return "redirect:/login";
     }
 
