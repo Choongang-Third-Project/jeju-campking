@@ -35,4 +35,14 @@ public class MypageUpdateController {
         boolean isUpdated = mypageUpdateService.updateMember(memberNumber);
         return ResponseEntity.ok().body(isUpdated);
     }
+
+    // 닉네임, 휴대전화 수정 시 중복검사
+    @GetMapping("/check")
+    public ResponseEntity<?> check(String type, String keyword) {
+
+        log.info("/jeju-camps/api/v1/mypages-update/check?type={}&keyword={} ASYNC GET", type, keyword);
+
+        boolean flag = mypageUpdateService.checkSignUpValue(type, keyword);
+        return ResponseEntity.ok().body(flag);
+    }
 }

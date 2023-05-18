@@ -1,11 +1,15 @@
 package com.jeju_campking.campking.mypage.controller;
 
+import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.mypage.dto.response.MypageMemberResponseDTO;
+import com.jeju_campking.campking.mypage.dto.response.MypageUpdateMemberResponseDTO;
 import com.jeju_campking.campking.mypage.service.MypageService;
+import com.jeju_campking.campking.mypage.service.MypageUpdateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,14 +25,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MypageViewController {
 
     private final MypageService mypageService;
+    private final MypageUpdateService mypageUpdateService;
 
+    // 마이페이지
     @GetMapping("/{memberNumber}")
     public String findMember(@PathVariable Long memberNumber) {
         return "mypage/mypage";
     }
 
+    // 개인정보 수정 페이지
+    // 회원의 전체 정보를 모델에 담아 수정 페이지로 이동합니다.
     @GetMapping("/update/{memberNumber}")
-    public String updateMember(@PathVariable Long memberNumber) {
+    public String updateMember(@PathVariable Long memberNumber, Model model) {
+        Member foundMember = mypageUpdateService.findMember(memberNumber);
+        MypageUpdateMemberResponseDTO dto = new MypageUpdateMemberResponseDTO(foundMember);
+        log.info("MypageViewController.updateMember.dto : {}", dto);
+        model.addAttribute("member", dto);
         return "mypage/update";
     }
 }

@@ -13,6 +13,11 @@ public class MypageUpdateService {
 
     private final MypageUpdateMapper mypageUpdateMapper;
 
+    public boolean checkSignUpValue(String type, String keyword) {
+        int flagNum = mypageUpdateMapper.isDuplicate(type, keyword);
+        return flagNum == 1;
+    }
+
     public Member findMember(Long memberNumber) {
         log.info("MypageService findMember : {}", memberNumber);
         return mypageUpdateMapper.findMember(memberNumber);
