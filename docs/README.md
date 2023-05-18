@@ -80,17 +80,19 @@ timeline
             : [Back] My Page PostMan
             : [Back] party 글 작성, 삭제, 수정 PostMan
             : [Back] 비밀번호 암호화
-    2023-05-17: []
-            : [Front]
+    2023-05-17: [✅]
+            : [Front] 공지사항 추천, 비추천, 페이지네이션, 조회수 상승, 댓글 랜더링
+            : [Front] 마이 페이지 보낸 쪽지, 받은 쪽지, 내가 쓴 글
+            : [Front] 캠프 글 쓰기 양식
+            : 🎯
+            : [Back] 마이 페이지 보낸 쪽지, 받은 쪽지, 내가 쓴 글
+            : [Back] 공지사항 추천, 비추천, 페이지네이션, 조회수 상승, 댓글 response 구현
+            : [Back] 메인 페이지 금주의 캠프킹, 같이 갈 글 모집 response 구현
+    2023-05-18: [✅]
+            : [Front] 
             : [Front]
             : 🎯
-            : [Back]
-            : [Back]
-    2023-05-18: []
-            : [Front]
-            : [Front]
-            : 🎯
-            : [Back]
+            : [Back] 회원가입 비밀번호 암호화 구현
             : [Back]
     2023-05-19: []
             : [Front]
