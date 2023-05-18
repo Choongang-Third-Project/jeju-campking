@@ -134,6 +134,7 @@
         const $writebtn = document.getElementById('.wirtebtn');
         $writebtn.onclick{
             // 글쓰기 버튼 누르면 작성폼으로 넘어가기 
+            
             window.location.href = "party_write.jsp"; //페이지로 넘어가야한다 
         }
 
