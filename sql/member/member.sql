@@ -74,5 +74,6 @@ values
 
         }
     }
-
+    alter table tb_member
+    add profile_image VARCHAR(200);
 
