@@ -16,6 +16,7 @@
     <%-- js --%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 <body>
@@ -36,7 +37,7 @@
                 <div class="mp-info-content"><span class="mp-info-name"></span> 님</div>
                 <div class="mp-info-content mp-info-nickname">일반회원</div>
                 <div class="mp-info-content mp-info-withdrawal">
-                    <button class="btn btn-wide bg-primary">개인정보 수정</button>
+                    <button class="btn btn-wide bg-primary update-btn">개인정보 수정</button>
                 </div>
                 <div class="mp-info-content">
                     <button class="btn btn-wide bg-primary">회원 탈퇴</button>
@@ -157,11 +158,6 @@
 
                         const {partyNumber, partyTitle, partyWriteTime} = response;
                         tag += `<tr>
-<!--                                    <th>-->
-<!--                                        <label>-->
-<!--                                            <input type="checkbox" class="checkbox mp-board-check"/>-->
-<!--                                        </label>-->
-<!--                                    </th>-->
                                     <td>
                                         <div class="space-x-3">
                                             <div>
@@ -189,13 +185,25 @@
                 const $deleteBtns = document.querySelectorAll('.delete-btn');
                 for(const deleteBtn of $deleteBtns) {
                     deleteBtn.onclick = e => {
-                        if (!confirm('정말 삭제하시겠습니까?')) return;
-                        const deleteParty = deleteBtn.dataset.partyNo; // 삭제하려는 파티게시글의 번호
-                        fetch('/jeju-camps/api/v1/mypages/party/delete/' + deleteParty + `/` + memberNum)
-                            .then(res => res.json())
-                            .then(responseResult => {
-                                toastr.success('삭제되었습니다.');
-                               renderPartyList(responseResult);
+                        // if (!confirm('정말 삭제하시겠습니까?')) return;
+                        toastr.info("<br /><br /><button type='button' id='confirmationButtonYes' class='btn clear'>확인</button>",'정말 삭제하시겠습니까?',
+                            {
+                                closeButton: true,
+                                allowHtml: true,
+                                progressBar: false,
+                                timeOut: 10000,
+                                onShown: function (toast) {
+                                    $("#confirmationButtonYes").click(function(){
+                                        // console.log('clicked yes');
+                                        const deleteParty = deleteBtn.dataset.partyNo; // 삭제하려는 파티게시글의 번호
+                                        fetch('/jeju-camps/api/v1/mypages/party/delete/' + deleteParty + `/` + memberNum)
+                                            .then(res => res.json())
+                                            .then(responseResult => {
+                                                toastr.success('삭제되었습니다.');
+                                               renderPartyList(responseResult);
+                                            });
+                                    });
+                                }
                             });
                     };
                 }
@@ -259,8 +267,7 @@
                                     <th>
                                     </th>
                                 </tr>`;
-                    }
-                    // console.log('tag : ' + contentTag);
+                    }                    // console.log('tag : ' + contentTag);
                     MessageContent.innerHTML = contentTag;
                 }
             }
@@ -332,6 +339,12 @@
                         // console.log(responseResult);
                         renderSendMessageList(responseResult);
                     })
+            }
+
+            // 개인정보 수정 버튼 클릭 이벤트
+            $updateBtn = document.querySelector('.update-btn');
+            $updateBtn.onclick = e => {
+                window.location.href='/jeju-camps/mypage/update/' + memberNum;
             }
 
             // 메인 실행부

@@ -230,15 +230,8 @@ function getBirth() {
 
 getBirth();
 
-
- 
-
-
  // 성별 입력
  checkResultList[6] = true;
-
-
-
 
  // 연락처 하이픈 자동 변경
  const autoHyphen = e => {
