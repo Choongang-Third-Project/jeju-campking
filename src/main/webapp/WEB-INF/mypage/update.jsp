@@ -36,7 +36,12 @@
 
         <div class="profile">
             <div class="thumbnail-box">
-                <img src="/assets/signup/img/img-add.png" alt="프로필 썸네일">
+                <c:if test="${member.profileImage == null}">
+                    <img src="/assets/signup/img/img-add.png" alt="프로필 썸네일">
+                </c:if>
+                <c:if test="${member.profileImage != null}">
+                    <img src="" alt="프로필 사진">
+                </c:if>
             </div>
 
             <label>프로필 이미지 변경</label>

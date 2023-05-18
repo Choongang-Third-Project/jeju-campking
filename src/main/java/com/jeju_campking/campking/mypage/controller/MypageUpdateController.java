@@ -1,6 +1,7 @@
 package com.jeju_campking.campking.mypage.controller;
 
 import com.jeju_campking.campking.member.entity.Member;
+import com.jeju_campking.campking.mypage.dto.request.MypageUpdateMemberRequestDTO;
 import com.jeju_campking.campking.mypage.service.MypageUpdateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +28,11 @@ public class MypageUpdateController {
         return ResponseEntity.ok().body(foundMember);
     }
 
-    @PostMapping("/{memberNumber}")
+    // 회원의 비밀번호,
+    @PatchMapping("/{memberNumber}")
     public ResponseEntity<?> updateMember(
-            @PathVariable Long memberNumber
+            @PathVariable Long memberNumber,
+            @PathVariable MypageUpdateMemberRequestDTO dto
     ) {
         log.info("MypageController updateMember : {}", memberNumber);
         boolean isUpdated = mypageUpdateService.updateMember(memberNumber);
