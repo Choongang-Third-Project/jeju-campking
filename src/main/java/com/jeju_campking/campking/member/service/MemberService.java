@@ -6,12 +6,15 @@ import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
 import com.jeju_campking.campking.member.dto.response.LoginUserResponseDTO;
 import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.member.repository.MemberMapper;
+import com.jeju_campking.campking.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
@@ -140,6 +143,28 @@ public class MemberService {
         // 세션 수명 설정
         session.setMaxInactiveInterval(60 * 60); //1시간
     }
+
+
+    public void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
+        Cookie cookie = WebUtils.getCookie(request, AUTO_LOGIN_COOKIE);
+
+
+        if (cookie != null) {
+            cookie.setMaxAge(0);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+
+            memberMapper.saveAutoLogin(
+                    AutoLoginDTO.builder()
+                            .sessionId("none")
+                            .memberCookieDate(LocalDateTime.now())
+                            .account(LoginUtil.getCurrentLoginMemberId(request.getSession()))
+                            .build()
+            );
+        }
+
+    }
+
 
     // 멤버의 모든 정보를 가져오는 서비스
     public Member getMember(String memberEmail) {
