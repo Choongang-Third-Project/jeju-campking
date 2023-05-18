@@ -1,6 +1,7 @@
 package com.jeju_campking.campking.member.service;
 
 
+import com.jeju_campking.campking.member.dto.request.AutoLoginDTO;
 import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
 import com.jeju_campking.campking.member.dto.response.LoginUserResponseDTO;
 import com.jeju_campking.campking.member.entity.Member;
@@ -10,10 +11,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 import static com.jeju_campking.campking.member.service.LoginResult.*;
+import static com.jeju_campking.campking.util.LoginUtil.*;
 
 @Service
 @RequiredArgsConstructor
@@ -60,7 +65,10 @@ public class MemberService {
     }
 
     // 로그인 성공여부 검증 서비스
-    public LoginResult authenticate(MemberLoginRequestDTO dto) {
+    public LoginResult authenticate(
+            MemberLoginRequestDTO dto
+            , HttpSession session,
+            HttpServletResponse response) {
         log.info("memberService/authenticate : {}", dto);
         Member foundMember = memberMapper.login(dto);
         log.info("memberService/authenticate : {}", foundMember);
@@ -77,6 +85,37 @@ public class MemberService {
             log.info("비밀번호 불일치", dto.getMemberEmail());
             return NO_PW;
         }
+
+        log.info("isAutoLogin ??????????????? : {}", dto.isAutoLogin());
+        if (dto.isAutoLogin()) {
+            // 1. 쿠키 생성
+            // - 쿠키 값에 세션 아이디를 저장한다.
+            // - key : value = value 는 session ID
+            Cookie cookie = new Cookie(AUTO_LOGIN_COOKIE, session.getId());
+
+
+            // 2. 쿠키 셋팅 - 수명이랑 사용 경로
+            // 전체 경로에서 사용할 것이다.
+            int cookieTime = 60 * 60 * 24 * 90;
+            cookie.setMaxAge(cookieTime);
+            cookie.setPath("/");
+
+            // 3. 쿠키를 클라이언트에 응답 전송
+            response.addCookie(cookie);
+
+            // 4. DB 에도 쿠키에 저장된 값과 수명을 저장해야 한다
+            // 년월일 시분초로 저장해야함.
+            // 지금 시간 + 90일
+            memberMapper.saveAutoLogin(
+                    AutoLoginDTO.builder()
+                            .account(dto.getMemberEmail())
+                            .memberCookieDate(LocalDateTime.now().plusDays(90))
+                            .sessionId(session.getId())
+                            .build()
+            );
+
+        }
+
         log.info("{}님 로그인 성공", dto.getMemberEmail());
         return SUCCESS;
     }
@@ -97,7 +136,7 @@ public class MemberService {
                 .build();
 
         // 위 정보 세션에 저장
-        session.setAttribute("login", dto);
+        session.setAttribute(LOGIN_KEY, dto);
         // 세션 수명 설정
         session.setMaxInactiveInterval(60 * 60); //1시간
 

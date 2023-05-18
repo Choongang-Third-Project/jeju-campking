@@ -6,7 +6,7 @@
 
     <select id="login" resultType="member">
         SELECT
-            *
+        *
         FROM TB_MEMBER
         WHERE member_email = #{memberEmail}
     </select>
@@ -15,7 +15,7 @@
         INSERT INTO TB_MEMBER
         (member_email, member_password,
         member_name, member_nickname,
-         member_phone, member_age,
+        member_phone, member_age,
         member_gender, profile_image)
         VALUES (#{memberEmail}, #{memberPassword},
         #{memberName}, #{memberNickname},
@@ -42,5 +42,13 @@
         FROM TB_MEMBER
         WHERE member_email = #{memberEmail}
     </select>
+
+    <insert id="saveAutoLogin">
+        UPDATE TB_MEMBER
+        SET
+        member_session_id = #{sessionId}
+        , member_cookie_date = #{memberCookieDate}
+        WHERE member_email = #{account}
+    </insert>
 
 </mapper>

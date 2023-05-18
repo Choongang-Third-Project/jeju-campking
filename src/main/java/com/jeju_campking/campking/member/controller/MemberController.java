@@ -94,11 +94,12 @@ public class MemberController {
             , RedirectAttributes ra
             , Model model
             , HttpServletRequest request
+            , HttpServletResponse response
     ) {
         log.info("/member/login {}", dto);
 
         // 로그인 검증 서비스
-        LoginResult loginResult = memberService.authenticate(dto);
+        LoginResult loginResult = memberService.authenticate(dto, request.getSession(), response);
 
 
         // 로그인 성공
@@ -107,13 +108,12 @@ public class MemberController {
             if (loginResult == SUCCESS) {
                 log.info("loginResult {}", loginResult);
                 Member loginMember = memberService.login(dto);
-                log.info(loginMember.getMemberNickname(), loginMember.getMemberGender());
                 model.addAttribute(loginMember);
 
                 // 세션
                 memberService.maintainLoginState(request.getSession(), dto.getMemberEmail());
                 //todo: home으로 이동해야 함!
-                return "redirect:/jeju-camps";
+                return "/jeju-camps";
             }
             // 로그인 실패
         } catch (Exception e) {
