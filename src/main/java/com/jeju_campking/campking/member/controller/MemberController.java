@@ -6,6 +6,7 @@ package com.jeju_campking.campking.member.controller;
 import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
 import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
 import com.jeju_campking.campking.member.entity.Member;
+import com.jeju_campking.campking.member.service.LoginResult;
 import com.jeju_campking.campking.member.service.MemberService;
 import com.jeju_campking.campking.util.LoginUtil;
 import com.jeju_campking.campking.util.upload.FileUtil;
@@ -26,6 +27,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.http.HttpResponse;
 import java.sql.SQLException;
+
+import static com.jeju_campking.campking.member.service.LoginResult.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -67,8 +70,10 @@ public class MemberController {
 
         try {
             boolean flag = memberService.sign(member);
+            if (!flag) return "redirect:/join";
         } catch (SQLException e) {
             e.printStackTrace();
+            return "redirect:/join";
         }
 
         return "redirect:/login";
@@ -84,36 +89,40 @@ public class MemberController {
 
     // 로그인 검증 요청
     @PostMapping("/login")
-    public String login(MemberLoginRequestDTO dto
-                        , RedirectAttributes ra
-                        , Model model
-                        , HttpServletRequest request) {
+    public String login(
+            MemberLoginRequestDTO dto
+            , RedirectAttributes ra
+            , Model model
+            , HttpServletRequest request
+            , HttpServletResponse response
+    ) {
         log.info("/member/login {}", dto);
 
         // 로그인 검증 서비스
-        String loginResult = memberService.authenticate(dto);
+        LoginResult loginResult = memberService.authenticate(dto, request.getSession(), response);
 
-        ra.addFlashAttribute("loginResult", loginResult);
 
         // 로그인 성공
         // TODO : 로그인한 회원 객체를 가지고 메인페이지로 돌아가야합니다.
         try {
-            if (loginResult.equals("SUCCESS")) {
+            if (loginResult == SUCCESS) {
                 log.info("loginResult {}", loginResult);
                 Member loginMember = memberService.login(dto);
-                log.info(loginMember.getMemberNickname(), loginMember.getMemberGender());
                 model.addAttribute(loginMember);
 
                 // 세션
                 memberService.maintainLoginState(request.getSession(), dto.getMemberEmail());
                 //todo: home으로 이동해야 함!
-                return "redirect:/jeju-camps";
+                return "/jeju-camps";
             }
             // 로그인 실패
         } catch (Exception e) {
-            return "redirect:/member/login"; // FAIL 리턴
+            return "redirect:/login"; // FAIL 리턴
         }
-        return "redirect:/member/login"; // FAIL 리턴
+
+        ra.addFlashAttribute("loginResult", loginResult);
+
+        return "redirect:/login"; // FAIL 리턴
     }
 
     // 회원가입 시 이메일, 닉네임, 전화번호 중복검사 - REST API

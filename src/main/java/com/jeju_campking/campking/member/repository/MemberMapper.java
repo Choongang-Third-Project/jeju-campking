@@ -1,5 +1,6 @@
 package com.jeju_campking.campking.member.repository;
 
+import com.jeju_campking.campking.member.dto.request.AutoLoginDTO;
 import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
 import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
 import com.jeju_campking.campking.member.entity.Member;
@@ -19,4 +20,7 @@ public interface MemberMapper {
             , @Param("keyword") String keyword);
 
     Member findMember(String memberEmail);
+
+
+    void saveAutoLogin(AutoLoginDTO dto);
 }
