@@ -1,3 +1,8 @@
+  
+  
+  
+  
+  
   // 프로필 사진 관련 스크립트
   const $profile = document.querySelector('.profile');
   const $fileInput = document.getElementById('profile-img');
@@ -292,8 +297,15 @@ getBirth();
      const $form = document.getElementById('signUpForm');
 
      if (!checkResultList.includes(false)) {
-         $form.submit();
+        toastr.success("회원가입이 완료되었습니다.");
+
+        setTimeout(() => {
+            $form.submit();
+        }, 3000);
+
      } else {
-         alert('입력란을 다시 확인하세요!');
+        toastr.error("회원가입에 실패하였습니다.");
+        
      }
  };
+
