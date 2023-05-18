@@ -202,12 +202,13 @@
                             </p>
                         </a>
                         <div>
-                            <a href="#">
-                                <p><span class="date">2023/00/00</span> <span class="line">여기는 공지글~ 냥냥냥냥</span></p>
-                            </a>
-                            <a href="#">
-                                <p><span class="date">2023/00/00</span> <span class="line">여기는 공지글~</span></p>
-                            </a>
+                            <c:forEach var="n" items="${notice}">
+                                <a href="#">
+                                    <p><span class="date">
+                                     
+                                </span> <span class="line">${n.boardTitle}</span></p>
+                                </a>
+                            </c:forEach>
                         </div>
                     </div>
 
