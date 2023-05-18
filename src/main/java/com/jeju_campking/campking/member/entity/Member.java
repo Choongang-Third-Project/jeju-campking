@@ -27,5 +27,5 @@ public class Member {
     private LocalDateTime memberCookieDate;
 
     private String profileImage;
-    MemberAuth memebrAuth;
+    MemberAuth memberAuth;
 }
