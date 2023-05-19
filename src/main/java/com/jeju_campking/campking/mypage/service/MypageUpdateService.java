@@ -36,8 +36,8 @@ public class MypageUpdateService {
         Member member = dto.toEntity();
         // 프로필사진 이미지 경로
         member.setProfileImage(savePath);
-        // 전화번호에서 하이픈 제거
-        member.setMemberPhone(member.getMemberPhone().replaceAll("-", ""));
+//        // 전화번호에서 하이픈 제거
+//        member.setMemberPhone(member.getMemberPhone().replaceAll("-", ""));
         // 비밀번호 암호화
         member.setMemberPassword(encoder.encode(member.getMemberPassword()));
 
