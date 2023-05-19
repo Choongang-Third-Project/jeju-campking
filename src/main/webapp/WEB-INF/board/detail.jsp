@@ -272,7 +272,7 @@
                 const $repText = e.target.parentElement.parentElement.parentElement.querySelector('.reply-text');
                 const $repModify = e.target.parentElement.parentElement.parentElement.querySelector('.reply-text2');
                 const $repOkBtn = $repModify.querySelector('#replyOk');
-
+               
                 
                 if($repText.style.display==='block'){
                     $repText.style.display = 'none';
@@ -284,8 +284,48 @@
                 
 
                 $repOkBtn.onclick = e => {
-                    console.log('ㅎㅇㅎㅇ');
-                    console.log($repOkBtn.getAttribute('data-replyNum'));
+                    let $repValue = $repModify.querySelector('input').value;
+                    // console.log('ㅎㅇㅎㅇ');
+                    // console.log($repOkBtn.getAttribute('data-replyNum'));
+                    // console.log($repValue);
+                    if(!$repValue){
+                        toastr.error('댓글 내용이 없어요 ,,,');
+                        return;
+                    } 
+
+                    // if($repValue === $repText.value){
+                    //     toastr.error('수정할려는 내용이 없어요,,,');
+                    //     return;
+                    // }
+
+
+                    const payload = {
+                        replyContent: $repValue,
+                        replyNumber : +$repOkBtn.getAttribute('data-replyNum')
+                    };
+
+		            //console.log(payload);
+
+                    const requestInfo = {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                     };
+
+                // # 서버에 POST요청 보내기
+                fetch('/jeju-camps/notices/detail/reply', requestInfo)
+                    .then(res => res.json())
+                      .then(responseResult => {
+                        toastr.success('댓글 수정 성공@@@@');
+                        $repText.style.display = 'block';
+                         $repModify.style.display = 'none';
+                        getReplyList();
+                     });
+
+
+
                 }
 
             }   
