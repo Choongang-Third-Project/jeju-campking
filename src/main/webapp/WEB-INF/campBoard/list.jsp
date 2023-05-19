@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>CAMP KING</title>
-    <%@ include file="../include/static-head.jsp" %>
+    <!-- 헤더 -->
+     <%@ include file="../include/header.jsp" %>
     <link rel="stylesheet" href="/assets/board/css/list.css">
     
     <style>

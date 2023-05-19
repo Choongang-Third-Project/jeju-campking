@@ -23,6 +23,10 @@
       .custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}             
       .custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}            
       </style>
+
+          <!-- 헤더 -->
+          <%@ include file="../include/header.jsp" %>
+
        <!-- fontawesome icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/68f79e919f.js" crossorigin="anonymous"></script>

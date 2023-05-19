@@ -10,7 +10,7 @@
     <title>Document</title>
 
     <%@ include file = "../include/static-head.jsp" %>
-    <link rel="stylesheet" href="/assets/home/css/home.css">
+    <link rel="stylesheet" href="/assets/header/css/header.css">
     <script src="/assets/home/js/home.js" defer></script>
 
 </head>
@@ -37,10 +37,6 @@
                             <li><a href="/jeju-camps/notices">공지사항</a></li>
                             <li><a href="/jeju-camps/info">캠핑장</a></li>
                             <li><a href="/jeju-camps/parties">같이갈사람</a></li>
-                        </ul>
-                        <ul class="api">
-                            <li>날씨 맑음</li>
-                            <li>미세먼지 없음</li>
                         </ul>
                     </nav>
 
