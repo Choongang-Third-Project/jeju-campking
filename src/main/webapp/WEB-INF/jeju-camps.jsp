@@ -48,7 +48,10 @@
                             <li><a href="/jeju-camps/notices">공지사항</a></li>
                             <li><a href="/jeju-camps/info">캠핑장</a></li>
                             <li><a href="/jeju-camps/parties">같이갈사람</a></li>
-
+                        </ul>
+                        <ul class="api">
+                            <li>날씨 맑음</li>
+                            <li>미세먼지 없음</li>
                         </ul>
                     </nav>
 
@@ -58,7 +61,7 @@
                             <li>
                                 <p>
                                     <c:if test="${LOGIN == null}">
-                                        침입자자자
+                                        침입자
                                     </c:if>
                                     <c:if test="${LOGIN != null}">
                                         ${LOGIN.memberNickname}님
@@ -209,7 +212,6 @@
                                     <p>
                                         <span class="date"> 
                                             ${fn:substring(n.boardTime,0,10)}
-                                            
                                         </span>
                                         <span class="line">${n.boardTitle}</span>
                                     </p>
