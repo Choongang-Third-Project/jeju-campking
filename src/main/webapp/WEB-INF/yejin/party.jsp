@@ -39,10 +39,10 @@
             </div>
         </nav>
 
-        <!-- <c:forEach var="b" items="${bList}"> -->
+    
         <section class="content">
             <ul id="party-list">
-                <!-- <li>
+                <li>
                     <div class="item_card clearfix">
                         <div class="img-box">
                             <img src="/main/resources/static/assets/home/img/sm_normal.jpg" alt="">
@@ -55,10 +55,9 @@
                             by 작성자
                         </div>
                     </div>
-                </li> -->
+                </li>
             </ul>
         </section>
-        <!-- </c:forEach> -->
     </body>
 
 
@@ -67,11 +66,12 @@
         let $sort = 'writeTimeDESC';
 
         // 게시물 목록 렌더링 함수
-        function renderCampList({
+        function renderCampList(
             allBySort
-        }) {
+        ) {
             let tag = '';
 
+            console.log('allbysort:',allBySort);
             if (allBySort === null || allBySort.length === 0) {
                 tag += " ";
 
@@ -98,14 +98,16 @@
                         "<div class='item_card clearfix'>" +
                         "<div class='img-box'>";
 
-                    if (campTypeNormal === "normal") {
-                        tag += "<img src='/assets/home/img/sm_normal.jpg' alt='normal'>";
-                    } else if (campTypeGlamping === "glamping") {
-                        tag += "<img src='/assets/home/img/sm_glamping.jpg' alt='glamping'>";
-                    } else if (campTypeCaravan === "caravan") {
-                        tag += "<img src='/assets/home/img/sm_caraban.jpg' alt='caravan'>";
-                    } else {
+                    // console.log(party);
+                    if (campTypeGlamping === "글램핑") {
+                    tag += "<img src='/assets/home/img/sm_glamping.jpg' alt='glamping'>";
+                    }
+                    else if (campTypeNormal === "자동차") {
                         tag += "<img src='/assets/home/img/sm_car.jpg' alt='car'>";
+                    } else if (campTypeCaravan === "카라반") {
+                        tag += "<img src='/assets/home/img/sm_caraban.jpg' alt='caravan'>";
+                    } else if(campTypeNormal === "일반"){
+                        tag += "<img src='/assets/home/img/sm_normal.jpg' alt='normal'>";
                     }
                     tag += "</div>" +
                         "<div class='small_title'>" +
@@ -120,6 +122,8 @@
                 }
 
                 // 생성된 파티 tag 렌더링
+console.log(tag);
+
                 document.getElementById('party-list').innerHTML = tag;
             }
         }
@@ -131,7 +135,7 @@
             fetch('/jeju-camps/parties/all-list/' + $type + '/' + $sort)
                 .then(res => res.json())
                 .then(responseResult => {
-                    console.log(responseResult);
+                    // console.log(responseResult);
                     renderCampList(responseResult);
                 });
         }
