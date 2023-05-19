@@ -10,20 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeju Camp King</title>
 
-    <!-- 폰트어썸 아이콘 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://kit.fontawesome.com/68f79e919f.js" crossorigin="anonymous"></script>
-
-    <!-- set-up -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="stylesheet" href="/assets/include/common.css">
+    <%@ include file = "../include/static-head.jsp" %>
     <link rel="stylesheet" href="/assets/home/css/home.css">
-
-    <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/header/img/camp.ico">
-
     <script src="/assets/home/js/home.js" defer></script>
 
 </head>
