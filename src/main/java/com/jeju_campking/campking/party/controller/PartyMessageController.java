@@ -69,4 +69,6 @@ public class PartyMessageController {
                     .body(e.getMessage());
         }
     }
+
+
 }

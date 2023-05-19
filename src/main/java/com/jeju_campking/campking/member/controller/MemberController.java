@@ -41,6 +41,7 @@ public class MemberController {
     private String rootPath;
     private final MemberService memberService;
 
+
     // 회원가입 양식 페이지 요청
 //    @GetMapping("/signup")
 //    public String signUp() {

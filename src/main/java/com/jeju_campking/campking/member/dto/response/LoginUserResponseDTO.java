@@ -18,4 +18,5 @@ public class LoginUserResponseDTO {
     private Gender memberGender;
     private MemberAuth auth;
     private String profile;
+    private Long memberNumber;
 }

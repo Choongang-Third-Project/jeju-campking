@@ -136,6 +136,7 @@ public class MemberService {
                 .memberGender(member.getMemberGender())
                 .auth(member.getMemberAuth())
                 .profile(member.getProfileImage())
+                .memberNumber(member.getMemberNumber())
                 .build();
 
         // 위 정보 세션에 저장

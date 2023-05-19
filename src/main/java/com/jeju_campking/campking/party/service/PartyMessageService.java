@@ -55,4 +55,8 @@ public class PartyMessageService {
 
         return partyMessageMapper.send(dto);
     }
+
+    public int unreadCount(Long partyMessageRecipient) {
+        return partyMessageMapper.unreadCount(partyMessageRecipient);
+    }
 }

@@ -37,4 +37,15 @@
         #{partyMessageRecipient}, #{partyNumber})
     </insert>
 
+    <select id="unreadCount" resultType="int">
+        SELECT COUNT(*)
+        FROM tb_party_message
+        WHERE party_message_recipient = #{partyMessageRecipient}
+        AND party_message_read = 'N'
+    </select>
+
+
+
+
+
 </mapper>
