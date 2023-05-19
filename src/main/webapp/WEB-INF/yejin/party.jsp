@@ -102,7 +102,7 @@
                     if (campTypeGlamping === "글램핑") {
                     tag += "<img src='/assets/home/img/sm_glamping.jpg' alt='glamping'>";
                     }
-                    else if (campTypeNormal === "자동차") {
+                    else if (campTypeCar === "자동차") {
                         tag += "<img src='/assets/home/img/sm_car.jpg' alt='car'>";
                     } else if (campTypeCaravan === "카라반") {
                         tag += "<img src='/assets/home/img/sm_caraban.jpg' alt='caravan'>";
