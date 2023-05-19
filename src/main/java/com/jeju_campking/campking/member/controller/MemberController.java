@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.net.http.HttpResponse;
 import java.sql.SQLException;
 
@@ -59,6 +60,10 @@ public class MemberController {
 
         MultipartFile profileImage = dto.getProfileImage();
         log.info("프로필사진 이름: {}", dto.getProfileImage().getOriginalFilename());
+
+        // 파일저장 루트 폴더가 없으면 루트폴더 생성
+        File root = new File(rootPath);
+        if (!root.exists()) root.mkdirs();
 
         String savePath = null;
         if (!profileImage.isEmpty()) {
