@@ -32,7 +32,7 @@
         <h1>개인정보 수정</h1>
     </div>
 
-    <form action="/jeju-camps/mypage/${memberNumber}" id="update-form" name="updateForm" method="post" enctype="multipart/form-data">
+    <form action="/jeju-camps/mypage/update/${memberNumber}" id="update-form" name="updateForm" method="post" enctype="multipart/form-data">
         <input type="hidden" name="memberNumber" value=${memberNumber}>
         <div class="profile">
             <div class="thumbnail-box">
