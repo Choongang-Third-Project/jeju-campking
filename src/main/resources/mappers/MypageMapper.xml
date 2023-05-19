@@ -55,6 +55,11 @@
         WHERE party_number = #{partyNumber}
     </delete>
 
+    <delete id="removeSendMessage">
+        DELETE FROM TB_PARTY_MESSAGE
+        WHERE party_message_number = #{sendMessageNumber}
+    </delete>
+
     <insert id="updateMember">
         INSERT INTO TB_MEMBER
         (member_password,

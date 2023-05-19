@@ -32,7 +32,7 @@
         <h1>개인정보 수정</h1>
     </div>
 
-    <form action="/jeju-camps/api/v1/mypages-update/${memberNumber}" id="update-form" name="updateForm" method="post" enctype="multipart/form-data">
+    <form action="/jeju-camps/mypage/${memberNumber}" id="update-form" name="updateForm" method="post" enctype="multipart/form-data">
         <input type="hidden" name="memberNumber" value=${memberNumber}>
         <div class="profile">
             <div class="thumbnail-box">
@@ -155,17 +155,9 @@
 
     // 전화번호 입력시 하이픈 양식으로 자동 변경
     const autoHyphen = e => {
-        let removeHypenPhoneValue = e.value.replaceAll('-', '');
-        if (removeHypenPhoneValue.length == 10) {
-            e.value = e.value
-                .replace(/[^0-9]/g, '')
-                .replace(/^(\d{0,3})(\d{0,3})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-        }
-        if (removeHypenPhoneValue.length == 11) {
-            e.value = e.value
-                .replace(/[^0-9]/g, '')
-                .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-        }
+        e.value = e.value
+            .replace(/[^0-9]/g, '')
+            .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
     }
 
     // 수정할 태그 가져오기
@@ -203,6 +195,13 @@
     const $updateBtn = document.getElementById('update-btn');
     const $form = document.getElementById('update-form');
     $updateBtn.onclick = e => {
+        if ($nickname.value === memberNickname) {
+            checkResultList[2] = true;
+        }
+        if ($phone.value === memberPhone) {
+            checkResultList[3] = true;
+        }
+
         if (!checkResultList.includes(false)) {
             toastr.success("회원님의 정보가 정상적으로 수정되었습니다.");
 
@@ -270,6 +269,8 @@
             $nickname.style.borderColor = 'red';
             document.getElementById('nicknameChk').innerHTML = '<b style="color: red; font-size:13px;">한글, 영문, 숫자로 입력하세요</b>';
             checkResultList[2] = false;
+        } else if (nicknamValue === memberNickname) {
+            checkResultList[2] = true;
         } else {
             fetch('/member/check?type=nickname&keyword=' + nicknamValue)
                 .then(res => res.json())
@@ -293,9 +294,9 @@
     $phone.onkeyup = e => {
 
         const phoneValue = $phone.value;
-        const removeHypenPhoneValue = phoneValue.replaceAll('-', '');
+        // const removeHypenPhoneValue = phoneValue.replaceAll('-', '');
 
-        if (removeHypenPhoneValue.trim() === '') {
+        if (phoneValue.trim() === '') {
             $phone.style.borderColor = 'red';
             document.getElementById('phoneChk').innerHTML = '<b style="color: red; font-size:13px;">필수 정보입니다.</b>';
             checkResultList[3] = false;
@@ -303,11 +304,11 @@
             $phone.style.borderColor = 'red';
             document.getElementById('phoneChk').innerHTML = '<b style="color: red; font-size:13px;">휴대전화 번호양식을 지켜주세요.</b>';
             checkResultList[3] = false;
-        } else if (removeHypenPhoneValue === memberPhone) {
+        } else if (phoneValue === memberPhone) {
             checkResultList[3] = true;
         } else {
-            console.log(removeHypenPhoneValue);
-            fetch('/jeju-camps/api/v1/mypages-update/check?type=phone&keyword=' + removeHypenPhoneValue)
+            console.log(phoneValue);
+            fetch('/jeju-camps/api/v1/mypages-update/check?type=phone&keyword=' + phoneValue)
                 .then(res => res.json())
                 .then(flag => {
                     if (flag) {

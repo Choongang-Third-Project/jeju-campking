@@ -32,33 +32,33 @@ public class MypageUpdateMemberResponseDTO {
         this.memberPassword = member.getMemberPassword();
         this.memberName = member.getMemberName();
         this.memberNickname = member.getMemberNickname();
-        this.memberPhone = getFormattedPhoneNumber(member.getMemberPhone());
+        this.memberPhone = member.getMemberPhone();
         this.memberGender = member.getMemberGender();
         this.memberAge = member.getMemberAge();
         this.profileImage = member.getProfileImage();
     }
 
     // 휴대전화번호를 하이픈이 포함된 형식으로 변환
-    private String getFormattedPhoneNumber(String phone) {
-        if (phone == null || phone.isEmpty()) {
-            return "";
-        }
-        // 하이픈 추가 로직
-        // 예: 01012345678 -> 010-1234-5678
-        StringBuilder formattedNumber = new StringBuilder();
-        formattedNumber.append(phone.substring(0, 3));
-        formattedNumber.append("-");
-        if (phone.length() == 11) {
-            formattedNumber.append(phone.substring(3, 7));
-            formattedNumber.append("-");
-            formattedNumber.append(phone.substring(7));
-        } else {
-            formattedNumber.append(phone.substring(3, 6));
-            formattedNumber.append("-");
-            formattedNumber.append(phone.substring(6));
-        }
-
-        return formattedNumber.toString();
-    }
+//    private String getFormattedPhoneNumber(String phone) {
+//        if (phone == null || phone.isEmpty()) {
+//            return "";
+//        }
+//        // 하이픈 추가 로직
+//        // 예: 01012345678 -> 010-1234-5678
+//        StringBuilder formattedNumber = new StringBuilder();
+//        formattedNumber.append(phone.substring(0, 3));
+//        formattedNumber.append("-");
+//        if (phone.length() == 11) {
+//            formattedNumber.append(phone.substring(3, 7));
+//            formattedNumber.append("-");
+//            formattedNumber.append(phone.substring(7));
+//        } else {
+//            formattedNumber.append(phone.substring(3, 6));
+//            formattedNumber.append("-");
+//            formattedNumber.append(phone.substring(6));
+//        }
+//
+//        return formattedNumber.toString();
+//    }
 
 }

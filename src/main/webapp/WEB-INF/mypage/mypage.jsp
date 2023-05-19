@@ -53,11 +53,6 @@
                         <table class="table w-full mp-board-li">
                             <thead class="mp-board-header">
                             <tr>
-<%--                                <th>--%>
-<%--                                    <label>--%>
-<%--                                        <input type="checkbox" class="checkbox mp-board-check-all"/>--%>
-<%--                                    </label>--%>
-<%--                                </th>--%>
                                 <th>파티 번호</th>
                                 <th><a>제목</a></th>
                                 <th>작성일자</th>
@@ -65,7 +60,6 @@
                             </tr>
                             </thead>
                             <tbody id="mp-party-list">
-                                <%-- 파티게시글 목록 뿌려줄 부분 --%>
                             </tbody>
                         </table>
                     </div>
@@ -77,18 +71,10 @@
                         <button class="mp-msg-receive-btn btn btn-outline">받은 쪽지함</button>
                         <button class="mp-msg-send-btn btn btn-outline">보낸 쪽지함</button>
                     </div>
-                    <!--                    <li class="mp-board-li">게시글1</li>-->
-                    <!--                    <li class="mp-board-li">게시글2</li>-->
-                    <!--                    <li class="mp-board-li">게시글3</li>-->
                     <div class="overflow-x-auto w-full mp-board-list">
                         <table class="table w-full mp-board-li">
                             <thead>
                             <tr>
-<%--                                <th colspan='2'>--%>
-<%--&lt;%&ndash;                                    <label>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                        <input type="checkbox" class="checkbox mp-msg-check-all"/>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                    </label>&ndash;%&gt;--%>
-<%--                                </th>--%>
                                 <th>파티번호</th>
                                 <th id="mp-msg-person">보낸사람</th>
                                 <th>쪽지내용</th>
@@ -120,7 +106,7 @@
                 "preventDuplicates": false,
                 "onclick": null,
                 "showDuration": "100",
-                "hideDuration": "1000",
+                "hideDuration": "0",
                 "timeOut": "1500",
                 "extendedTimeOut": "1000",
                 "showEasing": "swing",
@@ -180,27 +166,26 @@
                                     </th>
                                 </tr>`
                     }
+                    // 생성한 tag 를 thead 아래에 렌더링
+                    document.getElementById('mp-party-list').innerHTML = tag;
                 }
-
-                // 생성한 tag 를 thead 아래에 렌더링
-                document.getElementById('mp-party-list').innerHTML = tag;
-
-                // 삭제 버튼 클릭시 게시글 삭제
+                // 게시글 삭제 버튼 클릭시 게시글 삭제
                 const $deleteBtns = document.querySelectorAll('.delete-btn');
                 for(const deleteBtn of $deleteBtns) {
                     deleteBtn.onclick = e => {
-                        // if (!confirm('정말 삭제하시겠습니까?')) return;
                         toastr.info("<br /><br /><button type='button' id='confirmationButtonYes' class='btn clear'>확인</button>",'정말 삭제하시겠습니까?',
                             {
                                 closeButton: true,
                                 allowHtml: true,
                                 progressBar: false,
                                 timeOut: 10000,
+                                hideDuration: 0,
                                 onShown: function (toast) {
                                     $("#confirmationButtonYes").click(function(){
                                         // console.log('clicked yes');
                                         const deleteParty = deleteBtn.dataset.partyNo; // 삭제하려는 파티게시글의 번호
-                                        fetch('/jeju-camps/api/v1/mypages/party/delete/' + deleteParty + `/` + memberNum)
+                                        fetch('/jeju-camps/api/v1/mypages/party/delete/' + deleteParty + `/` + memberNum, {
+                                            method: "POST"})
                                             .then(res => res.json())
                                             .then(responseResult => {
                                                 toastr.success('삭제되었습니다.');
@@ -248,11 +233,6 @@
                     for(let res of responseResult) {
                         // console.log(res);
                         contentTag += `<tr>
-<!--                                    <th>-->
-<!--                                        <label>-->
-<!--                                            <input type="checkbox" class="checkbox mp-msg-check"/>-->
-<!--                                        </label>-->
-<!--                                    </th>-->
                                     <td><b>\${res.partyNumber}</b></td>
                                     <td>
                                         <div class="space-x-3">
@@ -268,11 +248,41 @@
                                         </a>
                                     </td>
                                     <td>\${res.partyMessageTime}</td>
-                                    <th>
-                                    </th>
+                                    <td>
+                                        <button class="btn btn-xs send-message-delete-btn" data-send-no=\${res.partyMessageNumber}>삭제</button>
+                                    </td>
                                 </tr>`;
-                    }                    // console.log('tag : ' + contentTag);
+                    }
                     MessageContent.innerHTML = contentTag;
+                }
+
+                // 보낸 쪽지 삭제버튼 클릭시 보낸 쪽지 삭제 data-send-no
+                const $sendMessageDelBtns = document.querySelectorAll('.send-message-delete-btn');
+                for(const sendMessageDelBtn of $sendMessageDelBtns) {
+                    sendMessageDelBtn.onclick = e => {
+                        console.log(sendMessageDelBtn);
+                        toastr.info("<br /><br /><button type='button' id='confirmationButtonYes' class='btn clear'>확인</button>",'정말 삭제하시겠습니까? 상대방의 쪽지함에서도 삭제됩니다.',
+                            {
+                                closeButton: true,
+                                allowHtml: true,
+                                progressBar: false,
+                                timeOut: 10000,
+                                hideDuration: 0,
+                                onShown: function (toast) {
+                                    $("#confirmationButtonYes").click(function(){
+                                        const sendMessageNumber = sendMessageDelBtn.dataset.sendNo; // 삭제하려는 보낸 쪽지의 번호
+                                        console.log(sendMessageNumber);
+                                        fetch('/jeju-camps/api/v1/mypages/send-message/delete/' + sendMessageNumber + `/` + memberNum, {
+                                            method: "POST"})
+                                            .then(res => res.json())
+                                            .then(responseResult => {
+                                                toastr.success('삭제되었습니다.');
+                                                renderSendMessageList(responseResult);
+                                            });
+                                    });
+                                }
+                            });
+                    };
                 }
             }
 
@@ -287,11 +297,6 @@
                     for(let res of responseResult) {
                         // console.log(res);
                         contentTag += `<tr>
-<!--                                    <th>-->
-<!--                                        <label>-->
-<!--                                            <input type="checkbox" class="checkbox mp-msg-check"/>-->
-<!--                                        </label>-->
-<!--                                    </th>-->
                                     <td><b>\${res.partyNumber}</b></td>
                                     <td>
                                         <div class="space-x-3">
@@ -312,9 +317,9 @@
                                     </th>
                                 </tr>`;
                     }
-                    // console.log('tag : ' + contentTag);
-                    MessageContent.innerHTML = contentTag;
                 }
+                MessageContent.innerHTML = contentTag;
+
             }
 
             function getReceiveMessageList(memberNum) {
@@ -326,6 +331,15 @@
                     })
             }
 
+            function getSendMessageList(memberNum) {
+                fetch('/jeju-camps/api/v1/mypages/send/' + memberNum)
+                    .then(res => res.json())
+                    .then(responseResult => {
+                        console.log('여기바요' + responseResult);
+                        renderSendMessageList(responseResult);
+                    })
+            }
+
             // 받은메세지 버튼 클릭 이벤트
             $receiveMessageBtn.onclick = e => {
                 getReceiveMessageList(memberNum);
@@ -334,15 +348,6 @@
             // 보낸메세지 버튼 클릭 이벤트
             $sendMessageBtn.onclick = e => {
                 getSendMessageList(memberNum);
-            }
-
-            function getSendMessageList(memberNum) {
-                fetch('/jeju-camps/api/v1/mypages/send/' + memberNum)
-                    .then(res => res.json())
-                    .then(responseResult => {
-                        // console.log(responseResult);
-                        renderSendMessageList(responseResult);
-                    })
             }
 
             // 개인정보 수정 버튼 클릭 이벤트

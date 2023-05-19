@@ -62,4 +62,16 @@ public class MypageService {
 
         return true;
     }
+
+    public boolean removeSendMessage(Long sendMessageNumber) {
+        log.info("MypageService.removeSendMessage : {}", sendMessageNumber);
+        boolean isDelete = mypageMapper.removeSendMessage(sendMessageNumber);
+
+        if (!isDelete) {
+            log.warn("MypageService removeSendMessage WARN : {}", sendMessageNumber);
+            return false;
+        }
+
+        return true;
+    }
 }

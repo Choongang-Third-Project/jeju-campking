@@ -57,7 +57,8 @@ public class MypageController {
         return ResponseEntity.ok().body(receiveMessageList);
     }
 
-    @RequestMapping(path = "/party/delete/{partyNumber}/{memberNumber}", method = {RequestMethod.DELETE, RequestMethod.GET})
+//    @RequestMapping(path = "/party/delete/{partyNumber}/{memberNumber}", method = {RequestMethod.DELETE, RequestMethod.GET})
+    @PostMapping("/party/delete/{partyNumber}/{memberNumber}")
     public ResponseEntity<?> removeParty(
            @PathVariable Long partyNumber,
            @PathVariable Long memberNumber
@@ -65,6 +66,16 @@ public class MypageController {
         log.info("MypageController removeParty : partyNum = {}", partyNumber);
         boolean isDelete = mypageService.removeParty(partyNumber);
         return findParty(memberNumber);
+    }
+
+    @PostMapping("/send-message/delete/{sendMessageNumber}/{memberNumber}")
+    public ResponseEntity<?> removeSendMessage(
+            @PathVariable Long sendMessageNumber,
+            @PathVariable Long memberNumber
+    ) {
+        log.info("MypageController removeSendMessage number: {}", sendMessageNumber);
+        boolean isDelete = mypageService.removeSendMessage(sendMessageNumber);
+        return findSendMessage(memberNumber);
     }
 
     private ModelAndView redirectPartyList(Long memberNumber) {

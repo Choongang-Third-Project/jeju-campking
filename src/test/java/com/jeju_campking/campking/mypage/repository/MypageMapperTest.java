@@ -52,4 +52,10 @@ class MypageMapperTest {
         assertEquals(17, partyList.size());
     }
 
+    @Test
+    @DisplayName("파티메세지 1번 삭제에 성공해야 한다.")
+    void removeSendMessageTest() {
+
+    }
+
 }
