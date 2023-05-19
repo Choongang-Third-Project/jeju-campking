@@ -235,12 +235,105 @@
         const $downBtn = document.getElementById('down-btn');
         const $replyWriteBtn = document.getElementById('replyWriteBtn');
         const $replyBtnGroup = document.getElementById('replyBtnGroup');
-
+        const $replyBox = document.getElementById('reply-box');
+        
         // 댓글 삭제, 수정 처리?
-        $replyBtnGroup.onclick = e => {
-            console.log('ㅎㅇㅎㅇ');
-            //console.log($replyDelBtn.dataset.replyNum);
-        }
+        $replyBox.addEventListener('click', e => {
+           
+            //replyDelBtn
+            if (e.target.matches('.reply-container #replyDelBtn')) {
+                console.log('삭제버튼 클릭');
+                //console.log(e.target.getAttribute('data-replyNum')); 
+                const $delRep = e.target.getAttribute('data-replyNum');
+                fetch('/jeju-camps/notices/detail/reply' + '/' + $delRep, {
+                        method: 'DELETE'
+                    }).then(res => {
+                        if (res.status === 200) {
+                            toastr.success('댓글 삭제 성공! good');
+                            return res.json();
+                        } else {
+                            toastr.error('댓글 삭제 실패! ㅜㅜ');
+                        }
+                    }).then(responseResult => {
+                        getReplyList();
+                    });
+            
+            }
+
+            if (e.target.matches('.reply-container #replyModiBtn')) {
+                
+                console.log('수정버튼 클릭');
+                //console.log(e.target.getAttribute('data-replyNum')); 
+                const repNum = e.target.getAttribute('data-replyNum')
+                // console.log(e.target.parentElement.parentElement.parentElement.querySelector('.reply-text'));
+                // console.log(e.target.parentElement.parentElement.parentElement.querySelector('.reply-text2'));
+
+
+                const $repText = e.target.parentElement.parentElement.parentElement.querySelector('.reply-text');
+                const $repModify = e.target.parentElement.parentElement.parentElement.querySelector('.reply-text2');
+                const $repOkBtn = $repModify.querySelector('#replyOk');
+               
+                
+                if($repText.style.display==='block'){
+                    $repText.style.display = 'none';
+                    $repModify.style.display = 'block';
+                } else {
+                    $repText.style.display = 'block';
+                    $repModify.style.display = 'none';
+                }
+                
+
+                $repOkBtn.onclick = e => {
+                    let $repValue = $repModify.querySelector('input').value;
+                    // console.log('ㅎㅇㅎㅇ');
+                    // console.log($repOkBtn.getAttribute('data-replyNum'));
+                    // console.log($repValue);
+                    if(!$repValue){
+                        toastr.error('댓글 내용이 없어요 ,,,');
+                        return;
+                    } 
+
+                    // if($repValue === $repText.value){
+                    //     toastr.error('수정할려는 내용이 없어요,,,');
+                    //     return;
+                    // }
+
+
+                    const payload = {
+                        replyContent: $repValue,
+                        replyNumber : +$repOkBtn.getAttribute('data-replyNum')
+                    };
+
+		            //console.log(payload);
+
+                    const requestInfo = {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                     };
+
+                // # 서버에 POST요청 보내기
+                fetch('/jeju-camps/notices/detail/reply', requestInfo)
+                    .then(res => res.json())
+                      .then(responseResult => {
+                        toastr.success('댓글 수정 성공@@@@');
+                        $repText.style.display = 'block';
+                         $repModify.style.display = 'none';
+                        getReplyList();
+                     });
+
+
+
+                }
+
+            }   
+            
+
+
+
+        });
 
         // 댓글 쓰기 처리
         $replyWriteBtn.onclick = e =>{
@@ -367,11 +460,15 @@
                        tag+='<span>'+memberNickname+'</span>';
                     tag+='</div>'; 
                     tag+='<div class="reply-btn-group" id="replyBtnGroup">';
-                        tag+='<button class="btn">수정</button>';
+                        tag+='<button class="btn" id="replyModiBtn" data-replyNum='+replyNumber+'>수정</button>';
                         tag+='<button class="btn" id="replyDelBtn" data-replyNum='+replyNumber+'>삭제</button>';
                     tag+='</div>';
                   tag+='</div>';
-                tag+='<div class="reply-text">'+replyContent+'</div>';
+                tag+='<div class="reply-text" style="display:block">'+replyContent+'</div>';
+                tag+='<div class="reply-text2" style="display:none">';
+                    tag+='<input type="text" value="'+replyContent+'" class=" input input-bordered input-primary w-full max-w-xs"/>';
+                    tag+='<button class="btn btn-primary" id="replyOk" data-replyNum='+replyNumber+'>확인</button>';
+                tag+='</div>';
             tag+='</div>';
                 }
             }
