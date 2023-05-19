@@ -57,11 +57,11 @@
 
                             <li>
                                 <p>
-                                    <c:if test="${login == null}">
-                                        침입자
+                                    <c:if test="${LOGIN == null}">
+                                        침입자자자
                                     </c:if>
-                                    <c:if test="${login != null}">
-                                        ${login.memberNickname}님
+                                    <c:if test="${LOGIN != null}">
+                                        ${LOGIN.memberNickname}님
                                     </c:if>
                                 </p>
                             </li>
@@ -83,12 +83,13 @@
                                 <div class="profile dropdown">
                                     <button class="smbtn">
                                         <div class="profile-box">
-                                            <c:if test="${login == null || login.profile == null}">
+                                            <c:if test="${LOGIN == null || LOGIN.profile == null}">
                                                 <img src="/assets/header/img/soongu.jpg" alt="미로그인">
                                             </c:if>
-                                            <c:if test="${login != null && login.profile != null}">
-                                                <img src="/local${login.profile}" alt="프사">
+                                            <c:if test="${LOGIN != null && LOGIN.profile != null}">
+                                                <img src="/local${LOGIN.profile}" alt="프사">
                                             </c:if>
+                                           
                                         </div>
                                     </button>
                                     <div id="drop-content">
