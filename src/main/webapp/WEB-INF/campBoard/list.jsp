@@ -27,7 +27,7 @@
                     <option>내용</option>  
                     <option>제목+내용</option>
                 </select>
-                <input type="text" placeholder="Type here" class="input input-bordered input-info w-96" id="camp-search" />
+                <input type="text" value="${s}" name="camp-search" placeholder="Type here" class="input input-bordered input-info w-96" id="camp-search" />
                 <input type="submit" value="검색" class="input input-bordered">
 
             </form>
@@ -119,12 +119,26 @@
         
          // 캠핑 목록 불러오기 함수 
          function getCampList() {
+
+            console.log("'${s}'");
+            if('${s}'===''){
             fetch('/jeju-camps/info/all-list')
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);
                     renderCampList(responseResult);
                });
+            } else{
+                fetch('/jeju-camps/info/' + '${s}')
+                .then(res => res.json())
+                .then(responseResult => {
+                    // console.log(responseResult);
+                    renderCampList(responseResult);
+               });
+            }
+
+
+
             }
 
             
@@ -133,8 +147,11 @@
          //========= 메인 실행부 =========//
          (function() {
              // 첫 댓글 페이지 불러오기
-             getCampList();
-        
+
+          
+            getCampList();
+             
+
 
         })();
 
