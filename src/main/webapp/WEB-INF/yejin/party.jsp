@@ -32,14 +32,14 @@
                 <div><button type="button">날짜</button></div>
                 <div><button type="button">타입</button></div>
                 <div><button type="button">정원</button></div>
-                <input class="search" type="text">
-                <span class="material-symbols-outlined">
+                <input id="search_content" class="search" type="text">
+                <span class="material-symbols-outlined" id="search_btn">
                     search
                 </span>
             </div>
         </nav>
 
-    
+
         <section class="content">
             <ul id="party-list">
                 <li>
@@ -71,7 +71,7 @@
         ) {
             let tag = '';
 
-            console.log('allbysort:',allBySort);
+            console.log('allbysort:', allBySort);
             if (allBySort === null || allBySort.length === 0) {
                 tag += " ";
 
@@ -100,13 +100,12 @@
 
                     // console.log(party);
                     if (campTypeGlamping === "글램핑") {
-                    tag += "<img src='/assets/home/img/sm_glamping.jpg' alt='glamping'>";
-                    }
-                    else if (campTypeNormal === "자동차") {
+                        tag += "<img src='/assets/home/img/sm_glamping.jpg' alt='glamping'>";
+                    } else if (campTypeCar === "자동차") {
                         tag += "<img src='/assets/home/img/sm_car.jpg' alt='car'>";
                     } else if (campTypeCaravan === "카라반") {
                         tag += "<img src='/assets/home/img/sm_caraban.jpg' alt='caravan'>";
-                    } else if(campTypeNormal === "일반"){
+                    } else if (campTypeNormal === "일반") {
                         tag += "<img src='/assets/home/img/sm_normal.jpg' alt='normal'>";
                     }
                     tag += "</div>" +
@@ -122,12 +121,11 @@
                 }
 
                 // 생성된 파티 tag 렌더링
-console.log(tag);
+                console.log(tag);
 
                 document.getElementById('party-list').innerHTML = tag;
             }
         }
-
 
         // 같이갈 사람 구하는 게시물 목록 불러오는 함수
         function getPartyList() {
@@ -140,10 +138,50 @@ console.log(tag);
                 });
         }
 
-        const writebtn = document.getElementById('writebtn'); // 수정: .wirtebtn -> writebtn
-        writebtn.onclick = e => {
+        //정렬 버튼 누르면 정렬하기 함수 -> 백엔드에서 어떤 부분인지 확인해야함 
+        const $order = document.querySelector('.orderby');
+        $order.onclick = e => {
+            //정렬한 리스트 불러오기 
+            getOrderedPartyList();
+        }
+
+        //정렬한 리스트 불러오기 함수 
+        function getOrderedPartyList() {
+            fetch('/jeju-camps/parties/all-list/' + $type + '/' + $sort)
+                .then(res => res.json())
+                .then(responseResult => {
+                    // console.log(responseResult);
+                    renderCampList(responseResult);
+                });
+        }
+
+
+        // 검색 하기 기능 
+        const $search = document.getElementById('search_content');
+        // 돋보기 버튼 누르면 검색
+        const $searchbtn = document.getElementById('search_btn');
+        $searchbtn.onclick = e => {
+            // 필터링해서 가져오기  <- 백엔드에서 구현하기 
+            // 필터링한 데이터 랜더링함수
+            getSearchPartyList();
+        }
+
+        // 키워드 검색 파티 게시물 리스트 불러오기함수 
+        function getSearchPartyList() {
+            fetch('/jeju-camps/parties/all-list/' + $type + '/' + $sort)
+                .then(res => res.json())
+                .then(responseResult => {
+                    // console.log(responseResult);
+                    renderCampList(responseResult);
+                });
+        }
+
+        const $writebtn = document.getElementById('writebtn'); // 수정: .wirtebtn -> writebtn
+        $writebtn.onclick = e => {
             // 글쓰기 버튼을 누르면 작성폼으로 이동
-            window.location.href = "party_write.jsp"; // 페이지로 이동해야 합니다.
+            console.log("이동하기");
+            location.href = ""; // 페이지로 이동해야 합니다.
+
         };
 
         // 메인 실행부
@@ -151,6 +189,8 @@ console.log(tag);
             // 파티원 게시물 리스트 불러오기
             getPartyList();
         })();
+
+
     </script>
 
 
