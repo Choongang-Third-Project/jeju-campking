@@ -49,8 +49,6 @@ public class MypageUpdateController {
             savePath = FileUtil.uploadFile(profileImage, rootPath);
         }
 
-//        log.info("저장경로 이름: {}", savePath);
-
         boolean isUpdated = mypageUpdateService.updateMember(dto, savePath);
 
         // 변경 성공 여부 전달

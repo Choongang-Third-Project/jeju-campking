@@ -141,8 +141,12 @@
             function renderPartyList(responseResult) {
                 let tag = '';
 
-                if (responseResult === null) {
-
+                if (responseResult.length === 0) {
+                    tag += `<tr>
+                                <td colspan="4">
+                                    작성한 게시글이 없습니다.
+                                </td>
+                            </tr>`
                 } else {
                     for (let response of responseResult) {
 
@@ -161,14 +165,14 @@
                                         </a>
                                     </td>
                                     <td>\${partyWriteTime}</td>
-                                    <th>
+                                    <td>
                                         <button class="btn btn-xs delete-btn" data-party-no=\${partyNumber}>삭제</button>
-                                    </th>
+                                    </td>
                                 </tr>`
                     }
-                    // 생성한 tag 를 thead 아래에 렌더링
-                    document.getElementById('mp-party-list').innerHTML = tag;
                 }
+                // 생성한 tag 를 thead 아래에 렌더링
+                document.getElementById('mp-party-list').innerHTML = tag;
                 // 게시글 삭제 버튼 클릭시 게시글 삭제
                 const $deleteBtns = document.querySelectorAll('.delete-btn');
                 for(const deleteBtn of $deleteBtns) {
@@ -204,6 +208,7 @@
                     .then(res => res.json())
                     .then(responseResult => {
                         // console.log(responseResult);
+
                         renderMypageInfo(responseResult);
                     });
             }
@@ -224,15 +229,21 @@
 
             // 보낸 쪽지함 목록 렌더링 함수
             function renderSendMessageList(responseResult) {
-                let contentTag = '';
-
-                if (responseResult === null) {
-
+                let tag = '';
+                console.log('renderSendMessageList' + responseResult);
+                if (responseResult.length === 0) {
+                    tag += `<tr>
+                                <td colspan="5">보낸 쪽지가 없습니다.</td>
+                                <!--<td></td>
+                                <td></td>
+                                <td</td>
+                                <td></td>-->
+                            </tr>`;
                 } else {
                     messagePerson.textContent = '받은 사람';
                     for(let res of responseResult) {
                         // console.log(res);
-                        contentTag += `<tr>
+                        tag += `<tr>
                                     <td><b>\${res.partyNumber}</b></td>
                                     <td>
                                         <div class="space-x-3">
@@ -253,9 +264,8 @@
                                     </td>
                                 </tr>`;
                     }
-                    MessageContent.innerHTML = contentTag;
                 }
-
+                MessageContent.innerHTML = tag;
                 // 보낸 쪽지 삭제버튼 클릭시 보낸 쪽지 삭제 data-send-no
                 const $sendMessageDelBtns = document.querySelectorAll('.send-message-delete-btn');
                 for(const sendMessageDelBtn of $sendMessageDelBtns) {
@@ -288,15 +298,22 @@
 
             // 받은 쪽지함 목록 렌더링 함수
             function renderReceiveMessageList(responseResult) {
-                let contentTag = '';
+                let tag = '';
+                console.log('renderReceiveMessageList' + responseResult);
                 
-                if (responseResult === null) {
-
+                if (responseResult.length === 0) {
+                    tag += `<tr>
+                                <td colspan="5">받은 쪽지가 없습니다.</td>
+                                <!--<td></td>
+                                <td></td>
+                                <td</td>
+                                <td></td>-->
+                            </tr>`;
                 } else {
                     messagePerson.textContent = '보낸 사람';
                     for(let res of responseResult) {
                         // console.log(res);
-                        contentTag += `<tr>
+                        tag += `<tr>
                                     <td><b>\${res.partyNumber}</b></td>
                                     <td>
                                         <div class="space-x-3">
@@ -312,13 +329,13 @@
                                         </a>
                                     </td>
                                     <td>\${res.partyMessageTime}</td>
-                                    <th>
+                                    <td>
                                         <button class="btn btn-ghost btn-xs receive-btn">답장하기</button>
-                                    </th>
+                                    </td>
                                 </tr>`;
                     }
                 }
-                MessageContent.innerHTML = contentTag;
+                MessageContent.innerHTML = tag;
 
             }
 
