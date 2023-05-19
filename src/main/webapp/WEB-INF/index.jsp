@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./assets/index/css/index.css">
+
+        <!-- favicon -->
+        <link rel="icon" type="image/x-icon" href="/assets/header/img/camp.ico">
 </head>
 <body>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />

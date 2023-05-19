@@ -22,6 +22,9 @@
 	<link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
+     <!-- 헤더 -->
+     <%@ include file="../include/header.jsp" %>
+
 </head>
 <body>
 	<div class="wrapper w-3/5" style="margin: 0 auto;">

@@ -38,6 +38,14 @@ body {
     align-items: center;
     text-align: center;
     text-decoration: none;
+    overflow: hidden;
+    /* border: 1px solid #c123ff; */
+    width: 250px;
+    height: 140px;
+}
+
+.inner-header .logo a img{
+    width: 100%;
 }
 
 .inner-header .logo a p {
