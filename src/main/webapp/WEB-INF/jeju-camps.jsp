@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jeju Camp King</title>
 
     <!-- 폰트어썸 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,6 +20,9 @@
 
     <link rel="stylesheet" href="/assets/include/common.css">
     <link rel="stylesheet" href="/assets/home/css/home.css">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/header/img/camp.ico">
 
     <script src="/assets/home/js/home.js" defer></script>
 
@@ -36,10 +39,8 @@
             <header>
                 <div class="inner-header">
                     <div class="logo">
-                        <!-- 여기 홈으로 가는거~ -->
                         <a href="/jeju-camps">
-                            <p><i class="fa-solid fa-mountain-sun"></i></p>
-                            <p>CAMP<span>KING</span></p>
+                            <img src="/assets/header/img/logo02.png" alt="">
                         </a>
                     </div>
 
@@ -49,10 +50,10 @@
                             <li><a href="/jeju-camps/info">캠핑장</a></li>
                             <li><a href="/jeju-camps/parties">같이갈사람</a></li>
                         </ul>
-                        <ul class="api">
+                        <!-- <ul class="api">
                             <li>날씨 맑음</li>
                             <li>미세먼지 없음</li>
-                        </ul>
+                        </ul> -->
                     </nav>
 
                     <nav class="tnb">
