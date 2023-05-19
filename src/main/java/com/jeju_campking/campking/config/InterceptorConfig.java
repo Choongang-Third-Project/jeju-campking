@@ -23,7 +23,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(checkLoginInterceptor)
                 .addPathPatterns("/*")
                 .addPathPatterns("/jeju-camps/**")
-                .excludePathPatterns("/join", "/login", "/")
+                .excludePathPatterns("/join", "/login", "/", "/kakao/*", "/sns")
         ;
 
         registry.addInterceptor(autoLoginInterceptor)
