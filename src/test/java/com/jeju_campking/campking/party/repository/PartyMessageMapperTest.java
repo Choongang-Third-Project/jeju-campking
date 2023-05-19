@@ -58,4 +58,23 @@ class PartyMessageMapperTest {
         assertThat(isSend).isEqualTo(true);
     }
 
+
+    @Test
+    @DisplayName("받는이(41번)의 읽지않은 메시지(N)를 조회하면 읽지않은 메세지의 개수가 2이다.")
+    void unreadCountTest() {
+        // given
+        Long partyMessageRecipient = 41L;
+
+        // when
+        int count = partyMessageMapper.unreadCount(partyMessageRecipient);
+
+        // then
+        assertEquals(2, count);
+
+
+    }
+
+
+
+
 }

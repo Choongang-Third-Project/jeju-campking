@@ -25,4 +25,8 @@ public interface PartyMessageMapper {
     // 메시지 넘버로 삭제
     void delete();
 
+    // 내가 받은 메세지 갯수
+    int unreadCount(Long partyMessageRecipient);
+
+
 }
