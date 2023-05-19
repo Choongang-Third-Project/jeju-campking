@@ -112,11 +112,10 @@
             <section class="main">
 
                 <div class="container">
-                    <div class="search-container">
-                        <input type="text" class="search">
-                        <button class="searchBtn btn btn-error btn-lg"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
-
+                    <div class="search-container">         
+                            <input type="text" class="search" name="search">
+                            <button class="searchBtn btn btn-error btn-lg" id="searchBtn"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
 
                     <ul class="hashtag">

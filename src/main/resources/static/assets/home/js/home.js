@@ -97,3 +97,16 @@ campName1.style.color = 'red';
 campName2.style.color = 'orange';
 campName3.style.color = 'green';
 
+
+const $searchBtn = document.getElementById('searchBtn');
+const $search = document.querySelector('.search');
+
+$searchBtn.onclick = e => {
+    location.href = '/jeju-camps/info?search='+$search.value;
+}
+
+$search.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        location.href = '/jeju-camps/info?search='+$search.value;
+    }
+  });
