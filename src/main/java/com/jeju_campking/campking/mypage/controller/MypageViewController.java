@@ -1,5 +1,6 @@
 package com.jeju_campking.campking.mypage.controller;
 
+import com.jeju_campking.campking.member.dto.response.LoginUserResponseDTO;
 import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.mypage.dto.response.MypageMemberResponseDTO;
 import com.jeju_campking.campking.mypage.dto.response.MypageUpdateMemberResponseDTO;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 /*
     데이터 전송없이 마이페이지 화면만 띄워주는 용도의 컨트롤러입니다.
@@ -29,8 +32,16 @@ public class MypageViewController {
 
     // 마이페이지
     @GetMapping("/{memberNumber}")
-    public String findMember(@PathVariable Long memberNumber) {
+    public String findMember(@PathVariable Long memberNumber, HttpSession session) {
+
+        LoginUserResponseDTO login = (LoginUserResponseDTO) session.getAttribute("LOGIN");
+        if(memberNumber!= login.getMemberNumber()){
+            return "redirect:/jeju-camps";
+        }
+
+
         return "mypage/mypage";
+
     }
 
     // 개인정보 수정 페이지
