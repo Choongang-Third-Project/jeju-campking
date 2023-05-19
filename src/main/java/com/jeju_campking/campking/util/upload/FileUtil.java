@@ -17,7 +17,7 @@ public class FileUtil {
 
     /**
      * @param file      - 사용자가 업로드한 파일 객체
-     * @param rootPath - 서버에 파일 업로드 루크 경로 (ex: D:/spring-prj/upload/)
+     * @param rootPath - 서버에 파일 업로드 루크 경로 (ex: D:/campking-prj/upload/)
      * @return - 업로드가 완료된 파일의 위치 경로 (ex: /2023/05/16/ddgaghgfg_상어.jpg)
      */
     public static String uploadFile(MultipartFile file, String rootPath) {
@@ -28,7 +28,7 @@ public class FileUtil {
         String newFileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
 
         /* 2. 이 파일을 저장할 날짜별 폴더를 생성 */
-        // ex) D:/spring-prj/upload/2023/05/16/agagaggsd_상어.png -> private 메서드 생성
+        // ex) D:/campking-prj/upload/2023/05/16/agagaggsd_상어.png -> private 메서드 생성
         String newPath = makeDateFormatDirectory(rootPath);
 
         /* 3. 파일 업로드 수행*/
