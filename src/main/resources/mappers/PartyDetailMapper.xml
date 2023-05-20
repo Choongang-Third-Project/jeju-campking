@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeju_campking.campking.party.repository.PartyDetailMapper">
+
+    <select id="detailView" resultType="partyDetailDTO">
+        SELECT
+        party_number,
+        party_title,
+        party_content,
+        party_start_date,
+        party_end_date,
+        party_size,
+        member_number,
+        camp_number
+        FROM TB_PARTY
+        WHERE party_number = #{partyNumber}
+    </select>
+
+</mapper>
