@@ -1,5 +1,6 @@
 package com.jeju_campking.campking.party.service;
 
+import com.jeju_campking.campking.party.dto.request.PartyMessageRequestDTO;
 import com.jeju_campking.campking.party.dto.response.PartyDetailResponseDTO;
 import com.jeju_campking.campking.party.repository.PartyDetailMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,5 +17,9 @@ public class PartyDetailService {
         return partyDetailMapper.detailView(partyNumber);
     }
 
+    public int send(PartyMessageRequestDTO dto) {
+
+        return partyDetailMapper.sendMessage(dto);
+    }
 
 }

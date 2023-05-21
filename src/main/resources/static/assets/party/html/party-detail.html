@@ -465,6 +465,29 @@
             document.getElementById('message').value = '';
         };
 
+
+        const formData = new FormData();
+        formData.append('partyMessageContent' , 'test!!!!!!!');
+        formData.append('partyMessageSender' , 5);
+        formData.append('partyMessageRecipient', 6);
+        formData.append('partyNumber', 1);
+
+        $sendBtn.addEventListener('click', e => {
+                console.log('click!!!!!!!!!!!!!!!!!!!!');            
+
+                fetch('/jeju-camps/parties',{
+                    method: 'POST',
+                    body : formData
+                }).then(res => {
+                    console.log(res);
+                })
+        });
+
+
+        // (function() {
+        //     sendMessage();   
+
+        // })();
         
 
 

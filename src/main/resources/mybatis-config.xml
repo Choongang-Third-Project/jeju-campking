@@ -28,7 +28,6 @@
 
         <typeAlias alias="boardDetailDTO" type="com.jeju_campking.campking.board.dto.response.BoardDetailResponseDTO"/>
         <typeAlias alias="replyDTO" type="com.jeju_campking.campking.board.dto.response.ReplyResponseDTO"/>
-        <typeAlias alias="partyDetailDTO" type="com.jeju_campking.campking.party.dto.response.PartyDetailResponseDTO"/>
     </typeAliases>
 
     <mappers>
@@ -43,7 +42,6 @@
         <mapper resource="mappers/MypageMapper.xml"/>
         <mapper resource="mappers/RankMapper.xml"/>
         <mapper resource="mappers/MypageUpdateMapper.xml"/>
-        <mapper resource="mappers/PartyDetailMapper.xml"/>
     </mappers>
 
 </configuration>
