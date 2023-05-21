@@ -39,7 +39,7 @@ public class BoardController {
     // URL : /boards
     @ResponseBody
     @GetMapping("/all")
-    public ResponseEntity<?> findAll(Page page){
+    public ResponseEntity<?> findAll(Page page) {
         log.info("/boards : findAll() GET!!");
 
 //        log.info("{} {}", page.getPageNo(), page.getAmount());
@@ -51,7 +51,7 @@ public class BoardController {
     // 공지사항 게시물 합계
     @ResponseBody
     @GetMapping("/count")
-    public ResponseEntity<?> count(String keyword){
+    public ResponseEntity<?> count(String keyword) {
         int count = boardService.getCount(keyword);
         return ResponseEntity.ok().body(count);
     }
@@ -63,9 +63,8 @@ public class BoardController {
     public ResponseEntity<?> findByKeyword(@PathVariable(required = false) String keyword, @PathVariable int pageNo) {
         log.info("/camps/address : GET!! {} ", keyword);
 
-        Page page = new Page();
-        page.setPageNo(pageNo);
-        page.setAmount(10);
+        // TODO : setter 대신 of 사용
+        Page page = Page.of(pageNo, 10);
 
 //        List<Board> byKeyword = null;
 //        byKeyword = boardService.findByKeyword(keyword);
@@ -77,7 +76,7 @@ public class BoardController {
 
     // /boards/detail?boardNumber=1  게시물 한개 조회
     @GetMapping("/details")
-        public String findOne(long boardNumber, Model model){
+    public String findOne(long boardNumber, Model model) {
         log.info("/boards : findOne() GET!!");
         BoardDetailResponseDTO board = boardService.detail(boardNumber);
         model.addAttribute("board", board);
@@ -90,14 +89,14 @@ public class BoardController {
     // 최근 게시물 2개를 담음
     // /jeju-camps/notices/top
     @GetMapping("/top")
-    public ResponseEntity<?> findRecentTwo(){
+    public ResponseEntity<?> findRecentTwo() {
         List<Board> list = boardService.findRecentTwo();
         return ResponseEntity.ok().body(list);
     }
 
     // 글 작성 페이지
     @GetMapping("/write")
-    public String write(){
+    public String write() {
         log.info("/boards/write : write() GET!!");
         return "board/write";
     }
@@ -155,7 +154,7 @@ public class BoardController {
 
 
     @GetMapping("/modify")
-    public String modify(Long boardNumber, Model model){
+    public String modify(Long boardNumber, Model model) {
         log.info("/jeju-camps/notice : modify() GET!!");
         BoardDetailResponseDTO board = boardService.findOne(boardNumber);
         model.addAttribute("board", board);
@@ -200,25 +199,25 @@ public class BoardController {
     // http://localhost:8181/jeju-camps/notices/up/995
     @ResponseBody
     @PostMapping("/up/{boardNumber}")
-    public ResponseEntity<?> recommendUp(@PathVariable Long boardNumber){
+    public ResponseEntity<?> recommendUp(@PathVariable Long boardNumber) {
         log.info("/up {}", boardNumber);
         // 현재 추천 게시물의 추천이 상승되면 비동기적으로 업데이트됨
         // 그 추천값을 select로 가지고 와서 ResponseEntity로 담아서 줌
         int recommend = boardService.recommendUp(boardNumber);
         return ResponseEntity.ok().body(recommend);
     }
+
     // http://localhost:8181/jeju-camps/notices/down/995
     // 게시물 추천 다운 기능
     @ResponseBody
     @PostMapping("/down/{boardNumber}")
-    public ResponseEntity<?> recommendDown(@PathVariable Long boardNumber){
+    public ResponseEntity<?> recommendDown(@PathVariable Long boardNumber) {
         log.info("/up {}", boardNumber);
         // 현재 추천 게시물의 추천이 하강되면 비동기적으로 업데이트됨
         // 그 추천값을 select로 가지고 와서 ResponseEntity로 담아서 줌
         int recommend = boardService.recommendDown(boardNumber);
         return ResponseEntity.ok().body(recommend);
     }
-
 
 
 }

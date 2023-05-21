@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -10,10 +12,6 @@
     <!-- 폰트어썸 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/68f79e919f.js" crossorigin="anonymous"></script>
-
-
-    <link rel="stylesheet" href="../../include/common.css">
-    <link rel="stylesheet" href="../css/party.css">
 
 
     <!-- toaster set -->
@@ -440,15 +438,38 @@
         $('.btn-modify').on('click', function () {
             toastr.warning('수정 권한이 없습니다!');
         });
+
+        // toastr.success('메세지가 성공적으로 보내졌습니다!');
     </script>
 
     <script>
+        const loginMember = +'${LOGIN.memberNumber}';
+        const partyMember = +'${detail.memberNumber}';
+        const partyNumber = +'${detail.partyNumber}';
+        
         const $sendBtn = document.getElementById('send-btn');
         const $enterKey = document.getElementById('message');
 
         $enterKey.addEventListener('keydown', (e) => {
 
             if (e.code === 'Enter') {
+
+                const formData = new FormData();
+                formData.append('partyMessageContent', document.getElementById('message').value);
+                formData.append('partyMessageSender', loginMember);
+                formData.append('partyMessageRecipient', partyMember);
+                formData.append('partyNumber', partyNumber);
+
+                fetch('/jeju-camps/parties',{
+                    method: 'POST',
+                    body : formData
+                }).then(res => {
+                    if(res.status === 200){
+                        toastr.success('메세지가 성공적으로 보내졌습니다!');
+                    }
+                })
+
+
                 e.preventDefault();
 
                 const $message = document.getElementById('message').value;
@@ -459,38 +480,31 @@
         })
 
 
-        $sendBtn.onclick = e => {
-            const $message = document.getElementById('message').value;
-            document.getElementById('chat').innerHTML += '<br>' + $message + '<br>';
-            document.getElementById('message').value = '';
-        };
-
-
-        const formData = new FormData();
-        formData.append('partyMessageContent' , 'test!!!!!!!');
-        formData.append('partyMessageSender' , 5);
-        formData.append('partyMessageRecipient', 6);
-        formData.append('partyNumber', 1);
-
         $sendBtn.addEventListener('click', e => {
-                console.log('click!!!!!!!!!!!!!!!!!!!!');            
+
+                const formData = new FormData();
+                formData.append('partyMessageContent', document.getElementById('message').value);
+                formData.append('partyMessageSender', loginMember);
+                formData.append('partyMessageRecipient', partyMember);
+                formData.append('partyNumber', partyNumber);
 
                 fetch('/jeju-camps/parties',{
                     method: 'POST',
                     body : formData
                 }).then(res => {
-                    console.log(res);
+                    if(res.status === 200){
+                        toastr.success('메세지가 성공적으로 보내졌습니다!');
+                    }
                 })
         });
 
 
-        // (function() {
-        //     sendMessage();   
+        $sendBtn.addEventListener('click', e => {
 
-        // })();
-        
-
-
+            const $message = document.getElementById('message').value;
+            document.getElementById('chat').innerHTML += '<br>' + $message + '<br>';
+            document.getElementById('message').value = '';
+        });
         
     </script>
 </body>
