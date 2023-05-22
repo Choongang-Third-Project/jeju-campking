@@ -119,7 +119,7 @@
 
   <div class="container">
     <h2>🌲캠퍼 모집 작성🌲</h2>
-    <form action="write.jsp" method="post">
+    <!-- <form action="write.jsp" method="post"> -->
       <div class="total">
         <label for="title">제목</label>
         <!-- placeholder 속성 입력한 데이터가 없는 경우 배경으로 나타난다.실제적으로 입력을 100자까지로 지정 -->
@@ -132,12 +132,11 @@
         camp🐛
       </div>
       <div class="dropdown">
-        <button class="dropbtn">
+        <button class="dropbtn" onclick="dropdown()">
           <span class="dropbtn_icon">more_horiz</span>
           <span class="dropbtn_content">캠핑장 선택</span>
           <span class="dropbtn_click"
-            style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;"
-            onclick="dropdown()">arrow_drop_down</span>
+            style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;">arrow_drop_down</span>
         </button>
         <div class="dropdown-content">
           <div class="fastfood" onclick="showMenu(this.innerText)">1</div>
@@ -169,16 +168,17 @@
         <!--  textarea 안에 있는 모든 글자는 그대로 나타난다. 공백문자, tag, enter -->
         <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용 작성"></textarea>
       </div>
-      <button type="submit" class="btn btn-default">등록</button>
-    </form>
+      <button id="replyAddBtn" type="submit" class="btn btn-default">등록</button>
+    <!-- </form> -->
   </div>
 
   <script>
     //캠프장 드롭다운 메뉴
-    window.onload = () => {
-      document.querySelector('.dropbtn_click').onclick = () => {
+     window.onload = () => {
+      document.querySelector('.dropbtn').onclick = () => {
         dropdown();
       }
+    
       document.getElementsByClassName('fastfood').onclick = () => {
         showMenu(value);
       };
@@ -189,20 +189,21 @@
         dropbtn.style.borderColor = 'rgb(94, 94, 94)';
       }
 
-      showMenu = (value) => {
+      showMenu = (value, campNumber) => {
         var dropbtn_icon = document.querySelector('.dropbtn_icon');
         var dropbtn_content = document.querySelector('.dropbtn_content');
         var dropbtn_click = document.querySelector('.dropbtn_click');
         var dropbtn = document.querySelector('.dropbtn');
 
         dropbtn_icon.innerText = '';
+        dropbtn_content.setAttribute('data-id',campNumber);
         dropbtn_content.innerText = value;
         dropbtn_content.style.color = '#252525';
         dropbtn.style.borderColor = '#3992a8';
       }
-    }
+     }
     window.onclick = (e) => {
-      if (!e.target.matches('.dropbtn_click')) {
+      if (!e.target.matches('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
 
         var dropbtn_icon = document.querySelector('.dropbtn_icon');
@@ -223,11 +224,16 @@
 
 
     //드롭다운(캠핑장) 랜더링 함수
-    function rendercampList(campNumber, campName) {
-      tag += "<div class='fastfood' onclick='showMenu(this.innerText)'>" +
+    function rendercampList(list) {
+      let tag = '';      
+
+      for(let con of list){
+        let {campName, campNumber} = con;
+       tag += '<div class="fastfood" onclick="showMenu(this.innerText, '+campNumber+')">' +
         campName + "</div>";
+       }
       //생성된 캠프장 tag 랜더링
-      document.getElementById('.dropdown-content').innerHTML = tag;
+      document.querySelector('.dropdown-content').innerHTML = tag;
     }
     //캠핑장 데려오기
     function getCampList() {
@@ -243,6 +249,8 @@
     function makepartyRegisterClickEvent() {
 
       const $regBtn = document.getElementById('replyAddBtn');
+      
+
 
       $regBtn.onclick = e => {
         // 게시물 제목
@@ -252,14 +260,15 @@
         //  파티원 정원 수
         const $count = document.getElementById('people_count');
         //시작 날짜
-        const $startdate = document.getElementById('startdate');
+        const $startdate = document.querySelector('#startdate input');
         //마감 날짜
-        const $enddate = document.getElementById('enddate');
+        const $enddate = document.querySelector('#enddate input');
         // 캠핑장
-        const $campNumber = document.getElementById('dropdown-content');
+        const $campNumber = document.querySelector('.dropbtn_content').dataset.id;
         // console.log($content.value);
         // console.log($count.value);
         // console.log($title.value);
+        console.log($campNumber);
         // 클라이언트 입력값 검증
         if ($title.value.trim() === '') {
           alert('게시글 제목은 필수입니다!');
@@ -267,7 +276,7 @@
         } else if ($content.value.trim() === '') {
           alert('내용은 필수입니다!');
           return;
-        } else if ($count.value.trim().length < 2 || $rw.value.trim().length > 20) {
+        } else if ($count.value < 2 || $count.value > 20) {
           alert('캠퍼 정원은 2~20명 사이로 작성하세요!');
           return;
         } else if ($campNumber === null) {
@@ -276,16 +285,20 @@
         } else if ($startdate === '' || $enddate === '') {
           alert('날짜를 꼭 선택해주세요 !');
         }
-      }
 
-        // # 서버로 보낼 데이터
-        const payload = {
-          title: $title.value,
-          content: $content.value,
-          people: $count.value,
-          camp: $campNumber.value,
-          start: $startdate.value,
-          end: $enddate.value
+
+
+        console.log($startdate);
+        console.log($startdate.value);
+         // # 서버로 보낼 데이터
+         const payload = {
+          partyTitle: $title.value,
+          partyContent: $content.value,
+          partySize: $count.value,
+          campNumber: $campNumber,
+          partyStartDate: $startdate.value,
+          partyEndDate: $enddate.value,
+          memberNumber : '${LOGIN.memberNumber}'
         };
         // # GET방식을 제외하고 필요한 객체
         const requestInfo = {
@@ -295,6 +308,9 @@
           },
           body: JSON.stringify(payload)
         };
+        
+        const URL = "/jeju-camps/parties/write";
+
 
         // # 서버에 POST요청 보내기
         fetch(URL, requestInfo)
@@ -308,10 +324,18 @@
                 $campNumber.value = '',
                 $startdate.value = '',
                 $enddate.value = ''
+
+                location.href="/jeju-camps/parties";
             } else {
               alert('게시글 등록에 실패함!');
             }
           });
+
+
+
+      }
+
+       
       };
 
       //메인 실행부

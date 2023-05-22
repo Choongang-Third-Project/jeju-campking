@@ -138,6 +138,7 @@
                             alert('공지사항 정상 삭제됨!');
                             return res.json();
                         } else {
+                            
                             alert('공지사항 삭제 실패!');
                         }
                     }).then(responseResult => {

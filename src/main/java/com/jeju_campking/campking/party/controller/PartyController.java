@@ -1,6 +1,7 @@
 package com.jeju_campking.campking.party.controller;
 
 import com.jeju_campking.campking.party.dto.request.PartyModifyRequestDTO;
+import com.jeju_campking.campking.party.dto.request.PartySaveRequestDTO;
 import com.jeju_campking.campking.party.dto.response.PartyAllListResponseDTO;
 import com.jeju_campking.campking.party.service.PartyService;
 import lombok.RequiredArgsConstructor;
@@ -41,20 +42,20 @@ public class PartyController {
     }
 
 
-//    @PostMapping()
-//    public ModelAndView save(
-//            @Validated @RequestBody PartySaveRequestDTO dto
-//    ) {
-//        log.info("partyController/POST/save : type= {}", dto);
-//
-//        try {
-//            boolean isSave = partyService.save(dto);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return redirectList();
-//    }
+    @PostMapping("/write")
+    public ModelAndView save(
+            @Validated @RequestBody PartySaveRequestDTO dto
+    ) {
+        log.info("partyController/POST/save : type= {}", dto);
+
+        try {
+            boolean isSave = partyService.save(dto);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return redirectList();
+    }
 
     @DeleteMapping("/{partyNumber}/{memberNumber}")
     public ModelAndView deleteByNumber(
