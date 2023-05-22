@@ -11,7 +11,7 @@
 
     <%@ include file = "../include/static-head.jsp" %>
     <link rel="stylesheet" href="/assets/header/css/header.css">
-    <script src="/assets/home/js/home.js" defer></script>
+    <!-- <script src="/assets/home/js/home.js" defer></script> -->
 
 </head>
 
@@ -68,7 +68,7 @@
                             </li>
 
                             <li>
-                                <div class="profile dropdown">
+                                <div class="profile dropdowns">
                                     <button class="smbtn">
                                         <div class="profile-box">
                                             <c:if test="${LOGIN == null || LOGIN.profile == null}">
@@ -98,6 +98,19 @@
             <!-- header 끝 -->
         </div>
     </div>
+    <script>
+        const $dropContent = document.getElementById("drop-content");
+        const $btn = document.querySelector('.smbtn');
+
+        $btn.onclick = () => {
+            $dropContent.style.display = "block"; 
+        };
+
+        $btn.parentElement.onmouseleave = () => {
+            $dropContent.style.display = "none"; 
+        };
+
+    </script>
 </body>
 
 </html>

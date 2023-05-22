@@ -16,6 +16,8 @@
   <!-- footer css -->
   <link rel="stylesheet" href="/assets/footer/css/footer.css">
 
+  
+
   <style>
     @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
@@ -116,13 +118,14 @@
       margin-right: 30px;
     }
   </style>
+  
 </head>
 
 <body>
 
-   <!-- 헤더 -->
-   <%@ include file="../include/header.jsp" %>
-
+   
+   <%@ include file="../include/headers.jsp" %>
+  
   <div class="container">
     <h2>🌲캠퍼 모집 작성🌲</h2>
     <!-- <form action="write.jsp" method="post"> -->
@@ -337,12 +340,12 @@
             if (res.status === 200) {
               alert('게시글이 정상 등록됨!');
               // 입력창 비우기
-              $title.value = '',
-                $content.value = '',
-                $count.value = '',
-                $campNumber.value = '',
-                $startdate.value = '',
-                $enddate.value = ''
+              // $title.value = '',
+              //   $content.value = '',
+              //   $count.value = '',
+              //   $campNumber.value = '',
+              //   $startdate.value = '',
+              //   $enddate.value = ''
 
                 location.href="/jeju-camps/parties";
             } else {
@@ -356,6 +359,19 @@
 
        
       };
+
+
+      const $dropContent = document.getElementById("drop-content");
+        const $btn = document.querySelector('.smbtn');
+
+        $btn.onclick = () => {
+            $dropContent.style.display = "block"; 
+        };
+
+        $btn.parentElement.onmouseleave = () => {
+            $dropContent.style.display = "none"; 
+        };
+
 
       //메인 실행부
       (function() {
