@@ -8,6 +8,7 @@
         P.party_number ,
         C.camp_name ,
         P.party_title ,
+        P.party_content ,
         M.member_nickname ,
         P.party_start_date ,
         P.party_end_date ,
