@@ -6,6 +6,7 @@ import com.jeju_campking.campking.party.service.PartyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,14 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 import java.sql.SQLException;
 import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/jeju-camps/parties")
 @Slf4j
 // TODO: // 체크하기
 public class PartyController {
     private final PartyService partyService;
-
+    @ResponseBody
     @GetMapping("/all-list/{type}/{sort}")
     public ResponseEntity<?> findAllBySort(
             @PathVariable(required = false) String type,
@@ -33,6 +34,12 @@ public class PartyController {
 
         return ResponseEntity.ok().body(allBySort);
     }
+
+    @GetMapping("/write")
+    public String write(){
+        return "/yejin/party_write";
+    }
+
 
 //    @PostMapping()
 //    public ModelAndView save(
@@ -64,7 +71,7 @@ public class PartyController {
 
         return redirectList();
     }
-
+    @ResponseBody
     @RequestMapping(path = "/{memberNumber}", method = {RequestMethod.PUT, RequestMethod.PATCH})
     public ModelAndView modify(
             @Validated @RequestBody PartyModifyRequestDTO dto,

@@ -218,7 +218,7 @@
         $writebtn.onclick = e => {
             // 글쓰기 버튼을 누르면 작성폼으로 이동
             console.log("이동하기");
-            location.href = ""; // 페이지로 이동해야 합니다.
+            location.href = "/jeju-camps/parties/write"; // 페이지로 이동해야 합니다.
 
         };
 
