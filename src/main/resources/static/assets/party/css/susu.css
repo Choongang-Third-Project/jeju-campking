@@ -91,7 +91,6 @@ body {
     }
     
   
-  /* section */
   .content {
     margin-top: 35 px;
     margin-left: 10%;
@@ -220,4 +219,21 @@ body {
     nav .roundbar .material-symbols-outlined:hover {
       font-size: 50px;
   
+    }
+
+    html, body {
+      height: 100%;
+    }
+    
+    #content {
+      min-height: 100%;
+      margin-bottom: -60px; /* footer의 높이만큼 마진을 설정 */
+    }
+    
+    footer {
+      height: 60px; /* footer의 높이 */
+      background-color: #f5f5f5;
+      text-align: center;
+      padding: 10px;
+      clear: both;
     }

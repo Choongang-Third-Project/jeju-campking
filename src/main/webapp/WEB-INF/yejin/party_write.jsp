@@ -13,6 +13,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 
+  <!-- footer css -->
+  <link rel="stylesheet" href="/assets/footer/css/footer.css">
+
   <style>
     @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
@@ -117,6 +120,9 @@
 
 <body>
 
+   <!-- 헤더 -->
+   <%@ include file="../include/header.jsp" %>
+
   <div class="container">
     <h2>🌲캠퍼 모집 작성🌲</h2>
     <form action="write.jsp" method="post">
@@ -172,6 +178,19 @@
       <button type="submit" class="btn btn-default">등록</button>
     </form>
   </div>
+
+  <!-- footer -->   
+  <footer>
+      <div class="foot-wrapper">
+          <h3>CAMPKING</h3>
+          <div class="foot">
+              <p>주식회사 캠프킹 | 대표이사 : 홍순구 | 사업자 등록번호 : 000-00-000000</p>
+              <p>국내여행업 등록번호 : 2023-0000000호 | 자동차대여사업 등록번호 : 서울시 2023-00호 | 통신판매 신고번호 : 2023-서울강남-00000호</p>
+              <p>대표전화 : 02-000-0000 | 팩스 : 0000-000-0000 | E-mail : info@campking.cooom</p>
+              <p>Copyright ⓒ CampKing inc.</p>
+          </div>
+      </div>
+  </footer>
 
   <script>
     //캠프장 드롭다운 메뉴
