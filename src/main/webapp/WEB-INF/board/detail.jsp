@@ -65,7 +65,10 @@
         .wrapper .author .profile-image{
             width: 50px;
             height: 50px;
-            background: blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #FFF;
             margin-right: 20px;
         }
 
@@ -118,7 +121,10 @@
         .reply-content .reply-profile{
             width: 50px;
             height: 50px;
-            background: blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #FFF;
         }
 
         .reply-content input{
@@ -250,7 +256,13 @@
     <div class="wrapper">
         <div class="author">
             <div class="profile-image">
-                프로필 이미지
+                <!-- 프로필 이미지 -->
+                <c:if test="${LOGIN == null || LOGIN.profile == null}">
+                    <img src="/assets/mypage/img/profile.png" alt="사진없음">
+                </c:if>
+                <c:if test="${LOGIN != null && LOGIN.profile != null}">
+                    <img src="/local${LOGIN.profile}" alt="프사">
+                </c:if>
             </div>
             <div class="notice-info">
                 <div class="row"><i class="fa-solid fa-bookmark"></i> <span class="board-no" id="boardNumber">${board.boardNumber}</span> ㆍ<i class="fa-regular fa-user"></i> <span class="user-name">${board.memberNickname}</span></div>
@@ -299,7 +311,13 @@
         <div class="reply">
             <div class="reply-content">
                 <div class="reply-profile">
-                    프로필
+                    <!-- 프로필 -->
+                    <c:if test="${LOGIN == null || LOGIN.profile == null}">
+                        <img src="/assets/mypage/img/profile.png" alt="사진없음">
+                    </c:if>
+                    <c:if test="${LOGIN != null && LOGIN.profile != null}">
+                        <img src="/local${LOGIN.profile}" alt="프사">
+                    </c:if>
                 </div>
                  <input class="input input-bordered input-info w-full" id="replyWriteBox" type="text" placeholder="댓글창">
             </div>
