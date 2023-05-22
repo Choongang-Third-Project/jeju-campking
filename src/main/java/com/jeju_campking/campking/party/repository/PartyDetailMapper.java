@@ -33,4 +33,8 @@ public interface PartyDetailMapper {
             ")")
     int sendMessage(@Param("dto") PartyMessageRequestDTO dto);
 
+
+    @Delete("DELETE FROM TB_PARTY\n" +
+            "WHERE party_number = #{partyNumber}")
+    int deleteByNumber(@Param("partyNumber") Long partyNumber);
 }

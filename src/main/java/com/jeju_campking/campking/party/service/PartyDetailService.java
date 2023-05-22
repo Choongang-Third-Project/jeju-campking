@@ -18,8 +18,11 @@ public class PartyDetailService {
     }
 
     public int send(PartyMessageRequestDTO dto) {
-
         return partyDetailMapper.sendMessage(dto);
+    }
+
+    public boolean deleteByNumber(Long partyNumber) {
+        return partyDetailMapper.deleteByNumber(partyNumber) == 1;
     }
 
 }
