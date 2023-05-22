@@ -13,8 +13,8 @@
     <!-- 폰트어썸 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/68f79e919f.js" crossorigin="anonymous"></script>
-
-
+    <!-- footer css -->
+    <link rel="stylesheet" href="/assets/footer/css/footer.css">
     <!-- toaster set -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
@@ -252,7 +252,8 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
-
+    <!-- 헤더 -->
+    <%@ include file="../include/header.jsp" %>
 
     <div id="wrapper" class="flex justify-between flex-col items-center p-10">
 
@@ -431,6 +432,19 @@
 
             </label>
         </label>
+
+        <!-- footer -->   
+        <footer>
+            <div class="foot-wrapper">
+                <h3>CAMPKING</h3>
+                <div class="foot">
+                    <p>주식회사 캠프킹 | 대표이사 : 홍순구 | 사업자 등록번호 : 000-00-000000</p>
+                    <p>국내여행업 등록번호 : 2023-0000000호 | 자동차대여사업 등록번호 : 서울시 2023-00호 | 통신판매 신고번호 : 2023-서울강남-00000호</p>
+                    <p>대표전화 : 02-000-0000 | 팩스 : 0000-000-0000 | E-mail : info@campking.cooom</p>
+                    <p>Copyright ⓒ CampKing inc.</p>
+                </div>
+            </div>
+        </footer>
 
 
 

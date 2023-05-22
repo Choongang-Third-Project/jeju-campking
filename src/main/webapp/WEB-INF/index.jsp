@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./assets/index/css/index.css">
+    <link rel="stylesheet" href="/assets/footer/css/footer.css">
 
         <!-- favicon -->
         <link rel="icon" type="image/x-icon" href="/assets/header/img/camp.ico">
@@ -88,8 +89,7 @@
         </main>
 
           <!-- footer -->
-
-      <footer class="footer p-10 bg-base-200 text-base-content">
+      <!-- <footer class="footer p-10 bg-base-200 text-base-content">
         <div>
           <span class="footer-title">Services</span> 
           <a class="link link-hover" href="/board/list.jsp">board/list.jsp</a> 
@@ -123,6 +123,21 @@
             <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
           </div>
         </div>
-      </footer>
+      </footer> -->
+
+      
+          <!-- footer -->   
+          <footer>
+            <div class="foot-wrapper">
+                <h3>CAMPKING</h3>
+                <div class="foot">
+                    <p>주식회사 캠프킹 | 대표이사 : 홍순구 | 사업자 등록번호 : 000-00-000000</p>
+                    <p>국내여행업 등록번호 : 2023-0000000호 | 자동차대여사업 등록번호 : 서울시 2023-00호 | 통신판매 신고번호 : 2023-서울강남-00000호</p>
+                    <p>대표전화 : 02-000-0000 | 팩스 : 0000-000-0000 | E-mail : info@campking.cooom</p>
+                    <p>Copyright ⓒ CampKing inc.</p>
+                </div>
+            </div>
+        </footer>
+
 </body>
 </html>

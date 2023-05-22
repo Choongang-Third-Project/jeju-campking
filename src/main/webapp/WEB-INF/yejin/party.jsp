@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<button%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html>
     <html>
 
@@ -13,12 +13,17 @@
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <link rel="stylesheet" href="/assets/include/common.css">
         <link rel="stylesheet" href="/assets/party/css/susu.css">
+        <link rel="stylesheet" href="/assets/footer/css/footer.css">
         <style>
 
         </style>
     </head>
 
     <body>
+
+           <!-- 헤더 -->
+        <%@ include file="../include/header.jsp" %>
+
         <h1 class="title">
             같이 갈 사람 😁
         </h1>
@@ -58,6 +63,20 @@
                 </li>
             </ul>
         </section>
+
+          <!-- footer -->   
+        <footer>
+            <div class="foot-wrapper">
+                <h3>CAMPKING</h3>
+                <div class="foot">
+                    <p>주식회사 캠프킹 | 대표이사 : 홍순구 | 사업자 등록번호 : 000-00-000000</p>
+                    <p>국내여행업 등록번호 : 2023-0000000호 | 자동차대여사업 등록번호 : 서울시 2023-00호 | 통신판매 신고번호 : 2023-서울강남-00000호</p>
+                    <p>대표전화 : 02-000-0000 | 팩스 : 0000-000-0000 | E-mail : info@campking.cooom</p>
+                    <p>Copyright ⓒ CampKing inc.</p>
+                </div>
+            </div>
+        </footer>
+        
     </body>
 
 
