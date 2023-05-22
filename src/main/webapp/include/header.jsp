@@ -153,7 +153,7 @@
 
 
 
-        .dropdown {
+        .dropdowns {
             width: fit-content;
             margin: 0 auto;
             position: relative;
@@ -221,11 +221,11 @@
 
                             <li>
                                 <p>
-                                    <c:if test="${login == null}">
+                                    <c:if test="${LOGIN == null}">
                                         침입자
                                     </c:if>
-                                    <c:if test="${login != null}">
-                                        ${login.memberNickname}님
+                                    <c:if test="${LOGIN != null}">
+                                        ${LOGIN.memberNickname}님
                                     </c:if>
                                 </p>
                             </li>
@@ -244,7 +244,7 @@
                             </li>
 
                             <li>
-                                <div class="profile dropdown">
+                                <div class="profile dropdowns">
                                     <button class="smbtn">
                                         <div class="profile-box">
                                             <c:if test="${login == null || login.profile == null}">
