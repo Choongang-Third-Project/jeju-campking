@@ -217,9 +217,10 @@
                     tag+='<p>'+ boardContent +'</p>';
                     tag+='</a>';
                     tag+='<div class="card-actions justify-end">';
-                      tag+='<button class="btn btn-primary" id="modify" data-no="'+boardNumber+'">수정하기</button>';
-                      tag+='<button class="btn btn-secondary" id="delete" data-no="'+boardNumber+'">삭제하기</button>';
-                     
+                        if('${LOGIN.memberNumber}' == memberNumber){
+                            tag+='<button class="btn btn-primary" id="modify" data-no="'+boardNumber+'">수정하기</button>';
+                            tag+='<button class="btn btn-secondary" id="delete" data-no="'+boardNumber+'">삭제하기</button>';
+                        }
                       tag+='</div>';
                       tag+='</div>';
                     tag+='</div>';

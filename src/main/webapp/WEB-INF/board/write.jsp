@@ -63,7 +63,7 @@ $list.onclick =  e => {
   document.getElementById('submit').onclick = e => {
 	const $title = document.querySelector('.boardTitle').value;
 	const $content = quill.editor.delta.ops[0].insert;
-	const $memberNumber = +document.getElementById('memberNumber').value;
+	const $memberNumber = '${LOGIN.memberNumber}';
 	
 
 	console.log($content);
