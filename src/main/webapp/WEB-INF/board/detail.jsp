@@ -8,7 +8,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
+    
+
+    <title>Jeju Camp King</title>
+    <link rel="stylesheet" href="/assets/header/css/header.css">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/header/img/camp.ico">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,12 +28,7 @@
     <link rel="stylesheet" href="/assets/header/css/header.css">
    
    <style>
-            header {
-            padding-top: 15px;
-            height: 150px;
-            background-color: rgba(0, 0, 0, 0.4);
-            margin-bottom: 50px;
-        }
+        
 
         .divider {
             font-size: 30px;
@@ -251,11 +252,11 @@
                 </li>
 
                 <li>
-                    <div class="profile dropdown">
+                    <div class="profile dropdowns">
                         <button class="smbtn">
                             <div class="profile-box">
                                 <c:if test="${LOGIN == null || LOGIN.profile == null}">
-                                    <img src="/assets/header/img/soongu.jpg" alt="미로그인">
+                                    <img src="/assets/mypage/img/profile.png" alt="미로그인">
                                 </c:if>
                                 <c:if test="${LOGIN != null && LOGIN.profile != null}">
                                     <img src="/local${LOGIN.profile}" alt="프사">
@@ -264,7 +265,7 @@
                             </div>
                         </button>
                         <div id="drop-content">
-                            <a href='/jeju-camps/mypage/${memberNumber}'>마이페이지</a>
+                            <a href='/jeju-camps/mypage/${LOGIN.memberNumber}'>마이페이지</a>
                             <a href='/member/logout'>로그아웃</a>
                         </div>
                     </div>
@@ -644,7 +645,19 @@
 
 
 
+          
+        const $dropContent = document.getElementById("drop-content");
+        const $btn = document.querySelector('.smbtn');
 
+        $btn.onclick = () => {
+            $dropContent.style.display = "block"; 
+        };
+
+        $btn.parentElement.onmouseleave = () => {
+            $dropContent.style.display = "none"; 
+        };
+
+ 
 
 
         
