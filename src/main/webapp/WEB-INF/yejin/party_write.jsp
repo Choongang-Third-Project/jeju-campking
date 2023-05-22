@@ -201,7 +201,7 @@
         dropbtn_content.style.color = '#252525';
         dropbtn.style.borderColor = '#3992a8';
       }
-     }
+    }
     window.onclick = (e) => {
       if (!e.target.matches('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -329,24 +329,24 @@
             } else {
               alert('게시글 등록에 실패함!');
             }
-          });
+        });
 
 
 
       }
 
        
-      };
+    };
 
-      //메인 실행부
-      (function() {
+    //메인 실행부
+    (function() {
 
-        //캠프 리스트 불러오기
-        getCampList();
+      //캠프 리스트 불러오기
+      getCampList();
 
-        // 게시글 등록 처리 이벤트
-        makepartyRegisterClickEvent();
-      })();
+      // 게시글 등록 처리 이벤트
+      makepartyRegisterClickEvent();
+    })();
 
   </script>
 </body>

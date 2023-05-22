@@ -418,15 +418,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
-
-
-
-
     
-
-
-
-
 
 
 
@@ -640,7 +632,7 @@
                         </div>
                         <div class="dropdown">
                             <button class="dropbtn" onclick="dropdown()">
-                            <!-- <span class="dropbtn_icon">more_horiz</span> -->
+                            <span class="dropbtn_icon">...</span>
                             <span class="dropbtn_content">수정할 캠핑장 선택</span>
                             <span class="dropbtn_click"
                                 style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;"></span>
@@ -808,17 +800,15 @@
 
 
 
-
-// //캠프장 드롭다운 메뉴
-      window.onload = () => {
-        document.querySelector('.dropbtn').onclick = () => {
-            dropdown();
+   //캠프장 드롭다운 메뉴
+   window.onload = () => {
+      document.querySelector('.dropbtn').onclick = () => {
+        dropdown();
       }
     
       document.getElementsByClassName('fastfood').onclick = () => {
         showMenu(value);
       };
-
       dropdown = () => {
         var v = document.querySelector('.dropdown-content');
         var dropbtn = document.querySelector('.dropbtn')
@@ -838,8 +828,7 @@
         dropbtn_content.style.color = '#252525';
         dropbtn.style.borderColor = '#3992a8';
       }
-     }
-
+    }
     window.onclick = (e) => {
       if (!e.target.matches('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -858,6 +847,7 @@
         }
       }
     }
+    //드롭다운 메뉴설정 끝
 
 
     //드롭다운(캠핑장) 랜더링 함수
@@ -872,7 +862,6 @@
       //생성된 캠프장 tag 랜더링
       document.querySelector('.dropdown-content').innerHTML = tag;
     }
-
     //캠핑장 데려오기
     function getCampList() {
       fetch('/jeju-camps/info/all-list')
@@ -883,47 +872,108 @@
         })
     }
 
-
-
-
-//     // 게시글 등록 처리 이벤트 함수
+    // 게시글 등록 처리 이벤트 함수
     function makepartyRegisterClickEvent() {
 
-    const $regBtn = document.getElementById('replyAddBtn');
+      const $regBtn = document.getElementById('replyAddBtn');
+      
 
-    $regBtn.onclick = e => {
-            // 게시물 제목
-            const $title = document.getElementById('title');
-            // 게시물 내용
-            const $content = document.querySelector('.form-control');
-            //  파티원 정원 수
-            const $count = document.getElementById('people_count');
-            //시작 날짜
-            const $startdate = document.querySelector('#startdate input');
-            //마감 날짜
-            const $enddate = document.querySelector('#enddate input');
-            // 캠핑장
-            const $campNumber = document.querySelector('.dropbtn_content').dataset.id;
 
-            console.log($campNumber);
-            // 클라이언트 입력값 검증
-            if ($title.value.trim() === '') {
-                alert('게시글 제목은 필수입니다!');
-                return;
-            } else if ($content.value.trim() === '') {
-                alert('내용은 필수입니다!');
-                return;
-            } else if ($count.value < 2 || $count.value > 20) {
-                alert('캠퍼 정원은 2~20명 사이로 작성하세요!');
-                return;
-            } else if ($campNumber === null) {
-                alert('캠프장은 꼭 선택해야합니다');
-                return;
-            } else if ($startdate === '' || $enddate === '') {
-                alert('날짜를 꼭 선택해주세요 !');
-            }
+      $regBtn.onclick = e => {
+        // 게시물 제목
+        const $title = document.getElementById('title');
+        // 게시물 내용
+        const $content = document.querySelector('.form-control');
+        //  파티원 정원 수
+        const $count = document.getElementById('people_count');
+        //시작 날짜
+        const $startdate = document.querySelector('#startdate input');
+        //마감 날짜
+        const $enddate = document.querySelector('#enddate input');
+        // 캠핑장
+        const $campNumber = document.querySelector('.dropbtn_content').dataset.id;
+        // console.log($content.value);
+        // console.log($count.value);
+        // console.log($title.value);
+        console.log($campNumber);
+        // 클라이언트 입력값 검증
+        if ($title.value.trim() === '') {
+          alert('게시글 제목은 필수입니다!');
+          return;
+        } else if ($content.value.trim() === '') {
+          alert('내용은 필수입니다!');
+          return;
+        } else if ($count.value < 2 || $count.value > 20) {
+          alert('캠퍼 정원은 2~20명 사이로 작성하세요!');
+          return;
+        } else if ($campNumber === null) {
+          alert('캠프장은 꼭 선택해야합니다');
+          return;
+        } else if ($startdate === '' || $enddate === '') {
+          alert('날짜를 꼭 선택해주세요 !');
         }
+
+
+
+        console.log($startdate);
+        console.log($startdate.value);
+         // # 서버로 보낼 데이터
+         const payload = {
+          partyTitle: $title.value,
+          partyContent: $content.value,
+          partySize: $count.value,
+          campNumber: $campNumber,
+          partyStartDate: $startdate.value,
+          partyEndDate: $enddate.value,
+          memberNumber : '${LOGIN.memberNumber}'
+        };
+        // # GET방식을 제외하고 필요한 객체
+        const requestInfo = {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        };
+        
+        const URL = "/jeju-camps/parties/write";
+
+
+        // # 서버에 POST요청 보내기
+        fetch(URL, requestInfo)
+          .then(res => {
+            if (res.status === 200) {
+              alert('게시글이 정상 등록됨!');
+              // 입력창 비우기
+              $title.value = '',
+                $content.value = '',
+                $count.value = '',
+                $campNumber.value = '',
+                $startdate.value = '',
+                $enddate.value = ''
+
+                location.href="/jeju-camps/parties";
+            } else {
+              alert('게시글 등록에 실패함!');
+            }
+        });
+
+
+
+      }
+
+       
     };
+
+    //메인 실행부
+    (function() {
+
+      //캠프 리스트 불러오기
+      getCampList();
+
+      // 게시글 등록 처리 이벤트
+      makepartyRegisterClickEvent();
+    })();
 
     </script>
 </body>

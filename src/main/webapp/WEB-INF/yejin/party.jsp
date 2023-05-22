@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <button%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html>
     <html>
@@ -19,19 +20,26 @@
     </head>
 
     <body>
+        <!-- set-up -->        
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+
+
         <h1 class="title">
             같이 갈 사람 😁
         </h1>
         <button class="write" id="writebtn">글쓰기</button>
-        <div class="orderby">정렬</div>
         <nav>
             <div class="roundbar">
-                <div><button type="button">캠프장 이름</button></div>
-                <div><button type="button">제목</button></div>
-                <div><button type="button">작성자</button></div>
-                <div><button type="button">날짜</button></div>
-                <div><button type="button">타입</button></div>
-                <div><button type="button">정원</button></div>
+
+                <div id="type-btn-box" class="type-btn">
+                    <button id="type-all" data-type="all" class="btn-type btn btn-outline m-1">모든 캠핑장</button>
+                    <button id="type-normal" data-type="normal" class="btn-type btn btn-outline btn-primary m-1">일반 캠핑장</button>
+                    <button id="type-car" data-type="car" class="btn-type btn btn-outline btn-secondary m-1">자동차 캠핑장</button>
+                    <button id="type-caravan" data-type="caravan" class="btn-type btn btn-outline btn-accent m-1">카라반</button>
+                    <button id="type-glamping" data-type="glamping" class="btn-type btn btn-outline btn-info m-1">글램핑</button>
+                </div>
+
                 <input id="search_content" class="search" type="text">
                 <span class="material-symbols-outlined" id="search_btn">
                     search
@@ -71,17 +79,19 @@
         ) {
             let tag = '';
 
-            //console.log('allbysort:', allBySort);
             if (allBySort === null || allBySort.length === 0) {
                 tag += " ";
 
             } else {
+
+                console.log(allBySort);
+
                 for (let party of allBySort) {
                     const {
                         partyNumber,
                         memberNickName,
                         partyTitle,
-                        partyContent, // 수정: parrtyContent -> partyContent
+                        partyContent,
                         partyStartDate,
                         partyEndDate,
                         campTypeNormal,
@@ -94,11 +104,6 @@
                         campNumber
                     } = party;
 
-
-                    //console.log(partyNumber);
-
-
-                    // console.log(party);
                     if (campTypeGlamping) {
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/glamping">';
                     } else if (campTypeCar) {
@@ -109,28 +114,9 @@
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/normal">';
                     }
 
-
-
-
-                    //tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/ ">';
-
-
                     tag += "<li>" +
                         "<div class='item_card clearfix'>" +
                         "<div class='img-box'>";
-
-                    // console.log(party);
-                    // if (campTypeGlamping === "글램핑") {
-                    //     tag += "<img src='/assets/home/img/sm_glamping.jpg' alt='glamping'>";
-                    // } else if (campTypeCar === "자동차") {
-                    //     tag += "<img src='/assets/home/img/sm_car.jpg' alt='car'>";
-                    // } else if (campTypeCaravan === "카라반") {
-                    //     tag += "<img src='/assets/home/img/sm_caraban.jpg' alt='caravan'>";
-                    // } else  {
-                    //     tag += "<img src='/assets/home/img/sm_normal.jpg' alt='normal'>";
-                    // }
-
-
 
                     if (campTypeGlamping) {
                         tag += "<img src='/assets/home/img/sm_glamping.jpg' alt='glamping'>";
@@ -141,9 +127,6 @@
                     } else  {
                         tag += "<img src='/assets/home/img/sm_normal.jpg' alt='normal'>";
                     }
-
-
-
 
                     tag += "</div>" +
                         "<div class='small_title'>" +
@@ -176,22 +159,45 @@
                 });
         }
 
-        //정렬 버튼 누르면 정렬하기 함수 -> 백엔드에서 어떤 부분인지 확인해야함 
-        const $order = document.querySelector('.orderby');
-        $order.onclick = e => {
-            //정렬한 리스트 불러오기 
-            getOrderedPartyList();
-        }
+
+        // 정렬 버튼 함수 추가
+        const $btnType = [...document.querySelectorAll('.btn-type')];
+        $btnType.forEach( e => {
+            e.onclick = btn => {
+                getOrderedPartyList(e.dataset.type, 'writeTimeDESC');               
+            }
+
+        });
+
+
+
+
+
+        // //정렬 버튼 누르면 정렬하기 함수 -> 백엔드에서 어떤 부분인지 확인해야함 
+        // const $order = document.querySelector('.orderby');
+        // $order.onclick = e => {
+        //     //정렬한 리스트 불러오기 
+        //     const $btnType = document.getElementById('btn-type');
+            
+        //     getOrderedPartyList('car','writeTimeDESC');
+
+        // }
+
+
+
 
         //정렬한 리스트 불러오기 함수 
-        function getOrderedPartyList() {
-            fetch('/jeju-camps/parties/all-list/' + $type + '/' + $sort)
+        function getOrderedPartyList(inputType, inputSort) {
+            fetch('/jeju-camps/parties/all-list/' + inputType + '/' + inputSort)
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);
                     renderCampList(responseResult);
                 });
         }
+
+
+
 
 
         // 검색 하기 기능 
