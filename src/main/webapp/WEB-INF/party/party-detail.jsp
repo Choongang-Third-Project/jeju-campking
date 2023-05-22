@@ -213,6 +213,176 @@
 
 
 
+
+
+
+        /* -------- start modify modal -------- */
+
+        #modify-container {
+            /* border: 1px solid red; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #modify-container #modify-title {
+            /* border: 1px solid red; */
+        }
+
+        #modify-container #total { 
+            margin-top: 5px;
+            text-align: center;
+            /* border: 1px solid red; */
+        }
+        #modify-container #title {
+            margin: 15px;
+        }
+        
+        #modify-container .date-box {
+            /* border: 1px solid red; */
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px;
+        }
+
+        #modify-container .dropdown-label {
+            font-size: 10px;
+            /* margin : 10px; */
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: rgb(50, 50, 50);
+        }
+        
+        #modify-container .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        #modify-container .dropbtn_icon {
+            font-family: 'Material Icons';
+        }
+
+        #modify-container .dropbtn {
+            display: block;
+            border: 2px solid rgb(94, 94, 94);
+            border-radius: 4px;
+            background-color: #fcfcfc;
+            font-weight: 400;
+            color: rgb(124, 124, 124);
+            padding: 12px;
+            width: 240px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 10px;
+            z-index: 1;
+            position: relative;
+        }
+        #modify-container .camp-box {
+            /* border: 1px solid red; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 15px;
+        }
+
+        #modify-container .dropdown-content {
+            display: none;
+            font-weight: 400;
+            background-color: #fcfcfc;
+            min-width: 240px;
+            border-radius: 8px;
+            height: 160px;
+            overflow: scroll;
+            box-shadow: 0px 0px 10px 3px rgba(190, 190, 190, 0.6);
+        }
+        
+        #modify-container .dropdown-content::-webkit-scrollbar {
+            width: 5px;
+            height: 10px;
+        }
+        
+        #modify-container .dropdown-content::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+            background-color: rgb(194, 194, 194)
+        }
+        
+        #modify-container .dropdown-content div {
+            display: block;
+            text-decoration: none;
+            color: rgb(37, 37, 37);
+            font-size: 10px;
+            padding: 12px 20px;
+        }
+        
+        #modify-container .dropdown-content div:hover {
+            background-color: rgb(226, 226, 226);
+        }
+        
+        #modify-container .dropdown-content.show {
+            display: block;
+        }
+        
+        #modify-container .container {
+            font-family: 'Black Han Sans', sans-serif;
+        }
+        
+        #modify-container .size-box { 
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            margin: 15px;
+        }
+
+        #modify-container .size-title { 
+            margin-right: 20px;
+        } 
+
+        #modify-container h2 {
+            font-size: 20px;
+        }
+        
+        #modify-container .total {
+            font-size: 15px;
+        }
+        
+        #modify-container .form-group {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            
+            /* border: 1px solid red; */
+            margin: 15px;
+            /* width: 100%; */
+            
+            font-size: 15px;
+        }
+        #modify-container .form-group .modify-content { 
+            /* border: 1px solid red; */
+            margin: 0px 20px 20px 20px;
+        }
+        
+        #people_count {
+            width: 100px;
+        }
+
+        /* -------- end modify modal -------- */
+
+
+
+
+
+
+
+
+
+
+
         /* -------- start btn-box hover -------- */
 
         #wrapper .container .btn-box .btn-remove .btn {
@@ -401,6 +571,21 @@
 
         </div>
 
+
+        <!-- footer -->   
+        <footer>
+            <div class="foot-wrapper">
+                <h3>CAMPKING</h3>
+                <div class="foot">
+                    <p>주식회사 캠프킹 | 대표이사 : 홍순구 | 사업자 등록번호 : 000-00-000000</p>
+                    <p>국내여행업 등록번호 : 2023-0000000호 | 자동차대여사업 등록번호 : 서울시 2023-00호 | 통신판매 신고번호 : 2023-서울강남-00000호</p>
+                    <p>대표전화 : 02-000-0000 | 팩스 : 0000-000-0000 | E-mail : info@campking.cooom</p>
+                    <p>Copyright ⓒ CampKing inc.</p>
+                </div>
+            </div>
+        </footer>
+
+
     
         <!-- party join modal -->
         <input type="checkbox" id="my-modal-4" class="modal-toggle" />
@@ -447,27 +632,31 @@
             <label class="modal-box relative flex justify-center" for="">
 
                 <!-- 글 작성하기 -->
-                <div class="container">
-                    <h2>🌲캠퍼 모집 수정🌲</h2>
+
+
+
+                <div id="modify-container" class="container">
+                    <h2 id="modify-title">🌲캠퍼 모집 수정🌲</h2>
                     <!-- <form action="write.jsp" method="post"> -->
-                      <div class="total">
-                        <label for="title">제목</label>
+                      <div id="total" class="total">
+                        <label for="title">수정할 제목을 입력하세요</label>
                         <!-- placeholder 속성 입력한 데이터가 없는 경우 배경으로 나타난다.실제적으로 입력을 100자까지로 지정 -->
                         <!-- required 속성을 설정하면 필수입력 사항이된다. -->
                         <!-- pattern 속성을 이용한 정규표현식으로 데이터의 유효성 검사를 할 수 있다. -->
                         <input type="text" class="form-control" id="title" placeholder="제목 입력(4-100)" name="title" maxlength="100"
                           required="required" pattern=".{4,100}">
                       </div>
-                      <div class="dropdown-label" style="font-size: 20px;">
-                        camp🐛
-                      </div>
-                      <div class="dropdown">
-                        <button class="dropbtn" onclick="dropdown()">
-                          <span class="dropbtn_icon">more_horiz</span>
-                          <span class="dropbtn_content">캠핑장 선택</span>
-                          <span class="dropbtn_click"
-                            style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;">arrow_drop_down</span>
-                        </button>
+                      <div class="camp-box">
+                        <div class="dropdown-label" style="font-size: 20px;">
+                            캠프장 목록 🐛
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropbtn" onclick="dropdown()">
+                            <span class="dropbtn_icon">...</span>
+                            <span class="dropbtn_content">수정할 캠핑장 선택</span>
+                            <span class="dropbtn_click"
+                                style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;"></span>
+                            </button>
                         <div class="dropdown-content">
                           <div class="fastfood" onclick="showMenu(this.innerText)">1</div>
                           <div class="fastfood" onclick="showMenu(this.innerText)">2</div>
@@ -493,7 +682,7 @@
                       </label>
                 
                       <div class="form-group">
-                        <label for="content">내용</label>
+                        <label for="content" class="modify-content">수정할 내용</label>
                         <!--  여러줄의 데이터를 입력하고 하고자 할때 textarea 태그를 사용한다. -->
                         <!--  textarea 안에 있는 모든 글자는 그대로 나타난다. 공백문자, tag, enter -->
                         <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용 작성"></textarea>
@@ -512,18 +701,7 @@
 
     </div>
     
-    <!-- footer -->   
-    <footer>
-        <div class="foot-wrapper">
-            <h3>CAMPKING</h3>
-            <div class="foot">
-                <p>주식회사 캠프킹 | 대표이사 : 홍순구 | 사업자 등록번호 : 000-00-000000</p>
-                <p>국내여행업 등록번호 : 2023-0000000호 | 자동차대여사업 등록번호 : 서울시 2023-00호 | 통신판매 신고번호 : 2023-서울강남-00000호</p>
-                <p>대표전화 : 02-000-0000 | 팩스 : 0000-000-0000 | E-mail : info@campking.cooom</p>
-                <p>Copyright ⓒ CampKing inc.</p>
-            </div>
-        </div>
-    </footer>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
@@ -642,6 +820,188 @@
             document.getElementById('chat').innerHTML += '<br>' + $message + '<br>';
             document.getElementById('message').value = '';
         });
+
+
+
+
+
+
+
+
+   //캠프장 드롭다운 메뉴
+   window.onload = () => {
+      document.querySelector('.dropbtn').onclick = () => {
+        dropdown();
+      }
+    
+      document.getElementsByClassName('fastfood').onclick = () => {
+        showMenu(value);
+      };
+      dropdown = () => {
+        var v = document.querySelector('.dropdown-content');
+        var dropbtn = document.querySelector('.dropbtn')
+        v.classList.toggle('show');
+        dropbtn.style.borderColor = 'rgb(94, 94, 94)';
+      }
+
+      showMenu = (value, campNumber) => {
+        var dropbtn_icon = document.querySelector('.dropbtn_icon');
+        var dropbtn_content = document.querySelector('.dropbtn_content');
+        var dropbtn_click = document.querySelector('.dropbtn_click');
+        var dropbtn = document.querySelector('.dropbtn');
+
+        dropbtn_icon.innerText = '';
+        dropbtn_content.setAttribute('data-id',campNumber);
+        dropbtn_content.innerText = value;
+        dropbtn_content.style.color = '#252525';
+        dropbtn.style.borderColor = '#3992a8';
+      }
+    }
+    window.onclick = (e) => {
+      if (!e.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+
+        var dropbtn_icon = document.querySelector('.dropbtn_icon');
+        var dropbtn_content = document.querySelector('.dropbtn_content');
+        var dropbtn_click = document.querySelector('.dropbtn_click');
+        var dropbtn = document.querySelector('.dropbtn');
+
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+    //드롭다운 메뉴설정 끝
+
+
+    //드롭다운(캠핑장) 랜더링 함수
+    function rendercampList(list) {
+      let tag = '';      
+
+      for(let con of list){
+        let {campName, campNumber} = con;
+       tag += '<div class="fastfood" onclick="showMenu(this.innerText, '+campNumber+')">' +
+        campName + "</div>";
+       }
+      //생성된 캠프장 tag 랜더링
+      document.querySelector('.dropdown-content').innerHTML = tag;
+    }
+    //캠핑장 데려오기
+    function getCampList() {
+      fetch('/jeju-camps/info/all-list')
+        .then(res => res.json())
+        .then(responseResult => {
+          console.log(responseResult);
+          rendercampList(responseResult);
+        })
+    }
+
+    // 게시글 등록 처리 이벤트 함수
+    function makepartyRegisterClickEvent() {
+
+      const $regBtn = document.getElementById('replyAddBtn');
+      
+
+
+      $regBtn.onclick = e => {
+        // 게시물 제목
+        const $title = document.getElementById('title');
+        // 게시물 내용
+        const $content = document.querySelector('.form-control');
+        //  파티원 정원 수
+        const $count = document.getElementById('people_count');
+        //시작 날짜
+        const $startdate = document.querySelector('#startdate input');
+        //마감 날짜
+        const $enddate = document.querySelector('#enddate input');
+        // 캠핑장
+        const $campNumber = document.querySelector('.dropbtn_content').dataset.id;
+        // console.log($content.value);
+        // console.log($count.value);
+        // console.log($title.value);
+        console.log($campNumber);
+        // 클라이언트 입력값 검증
+        if ($title.value.trim() === '') {
+          alert('게시글 제목은 필수입니다!');
+          return;
+        } else if ($content.value.trim() === '') {
+          alert('내용은 필수입니다!');
+          return;
+        } else if ($count.value < 2 || $count.value > 20) {
+          alert('캠퍼 정원은 2~20명 사이로 작성하세요!');
+          return;
+        } else if ($campNumber === null) {
+          alert('캠프장은 꼭 선택해야합니다');
+          return;
+        } else if ($startdate === '' || $enddate === '') {
+          alert('날짜를 꼭 선택해주세요 !');
+        }
+
+
+
+        console.log($startdate);
+        console.log($startdate.value);
+         // # 서버로 보낼 데이터
+         const payload = {
+          partyTitle: $title.value,
+          partyContent: $content.value,
+          partySize: $count.value,
+          campNumber: $campNumber,
+          partyStartDate: $startdate.value,
+          partyEndDate: $enddate.value,
+          memberNumber : '${LOGIN.memberNumber}'
+        };
+        // # GET방식을 제외하고 필요한 객체
+        const requestInfo = {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        };
+        
+        const URL = "/jeju-camps/parties/write";
+
+
+        // # 서버에 POST요청 보내기
+        fetch(URL, requestInfo)
+          .then(res => {
+            if (res.status === 200) {
+              alert('게시글이 정상 등록됨!');
+              // 입력창 비우기
+              $title.value = '',
+                $content.value = '',
+                $count.value = '',
+                $campNumber.value = '',
+                $startdate.value = '',
+                $enddate.value = ''
+
+                location.href="/jeju-camps/parties";
+            } else {
+              alert('게시글 등록에 실패함!');
+            }
+        });
+
+
+
+      }
+
+       
+    };
+
+    //메인 실행부
+    (function() {
+
+      //캠프 리스트 불러오기
+      getCampList();
+
+      // 게시글 등록 처리 이벤트
+      makepartyRegisterClickEvent();
+    })();
 
     </script>
 </body>

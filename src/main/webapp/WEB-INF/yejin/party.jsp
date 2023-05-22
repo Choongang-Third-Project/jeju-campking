@@ -96,7 +96,13 @@
         
             </div>
           </header>
-        
+       
+
+        <!-- set-up -->        
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+          
+
 
         <h1 class="title">
             같이 갈 사람 😁
@@ -105,12 +111,17 @@
         <div class="orderby">정렬</div>
         <nav>
             <div class="roundbar">
-                <div><button type="button">캠프장 이름</button></div>
-                <div><button type="button">제목</button></div>
-                <div><button type="button">작성자</button></div>
-                <div><button type="button">날짜</button></div>
-                <div><button type="button">타입</button></div>
-                <div><button type="button">정원</button></div>
+
+
+                <div id="type-btn-box" class="type-btn">
+                    <button id="type-all" data-type="all" class="btn-type btn btn-outline m-1">모든 캠핑장</button>
+                    <button id="type-normal" data-type="normal" class="btn-type btn btn-outline btn-primary m-1">일반 캠핑장</button>
+                    <button id="type-car" data-type="car" class="btn-type btn btn-outline btn-secondary m-1">자동차 캠핑장</button>
+                    <button id="type-caravan" data-type="caravan" class="btn-type btn btn-outline btn-accent m-1">카라반</button>
+                    <button id="type-glamping" data-type="glamping" class="btn-type btn btn-outline btn-info m-1">글램핑</button>
+                </div>
+
+
                 <input id="search_content" class="search" type="text">
                 <span class="material-symbols-outlined" id="search_btn">
                     search
@@ -269,16 +280,28 @@
                 });
         }
 
-        //정렬 버튼 누르면 정렬하기 함수 -> 백엔드에서 어떤 부분인지 확인해야함 
-        const $order = document.querySelector('.orderby');
-        $order.onclick = e => {
-            //정렬한 리스트 불러오기 
-            getOrderedPartyList();
-        }
+
+               // 정렬 버튼 함수 추가
+        const $btnType = [...document.querySelectorAll('.btn-type')];
+            $btnType.forEach( e => {
+                e.onclick = btn => {
+                    getOrderedPartyList(e.dataset.type, 'writeTimeDESC');               
+                }
+        });
+
+        // //정렬 버튼 누르면 정렬하기 함수 -> 백엔드에서 어떤 부분인지 확인해야함 
+        // const $order = document.querySelector('.orderby');
+        // $order.onclick = e => {
+        //     //정렬한 리스트 불러오기 
+        //     getOrderedPartyList();
+        // }
+
+
+
 
         //정렬한 리스트 불러오기 함수 
-        function getOrderedPartyList() {
-            fetch('/jeju-camps/parties/all-list/' + $type + '/' + $sort)
+        function getOrderedPartyList(inputType, inputSort) {
+            fetch('/jeju-camps/parties/all-list/' + inputType + '/' + inputSort)
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);
