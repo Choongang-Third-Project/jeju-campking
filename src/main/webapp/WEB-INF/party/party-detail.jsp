@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<label%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -367,18 +367,28 @@
 
             <!-- 삭제, 참가, 수정 버튼 -->
             <div class="btn-box w-full flex justify-around flex-row items-center">
+
                 <!-- 삭제 버튼 -->
-                <div class="btn-remove">
-                    <button class="btn btn-active btn-secondary">삭제하기</button>
-                </div>
+                <c:if test="${LOGIN.memberNumber eq detail.memberNumber}">
+                    <div id="btn-remove" class="btn-remove">
+                        <button class="btn btn-active btn-secondary">삭제하기</button>
+                    </div>
+                </c:if>
+
                 <!-- 참가 버튼 -->
-                <div class="btn-join">
-                    <label for="my-modal-4" class="btn btn-active btn-primary">같이가기</label>
-                </div>
+                <c:if test="${LOGIN.memberNumber ne detail.memberNumber}">
+                    <div class="btn-join">
+                        <label for="my-modal-4" class="btn btn-active btn-primary">같이가기</label>
+                    </div>
+                </c:if>
+
                 <!-- 수정 버튼 -->
-                <div class="btn-modify">
-                    <button class="btn btn-active btn-accent">수정하기</button>
-                </div>
+                <c:if test="${LOGIN.memberNumber eq detail.memberNumber}">
+                    <div id="btn-modify" class="btn-modify">
+                        <!-- <label for="modify-modal" class="btn btn-active btn-accent">수정하기</button> -->
+                        <button class="btn btn-active btn-secondary">수정하기</button>
+                    </div>
+                </c:if>
 
             </div>
 
@@ -386,7 +396,7 @@
 
     </div>
 
-
+   
     <!-- party join modal -->
     <input type="checkbox" id="my-modal-4" class="modal-toggle" />
     <label for="my-modal-4" class="modal cursor-pointer">
@@ -425,6 +435,17 @@
     </label>
 
 
+
+
+
+
+
+
+
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -447,15 +468,37 @@
             "hideMethod": "fadeOut"
         }
 
-        $('.btn-remove').on('click', function () {
-            toastr.error('삭제 권한이 없습니다!');
-        });
-        $('.btn-modify').on('click', function () {
-            toastr.warning('수정 권한이 없습니다!');
-        });
+        // $('.btn-remove').on('click', function () {
 
+
+
+        //     toastr.error('삭제 권한이 없습니다!');
+
+
+
+        // });
+
+        // $('.btn-modify').on('click', function () {
+
+
+
+        //     toastr.warning('수정 권한이 없습니다!');
+
+
+
+        // });
+        
         // toastr.success('메세지가 성공적으로 보내졌습니다!');
+        // toastr.error('삭제 권한이 없습니다!');
+        // toastr.warning('수정 권한이 없습니다!');
     </script>
+
+
+
+
+
+
+
 
     <script>
         const loginMember = +'${LOGIN.memberNumber}';
@@ -464,6 +507,27 @@
         
         const $sendBtn = document.getElementById('send-btn');
         const $enterKey = document.getElementById('message');
+
+        const $deleteBtn = document.getElementById('btn-remove');
+        const $removeBtn = document.getElementById('btn-');
+
+
+        $deleteBtn.addEventListener('click', (e) => {
+            fetch('/jeju-camps/parties/' + partyNumber,{
+                method: 'DELETE'
+            })
+            .then(res => {
+                if(res.status === 200){
+                    toastr.success('성공적으로 삭제가 되었습니다.');
+                    
+                    setTimeout(() => {
+                        location.href = "/jeju-camps/parties";
+                    }, 2000);
+                }
+            });
+
+        });
+
 
         $enterKey.addEventListener('keydown', (e) => {
 
@@ -479,11 +543,10 @@
                     method: 'POST',
                     body : formData
                 }).then(res => {
-                    if(res.status === 200){
+                    if (res.status === 200){
                         toastr.success('메세지가 성공적으로 보내졌습니다!');
                     }
                 })
-
 
                 e.preventDefault();
 
@@ -507,7 +570,7 @@
                     method: 'POST',
                     body : formData
                 }).then(res => {
-                    if(res.status === 200){
+                    if (res.status === 200){
                         toastr.success('메세지가 성공적으로 보내졌습니다!');
                     }
                 })
@@ -520,6 +583,12 @@
             document.getElementById('chat').innerHTML += '<br>' + $message + '<br>';
             document.getElementById('message').value = '';
         });
+
+
+
+
+
+
         
     </script>
 </body>
