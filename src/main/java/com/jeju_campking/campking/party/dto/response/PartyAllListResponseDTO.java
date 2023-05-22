@@ -18,6 +18,7 @@ public class PartyAllListResponseDTO {
     private Long partyNumber;
     private String campName;
     private String partyTitle;
+    private String partyContent;
     private String memberNickName;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate partyStartDate;
