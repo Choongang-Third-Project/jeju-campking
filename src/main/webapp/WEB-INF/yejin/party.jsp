@@ -95,17 +95,17 @@
                     } = party;
 
 
-                    console.log(partyNumber);
+                    //console.log(partyNumber);
 
 
                     // console.log(party);
-                    if (campTypeGlamping === "글램핑") {
+                    if (campTypeGlamping) {
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/glamping">';
-                    } else if (campTypeCar === "자동차") {
+                    } else if (campTypeCar) {
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/car">';
-                    } else if (campTypeCaravan === "카라반") {
+                    } else if (campTypeCaravan) {
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/caravan">';
-                    } else if (campTypeNormal === "일반") {
+                    } else  {
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/normal">';
                     }
 
@@ -120,15 +120,31 @@
                         "<div class='img-box'>";
 
                     // console.log(party);
-                    if (campTypeGlamping === "글램핑") {
+                    // if (campTypeGlamping === "글램핑") {
+                    //     tag += "<img src='/assets/home/img/sm_glamping.jpg' alt='glamping'>";
+                    // } else if (campTypeCar === "자동차") {
+                    //     tag += "<img src='/assets/home/img/sm_car.jpg' alt='car'>";
+                    // } else if (campTypeCaravan === "카라반") {
+                    //     tag += "<img src='/assets/home/img/sm_caraban.jpg' alt='caravan'>";
+                    // } else  {
+                    //     tag += "<img src='/assets/home/img/sm_normal.jpg' alt='normal'>";
+                    // }
+
+
+
+                    if (campTypeGlamping) {
                         tag += "<img src='/assets/home/img/sm_glamping.jpg' alt='glamping'>";
-                    } else if (campTypeCar === "자동차") {
+                    } else if (campTypeCar) {
                         tag += "<img src='/assets/home/img/sm_car.jpg' alt='car'>";
-                    } else if (campTypeCaravan === "카라반") {
+                    } else if (campTypeCaravan) {
                         tag += "<img src='/assets/home/img/sm_caraban.jpg' alt='caravan'>";
-                    } else if (campTypeNormal === "일반") {
+                    } else  {
                         tag += "<img src='/assets/home/img/sm_normal.jpg' alt='normal'>";
                     }
+
+
+
+
                     tag += "</div>" +
                         "<div class='small_title'>" +
                         "<div>" + partyTitle + "</div>" +
