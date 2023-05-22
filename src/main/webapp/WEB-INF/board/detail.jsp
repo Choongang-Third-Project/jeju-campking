@@ -20,7 +20,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    
     <link rel="stylesheet" href="/assets/header/css/header.css">
-    <link rel="stylesheet" href="/assets/footer/css/footer.css">
    
    <style>
             header {
@@ -169,6 +168,34 @@
             position: absolute;
             right: 50px;
 
+        }
+
+        /* footer */
+        footer {
+            height: 300px;
+            padding: 25px;
+            background: #3d3d3d;
+            color: #b1b0b0;
+        }
+
+        footer .foot-wrapper h3 {
+            padding-top: 20px;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        footer .foot-wrapper {
+            text-align: center;
+            justify-content: center;
+            /* border: 1px solid #000; */
+            height: 250px;
+
+        }
+
+        footer .foot-wrapper .foot p {
+            padding: 10px;
+            font-size: 13px;
         }
         
 

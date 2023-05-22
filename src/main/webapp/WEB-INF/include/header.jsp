@@ -72,7 +72,7 @@
                                     <button class="smbtn">
                                         <div class="profile-box">
                                             <c:if test="${LOGIN == null || LOGIN.profile == null}">
-                                                <img src="/assets/header/img/soongu.jpg" alt="미로그인">
+                                                <img src="/assets/mypage/img/profile.png" alt="미로그인">
                                             </c:if>
                                             <c:if test="${LOGIN != null && LOGIN.profile != null}">
                                                 <img src="/local${LOGIN.profile}" alt="프사">
