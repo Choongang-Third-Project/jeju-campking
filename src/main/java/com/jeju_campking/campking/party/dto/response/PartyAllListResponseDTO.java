@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @Builder
 public class PartyAllListResponseDTO {
+    private Long partyNumber;
     private String campName;
     private String partyTitle;
     private String memberNickName;

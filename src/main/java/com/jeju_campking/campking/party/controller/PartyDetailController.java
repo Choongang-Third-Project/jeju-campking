@@ -19,16 +19,19 @@ public class PartyDetailController {
 
     private final PartyDetailService partyDetailService;
 
-    @GetMapping("/{partyNumber}")
+    @GetMapping("/{partyNumber}/{campType}")
     public String detail(
-            @PathVariable Long partyNumber
+            @PathVariable Long partyNumber,
+            @PathVariable String campType
             , Model model
     ) {
         log.info("input : {} ", partyNumber);
+        log.info("input type : {} ", campType);
+
         PartyDetailResponseDTO partyDetailResponseDTO = partyDetailService.detailView(partyNumber);
 
         model.addAttribute("detail", partyDetailResponseDTO);
-
+        model.addAttribute("type", campType);
         return "/party/party-detail";
     }
 

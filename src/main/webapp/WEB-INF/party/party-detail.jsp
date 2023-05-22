@@ -266,7 +266,7 @@
 
                     <div class="avatar">
                         <div class="img w-24 rounded-full">
-                            <img id="profile" src="../img/profile.png" />
+                            <img id="profile" src="/assets/party/img/profile.png" />
                         </div>
                     </div>
 
@@ -281,7 +281,22 @@
             <div class="camp-img w-full flex justify-between flex-col items-center h-72">
                 <!-- 캠프 사진 -->
                 <div class="img h-full">
-                    <img id="cmap-img" src="../../home/img/sm_normal.jpg" class="h-full">
+                    <div class="img h-full">
+
+                        <c:if test="${type eq 'glamping'}">
+                            <img id="cmap-img" src="/assets/home/img/sm_glamping.jpg" class="h-full">
+                        </c:if>
+                        <c:if test="${type eq 'caravan'}">
+                            <img id="cmap-img" src="/assets/home/img/sm_caraban.jpg" class="h-full">
+                        </c:if>
+                        <c:if test="${type eq 'car'}">
+                            <img id="cmap-img" src="/assets/home/img/sm_car.jpg" class="h-full">
+                        </c:if>
+                        <c:if test="${type eq 'normal'}">
+                            <img id="cmap-img" src="/assets/home/img/sm_normal.jpg" class="h-full">
+                        </c:if>
+    
+                    </div>
                 </div>
             </div>
 

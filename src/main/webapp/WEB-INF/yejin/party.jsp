@@ -71,7 +71,7 @@
         ) {
             let tag = '';
 
-            console.log('allbysort:', allBySort);
+            //console.log('allbysort:', allBySort);
             if (allBySort === null || allBySort.length === 0) {
                 tag += " ";
 
@@ -93,6 +93,27 @@
                         memberNumber,
                         campNumber
                     } = party;
+
+
+                    console.log(partyNumber);
+
+
+                    // console.log(party);
+                    if (campTypeGlamping === "글램핑") {
+                        tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/glamping">';
+                    } else if (campTypeCar === "자동차") {
+                        tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/car">';
+                    } else if (campTypeCaravan === "카라반") {
+                        tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/caravan">';
+                    } else if (campTypeNormal === "일반") {
+                        tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/normal">';
+                    }
+
+
+
+
+                    //tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/ ">';
+
 
                     tag += "<li>" +
                         "<div class='item_card clearfix'>" +
@@ -117,11 +138,12 @@
                         "by" + memberNickName +
                         "</div>" +
                         "</div>" +
-                        "</li>";
+                        "</li>" +
+                       "</a>";
                 }
 
                 // 생성된 파티 tag 렌더링
-                console.log(tag);
+               // console.log(tag);
 
                 document.getElementById('party-list').innerHTML = tag;
             }
