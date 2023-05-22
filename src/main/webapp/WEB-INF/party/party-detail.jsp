@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <label%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -369,24 +370,23 @@
             <div class="btn-box w-full flex justify-around flex-row items-center">
 
                 <!-- 삭제 버튼 -->
-                <c:if test="${LOGIN.memberNumber eq detail.memberNumber}">
+                <c:if test="${LOGIN.memberNumber == detail.memberNumber}">
                     <div id="btn-remove" class="btn-remove">
                         <button class="btn btn-active btn-secondary">삭제하기</button>
                     </div>
                 </c:if>
 
                 <!-- 참가 버튼 -->
-                <c:if test="${LOGIN.memberNumber ne detail.memberNumber}">
+                <c:if test="${LOGIN.memberNumber != detail.memberNumber}">
                     <div class="btn-join">
                         <label for="my-modal-4" class="btn btn-active btn-primary">같이가기</label>
                     </div>
                 </c:if>
 
                 <!-- 수정 버튼 -->
-                <c:if test="${LOGIN.memberNumber eq detail.memberNumber}">
+                <c:if test="${LOGIN.memberNumber == detail.memberNumber}">
                     <div id="btn-modify" class="btn-modify">
-                        <!-- <label for="modify-modal" class="btn btn-active btn-accent">수정하기</button> -->
-                        <button class="btn btn-active btn-secondary">수정하기</button>
+                        <label for="modify-modal" class="btn btn-active btn-accent">수정하기</label>
                     </div>
                 </c:if>
 
@@ -394,57 +394,116 @@
 
         </div>
 
-    </div>
+    
+        <!-- party join modal -->
+        <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+        <label for="my-modal-4" class="modal cursor-pointer">
+            <label class="modal-box relative flex justify-center" for="">
 
-   
-    <!-- party join modal -->
-    <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-    <label for="my-modal-4" class="modal cursor-pointer">
-        <label class="modal-box relative flex justify-center" for="">
+                <!-- iphone -->
+                <div class="party-join mockup-phone border-primary">
+                    <div class="camera"></div>
+                    <div class="display">
+                        <div class="party-chat artboard artboard-demo phone-1 flex justify-between">
 
-            <!-- iphone -->
-            <div class="party-join mockup-phone border-primary">
-                <div class="camera"></div>
-                <div class="display">
-                    <div class="party-chat artboard artboard-demo phone-1 flex justify-between">
+                            <div class="content-box flex justify-center items-center">
+                                <div class="title">보낸 메시지</div>
+                            </div>
 
-                        <div class="content-box flex justify-center items-center">
-                            <div class="title">보낸 메시지</div>
-                        </div>
+                            <div class="chat-box flex flex-col w-full">
+                                <div class="chat grid h-80 w-4/5 card bg-base-300 rounded-box place-items-center">
+                                    <div id="chat" class="message">
 
-                        <div class="chat-box flex flex-col w-full">
-                            <div class="chat grid h-80 w-4/5 card bg-base-300 rounded-box place-items-center">
-                                <div id="chat" class="message">
-
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="input-box">
-                            <textarea id="message" class="message textarea textarea-primary"
-                                placeholder="보낼 메시지를 입력하세요!"></textarea>
-                            <button id="send-btn" class="btn btn-outline btn-primary fa-solid fa-paper-plane"></button>
-                        </div>
+                            <div class="input-box">
+                                <textarea id="message" class="message textarea textarea-primary"
+                                    placeholder="보낼 메시지를 입력하세요!"></textarea>
+                                <button id="send-btn" class="btn btn-outline btn-primary fa-solid fa-paper-plane"></button>
+                            </div>
 
+                        </div>
                     </div>
+
                 </div>
 
-            </div>
-
+            </label>
         </label>
-    </label>
+
+
+
+        <!-- modify modal -->
+        <input type="checkbox" id="modify-modal" class="modal-toggle" />
+        <label for="modify-modal" class="modal cursor-pointer">
+            <label class="modal-box relative flex justify-center" for="">
+
+                <!-- 글 작성하기 -->
+                <div class="container">
+                    <h2>🌲캠퍼 모집 수정🌲</h2>
+                    <!-- <form action="write.jsp" method="post"> -->
+                      <div class="total">
+                        <label for="title">제목</label>
+                        <!-- placeholder 속성 입력한 데이터가 없는 경우 배경으로 나타난다.실제적으로 입력을 100자까지로 지정 -->
+                        <!-- required 속성을 설정하면 필수입력 사항이된다. -->
+                        <!-- pattern 속성을 이용한 정규표현식으로 데이터의 유효성 검사를 할 수 있다. -->
+                        <input type="text" class="form-control" id="title" placeholder="제목 입력(4-100)" name="title" maxlength="100"
+                          required="required" pattern=".{4,100}">
+                      </div>
+                      <div class="dropdown-label" style="font-size: 20px;">
+                        camp🐛
+                      </div>
+                      <div class="dropdown">
+                        <button class="dropbtn" onclick="dropdown()">
+                          <span class="dropbtn_icon">more_horiz</span>
+                          <span class="dropbtn_content">캠핑장 선택</span>
+                          <span class="dropbtn_click"
+                            style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;">arrow_drop_down</span>
+                        </button>
+                        <div class="dropdown-content">
+                          <div class="fastfood" onclick="showMenu(this.innerText)">1</div>
+                          <div class="fastfood" onclick="showMenu(this.innerText)">2</div>
+                          <div class="fastfood" onclick="showMenu(this.innerText)">3</div>
+                          <div class="fastfood" onclick="showMenu(this.innerText)">4</div>
+                          <div class="fastfood" onclick="showMenu(this.innerText)">5</div>
+                          <div class="fastfood" onclick="showMenu(this.innerText)">6</div>
+                          <div class="fastfood" onclick="showMenu(this.innerText)">7</div>
+                          <div class="fastfood" onclick="showMenu(this.innerText)">8</div>
+                          <div class="fastfood" onclick="showMenu(this.innerText)">9</div>
+                          <div class="fastfood" onclick="showMenu(this.innerText)">10</div>
+                        </div>
+                      </div>
+                      <br>
+                      <label for="people">파티 정원</label>
+                      <input type="text" class="form-control" id="people_count" placeholder="2명~10명" name="writer">
+                      <br>
+                      <label for="date" id="startdate">시작날짜를 선택하세요:
+                        <input type="date" id="date" max="2025-12-31" min="2000-01-01" value="2023-05-21">
+                      </label>
+                      <label for="date" id="enddate">마감날짜를 선택하세요:
+                        <input type="date" id="date" max="2025-12-31" min="2000-01-01" value="2023-05-21">
+                      </label>
+                
+                      <div class="form-group">
+                        <label for="content">내용</label>
+                        <!--  여러줄의 데이터를 입력하고 하고자 할때 textarea 태그를 사용한다. -->
+                        <!--  textarea 안에 있는 모든 글자는 그대로 나타난다. 공백문자, tag, enter -->
+                        <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용 작성"></textarea>
+                      </div>
+                      <button id="replyAddBtn" type="submit" class="btn btn-default">등록</button>
+                    <!-- </form> -->
+                  </div>
 
 
 
 
+            </label>
+        </label>    
 
 
 
-
-
-
-
-
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
@@ -469,35 +528,15 @@
         }
 
         // $('.btn-remove').on('click', function () {
-
-
-
         //     toastr.error('삭제 권한이 없습니다!');
-
-
-
         // });
-
         // $('.btn-modify').on('click', function () {
-
-
-
         //     toastr.warning('수정 권한이 없습니다!');
-
-
-
         // });
-        
         // toastr.success('메세지가 성공적으로 보내졌습니다!');
         // toastr.error('삭제 권한이 없습니다!');
         // toastr.warning('수정 권한이 없습니다!');
     </script>
-
-
-
-
-
-
 
 
     <script>
@@ -584,12 +623,6 @@
             document.getElementById('message').value = '';
         });
 
-
-
-
-
-
-        
     </script>
 </body>
 
