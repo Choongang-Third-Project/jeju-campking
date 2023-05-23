@@ -1,6 +1,7 @@
 package com.jeju_campking.campking.event.repository;
 
-import com.jeju_campking.campking.event.entity.Event;
+import com.jeju_campking.campking.shop.event.entity.Event;
+import com.jeju_campking.campking.shop.event.repository.EventMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class EventMapperTest {

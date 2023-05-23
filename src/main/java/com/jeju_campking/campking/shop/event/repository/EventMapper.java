@@ -1,6 +1,6 @@
-package com.jeju_campking.campking.event.repository;
+package com.jeju_campking.campking.shop.event.repository;
 
-import com.jeju_campking.campking.event.entity.Event;
+import com.jeju_campking.campking.shop.event.entity.Event;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

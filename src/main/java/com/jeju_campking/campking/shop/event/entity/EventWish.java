@@ -1,4 +1,4 @@
-package com.jeju_campking.campking.event.entity;
+package com.jeju_campking.campking.shop.event.entity;
 
 import lombok.*;
 
