@@ -522,7 +522,6 @@ section.new .new-container {
     margin: 0 auto;
     /* padding-top: 300px; */
     /* margin-bottom: 100px; */
-
 }
 
 section.new .new-container h1 {
@@ -540,8 +539,7 @@ section.new .new-container h1 span {
 section.new .new-container ul {
     display: flex;
     justify-content: space-evenly;
-
-
+    align-items: center;
 }
 
 section.new .new-container li {
@@ -584,7 +582,11 @@ section.new .camp-name {
     /* border: 1px solid #000; */
     height: 100px;
     font-weight: 700;
+}
 
+section.new .camp-name ul {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 section.new .camp-name ul li p:first-child {

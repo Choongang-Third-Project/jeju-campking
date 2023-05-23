@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+
 /*
     마이페이지의 회원 정보 수정을 관리하는 컨트롤러입니다.
  */

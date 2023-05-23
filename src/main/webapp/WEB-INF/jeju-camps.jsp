@@ -60,14 +60,16 @@
 
                             <li>
                                 <button>
-                                    <div class="indicator">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    <a href='/jeju-camps/mypage/${memberNumber}'>
+                                        <div class="indicator">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                        </svg>
-                                        <span class="badge badge-xs badge-primary indicator-item">${count}</span>
-                                    </div>
+                                            </svg>
+                                            <span class="badge badge-xs badge-primary indicator-item">${count}</span>
+                                        </div>
+                                    </a>
                                 </button>
                             </li>
 
@@ -136,7 +138,7 @@
 
                     </div>
                     <div>
-                        <div class="radial-progress r2"
+                        <div class="radial-progress r2 "
                             style="--value:${c.normalPercentage}; --size:9rem; --thickness: 0.7rem;">
                             ${c.normalPercentage}%
                         </div>
@@ -255,7 +257,7 @@
 
                 <ul class="sub-container clearfix">
                     <li>
-                        <a href="#">
+                        <a href="/jeju-camps/info?search=일반">
                             <div class="img-box"><img src="/assets/home/img/sm_normal.jpg" alt="">
                             </div>
                             <div class="text">
@@ -264,7 +266,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/jeju-camps/info?search=자동차">
                             <div class="img-box"><img src="/assets/home/img/sm_car.jpg" alt="">
                             </div>
                             <div class="text">
@@ -273,7 +275,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/jeju-camps/info?search=카라반">
                             <div class="img-box"><img src="/assets/home/img/sm_caraban.jpg" alt=""></div>
                             <div class="text">
                                 <p><i class="fa-solid fa-caravan"></i> 카라반</p>
@@ -281,7 +283,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/jeju-camps/info?search=글램핑">
                             <div class="img-box"><img src="/assets/home/img/sm_glamping.jpg" alt=""></div>
                             <div class="text">
                                 <p><i class="fa-solid fa-tent"></i> 글램핑</p>
@@ -303,38 +305,38 @@
                     <h1><span>New</span>&Update</h1>
                     <ul id="slideshow">
                         <li>
-                            <a href="#">
+                            <a href="/jeju-camps/info/details?title=(주)자연인">
                                 <div class="new-img-box">
-                                    <img src="/assets/home/img/camp1.jpg" alt="">
+                                    <img src="/assets/home/img/jeju-camp1.jpg" alt="">
                                 </div>
                             </a>
                         </li>
 
                         <li>
-                            <a href="#">
+                            <a href="/jeju-camps/info/details?title=에코힐글램핑">
                                 <div class="new-img-box">
-                                    <img src="/assets/home/img/camp2.jpg" alt="">
+                                    <img src="/assets/home/img/jeju-camp2.jpg" alt="">
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/jeju-camps/info/details?title=메이%20더%20카라반%20(메이캠프)">
                                 <div class="new-img-box">
-                                    <img src="/assets/home/img/camp3.jpg" alt="">
+                                    <img src="/assets/home/img/jeju-camp3.jpg" alt="">
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/jeju-camps/info/details?title=㈜제주글램핑">
                                 <div class="new-img-box">
-                                    <img src="/assets/home/img/camp4.jpg" alt="">
+                                    <img src="/assets/home/img/jeju-camp4.jpg" alt="">
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/jeju-camps/info/details?title=캠파제주">
                                 <div class="new-img-box">
-                                    <img src="/assets/home/img/camp5.jpg" alt="">
+                                    <img src="/assets/home/img/jeju-camp5.jpg" alt="">
                                 </div>
                             </a>
                         </li>
@@ -345,24 +347,24 @@
 
                         <ul>
                             <li>
-                                <p>유료캠핑장</p>
-                                <p>수하리 캠핑파크</p>
+                                <p>일반/글램핑/카라반</p>
+                                <p>(주)자연인</p>
+                            </li>
+                            <li>
+                                <p>일반/글램핑/카라반</p>
+                                <p>에코힐글램핑</p>
                             </li>
                             <li>
                                 <p>유료캠핑장</p>
-                                <p>사계절 캠핑&펜션</p>
+                                <p>메이 더 카라반</p>
                             </li>
                             <li>
-                                <p>유료캠핑장</p>
-                                <p>연천재인폭포 오토캠핑장</p>
+                                <p>일반/글램핑</p>
+                                <p>(주)제주 글램핑</p>
                             </li>
                             <li>
                                 <p>글램핑/카라반</p>
-                                <p>제천 테라리조트 글램핑</p>
-                            </li>
-                            <li>
-                                <p>유료캠핑장</p>
-                                <p>송호관광지 야영장</p>
+                                <p>캠파제주</p>
                             </li>
 
                         </ul>
