@@ -18,4 +18,5 @@ public class ReplyResponseDTO {
     private Long boardNumber;
     private Long memberNumber;
     private String memberNickname;
+    private String profileImage;
 }

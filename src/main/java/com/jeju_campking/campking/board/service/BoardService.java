@@ -56,8 +56,9 @@ public class BoardService {
     }
 
     public BoardResponseDTO findAll(Page page) {
-        log.info("boardService.findAll.info");
+        log.info("boardService.findAll.info  {} " , page.getPageNo());
         List<Board> list = boardMapper.findAll(page);
+
 
         int count = boardMapper.count(null);
         log.info("boardService.getAllList.info {}", list);
@@ -70,7 +71,7 @@ public class BoardService {
     }
 
     public BoardResponseDTO findByKeyword(String keyword, Page page) {
-        log.info("boardService/findByKeyword : {}", keyword);
+        log.info("boardService/findByKeyword : {} , {}", keyword, page.getPageNo());
 
         List<Board> list = boardMapper.findByKeyword(keyword, page);
         int count = boardMapper.count(keyword);

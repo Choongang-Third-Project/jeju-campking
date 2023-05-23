@@ -1,5 +1,6 @@
 package com.jeju_campking.campking.mypage.controller;
 
+import com.jeju_campking.campking.member.dto.response.LoginUserResponseDTO;
 import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.mypage.dto.request.MypageUpdateMemberRequestDTO;
 import com.jeju_campking.campking.mypage.service.MypageUpdateService;
@@ -39,16 +40,24 @@ public class MypageUpdateController {
     @PostMapping("/{memberNumber}")
     public ResponseEntity<?> updateMember(
             @PathVariable Long memberNumber,
-            MypageUpdateMemberRequestDTO dto
+            MypageUpdateMemberRequestDTO dto,
+            HttpSession session
     ) {
-        log.info("MypageController updateMember : {}", memberNumber);
+        log.info("MypageController updateMember : -----------------------------------------------{}", memberNumber);
+
 
         MultipartFile profileImage = dto.getProfileImage();
 
-        String savePath = null;
+        log.info("profileImage profileImage : ------------------------------------{}", profileImage);
 
-        if(!profileImage.isEmpty()) {
+        String savePath =  null;
+
+        if(profileImage!=null) {
             savePath = FileUtil.uploadFile(profileImage, rootPath);
+        } else {
+            log.info("ㅎㅇㅎㅇㅎㅇ");
+            LoginUserResponseDTO login = (LoginUserResponseDTO) session.getAttribute("LOGIN");
+            savePath = login.getProfile();
         }
 
         boolean isUpdated = mypageUpdateService.updateMember(dto, savePath);

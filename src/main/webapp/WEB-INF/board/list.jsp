@@ -143,7 +143,7 @@
         let $end;
         let $pageNo = 1;
         
-
+       
         // 페이지네이션 처리중
         $btnGroup.addEventListener('click', e => {
             if(e.target.matches('.btn-group *')){
@@ -167,6 +167,7 @@
 
             }
         })
+    
        
 
 
@@ -188,6 +189,7 @@
 
         function search(){
             if(!$idInput.value){
+               
                 getBoardList();
                 return;
             }
@@ -274,7 +276,9 @@
          function renderBoardList({
             count, pageInfo, list
          }) {
-            // console.log(list);
+            console.log(count);
+            console.log(pageInfo);
+            console.log(list);
             let tag = '';
 
             if (list === null || list.length === 0) {
@@ -366,7 +370,8 @@
         
          // 캠핑 목록 불러오기 함수 
          function getBoardList() {
-            fetch('/jeju-camps/notices/all' + '?pageNo='+ $pageNo +' & amount=10')
+            console.log($pageNo);
+            fetch('/jeju-camps/notices/all' + '?pageNo='+ $pageNo +'&amount=10')
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);
