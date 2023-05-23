@@ -17,13 +17,13 @@
 
 ---
 
-| 개발자       | 담당              | gitHub                                       | 한 마디   |
-|-----------|-----------------|----------------------------------------------|--------|
-| 🧑‍💻 송유근 | 👉 PM & Front   | [🐈‍⬛ gitHub](https://github.com/golddrone7) | 하면 된다! |
-| 👩‍💻 박수민 | 👉 Front        | [🐈‍⬛ gitHub](https://github.com/330sum)     | 하면 된다! |
-| 👩‍💻 조예원 | 👉 Front & Back | [🐈‍⬛ gitHub](https://github.com/JOY0987)    | 하면 된다! |
-| 👩‍💻 최예진 | 👉 Back         | [🐈‍⬛ gitHub](https://github.com/Yajani)     | 하면 된다! |
-| 🧑‍💻 이기덕 | 👉 Back         | [🐈‍⬛ gitHub](https://github.com/lkdcode)    | 하면 된다! |
+| 개발자       | 담당              | gitHub                                       | 한 마디   | MBTI |
+|-----------|-----------------|----------------------------------------------|--------|------|
+| 🧑‍💻 송유근 | 👉 PM & Front   | [🐈‍⬛ gitHub](https://github.com/golddrone7) | 하면 된다! | ISFP |
+| 👩‍💻 박수민 | 👉 Front        | [🐈‍⬛ gitHub](https://github.com/330sum)     | 하면 된다! | ENFP |
+| 👩‍💻 조예원 | 👉 Front & Back | [🐈‍⬛ gitHub](https://github.com/JOY0987)    | 하면 된다! | ESTP |
+| 👩‍💻 최예진 | 👉 Back         | [🐈‍⬛ gitHub](https://github.com/Yajani)     | 하면 된다! | INTJ |
+| 🧑‍💻 이기덕 | 👉 Back         | [🐈‍⬛ gitHub](https://github.com/lkdcode)    | 되면 한다! | INTP |
 
 <br>
 <br>
@@ -63,6 +63,52 @@
 
 ---
 
+
+
+
+```mermaid
+timeline
+    title Develop history [2023-05-22 ~ 2023-05-26]
+    2023-05-22: [✅]
+            : [Front] 모든 페이지에 헤더 구현
+            : [Front] 파티 게시판 글쓰기
+            : [Front] 댓글 프로필 사진
+            : [docs] PPT 작성 
+            : 🎯
+            : [Back] 공용 rest response api 구현
+            : [Back] 같이 가기 메시지 보내기 구현
+            : [Back] 파티 상세보기 기능 구현
+    2023-05-23: [✅] v2.0.0 업로드
+            : [Front] 공지사항 페이징 처리
+            : [Front] 마이페이지 프로필 사진 처리
+            : 🎯
+            : [Back] 마이페이지 프로필 사진 처리
+            : [Back] 파티 모집 게시판 디데이 구현
+    2023-05-24: []
+            : [Front] 
+            : [Front] 
+            : 🎯
+            : [Back]
+            : [Back]
+    2023-05-25: []
+            : [Front]
+            : [Front]
+            : 🎯
+            : [Back] 
+            : [Back] 
+    2023-05-26: [] 프로젝트 발표
+            : [Front]
+            : [Front]
+            : 🎯
+            : [Back]
+            : [Back]
+```
+
+
+#
+
+
+
 ```mermaid
 timeline
     title Develop history [2023-05-15 ~ 2023-05-19]
@@ -73,30 +119,34 @@ timeline
             : 🎯
             : [Back] dummy data + SQL
             : [Back] interceptor initial commit
-    2023-05-16: []
-            : [Front]
-            : [Front]
+    2023-05-16: [✅]
+            : [Front] Home, header
+            : [Front] My Page
             : 🎯
-            : [Back]
-            : [Back]
-    2023-05-17: []
-            : [Front]
-            : [Front]
+            : [Back] My Page PostMan
+            : [Back] party 글 작성, 삭제, 수정 PostMan
+            : [Back] 비밀번호 암호화
+    2023-05-17: [✅]
+            : [Front] 공지사항 추천, 비추천, 페이지네이션, 조회수 상승, 댓글 랜더링
+            : [Front] 마이 페이지 보낸 쪽지, 받은 쪽지, 내가 쓴 글
+            : [Front] 캠프 글 쓰기 양식
             : 🎯
-            : [Back]
-            : [Back]
-    2023-05-18: []
-            : [Front]
-            : [Front]
+            : [Back] 마이 페이지 보낸 쪽지, 받은 쪽지, 내가 쓴 글
+            : [Back] 공지사항 추천, 비추천, 페이지네이션, 조회수 상승, 댓글 response 구현
+            : [Back] 메인 페이지 금주의 캠프킹, 같이 갈 글 모집 response 구현
+    2023-05-18: [✅]
+            : [Front] 공지사항 댓글 렌더링
+            : [Front] 헤더 구현
             : 🎯
-            : [Back]
-            : [Back]
-    2023-05-19: []
-            : [Front]
-            : [Front]
+            : [Back] 회원가입 비밀번호 암호화 구현
+            : [Back] 공지사항 댓글 렌더링
+            : [Back] 파티 모집 글 SQL
+    2023-05-19: [✅] v2.0.0 회의
+            : [version] 장비 대여 기능
+            : [docs] PPT 초안 작성
+            : [Front] 푸터 구현
             : 🎯
-            : [Back]
-            : [Back] 
+            : [Back] 파티 모집 글 상세보기 정렬
 ```
 
 #
@@ -160,44 +210,41 @@ flowchart LR
 
 - #### V2.0.0 개발 전략
     - [v2.0.0] 공지사항 서비스
-      - 관리자는 공지사항을 등록, 읽기, 수정, 삭제 할 수 있다.
-      - 일반 회원은 공지사항을 읽기 할 수 있다.
-        - 공지사항 목록은 SSR 방식으로 페이징 처리 한다. 
-      - 일반 회원은 공지사항에 댓글을 달 수 있다.
-        - 댓글 작성은 CSR 방식으로 처리 한다.
-      - 페이징 처리
+        - 관리자는 공지사항을 등록, 읽기, 수정, 삭제 할 수 있다.
+        - 일반 회원은 공지사항을 읽기 할 수 있다.
+            - 공지사항 목록은 SSR 방식으로 페이징 처리 한다.
+        - 일반 회원은 공지사항에 댓글을 달 수 있다.
+            - 댓글 작성은 CSR 방식으로 처리 한다.
+        - 페이징 처리
     - [v2.0.0] 캠프장 서비스
-      - 관리자는 캠프장을 등록, 읽기, 수정, 삭제 할 수 있다.
-      - 일반 회원은 캠프장 목록을 볼 수 있다.
-        - 검색, 정렬 기능
-        - 검색 결과는 CSR 방식으로 제공 한다.
-      - 일반 회원은 캠프장 상세보기 기능을 이용할 수 있다.
-        - 지도뷰
-        - 로드뷰
+        - 관리자는 캠프장을 등록, 읽기, 수정, 삭제 할 수 있다.
+        - 일반 회원은 캠프장 목록을 볼 수 있다.
+            - 검색, 정렬 기능
+            - 검색 결과는 CSR 방식으로 제공 한다.
+        - 일반 회원은 캠프장 상세보기 기능을 이용할 수 있다.
+            - 지도뷰
+            - 로드뷰
     - [v2.0.0] 파티 서비스
-      - 같이 갈 멤버를 구하는 게시글을 작성, 수정, 삭제할 수 있다.
-        - 모든 회원은 작성이 가능하다.
-        - 본인이 작성한 글이 아니면 수정, 삭제는 불가하다.
-      - 게시글에 쪽지를 보낼 수 있다.
-        - 모든 회원은 파티 게시글에 대해 쪽지를 보낼 수 있다.
-        - 본인이 작성한 글에는 쪽지를 보낼 수 없다.
-        - 한 번 보낸 쪽지는 수정, 삭제가 불가하다. (보낸 사람 기준으로)
+        - 같이 갈 멤버를 구하는 게시글을 작성, 수정, 삭제할 수 있다.
+            - 모든 회원은 작성이 가능하다.
+            - 본인이 작성한 글이 아니면 수정, 삭제는 불가하다.
+        - 게시글에 쪽지를 보낼 수 있다.
+            - 모든 회원은 파티 게시글에 대해 쪽지를 보낼 수 있다.
+            - 본인이 작성한 글에는 쪽지를 보낼 수 없다.
+            - 한 번 보낸 쪽지는 수정, 삭제가 불가하다. (보낸 사람 기준으로)
     - [v2.0.0] 마이 페이지 서비스
-      - 내 정보를 수정할 수 있다.
-        - 비밀번호, 닉네임, 핸드폰 번호
-      - 내가 쓴 글을 조회할 수 있다.
-        - 파티 게시판 글
-      - 내가 보낸 쪽지를 조회할 수 있다.
-        - 파티 게시판 쪽지
-      - 내가 받은 쪽지를 조회할 수 있다.
-        - 파티 게시판 쪽지
-      
+        - 내 정보를 수정할 수 있다.
+            - 비밀번호, 닉네임, 핸드폰 번호
+        - 내가 쓴 글을 조회할 수 있다.
+            - 파티 게시판 글
+        - 내가 보낸 쪽지를 조회할 수 있다.
+            - 파티 게시판 쪽지
+        - 내가 받은 쪽지를 조회할 수 있다.
+            - 파티 게시판 쪽지
 
 <br>
 <br>
 <br>
-
-
 
 #### ✅ v1.0.0
 
@@ -278,7 +325,6 @@ erDiagram
 erDiagram
     TB_MEMBER ||--o{ TB_PARTY: member-party
     TB_CAMP ||--o{ TB_PARTY: camp-party
-    TB_PARTY ||--o{ TB_PARTY_REPLY: camp-party
 
     TB_MEMBER {
     }
@@ -294,15 +340,6 @@ erDiagram
 
         member_number INT(10) FK "TB_MEMBER"
         camp_number INT(10) FK "TB_CAMP"
-    }
-
-    TB_PARTY_REPLY {
-        party_reply_number INT(10) PK "AUTO_INCREMENT"
-        party_reply_content VARCHAR(200) "NOT NULL"
-        party_reply_time TIMESTAMP "DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-
-        member_number INT(10) FK "TB_MEMBER"
-        party_number INT(10) FK "TB_PARTY"
     }
 
     TB_CAMP {
@@ -338,10 +375,11 @@ erDiagram
     TB_PARTY_MESSAGE {
         party_message_number INT(10) PK "AUTO_INCREMENT"
         party_message_content VARCHAR(2000) "NOT NULL"
+        party_message_time TIMESTAMP "CURRENT TIMESTAMP"
         party_message_sender INT(10) FK "TB_MEMBER"
         party_message_recipient INT(10) FK "TB_MEMBER"
-        
-        party_number INT(10) FK "TB_PARTY"
+        party_message_read VARCHAR(1) "DEFAULT 'N'"
+        party_number INT(10) FK "TB_PARTY ON UPDATE SET NULL"
     }
 
 ```
@@ -384,8 +422,6 @@ mindmap
 
 <br>
 <br>
-
-
 
 #### 📌 2023.05.08 ~ 2023.05.12 V1.0.0
 

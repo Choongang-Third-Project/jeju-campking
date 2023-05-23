@@ -1,8 +1,17 @@
 package com.jeju_campking.campking.camp.controller;
 
+import com.jeju_campking.campking.board.entity.Board;
+import com.jeju_campking.campking.board.service.BoardService;
 import com.jeju_campking.campking.camp.dto.response.CampTypeCountResponseDTO;
 import com.jeju_campking.campking.camp.entity.Camp;
 import com.jeju_campking.campking.camp.service.CampService;
+import com.jeju_campking.campking.member.dto.response.LoginUserResponseDTO;
+import com.jeju_campking.campking.member.service.MemberService;
+import com.jeju_campking.campking.mypage.service.MypageUpdateService;
+import com.jeju_campking.campking.party.service.PartyMessageService;
+import com.jeju_campking.campking.rank.dto.response.CampRankResponseDTO;
+import com.jeju_campking.campking.rank.dto.response.PartyListResponseDTO;
+import com.jeju_campking.campking.rank.service.RankService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,7 +35,10 @@ import java.util.List;
 @Slf4j
 public class CampController {
     private final CampService campService;
-
+    private final RankService rankService;
+    private final BoardService boardService;
+    private final PartyMessageService partyMessageService;
+    private final MypageUpdateService mypageUpdateService;
 
     // 전체 캠핑장 목록조회 요청
     @GetMapping("/jeju-camps/info/all-list")
@@ -70,15 +83,13 @@ public class CampController {
         List<Camp> byKeyword = null;
         try {
             byKeyword = campService.findByKeyword(title);
-            mv.addObject("campBoard",byKeyword.get(0));
+            mv.addObject("campBoard", byKeyword.get(0));
             return mv;
         } catch (SQLException e) {
             log.warn("/camps/all-list POST : {}", byKeyword);
             return null;
         }
     }
-
-
 
 
     @GetMapping("/test")
@@ -90,15 +101,26 @@ public class CampController {
 
     // 홈화면에 표시 할 캠프타입별 카운트, 퍼센트
     @GetMapping("/jeju-camps")
-    public String camps(Model model) {
+    public String camps(Model model, HttpSession session) {
+
+        LoginUserResponseDTO login = (LoginUserResponseDTO) session.getAttribute("LOGIN"); // 세션에서 수신자 정보를 가져옴
+        int count = partyMessageService.unreadCount(login.getMemberNumber()); // 메시지 수를 가져옴
+        Long memberNumber = login.getMemberNumber(); // 멤버 넘버
 
         CampTypeCountResponseDTO campCount = campService.getCampCount();
+        List<CampRankResponseDTO> campRankList = rankService.getCampRankList();
+        List<PartyListResponseDTO> partyList = rankService.getPartyList();
+        List<Board> recentTwo = boardService.findRecentTwo();
+
         model.addAttribute("c", campCount);
+        model.addAttribute("campRank", campRankList);
+        model.addAttribute("partyRank", partyList);
+        model.addAttribute("notice", recentTwo);
+        model.addAttribute("count", count);
+        model.addAttribute("memberNumber", memberNumber);
 
         return "/jeju-camps";
     }
-
-
 
 
 }

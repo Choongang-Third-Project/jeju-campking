@@ -1,0 +1,239 @@
+body {
+    width: 100%;
+    margin: auto;
+    height: 3000px;
+    background: #E9ECEF;
+  }
+  
+  .title{
+    margin-top: 20px;
+    font-size: 50px;
+    /* background: orange; */
+    text-align: center;
+    font-family: 'Black Han Sans', sans-serif;
+  }
+  
+  .orderby {
+    font-family: 'Black Han Sans', sans-serif;
+    background: lightgray;
+    width: fit-content;
+    float: right;
+    font-size: 30px;
+    border-radius: 15px;
+    padding: 5px;
+    position: relative;
+    top: 30px;
+    right: 100px;
+  }
+  
+  /* 글쓰기  버튼 */
+  .write {
+    font-family: 'Black Han Sans', sans-serif;
+    background: lightgray;
+    width: fit-content;
+    float: right;
+    font-size: 30px;
+    border-radius: 15px;
+    padding: 5px;
+    position: relative;
+    top: 30px;
+    right: 100px;
+    margin-left: 20px;
+    border: 0px solid #000;
+  }
+  /* nav */
+  .gear {
+      margin-bottom: 60px;
+      /* background: aqua; */
+  }
+  .gear img {
+    float: left;
+     margin-right: 10px ;
+  
+  }
+  .gear h1 {
+    
+      font-size: 40px;
+      padding: 10px;
+      font-weight: 800;
+  }
+  
+  nav .roundbar {
+    font-family: 'Black Han Sans', sans-serif;
+    margin-top: 50px;
+    display: flex;
+    /* background: #000; */
+    margin-left: 12%;
+    margin-right: auto;
+  
+  }
+  nav .roundbar a{
+      float: left;
+      display: block;
+      background:lightgray;
+      padding: 10px;
+      margin-left: 10px;
+      margin-bottom: 20px;
+      font-size: 20px;
+      /* border: 1px solid #000; */
+      border-radius: 15px ;
+  }
+  
+  /* nav end */
+  
+  
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center; 
+    }
+    
+  
+  .content {
+    margin-top: 35 px;
+    margin-left: 10%;
+    margin-right: auto;
+    /* position: relative; */
+  }
+    .content ul li .item_card {
+      width: 20%;
+      height: 400px;
+  
+      /* background: orange; */
+      display: block;
+      margin: 10px;
+      margin-left: 20px;
+      float: left;
+      /* padding: 10px; */
+  
+      box-shadow: 4px 4px 4px gray;
+      position: relative; 
+      overflow: hidden;
+    }
+    .content ul li .item_card div img {
+      /* float: left; */
+      display: block;
+      width: 40px;
+      height: 40px;
+      margin: 15px;
+  
+    }
+    .item_card div:first-child {
+      height: 10%;
+    }
+  
+  .item_card .small_title{
+    font-family: 'Black Han Sans', sans-serif;
+  
+      font-size: 28px;
+      padding-left: 25px;
+      /* background: skyblue; */
+  
+      position: relative;
+      top: 50%;                  
+  
+    }
+  
+    .item_card:hover {
+      box-shadow: 6px 6px 6px gray;
+      position: relative;
+      bottom: 8px;
+    }
+  
+    .item_card .small_title > div {
+      /* background: violet; */
+  
+    }
+    .item_card .small_title span{
+      font-size: 13px;
+      margin: 20px;
+    }
+   .content ul li .item_card:nth-child(3n){
+      clear: left;
+    }
+  
+    .content ul .item_card .img-box {
+      box-sizing: border-box;
+      height: 50%;
+      width: 100%;
+      /* border: 1px solid #000; */
+      /* background: gray; */
+      position: absolute;
+    }
+    
+    .content ul .item_card .img-box img {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+  
+    }
+  
+    /* 페이지 넘김 */
+   .endbox {
+      position: absolute;
+      top: 2500px;
+      left: 40%;
+      display: flex;
+  
+     
+    }
+    .endbox ul li {
+      float: left;
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+    .endbox ul li:first-child {
+      font-weight: 600;
+    }
+  
+    .endbox ul {
+      /* background:orange; */
+      position: relative;
+      top: 20px;
+    }
+    .endbox ul li:hover {
+      text-decoration: underline;
+    }
+  .endbox button {
+      /* background: orange; */
+      border: 0px solid #000;
+      border-radius: 20px;
+      padding: 20px;
+    }
+  
+    /* 검색창 */
+    .search {
+      margin-left: 120px;
+      width: 300px;
+      height: 40px;
+      
+    }
+    nav .roundbar .material-symbols-outlined {
+      font-size: 40px;
+      font-weight: 700;
+      margin-left: 20px;
+    }
+  
+    nav .roundbar .material-symbols-outlined:hover {
+      font-size: 50px;
+  
+    }
+
+    html, body {
+      height: 100%;
+    }
+    
+    #content {
+      min-height: 100%;
+      margin-bottom: -60px; /* footer의 높이만큼 마진을 설정 */
+    }
+    
+    footer {
+      height: 60px; /* footer의 높이 */
+      background-color: #f5f5f5;
+      text-align: center;
+      padding: 10px;
+      clear: both;
+    }

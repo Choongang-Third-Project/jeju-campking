@@ -6,6 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
+
 @Getter
 @Setter
 @ToString
@@ -18,6 +19,7 @@ public class Board {
     private String boardTitle;
     private String boardContent;
     private LocalDateTime boardTime;
-
     private Long memberNumber;
+    private Integer boardView;
+    private Integer boardRecommend;
 }

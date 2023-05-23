@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .transition-container {
+      width: 400px;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .transition-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="transition-container">
+    <img src="../img/jeju-camp1.jpg" alt="Image 1">
+    <img src="image2.jpg" alt="Image 2">
+    <img src="image3.jpg" alt="Image 3">
+  </div>
+
+  <script>
+    function transitionImages() {
+      const images = document.querySelectorAll('.transition-container img');
+      let currentIndex = 0;
+
+      const showNextImage = () => {
+        const currentImage = images[currentIndex];
+        const nextIndex = (currentIndex + 1) % images.length;
+        const nextImage = images[nextIndex];
+
+        currentImage.style.opacity = '0';
+        nextImage.style.opacity = '1';
+
+        currentIndex = nextIndex;
+      };
+
+      // 첫 번째 이미지 표시
+      images[currentIndex].style.opacity = '1';
+
+      // 3초마다 이미지 전환
+      setInterval(showNextImage, 3000);
+    }
+
+    // 페이지 로드 후 애니메이션 시작
+    window.addEventListener('load', transitionImages);
+  </script>
+</body>
+</html>

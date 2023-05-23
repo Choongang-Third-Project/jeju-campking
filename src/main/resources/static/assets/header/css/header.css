@@ -1,16 +1,14 @@
-/* 5,8,39 */
 
 header {
     padding-top: 15px;
-    height: 160px;
-    background-color: rgba(0, 0, 0, 0.6);
-    /* background: #000; */
-    position: relative;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 50px;
 }
-
 
 .inner-header {
     color: #fff;
+    text-shadow: 2px 2px 5px #202020;
     width: 75%;
     margin: 0 auto;
     font-weight: 700;
@@ -27,6 +25,14 @@ header {
     align-items: center;
     text-align: center;
     text-decoration: none;
+    overflow: hidden;
+    /* border: 1px solid #c123ff; */
+    width: 250px;
+    height: 140px;
+}
+
+.inner-header .logo a img{
+    width: 100%;
 }
 
 .inner-header .logo a p {
@@ -36,7 +42,6 @@ header {
 .inner-header .logo a p:first-child {
     color: #02813c;
     font-size: 40px;
-    margin-bottom: 10px;
 }
 
 .inner-header .logo a p:last-child {
@@ -55,12 +60,13 @@ header {
 
 
 
-
 .inner-header .gnb {
+    margin-left: 150px;
+    position: relative;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     font-size: 30px;
-    position: relative;
     left: -150px;
 
 }
@@ -73,6 +79,30 @@ header {
     font-size: 22px;
 }
 
+
+.inner-header .gnb .api {
+    border: 4px solid plum;
+    /* width: 400px; */
+    
+}
+
+.inner-header .gnb .api li:nth-child(1){
+    border: 4px solid red;
+    width: 150px;
+    height: 100px;
+    justify-content: flex-end;
+    
+}
+
+.inner-header .gnb .api li:nth-child(2){
+    justify-content: flex-end;
+    border: 4px solid lime;
+    width: 150px;
+    height: 100px;
+
+}
+
+
 .inner-header .tnb {
     display: flex;
     /* border: 1px solid red; */
@@ -82,19 +112,35 @@ header {
 
 .inner-header .tnb li:first-child {
     font-size: 20px;
+    width: fit-content;
     height: 80px;
+    /* border: 1px solid yellow; */
+    /* margin-top: -40px; */
+    position: relative;
+    top: -5px;
     line-height: 80px;
+}
+
+
+.inner-header .tnb li:nth-child(2) {
+    margin-right: 15px;
+    /* border: 1px solid orange; */
+    position: relative;
+    top: -5px;
 }
 
 .inner-header .tnb li:nth-child(3) {
     margin-top: 15px;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
+    /* overflow: hidden; */
+    /* border: 4px solid red; */
 }
+
 
 .inner-header .tnb li {
     display: inline-block;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     /* background: lime; */
 }
 
@@ -102,6 +148,44 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-   font-size: 15px;
+    /* border: 4px solid blue; */
+    margin-top: -20px;
+    font-size: 15px;
+}
+
+
+
+
+
+.dropdowns {
+    width: fit-content;
+    margin: 0 auto;
+    position: relative;
+}
+
+#drop-content {
+    display: none;
+    position: absolute;
+    z-index: 99;
+}
+
+#drop-content a {
+    display: block;
+    font-size: 20px;
+    background: #fff;
+    color: #3600ac;
+    text-shadow: 1px 1px 1px #3d4451;
+    text-decoration: none;
+    border-radius: 10px;
+    width: 170px;
+    padding: 20px 25px;
+    margin-top: 2px;
+}
+
+#drop-content a:hover {
+    background: #ead0f5;
+    color: #fff;
+    text-shadow: 2px 2px 3px #202020;
+
 }
 

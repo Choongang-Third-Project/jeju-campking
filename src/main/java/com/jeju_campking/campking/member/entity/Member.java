@@ -23,4 +23,9 @@ public class Member {
     private Gender memberGender;
     private int memberAge;
     private LocalDateTime memberJoinDate;
+    private String memberSessionId;
+    private LocalDateTime memberCookieDate;
+
+    private String profileImage;
+    MemberAuth memberAuth;
 }

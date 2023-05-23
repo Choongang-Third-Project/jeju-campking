@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeju_campking.campking.mypage.repository.MypageMapper">
+    <select id="findMember" resultType="mypageMemberDTO">
+        SELECT member_number, member_nickname, profile_image
+        FROM TB_MEMBER
+        WHERE member_number = #{memberNumber}
+    </select>
+
+    <select id="findPartyBoard" resultType="partyDTO">
+        select
+        party_number,
+        party_title,
+        party_write_time
+        FROM TB_PARTY
+        WHERE member_number = #{memberNumber}
+        ORDER BY party_write_time desc;
+    </select>
+
+    <select id="findParty" resultType="party">
+        SELECT * FROM TB_PARTY
+        WHERE member_number = #{memberNumber};
+    </select>
+
+    <select id="findSendMessage" resultType="partyPartyMessageDTO">
+        SELECT
+            P.party_message_number,
+            P.party_message_content,
+            P.party_message_time,
+            P.party_number,
+            M.member_nickname
+        FROM TB_PARTY_MESSAGE P
+        JOIN tb_member M
+        ON P.party_message_sender = M.member_number
+        WHERE party_message_sender = #{memberNumber}
+    </select>
+
+    <select id="findReceiveMessage" resultType="partyPartyMessageDTO">
+        SELECT
+            P.party_message_number,
+            P.party_message_content,
+            P.party_message_time,
+            P.party_number,
+            M.member_nickname
+        FROM TB_PARTY_MESSAGE P
+        JOIN tb_member M
+        ON P.party_message_sender = M.member_number
+        WHERE party_message_recipient = #{memberNumber}
+    </select>
+
+    <delete id="removeParty">
+        DELETE FROM TB_PARTY
+        WHERE party_number = #{partyNumber}
+    </delete>
+
+    <delete id="removeSendMessage">
+        DELETE FROM TB_PARTY_MESSAGE
+        WHERE party_message_number = #{sendMessageNumber}
+    </delete>
+
+    <insert id="updateMember">
+        INSERT INTO TB_MEMBER
+        (member_password,
+         member_nickname,
+         member_phone,
+         profile_image)
+        VALUES (#{memberPassword}, #{memberNickname}, #{memberPhone}, #{profileImage})
+    </insert>
+
+</mapper>

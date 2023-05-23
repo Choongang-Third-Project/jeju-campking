@@ -21,10 +21,25 @@ public class PartyMessageService {
     public List<PartyMessage> findAll(Long memberId) throws SQLException {
         List<PartyMessage> list = partyMessageMapper.findAll(memberId);
 
-        log.info("partyMessageService.getAllList.info {}, {}", memberId, list);
+        log.info("partyMessageService.getAllSendList.info {}, {}", memberId, list);
 
+        // TODO : 보낸 메세지가 없다고 뜨도록 변경해야합니다.
         if (list.size() == 0) {
             log.warn("partyMessageService.getAllList.warn {}", list);
+            throw new SQLException();
+        }
+
+        return list;
+    }
+
+    public List<PartyMessage> findAllReceive(Long memberId) throws SQLException {
+        List<PartyMessage> list = partyMessageMapper.findAllReceive(memberId);
+
+        log.info("partyMessageService.getAllReceiveList.info {}, {}", memberId, list);
+
+        // TODO : 받은 메세지가 없다고 뜨도록 변경해야합니다.
+        if (list.size() == 0) {
+            log.warn("partyMessageService.getAllReceiveList.warn {}", list);
             throw new SQLException();
         }
 
@@ -39,5 +54,9 @@ public class PartyMessageService {
         }
 
         return partyMessageMapper.send(dto);
+    }
+
+    public int unreadCount(Long partyMessageRecipient) {
+        return partyMessageMapper.unreadCount(partyMessageRecipient);
     }
 }

@@ -9,9 +9,26 @@
         board_title ,
         board_content ,
         board_time ,
-        member_number
+        member_number,
+        board_view,
+        board_recommend
         FROM TB_BOARD
-        ORDER BY board_number desc;
+        ORDER BY board_number desc
+        LIMIT #{pageStart}, #{amount};
+    </select>
+
+    <select id="findRecentTwo" resultType="board">
+        select
+        board_number,
+        board_title ,
+        board_content ,
+        board_time ,
+        member_number,
+        board_view,
+        board_recommend
+        from tb_board
+        order by board_number desc
+        limit 2;
     </select>
 
     <select id="findByKeyword" resultType="board">
@@ -20,22 +37,77 @@
         board_title ,
         board_content ,
         board_time ,
-        member_number
+        member_number,
+        board_view,
+        board_recommend
         FROM TB_BOARD
         WHERE board_title LIKE CONCAT('%',#{keyword},'%')
-        OR board_content LIKE CONCAT('%',#{keyword},'%');
+        OR board_content LIKE CONCAT('%',#{keyword},'%')
+        ORDER BY board_number desc
+        LIMIT #{p.pageStart}, #{p.amount};
     </select>
 
-    <select id="findOne" resultType="board">
+    <select id="findOne" resultType="boardDetailDTO">
         SELECT
+        b.board_number,
+        b.board_title,
+        b.board_content,
+        b.board_time,
+        b.board_view,
+        b.board_recommend,
+        m.member_number,
+        m.member_nickname
+        from tb_board b
+        join tb_member m using(member_number)
+        WHERE board_number = #{boardNumber};
+    </select>
+
+    <select id="findPrev" resultType="board">
+        select
         board_number,
         board_title,
         board_content,
-        board_time,
-        member_number
-        FROM TB_BOARD
-        WHERE board_number = #{boardNumber};
+        board_title,
+        member_number,
+        board_view,
+        board_recommend
+        from tb_board
+        where board_number &lt; #{boardNumber}
+        order by board_number desc
+        limit 1;
     </select>
+
+    <select id="findNext" resultType="board">
+        select
+        board_number,
+        board_title,
+        board_content,
+        board_title,
+        member_number,
+        board_view,
+        board_recommend
+        from tb_board
+        where board_number &gt; #{boardNumber}
+        limit 1;
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM TB_BOARD
+        <if test="keyword != null">
+            WHERE board_title LIKE CONCAT('%',#{keyword},'%')
+            OR board_content LIKE CONCAT('%',#{keyword},'%');
+        </if>
+    </select>
+
+    <select id="recommendCount" resultType="int">
+        SELECT board_recommend
+        from tb_board
+        where board_number = #{boardNumber};
+    </select>
+
+
     <insert id="write">
         INSERT INTO TB_BOARD
         (board_title, board_content, member_number)
@@ -46,6 +118,24 @@
         DELETE FROM TB_BOARD
         WHERE BOARD_NUMBER = #{boardNumber};
     </delete>
+
+    <update id="upViewCount">
+        UPDATE TB_BOARD
+        SET BOARD_VIEW = BOARD_VIEW+1
+        WHERE BOARD_NUMBER = #{boardNumber};
+    </update>
+
+    <update id="upRecommendCount">
+        UPDATE TB_BOARD
+        SET BOARD_RECOMMEND = BOARD_RECOMMEND+1
+        WHERE BOARD_NUMBER = #{boardNumber};
+    </update>
+
+    <update id="downRecommendCount">
+        UPDATE TB_BOARD
+        SET BOARD_RECOMMEND = BOARD_RECOMMEND-1
+        WHERE BOARD_NUMBER = #{boardNumber};
+    </update>
 
     <update id="modify">
         UPDATE TB_BOARD

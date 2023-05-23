@@ -4,6 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jeju_campking.campking.board.repository.ReplyMapper">
 
+    <select id="findAll" resultType="replyDTO">
+        SELECT
+            r.reply_number,
+            r.reply_content,
+            r.reply_time,
+            r.member_number,
+            r.board_number,
+            m.member_nickname,
+            m.profile_image
+        FROM tb_reply r
+        JOIN tb_member m using(member_number)
+        WHERE board_number = #{boardNumber};
+    </select>
+
     <insert id="write">
         INSERT INTO TB_REPLY
         (reply_content, board_number, member_number)

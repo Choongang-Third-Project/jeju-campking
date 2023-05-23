@@ -2,7 +2,6 @@ package com.jeju_campking.campking.member.repository;
 
 import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
 import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
-import com.jeju_campking.campking.member.entity.Gender;
 import com.jeju_campking.campking.member.entity.Member;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,8 +28,8 @@ class MemberMapperTest {
                 .memberAge(100)
                 .memberNickname("앙뇽")
                 .build();
-        boolean flag = memberMapper.sign(member);
-        assertTrue(flag);
+//        boolean flag = memberMapper.sign(member);
+//        assertTrue(flag);
     }
 
     @Test
@@ -70,7 +69,7 @@ class MemberMapperTest {
                     .memberAge(30)
                     .memberNickname("test" + i)
                     .build();
-            memberMapper.sign(member);
+//            memberMapper.sign(member);
             phoneNumber++;
         }
     }

@@ -3,6 +3,7 @@ package com.jeju_campking.campking.board.controller;
 
 import com.jeju_campking.campking.board.dto.request.ReplyModifyRequestDTO;
 import com.jeju_campking.campking.board.dto.request.ReplyWriteRequestDTO;
+import com.jeju_campking.campking.board.dto.response.ReplyResponseDTO;
 import com.jeju_campking.campking.board.entity.Reply;
 import com.jeju_campking.campking.board.service.ReplyService;
 import lombok.RequiredArgsConstructor;
@@ -14,15 +15,26 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.sql.SQLException;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/replies")
+@RequestMapping("/jeju-camps/notices/detail/reply")
 @Slf4j
 public class ReplyController {
 
     private final ReplyService replyService;
 
+    //http://localhost:8181/jeju-camps/notices/detail/reply/995
+    // 게시판 번호를 주면 댓글 목록들을 반환
+    @GetMapping("/{boardNumber}")
+    public ResponseEntity<?> findAll(
+            @PathVariable Long boardNumber
+    ){
+
+        List<ReplyResponseDTO> list = replyService.findAll(boardNumber);
+        return ResponseEntity.ok().body(list);
+    }
 
     @PostMapping("/write")
     public ResponseEntity<?> write(
@@ -49,7 +61,6 @@ public class ReplyController {
                     .body(e.getMessage());
         }
     }
-
 
     @DeleteMapping("/{replyNumber}")
     public ResponseEntity<?> delete(

@@ -8,6 +8,7 @@
         P.party_number ,
         C.camp_name ,
         P.party_title ,
+        P.party_content ,
         M.member_nickname ,
         P.party_start_date ,
         P.party_end_date ,
@@ -51,4 +52,38 @@
             ORDER BY P.party_end_date DESC , P.party_number DESC
         </if>
     </select>
+
+    <select id="findMemberNumberByPartyNumber" resultType="Long">
+        SELECT member_number
+        FROM TB_PARTY
+        WHERE party_number = #{partyNumber};
+    </select>
+
+
+    <insert id="save">
+        INSERT INTO TB_PARTY
+        (party_title, party_content,
+        party_start_date, party_end_date,
+        party_size, member_number, camp_number)
+        VALUES
+        (#{partyTitle},#{partyContent},
+        #{partyStartDate},#{partyEndDate},
+        #{partySize},#{memberNumber},#{campNumber})
+    </insert>
+
+
+    <delete id="deleteByNumber">
+        DELETE FROM TB_PARTY
+        WHERE party_number = #{partyNumber}
+    </delete>
+
+
+    <update id="modify">
+        UPDATE TB_PARTY
+        SET party_title = #{partyTitle}, party_content = #{partyContent},
+        party_start_date = #{partyStartDate}, party_end_date = #{partyEndDate},
+        party_size = #{partySize}, camp_number = #{campNumber}
+        WHERE party_number = #{partyNumber}
+    </update>
+
 </mapper>

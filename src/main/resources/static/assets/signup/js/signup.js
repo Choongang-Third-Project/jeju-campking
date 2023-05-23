@@ -1,3 +1,40 @@
+  
+  
+  
+  
+  
+  // 프로필 사진 관련 스크립트
+  const $profile = document.querySelector('.profile');
+  const $fileInput = document.getElementById('profile-img');
+  // 프로필 추가 영역 클릭 이벤트
+  $profile.onclick = e => {
+      $fileInput.click();
+  };
+
+  // 프로필 사진 선택시 썸네일 이벤트
+  $fileInput.onchange = e => {
+      // 첨부한 파일의 데이터를 읽어오기
+      const fileData = $fileInput.files[0];
+
+      // console.log(fileData);
+      // 첨부파일의 바이트데이터를 읽어들이는 객체 생성
+      const reader = new FileReader();
+
+      // 파일의 바이트데이터를 읽어서 img태그의 src속성이나 
+      // a태그의 href속성에 넣기 위한 형태로 읽음
+      reader.readAsDataURL(fileData);
+      
+      // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
+      reader.onloadend = e => {
+          const $imgTag = document.querySelector('.thumbnail-box img');
+          $imgTag.setAttribute('src', reader.result);
+      };
+  };
+
+
+ 
+ 
+ 
  // 입력값 검증 통과 여부 배열
  const checkResultList = [false, false, false, false, false, false, false, false];
 
@@ -193,15 +230,8 @@ function getBirth() {
 
 getBirth();
 
-
- 
-
-
  // 성별 입력
  checkResultList[6] = true;
-
-
-
 
  // 연락처 하이픈 자동 변경
  const autoHyphen = e => {
@@ -260,8 +290,15 @@ getBirth();
      const $form = document.getElementById('signUpForm');
 
      if (!checkResultList.includes(false)) {
-         $form.submit();
+        toastr.success("회원가입이 완료되었습니다.");
+
+        setTimeout(() => {
+            $form.submit();
+        }, 3000);
+
      } else {
-         alert('입력란을 다시 확인하세요!');
+        toastr.error("회원가입에 실패하였습니다.");
+        
      }
  };
+

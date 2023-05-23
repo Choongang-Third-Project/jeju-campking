@@ -1,7 +1,11 @@
 package com.jeju_campking.campking.board.service;
 
 
+import com.jeju_campking.campking.board.dto.page.Page;
+import com.jeju_campking.campking.board.dto.page.PageMaker;
 import com.jeju_campking.campking.board.dto.request.BoardModifyRequestDTO;
+import com.jeju_campking.campking.board.dto.response.BoardDetailResponseDTO;
+import com.jeju_campking.campking.board.dto.response.BoardResponseDTO;
 import com.jeju_campking.campking.board.entity.Board;
 import com.jeju_campking.campking.board.repository.BoardMapper;
 import com.jeju_campking.campking.camp.entity.Camp;
@@ -51,30 +55,84 @@ public class BoardService {
         return true;
     }
 
-    public List<Board> findAll() {
-        log.info("boardService.findAll.info");
-        List<Board> list = boardMapper.findAll();
-        log.info("boardService.getAllList.info {}", list);
+    public BoardResponseDTO findAll(Page page) {
+        log.info("boardService.findAll.info  {} " , page.getPageNo());
+        List<Board> list = boardMapper.findAll(page);
 
-        return list;
+
+        int count = boardMapper.count(null);
+        log.info("boardService.getAllList.info {}", list);
+        return BoardResponseDTO.builder()
+                .count(count)
+                .pageInfo(new PageMaker(page, count))
+                .list(list)
+                .build();
+       // return list;
     }
 
-    public List<Board> findByKeyword(String keyword) {
-        log.info("boardService/findByKeyword : {}", keyword);
+    public BoardResponseDTO findByKeyword(String keyword, Page page) {
+        log.info("boardService/findByKeyword : {} , {}", keyword, page.getPageNo());
 
-        List<Board> list = boardMapper.findByKeyword(keyword);
+        List<Board> list = boardMapper.findByKeyword(keyword, page);
+        int count = boardMapper.count(keyword);
 
         log.info("boardService.findByKeyword.info {}", list);
 
-        return list;
+        return BoardResponseDTO.builder()
+                .count(count)
+                .pageInfo(new PageMaker(page, count))
+                .list(list)
+                .build();
     }
 
-    public Board findOne(Long boardNumber) {
+    public BoardDetailResponseDTO detail(Long boardNumber) {
+        log.info("boardService/findOne : {}", boardNumber);
+        boardMapper.upViewCount(boardNumber);
+        BoardDetailResponseDTO board = boardMapper.findOne(boardNumber);
+
+        log.info("boardService.findOne.info {}", board);
+        return board;
+    }
+
+
+
+    public BoardDetailResponseDTO findOne(Long boardNumber) {
         log.info("boardService/findOne : {}", boardNumber);
 
-        Board board = boardMapper.findOne(boardNumber);
+        BoardDetailResponseDTO board = boardMapper.findOne(boardNumber);
         log.info("boardService.findOne.info {}", board);
 
         return board;
     }
+
+
+    public List<Board> findRecentTwo(){
+        log.info("boardService/findRecentTwo");
+        List<Board> board = boardMapper.findRecentTwo();
+        log.info("boardService.findRectTwo.info {}", board);
+        return board;
+    }
+
+
+    public int getCount(String keyword) {
+        return boardMapper.count(keyword);
+    }
+
+    public int recommendUp(Long boardNumber) {
+        boardMapper.upRecommendCount(boardNumber);
+        return boardMapper.recommendCount(boardNumber);
+    }
+
+    public int recommendDown(Long boardNumber) {
+        boardMapper.downRecommendCount(boardNumber);
+        return boardMapper.recommendCount(boardNumber);
+    }
+
+    public Board prevBoard(Long boardNumber){
+        return boardMapper.findPrev(boardNumber);
+    }
+    public Board nextBoard(Long boardNumber){
+        return boardMapper.findNext(boardNumber);
+    }
+
 }

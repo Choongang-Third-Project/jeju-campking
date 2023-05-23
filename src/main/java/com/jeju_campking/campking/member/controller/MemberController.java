@@ -6,21 +6,30 @@ package com.jeju_campking.campking.member.controller;
 import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
 import com.jeju_campking.campking.member.dto.request.MemberSignRequestDTO;
 import com.jeju_campking.campking.member.entity.Member;
+import com.jeju_campking.campking.member.service.LoginResult;
 import com.jeju_campking.campking.member.service.MemberService;
+import com.jeju_campking.campking.util.LoginUtil;
+import com.jeju_campking.campking.util.upload.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.net.http.HttpResponse;
 import java.sql.SQLException;
+
+import static com.jeju_campking.campking.member.service.LoginResult.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,7 +38,10 @@ import java.sql.SQLException;
 //@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class MemberController {
 
+    @Value("${file.upload.root-path}")
+    private String rootPath;
     private final MemberService memberService;
+
 
     // 회원가입 양식 페이지 요청
 //    @GetMapping("/signup")
@@ -42,38 +54,41 @@ public class MemberController {
     @PostMapping("/signup")
     public String signUp(
             @Validated MemberSignRequestDTO dto,
-            BindingResult result
+            Model model
+            , BindingResult result
     ) {
         log.info("/member/signup {}", dto);
 
-        // 입력값 검증
-        if (result.hasErrors()) {
-            return "redirect:/login";
-//            return ResponseEntity
-//                    .badRequest()
-//                    .body(result.toString());
+        MultipartFile profileImage = dto.getProfileImage();
+        log.info("프로필사진 이름: {}", dto.getProfileImage().getOriginalFilename());
+
+        // 파일저장 루트 폴더가 없으면 루트폴더 생성
+        File root = new File(rootPath);
+        if (!root.exists()) root.mkdirs();
+
+        String savePath = null;
+        if (!profileImage.isEmpty()) {
+
+            savePath = FileUtil.uploadFile(profileImage, rootPath);
         }
 
-        // 회원 가입 성공여부 검증
-        try {
-            // 회원가입 성공
-            if(memberService.sign(dto)) {
+        Member member = dto.toEntity();
+        member.setProfileImage(savePath);
 
-               return "redirect:/login";
-//                return ResponseEntity
-//                        .ok()
-//                        .body("SUCCES156156156156S");   // jsp 파일
+        boolean isSign = false;
+        try {
+            isSign = memberService.sign(member);
+            if (!isSign) {
+                model.addAttribute("signup", isSign);
+                return "redirect:/join";
             }
         } catch (SQLException e) {
-            // 회원가입 실패
-            log.warn("500 Status code response!! caused by : {}", e.getMessage());
-            return "redirect:/login";
-//            return ResponseEntity
-//                    .internalServerError()
-//                    .body("FAIL");
+            e.printStackTrace();
+            model.addAttribute("signup", isSign);
+            return "redirect:/join";
         }
 
-//        return ResponseEntity.ok().body("FAIL");
+        model.addAttribute("signup", isSign);
         return "redirect:/login";
     }
 
@@ -87,36 +102,34 @@ public class MemberController {
 
     // 로그인 검증 요청
     @PostMapping("/login")
-    public String login(MemberLoginRequestDTO dto
-                        , RedirectAttributes ra
-                        , Model model
-                        , HttpServletRequest request) {
+    public String login(
+            MemberLoginRequestDTO dto
+            , RedirectAttributes ra
+            , HttpServletRequest request
+            , HttpServletResponse response
+    ) {
         log.info("/member/login {}", dto);
 
         // 로그인 검증 서비스
-        String loginResult = memberService.authenticate(dto);
+        LoginResult loginResult = memberService.authenticate(dto, request.getSession(), response);
 
-        ra.addFlashAttribute("loginResult", loginResult);
 
         // 로그인 성공
         // TODO : 로그인한 회원 객체를 가지고 메인페이지로 돌아가야합니다.
-        try {
-            if (loginResult.equals("SUCCESS")) {
-                log.info("loginResult {}", loginResult);
-                Member loginMember = memberService.login(dto);
-                log.info(loginMember.getMemberNickname(), loginMember.getMemberGender());
-                model.addAttribute(loginMember);
+        if (loginResult == SUCCESS) {
+            log.info("loginResult {}", loginResult);
+//            Member loginMember = memberService.login(dto);
+//            model.addAttribute(loginMember);
 
-                // 세션
-                memberService.maintainLoginState(request.getSession(), dto.getMemberEmail());
-                //todo: home으로 이동해야 함!
-                return "redirect:/jeju-camps";
-            }
-            // 로그인 실패
-        } catch (Exception e) {
-            return "redirect:/member/login"; // FAIL 리턴
+            // 세션
+            memberService.maintainLoginState(request.getSession(), dto.getMemberEmail());
+            //todo: home으로 이동해야 함!
+            return "redirect:/jeju-camps";
         }
-        return "redirect:/member/login"; // FAIL 리턴
+        // 로그인 실패
+
+        ra.addFlashAttribute("loginResult", loginResult);
+        return "redirect:/login"; // FAIL 리턴
     }
 
     // 회원가입 시 이메일, 닉네임, 전화번호 중복검사 - REST API
@@ -127,6 +140,27 @@ public class MemberController {
 
         boolean flag = memberService.checkSignUpValue(type, keyword);
         return ResponseEntity.ok().body(flag);
+    }
+
+
+    // 로그아웃 요청 처리
+    @GetMapping("logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+
+        HttpSession session = request.getSession();
+
+        // 로그인 중인지 확인
+        if (LoginUtil.isLogin(session)) {
+
+            if (LoginUtil.isAutoLogin(request)) {
+                memberService.autoLoginClear(request, response);
+            }
+
+            session.removeAttribute(LoginUtil.LOGIN_KEY);
+            session.invalidate();
+            return "redirect:/";
+        }
+        return "redirect:/";
     }
 
 

@@ -6,18 +6,21 @@
 
     <select id="login" resultType="member">
         SELECT
-            *
+        *
         FROM TB_MEMBER
         WHERE member_email = #{memberEmail}
-        AND member_password = #{memberPassword}
     </select>
 
     <insert id="sign">
         INSERT INTO TB_MEMBER
-        (member_email, member_password, member_name, member_nickname,
-         member_phone, member_age, member_gender)
-        VALUES (#{memberEmail}, #{memberPassword}, #{memberName}, #{memberNickname},
-        #{memberPhone}, #{memberAge}, #{memberGender})
+        (member_email, member_password,
+        member_name, member_nickname,
+        member_phone, member_age,
+        member_gender, profile_image)
+        VALUES (#{memberEmail}, #{memberPassword},
+        #{memberName}, #{memberNickname},
+        #{memberPhone}, #{memberAge},
+        #{memberGender}, #{profileImage})
     </insert>
 
     <select id="isDuplicate" resultType="int">
@@ -38,6 +41,33 @@
         SELECT *
         FROM TB_MEMBER
         WHERE member_email = #{memberEmail}
+    </select>
+
+    <insert id="saveAutoLogin">
+        UPDATE TB_MEMBER
+        SET
+        member_session_id = #{sessionId}
+        , member_cookie_date = #{memberCookieDate}
+        WHERE member_email = #{account}
+    </insert>
+
+    <select id="findMemberByCookie" resultType="member">
+        SELECT
+        member_number,
+        member_email,
+        member_password,
+        member_name,
+        member_phone,
+        member_gender,
+        member_nickname,
+        member_age,
+        member_session_id,
+        member_cookie_date,
+        member_join_date,
+        member_auth,
+        profile_image
+        FROM TB_MEMBER
+        WHERE member_session_id = #{sessionId};
     </select>
 
 </mapper>

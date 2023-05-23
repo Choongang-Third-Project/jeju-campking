@@ -16,6 +16,18 @@
         WHERE party_message_sender = #{memberNumber}
     </select>
 
+    <select id="findAllReceive" resultType="partyMessage">
+        SELECT
+            party_message_number,
+            party_message_content,
+            party_message_time,
+            party_message_sender,
+            party_message_recipient,
+            party_number
+        FROM TB_PARTY_MESSAGE
+        WHERE party_message_recipient = #{memberNumber}
+    </select>
+
     <insert id="send">
         INSERT INTO TB_PARTY_MESSAGE
         (party_message_content, party_message_sender,
@@ -24,5 +36,16 @@
         (#{partyMessageContent}, #{partyMessageSender},
         #{partyMessageRecipient}, #{partyNumber})
     </insert>
+
+    <select id="unreadCount" resultType="int">
+        SELECT COUNT(*)
+        FROM tb_party_message
+        WHERE party_message_recipient = #{partyMessageRecipient}
+        AND party_message_read = 'N'
+    </select>
+
+
+
+
 
 </mapper>

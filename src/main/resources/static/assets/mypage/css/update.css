@@ -1,0 +1,139 @@
+@import url('https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css');
+
+/* common style */
+* {
+    box-sizing: border-box;
+}
+
+/* body선택자에 기본 폰트크기와 글꼴을 넣어주세요 */
+body {
+    font-size: 18px;
+    position: relative;
+}
+
+/* 추가 reset사항이 있으면 아래에 적어주세요 */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* float 해제용 클래스 */
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.mp-wrap {
+    background: url("../img/mypage.jpg") no-repeat center / cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.mp-box {
+    background-color: #fff;
+    width: 1100px;
+    height: 800px;
+    margin: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    /* width: 80%; */
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    margin-top: 40px;
+    margin-left: 30px;
+}
+
+.wrapper h1 {
+    font-weight: 700;
+    font-size: 3em;
+}
+
+
+
+.profile {
+    margin-bottom: 70px;
+    text-align: center;
+}
+.profile label {
+    font-weight: 700;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: rgb(140, 217, 248);
+}
+.profile .thumbnail-box {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 30px auto 10px;
+    cursor: pointer;
+}
+.profile .thumbnail-box img {
+    width: 200px;
+    height: 200px;
+}
+
+.not-change-column {
+    width: 100%;
+    margin-top: 3px;
+    padding: 10px 16px;
+    border: 1px solid #c1c1c1;
+    border-radius: 7px;
+    background-color: #efefef;
+    display: block;
+    height: 46px;
+    font-size: 1rem;
+}
+
+.box {
+    margin-top: 30px;
+}
+
+input, select {
+    margin-top: 5px !important;
+}
+
+#birth_wrap {
+    display: flex;
+}
+
+.btn-area #update-btn {
+    margin-top: 40px;
+    width: 100%;
+    background-color: #1f2937;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 15px 22px; /* 상하 15px, 좌우 30px */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-area input[type="button"]:hover {
+    transform: scale(1.05);
+}
+
+.back-btn {
+    font-size: 2.5em;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+    top: 30px;
+}
+
+h2 > label {
+    font-weight: 700;
+}

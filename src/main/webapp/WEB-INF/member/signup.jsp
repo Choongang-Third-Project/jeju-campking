@@ -5,20 +5,17 @@
 <html lang="en">
 
 <head>
+    <%@ include file = "../include/static-head.jsp" %>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jeju Camp King</title>
 
-    <!-- 폰트어썸 아이콘 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://kit.fontawesome.com/68f79e919f.js" crossorigin="anonymous"></script>
-
-    <!-- set-up -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css"/>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="stylesheet" href="/assets/include/common.css">
+    <%@ include file = "../include/static-head.jsp" %>  
+    
+    <!-- toast -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="/assets/signup/css/signup.css">
 
@@ -35,7 +32,24 @@
         <h1><i class="fa-solid fa-tree"></i> CAMP KING <i class="fa-solid fa-tree"></i></h1>
     </div>
 
-    <form action="/member/signup" id="signUpForm" name="signUp" method="post">
+    <form action="/member/signup" id="signUpForm" name="signUp" method="post" enctype="multipart/form-data">
+
+        <div class="profile">
+            <div class="thumbnail-box">
+                <img src="/assets/signup/img/img-add.png" alt="프로필 썸네일">
+            </div>
+
+            <label>프로필 이미지 추가</label>
+
+            <input 
+                type="file" 
+                id="profile-img" 
+                accept="image/*" 
+                style="display: none;"
+                name="profileImage"
+            >
+        </div>
+
 
         <div class="container">
             <!-- 이메일 -->
@@ -139,7 +153,28 @@
 
 </div>
 
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+    toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "100",
+              "hideDuration": "1000",
+              "timeOut": "1500",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
 
+</script>
 </body>
 
 </html>
