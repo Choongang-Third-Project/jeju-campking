@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items</title>
+
+    <!-- 폰트어썸 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/68f79e919f.js" crossorigin="anonymous"></script>
+
+
+    <!-- set -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- css -->
+    <link rel="stylesheet" href="../../assets/include/common.css">
+    <link rel="stylesheet" href="../../assets/items/itemsLayout.css">
+
+
+
+    <style>
+        #wrap .menu-container .content-box .main-box .content {
+            background: rgba(10, 10, 10, 0.5);
+
+            height: 85%;
+            width: 100%;
+
+
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+
+        }
+
+        #wrap .menu-container .content-box .main-box .content .item-container {
+            width: 70%;
+            height: 100%;
+
+            overflow-y: scroll;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        #wrap .menu-container .content-box .main-box .content .item-container .item-box {
+            width: 50%;
+            height: 50%;
+
+            align-items: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        #wrap .menu-container .content-box .main-box .content .item-container .item-box .item {
+            width: 80%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            padding: 5px;
+        }
+
+
+        #wrap .menu-container .content-box .main-box .content .item-container .item-box .item .item-menu {
+            border: 1px solid white;
+            width: 95%;
+            height: 95%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #wrap .menu-container .content-box .main-box .content .item-container .item-box .item .item-menu .title-box {
+            width: 100%;
+            height: 15%;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #wrap .menu-container .content-box .main-box .content .item-container .item-box .item .item-menu .img {
+            position: relative;
+            width: 100%;
+
+            height: 65%;
+        }
+
+        #wrap .menu-container .content-box .main-box .content .item-container .item-box .item .item-menu .img .like {
+
+            bottom: 0%;
+            right: 5%;
+            position: absolute;
+
+            font-size: 1.5em;
+            color: red;
+        }
+
+        #wrap .menu-container .content-box .main-box .content .item-container .item-box .item .item-menu .info {
+            width: 100%;
+            height: 25%;
+        }
+
+
+
+        /*--------------------- 장바구니 ---------------------*/
+
+        #wrap .menu-container .content-box .main-box .content .order-box {
+            width: 30%;
+            border: 1px solid blue;
+            height: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrap">
+
+        <div class="header">
+
+            <div class="title-box">
+                <h1 class="title">캠프킹의 장비</h1>
+            </div>
+
+
+            <div class="side-container">
+                <ul class="side-nav">
+                    <button class="menu-btn btn btn-outline">first-menu</button>
+                    <button class="menu-btn btn btn-outline">second-menu</button>
+                    <button class="menu-btn btn btn-outline">third-menu</button>
+                    <button class="menu-btn btn btn-outline">fourth-menu</button>
+                </ul>
+            </div>
+
+
+        </div>
+
+        <div class="menu-container">
+
+            <div class="category-menu">
+                <ul class="category-nav">
+                    <button class="btn btn-outline btn-secondary">first item</button>
+                    <button class="btn btn-outline btn-secondary">seoncd item</button>
+                    <button class="btn btn-outline btn-secondary">third item</button>
+                    <button class="btn btn-outline btn-secondary">fourth item</button>
+                </ul>
+            </div>
+
+            <div class="content-box">
+
+                <div class="main-box">
+                    <ul class="sort-nav">
+                        <button class="btn">인기순</button>
+                        <button class="btn">가격순</button>
+                        <button class="btn">카테고리</button>
+                    </ul>
+
+                    <div class="content">
+
+                        <div class="order-box">
+                            <div class="order-basket">장바구니</div>
+                        </div>
+
+                        <ul class="item-container">
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet2.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet3.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet4.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet2.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet3.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet4.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet2.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet3.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet4.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet2.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet3.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet4.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet2.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet3.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet4.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet2.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet3.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet4.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet2.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet3.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet4.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet2.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet3.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet4.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet2.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet3.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet4.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-box">
+                                <div class="item">
+                                    <div class="item-menu">
+                                        <div class="title-box">
+                                            <div class="name">삼겹살</div>
+                                            <div class="price">12,000₩</div>
+                                        </div>
+                                        <div class="img"
+                                            style="background: url(/main/resources/static/assets/items/img/meet1.png) no-repeat center / cover">
+                                            <div class="like">
+                                                <label class="swap">
+                                                    <input type="checkbox" />
+                                                    <div class="swap-on">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </div>
+                                                    <div class="swap-off">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            돼지의 갈비 부근에 붙은 돼지 뱃살 부위를 지칭한다.
+                                            비계가 세 겹으로 
+                                        </div>
+                                        <!-- <div class="cart">cart</div> -->
+                                    </div>
+                                </div>
+                            </li>
+
+
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
