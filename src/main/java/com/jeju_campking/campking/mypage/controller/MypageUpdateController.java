@@ -49,8 +49,6 @@ public class MypageUpdateController {
 
         if(!profileImage.isEmpty()) {
             savePath = FileUtil.uploadFile(profileImage, rootPath);
-        }else {
-            savePath =  FileUtil.uploadFile(profileImage,rootPath);
         }
 
         boolean isUpdated = mypageUpdateService.updateMember(dto, savePath);
