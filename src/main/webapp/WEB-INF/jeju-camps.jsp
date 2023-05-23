@@ -198,7 +198,7 @@
                         </a>
                         <div id="noticeTwo">
                             <c:forEach var="n" items="${notice}">
-                                <a href="#">
+                                <a href="/jeju-camps/notices/details?boardNumber=${n.boardNumber}">
                                     <p>
                                         <span class="date"> 
                                             ${fn:substring(n.boardTime,0,10)}
@@ -403,7 +403,7 @@
                         <p><i class="fa-solid fa-people-roof"></i></p>
                         <h2>같이 갈 사람</h2>
                         <c:forEach var="p" items="${partyRank}">
-                            <a href="#">
+                            <a href="/jeju-camps/parties/${p.partyNumber}/caravan">
                                 <div class="rank">
                                     <h4>${p.partyNumber}</h4>
                                     <span class="ranklist">${p.partyTitle}</span>
