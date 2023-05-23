@@ -1,6 +1,7 @@
 package com.jeju_campking.campking.party.service;
 
 import com.jeju_campking.campking.party.dto.request.PartyMessageRequestDTO;
+import com.jeju_campking.campking.party.dto.request.PartyModifyRequestDTO;
 import com.jeju_campking.campking.party.dto.response.PartyDetailResponseDTO;
 import com.jeju_campking.campking.party.repository.PartyDetailMapper;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,10 @@ public class PartyDetailService {
 
     public boolean deleteByNumber(Long partyNumber) {
         return partyDetailMapper.deleteByNumber(partyNumber) == 1;
+    }
+
+    public boolean modifyByNumber(PartyModifyRequestDTO dto) {
+        return partyDetailMapper.modifyByNumber(dto) == 1;
     }
 
 }

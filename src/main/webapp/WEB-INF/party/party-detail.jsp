@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<label%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -9,6 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- 폰트어썸 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -24,6 +27,8 @@
 
 
     <style>
+    @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
         #wrapper .container {
             border: 1px solid #000;
             width: 80%;
@@ -422,8 +427,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- 헤더 -->
-    <%@ include file="../include/header.jsp" %>
+
 
     <div id="wrapper" class="flex justify-between flex-col items-center p-10">
 
@@ -450,7 +454,7 @@
 
                 </div>
                 <!-- 작성자 닉네임 -->
-                <div id="member-number" class="member-nickname h-full flex justify-center items-center">${detail.memberNumber}</div>
+                <div id="member-number" class="member-nickname h-full flex justify-center items-center">${detail.memberNickname}</div>
             </div>
 
 
@@ -501,33 +505,43 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
                 <!-- 여행 시작 날짜 기준 디데이 -->
                 <div class="grid grid-flow-col gap-5 text-center auto-cols-max">
                     <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
                         <span class="countdown font-mono text-5xl">
-                            <span style="--value:15;"></span>
+                            <span id="dateDay" style="--value:15;"></span>
                         </span>
                         days
                     </div>
                     <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
                         <span class="countdown font-mono text-5xl">
-                            <span style="--value:10;"></span>
+                            <span id="dateHours" style="--value:10;"></span>
                         </span>
                         hours
                     </div>
                     <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
                         <span class="countdown font-mono text-5xl">
-                            <span style="--value:24;"></span>
+                            <span id="dateMin" style="--value:24;"></span>
                         </span>
                         min
                     </div>
                     <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
                         <span class="countdown font-mono text-5xl">
-                            <span style="--value:56;"></span>
+                            <span id="dateSec" style="--value:56;"></span>
                         </span>
                         sec
                     </div>
                 </div>
+
+
+
+
+
             </div>
 
 
@@ -546,26 +560,27 @@
             <!-- 삭제, 참가, 수정 버튼 -->
             <div class="btn-box w-full flex justify-around flex-row items-center">
 
+
                 <!-- 삭제 버튼 -->
-                <c:if test="${LOGIN.memberNumber == detail.memberNumber}">
-                    <div id="btn-remove" class="btn-remove">
+                <div id="btn-remove" class="btn-remove">
+                    <c:if test="${LOGIN.memberNumber == detail.memberNumber}">
                         <button class="btn btn-active btn-secondary">삭제하기</button>
-                    </div>
-                </c:if>
+                    </c:if>
+                </div>
 
                 <!-- 참가 버튼 -->
-                <c:if test="${LOGIN.memberNumber != detail.memberNumber}">
-                    <div class="btn-join">
+                <div class="btn-join">
+                    <c:if test="${LOGIN.memberNumber != detail.memberNumber}">
                         <label for="my-modal-4" class="btn btn-active btn-primary">같이가기</label>
-                    </div>
-                </c:if>
+                    </c:if>
+                </div>
 
                 <!-- 수정 버튼 -->
-                <c:if test="${LOGIN.memberNumber == detail.memberNumber}">
-                    <div id="btn-modify" class="btn-modify">
+                <div id="btn-modify" class="btn-modify">
+                    <c:if test="${LOGIN.memberNumber == detail.memberNumber}">
                         <label for="modify-modal" class="btn btn-active btn-accent">수정하기</label>
-                    </div>
-                </c:if>
+                    </c:if>
+                </div>
 
             </div>
 
@@ -584,7 +599,6 @@
                 </div>
             </div>
         </footer>
-
 
     
         <!-- party join modal -->
@@ -632,9 +646,6 @@
             <label class="modal-box relative flex justify-center" for="">
 
                 <!-- 글 작성하기 -->
-
-
-
                 <div id="modify-container" class="container">
                     <h2 id="modify-title">🌲캠퍼 모집 수정🌲</h2>
                     <!-- <form action="write.jsp" method="post"> -->
@@ -643,19 +654,19 @@
                         <!-- placeholder 속성 입력한 데이터가 없는 경우 배경으로 나타난다.실제적으로 입력을 100자까지로 지정 -->
                         <!-- required 속성을 설정하면 필수입력 사항이된다. -->
                         <!-- pattern 속성을 이용한 정규표현식으로 데이터의 유효성 검사를 할 수 있다. -->
-                        <input type="text" class="form-control" id="title" placeholder="제목 입력(4-100)" name="title" maxlength="100"
+                        <input type="text" class="form-control" id="inputTitle" placeholder="제목 입력(4-100)" name="title" maxlength="100"
                           required="required" pattern=".{4,100}">
                       </div>
                       <div class="camp-box">
                         <div class="dropdown-label" style="font-size: 20px;">
                             캠프장 목록 🐛
                         </div>
-                        <div class="dropdown">
+                        <div class="dropdownss">
                             <button class="dropbtn" onclick="dropdown()">
                             <span class="dropbtn_icon">...</span>
                             <span class="dropbtn_content">수정할 캠핑장 선택</span>
                             <span class="dropbtn_click"
-                                style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;"></span>
+                                style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;">arrow_drop_down</span>
                             </button>
                         <div class="dropdown-content">
                           <div class="fastfood" onclick="showMenu(this.innerText)">1</div>
@@ -687,7 +698,7 @@
                         <!--  textarea 안에 있는 모든 글자는 그대로 나타난다. 공백문자, tag, enter -->
                         <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용 작성"></textarea>
                       </div>
-                      <button id="replyAddBtn" type="submit" class="btn btn-default">등록</button>
+                      <button id="modifyBtn" type="submit" class="btn btn-default">수정 완료</button>
                     <!-- </form> -->
                   </div>
 
@@ -740,17 +751,16 @@
     <script>
         const loginMember = +'${LOGIN.memberNumber}';
         const partyMember = +'${detail.memberNumber}';
-        const partyNumber = +'${detail.partyNumber}';
+        const $partyNumber = +'${detail.partyNumber}';
         
         const $sendBtn = document.getElementById('send-btn');
         const $enterKey = document.getElementById('message');
 
         const $deleteBtn = document.getElementById('btn-remove');
-        const $removeBtn = document.getElementById('btn-');
 
 
         $deleteBtn.addEventListener('click', (e) => {
-            fetch('/jeju-camps/parties/' + partyNumber,{
+            fetch('/jeju-camps/parties/' + $partyNumber,{
                 method: 'DELETE'
             })
             .then(res => {
@@ -774,7 +784,7 @@
                 formData.append('partyMessageContent', document.getElementById('message').value);
                 formData.append('partyMessageSender', loginMember);
                 formData.append('partyMessageRecipient', partyMember);
-                formData.append('partyNumber', partyNumber);
+                formData.append('partyNumber', $partyNumber);
 
                 fetch('/jeju-camps/parties',{
                     method: 'POST',
@@ -801,7 +811,7 @@
                 formData.append('partyMessageContent', document.getElementById('message').value);
                 formData.append('partyMessageSender', loginMember);
                 formData.append('partyMessageRecipient', partyMember);
-                formData.append('partyNumber', partyNumber);
+                formData.append('partyNumber', $partyNumber);
 
                 fetch('/jeju-camps/parties',{
                     method: 'POST',
@@ -845,6 +855,7 @@
       }
 
       showMenu = (value, campNumber) => {
+
         var dropbtn_icon = document.querySelector('.dropbtn_icon');
         var dropbtn_content = document.querySelector('.dropbtn_content');
         var dropbtn_click = document.querySelector('.dropbtn_click');
@@ -903,13 +914,12 @@
     // 게시글 등록 처리 이벤트 함수
     function makepartyRegisterClickEvent() {
 
-      const $regBtn = document.getElementById('replyAddBtn');
+      const $regBtn = document.getElementById('modifyBtn');
+      //      Long $partyNumber;
       
-
-
       $regBtn.onclick = e => {
         // 게시물 제목
-        const $title = document.getElementById('title');
+        const $title = document.getElementById('inputTitle');
         // 게시물 내용
         const $content = document.querySelector('.form-control');
         //  파티원 정원 수
@@ -920,28 +930,24 @@
         const $enddate = document.querySelector('#enddate input');
         // 캠핑장
         const $campNumber = document.querySelector('.dropbtn_content').dataset.id;
-        // console.log($content.value);
-        // console.log($count.value);
-        // console.log($title.value);
-        console.log($campNumber);
+        
+
         // 클라이언트 입력값 검증
         if ($title.value.trim() === '') {
-          alert('게시글 제목은 필수입니다!');
+          toastr.error('게시글 제목은 필수입니다!');
           return;
         } else if ($content.value.trim() === '') {
-          alert('내용은 필수입니다!');
-          return;
+            toastr.error('내용은 필수입니다!');
+            return;
         } else if ($count.value < 2 || $count.value > 20) {
-          alert('캠퍼 정원은 2~20명 사이로 작성하세요!');
-          return;
+            toastr.error('캠퍼 정원은 2~20명 사이로 작성하세요!');
+            return;
         } else if ($campNumber === null) {
-          alert('캠프장은 꼭 선택해야합니다');
-          return;
+            toastr.error('캠프장은 꼭 선택해야합니다');
+            return;
         } else if ($startdate === '' || $enddate === '') {
-          alert('날짜를 꼭 선택해주세요 !');
+            toastr.error('날짜를 꼭 선택해주세요 !');
         }
-
-
 
         console.log($startdate);
         console.log($startdate.value);
@@ -953,45 +959,87 @@
           campNumber: $campNumber,
           partyStartDate: $startdate.value,
           partyEndDate: $enddate.value,
-          memberNumber : '${LOGIN.memberNumber}'
+          partyNumber : $partyNumber
         };
+
         // # GET방식을 제외하고 필요한 객체
         const requestInfo = {
-          method: 'POST',
+          method: 'PATCH', //&&& PATCH로 보내기
           headers: {
             'content-type': 'application/json'
           },
           body: JSON.stringify(payload)
         };
         
-        const URL = "/jeju-camps/parties/write";
+        const URL = "/jeju-camps/parties/"; //&&& PATCH URL
+
 
 
         // # 서버에 POST요청 보내기
         fetch(URL, requestInfo)
           .then(res => {
+
             if (res.status === 200) {
-              alert('게시글이 정상 등록됨!');
-              // 입력창 비우기
-              $title.value = '',
+                toastr.success('성공적으로 수정이 되었습니다.');
+                // 입력창 비우기
+                $title.value = '',
                 $content.value = '',
                 $count.value = '',
                 $campNumber.value = '',
                 $startdate.value = '',
                 $enddate.value = ''
-
-                location.href="/jeju-camps/parties";
+                
+                setTimeout(() => {
+                    location.reload();
+                    scrollTo(0,0);
+                }, 2000);
+                
             } else {
-              alert('게시글 등록에 실패함!');
+                toastr.error('게시글 수정에 실패함!');
             }
         });
 
-
-
       }
-
        
     };
+
+
+
+    // 시간 함수
+    function diffday() {
+        const $partyStartDate = '${detail.partyStartDate}';
+        const nowTime = new Date();
+        const startTime = new Date($partyStartDate);
+
+        const diff = startTime - nowTime;
+        const diffDay = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const diffHours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const diffMin = Math.floor((diff / (1000 * 60)) % 60);
+        const diffSec = Math.floor(diff / 1000 % 60);
+
+        const $dateDay = document.getElementById('dateDay');
+        const $dateHours = document.getElementById('dateHours');
+        const $dateMin = document.getElementById('dateMin');
+        const $dateSec = document.getElementById('dateSec');
+
+        $dateDay.style = '--value:'+ diffDay + ';';
+        $dateHours.style = '--value:'+ diffHours + ';';
+        $dateMin.style = '--value:'+ diffMin + ';';
+        $dateSec.style = '--value:'+ diffSec + ';';
+
+    }
+
+    diffday();
+    setInterval(diffday, 1000);
+
+
+
+
+
+
+
+
+
 
     //메인 실행부
     (function() {

@@ -22,6 +22,7 @@ import java.util.List;
 // TODO: // 체크하기
 public class PartyController {
     private final PartyService partyService;
+
     @ResponseBody
     @GetMapping("/all-list/{type}/{sort}")
     public ResponseEntity<?> findAllBySort(
@@ -37,7 +38,7 @@ public class PartyController {
     }
 
     @GetMapping("/write")
-    public String write(){
+    public String write() {
         return "/yejin/party_write";
     }
 
@@ -72,6 +73,7 @@ public class PartyController {
 
         return redirectList();
     }
+
     @ResponseBody
     @RequestMapping(path = "/{memberNumber}", method = {RequestMethod.PUT, RequestMethod.PATCH})
     public ModelAndView modify(
