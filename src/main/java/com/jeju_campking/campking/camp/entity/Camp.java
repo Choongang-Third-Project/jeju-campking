@@ -13,7 +13,7 @@ import lombok.*;
     camp_type_glamping CHAR(1)
 );
 * */
-//TODO: 캠프장 엔티티
+// TODO: 캠프장 엔티티
 @Setter
 @Getter
 @ToString
