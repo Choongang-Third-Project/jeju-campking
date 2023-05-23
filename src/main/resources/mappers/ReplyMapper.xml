@@ -11,7 +11,8 @@
             r.reply_time,
             r.member_number,
             r.board_number,
-            m.member_nickname
+            m.member_nickname,
+            m.profile_image
         FROM tb_reply r
         JOIN tb_member m using(member_number)
         WHERE board_number = #{boardNumber};

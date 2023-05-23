@@ -45,6 +45,7 @@ public class BoardController {
 //        log.info("{} {}", page.getPageNo(), page.getAmount());
         BoardResponseDTO list = boardService.findAll(page);
 //        List<Board> list = boardService.findAll(page);
+        log.info("list는 뭐야 {} " , list);
         return ResponseEntity.ok().body(list);
     }
 

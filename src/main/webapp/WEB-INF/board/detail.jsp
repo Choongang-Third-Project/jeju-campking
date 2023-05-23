@@ -124,7 +124,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #FFF;
+            /* background: #FFF; */
         }
 
         .reply-content input{
@@ -159,7 +159,7 @@
         .reply-container .reply-display .reply-title .reply-profile{
             width: 50px;
             height: 50px;
-            background: blue;
+            /* background: blue; */
 
         }
 
@@ -496,7 +496,7 @@
             const payload = {
 				replyContent: $replyWriteBox.value,
                 boardNumber : '${board.boardNumber}',
-                memberNumber : 1
+                memberNumber : '${LOGIN.memberNumber}'
             };
 
 		        console.log(payload);
@@ -597,19 +597,26 @@
                 tag += "<div id='#' class='card-body'>댓글이 아직 없습니다! ㅠㅠ</div>";
             } else {
                 for (let con of list){
-                    let {replyNumber, replyContent, replyTime, boardNumber, memberNumber, memberNickname} = con;
+                    let {replyNumber, replyContent, replyTime, boardNumber, memberNumber, memberNickname, profileImage} = con;
                             
                     tag+='<div class="reply-display">';       
                     tag+='    <div class="reply-title">';
                     tag+='<div class="reply-profile">';
-                    tag+='    프사';
+                        if(!profileImage){
+                            tag += '<img src="/assets/mypage/img/profile.png" alt="사진없음">';
+                        } else {
+                            tag += '<img src="/local' + profileImage + '" alt="프사">';
+                        }
+                   // tag+='    프사';
                     tag+='</div>'; 
                     tag+='<div class="reply-author">'
                        tag+='<span>'+memberNickname+'</span>';
                     tag+='</div>'; 
                     tag+='<div class="reply-btn-group" id="replyBtnGroup">';
+                        if('${LOGIN.memberNumber}' == memberNumber){
                         tag+='<button class="btn" id="replyModiBtn" data-replyNum='+replyNumber+'>수정</button>';
                         tag+='<button class="btn" id="replyDelBtn" data-replyNum='+replyNumber+'>삭제</button>';
+                        }
                     tag+='</div>';
                   tag+='</div>';
                 tag+='<div class="reply-text" style="display:block">'+replyContent+'</div>';
