@@ -454,7 +454,7 @@
 
                 </div>
                 <!-- 작성자 닉네임 -->
-                <div id="member-number" class="member-nickname h-full flex justify-center items-center">${detail.memberNumber}</div>
+                <div id="member-number" class="member-nickname h-full flex justify-center items-center">${detail.memberNickname}</div>
             </div>
 
 
@@ -505,33 +505,43 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
                 <!-- 여행 시작 날짜 기준 디데이 -->
                 <div class="grid grid-flow-col gap-5 text-center auto-cols-max">
                     <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
                         <span class="countdown font-mono text-5xl">
-                            <span style="--value:15;"></span>
+                            <span id="dateDay" style="--value:15;"></span>
                         </span>
                         days
                     </div>
                     <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
                         <span class="countdown font-mono text-5xl">
-                            <span style="--value:10;"></span>
+                            <span id="dateHours" style="--value:10;"></span>
                         </span>
                         hours
                     </div>
                     <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
                         <span class="countdown font-mono text-5xl">
-                            <span style="--value:24;"></span>
+                            <span id="dateMin" style="--value:24;"></span>
                         </span>
                         min
                     </div>
                     <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
                         <span class="countdown font-mono text-5xl">
-                            <span style="--value:56;"></span>
+                            <span id="dateSec" style="--value:56;"></span>
                         </span>
                         sec
                     </div>
                 </div>
+
+
+
+
+
             </div>
 
 
@@ -992,6 +1002,44 @@
       }
        
     };
+
+
+
+    // 시간 함수
+    function diffday() {
+        const $partyStartDate = '${detail.partyStartDate}';
+        const nowTime = new Date();
+        const startTime = new Date($partyStartDate);
+
+        const diff = startTime - nowTime;
+        const diffDay = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const diffHours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const diffMin = Math.floor((diff / (1000 * 60)) % 60);
+        const diffSec = Math.floor(diff / 1000 % 60);
+
+        const $dateDay = document.getElementById('dateDay');
+        const $dateHours = document.getElementById('dateHours');
+        const $dateMin = document.getElementById('dateMin');
+        const $dateSec = document.getElementById('dateSec');
+
+        $dateDay.style = '--value:'+ diffDay + ';';
+        $dateHours.style = '--value:'+ diffHours + ';';
+        $dateMin.style = '--value:'+ diffMin + ';';
+        $dateSec.style = '--value:'+ diffSec + ';';
+
+    }
+
+    diffday();
+    setInterval(diffday, 1000);
+
+
+
+
+
+
+
+
+
 
     //메인 실행부
     (function() {
