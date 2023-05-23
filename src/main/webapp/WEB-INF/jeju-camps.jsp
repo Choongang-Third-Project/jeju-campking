@@ -129,55 +129,61 @@
 
                 <div class="radial-container flex">
                     <div>
-                        <div class="radial-progress r1" style="--value:100; --size:9rem; --thickness: 0.7rem;">
-                            ${c.totalCount}개
-                        </div>
-                        <div class="text">
-                            <p>전체</p>
-                        </div>
-
+                        <a href="http://localhost:8181/jeju-camps/info">
+                            <div class="radial-progress r1" style="--value:100; --size:9rem; --thickness: 0.7rem;">
+                                ${c.totalCount}개
+                            </div>
+                            <div class="text">
+                                <p>전체</p>
+                            </div>
+                        </a>
                     </div>
                     <div>
-                        <div class="radial-progress r2 "
-                            style="--value:${c.normalPercentage}; --size:9rem; --thickness: 0.7rem;">
-                            ${c.normalPercentage}%
-                        </div>
-                        <div class="text">
-                            <p>일반야영장</p>
-                            <p class="count">(${c.normalCount}개)</p>
-                        </div>
-
+                        <a href="/jeju-camps/info?search=일반">
+                            <div class="radial-progress r2 "
+                                style="--value:${c.normalPercentage}; --size:9rem; --thickness: 0.7rem;">
+                                ${c.normalPercentage}%
+                            </div>
+                            <div class="text">
+                                <p>일반야영장</p>
+                                <p class="count">(${c.normalCount}개)</p>
+                            </div>
+                        </a>
                     </div>
                     <div>
-                        <div class="radial-progress r3"
-                            style="--value:${c.carPercentage}; --size:9rem; --thickness: 0.7rem;">${c.carPercentage}%
-                        </div>
-                        <div class="text">
-                            <p>자동차야영장</p>
-                            <p class="count">(${c.carCount}개)</p>
-                        </div>
-
+                        <a href="/jeju-camps/info?search=자동차">
+                            <div class="radial-progress r3"
+                                style="--value:${c.carPercentage}; --size:9rem; --thickness: 0.7rem;">${c.carPercentage}%
+                            </div>
+                            <div class="text">
+                                <p>자동차야영장</p>
+                                <p class="count">(${c.carCount}개)</p>
+                            </div>
+                        </a>
                     </div>
                     <div>
-                        <div class="radial-progress r4"
-                            style="--value:${c.caravanPercentage}; --size:9rem; --thickness: 0.7rem;">
-                            ${c.caravanPercentage}%
-                        </div>
-                        <div class="text">
-                            <p>카라반</p>
-                            <p class="count">(${c.caravanCount}개)</p>
-                        </div>
-
+                        <a href="/jeju-camps/info?search=카라반">
+                            <div class="radial-progress r4"
+                                style="--value:${c.caravanPercentage}; --size:9rem; --thickness: 0.7rem;">
+                                ${c.caravanPercentage}%
+                            </div>
+                            <div class="text">
+                                <p>카라반</p>
+                                <p class="count">(${c.caravanCount}개)</p>
+                            </div>
+                        </a>
                     </div>
                     <div>
-                        <div class="radial-progress r5"
-                            style="--value:${c.glampingPercentage}; --size:9rem; --thickness: 0.7rem;">
-                            ${c.glampingPercentage}%
-                        </div>
-                        <div class="text">
-                            <p>글램핑</p>
-                            <p class="count">(${c.glampingCount}개)</p>
-                        </div>
+                        <a href="/jeju-camps/info?search=글램핑">
+                            <div class="radial-progress r5"
+                                style="--value:${c.glampingPercentage}; --size:9rem; --thickness: 0.7rem;">
+                                ${c.glampingPercentage}%
+                            </div>
+                            <div class="text">
+                                <p>글램핑</p>
+                                <p class="count">(${c.glampingCount}개)</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
 
