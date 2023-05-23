@@ -371,7 +371,7 @@
          // 캠핑 목록 불러오기 함수 
          function getBoardList() {
             console.log($pageNo);
-            fetch('/jeju-camps/notices/all' + '?pageNo='+ $pageNo +' &amount=10')
+            fetch('/jeju-camps/notices/all' + '?pageNo='+ $pageNo +'&amount=10')
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);

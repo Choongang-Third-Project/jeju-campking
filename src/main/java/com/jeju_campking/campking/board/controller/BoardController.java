@@ -39,9 +39,9 @@ public class BoardController {
     // URL : /boards
     @ResponseBody
     @GetMapping("/all")
-    public ResponseEntity<?> findAll(Page page) {
+    public ResponseEntity<?> findAll(int pageNo, int amount) {
         log.info("/boards : findAll() GET!!");
-
+        Page page = Page.of(pageNo, amount);
 //        log.info("{} {}", page.getPageNo(), page.getAmount());
         BoardResponseDTO list = boardService.findAll(page);
 //        List<Board> list = boardService.findAll(page);
