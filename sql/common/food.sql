@@ -1,10 +1,10 @@
 create table tb_food (
-	food_idx INT(10) primary key,
+	food_idx INT(10) AUTO_INCREMENT primary key,
 	food_name varchar(20) not null,
 	food_info varchar(200) not null,
 	food_category varchar(10),
 	food_wish INT(10)
-);
+) AUTO_INCREMENT = 3000;
 
 create table tb_food_category(
 	food_category varchar(10) primary key,
