@@ -20,6 +20,15 @@ public interface HighcostMapper {
             ";")
     List<HighcostResponseDTO> findAll();
 
-    @Select("")
+    @Select("select\n" +
+            "highcost_idx,\n" +
+            "highcost_name,\n" +
+            "highcost_price,\n" +
+            "highcost_info,\n" +
+            "highcost_category,\n" +
+            "highcost_wish\n" +
+            "from tb_highcost\n" +
+            "where highcost_idx = #{highcostIdx}\n" +
+            ";")
     HighcostResponseDTO findOne(Long highcostInx);
 }

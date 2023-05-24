@@ -31,8 +31,10 @@ public class HighcostRestController {
         return ApplicationResponse.ok(highcostList);
     }
 
-//    @GetMapping("/{highcostInx}")
-//    public ApplicationResponse<?> findOne(@PathVariable Long highcostInx) {
-//        highcostService.findOne(highcostInx);
-//    }
+    @GetMapping("/{highcostInx}")
+    public ApplicationResponse<HighcostResponseDTO> findOne(@PathVariable Long highcostInx) {
+        HighcostResponseDTO highcost = highcostService.findOne(highcostInx);
+        log.info("HighcostRestController/findOne - highcost : {}", highcost);
+        return ApplicationResponse.ok(highcost);
+    }
 }

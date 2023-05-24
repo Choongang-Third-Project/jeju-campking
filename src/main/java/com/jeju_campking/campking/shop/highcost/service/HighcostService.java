@@ -19,8 +19,7 @@ public class HighcostService {
         return highcostMapper.findAll();
     }
 
-    public HighcostResponseDTO findOne(Long highcostInx)
-    {
+    public HighcostResponseDTO findOne(Long highcostInx) {
         return highcostMapper.findOne(highcostInx);
     }
 }

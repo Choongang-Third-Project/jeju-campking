@@ -27,4 +27,16 @@ class HighcostMapperTest {
         assertEquals(400, highcostList.size());
     }
 
+    @Test
+    @DisplayName("장비번호가 10인 데이터의 카테고리는 텐트여야 하고, 찜번호는 10이어야 하고, 가격은 100010원이어야 한다.")
+    void findOne() {
+        // given
+        Long highcostNumber = 10L;
+        // when
+        HighcostResponseDTO highcost = highcostMapper.findOne(highcostNumber);
+        // then
+        assertEquals("텐트", highcost.getHighcostCategory());
+        assertEquals(10, highcost.getHighcostWish());
+        assertEquals(100010, highcost.getHighcostPrice());
+    }
 }
