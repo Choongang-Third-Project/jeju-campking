@@ -200,9 +200,9 @@
 
             <div class="category-menu">
                 <ul class="category-nav">
-                    <button class="btn btn-primary">고가 장비</button>
-                    <button class="btn btn-primary">이벤트 장비</button>
-                    <button class="btn btn-primary">소모품</button>
+                    <button id="item-adsfadsfdsaf" class="btn btn-primary">고가 장비</button>
+                    <button id="item-event" class="btn btn-primary">이벤트 장비</button>
+                    <button id="item-adsfadsfdsaf" class="btn btn-primary">소모품</button>
                     <button id="item-food" class="btn btn-primary">음식</button>
                 </ul>
             </div>
@@ -289,7 +289,7 @@
 
     
 
-    
+
     //---------------------- tag 생성 함수 ----------------------//
     function inputTag(url) {
         fetch(url)
