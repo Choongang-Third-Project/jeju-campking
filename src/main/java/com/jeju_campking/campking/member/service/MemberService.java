@@ -140,7 +140,7 @@ public class MemberService {
                 .build();
 
         // 위 정보 세션에 저장
-        session.setAttribute(LOGIN_KEY, dto);
+        session.setAttribute(LOGIN_KEY, dto); // hashmap
         // 세션 수명 설정
         session.setMaxInactiveInterval(60 * 60); //1시간
     }
