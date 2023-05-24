@@ -7,6 +7,8 @@
 
     color: #000;
     background: #D9D9E0;
+
+
 }
 
 /* satrt header */
@@ -78,6 +80,8 @@
 #wrap .menu-container .category-menu {
     background-color: #96909E;
     height: 25%;
+
+    background: url('../items/img/header.png') no-repeat center / cover;
 }
 
 #wrap .menu-container .category-menu .category-nav {
@@ -116,6 +120,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
 }
 
 #wrap .menu-container .content-box .main-box .sort-nav {
