@@ -86,7 +86,7 @@ public class MypageViewController {
             savePath = member.getProfileImage();
         }
 
-        mypageUpdateService.updateMember(dto, savePath);
+        mypageUpdateService.updateMember(dto, savePath, session);
 
         return "mypage/mypage";
     }

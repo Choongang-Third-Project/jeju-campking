@@ -60,7 +60,7 @@ public class MypageUpdateController {
             savePath = login.getProfile();
         }
 
-        boolean isUpdated = mypageUpdateService.updateMember(dto, savePath);
+        boolean isUpdated = mypageUpdateService.updateMember(dto, savePath, session);
 
         // 변경 성공 여부 전달
         return ResponseEntity.ok().body(isUpdated);

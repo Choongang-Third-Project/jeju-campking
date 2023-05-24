@@ -107,7 +107,7 @@
                     <option>제목+내용</option>
                 </select>
                 <input type="text" value="${s}" name="camp-search" placeholder="Type here" class="input input-bordered input-info w-96" id="camp-search" />
-                <input type="submit" value="검색" class="input input-bordered">
+                <input type="submit" value="검색" disabled class="input input-bordered">
 
             </form>
         </div>

@@ -1,10 +1,15 @@
+drop table tb_food;
+
 create table tb_food (
 	food_idx INT(10) AUTO_INCREMENT primary key,
 	food_name varchar(20) not null,
+	food_price INT(10) not null,
 	food_info varchar(200) not null,
 	food_category varchar(10),
 	food_wish INT(10)
 ) AUTO_INCREMENT = 3000;
+
+drop table tb_food_category ;
 
 create table tb_food_category(
 	food_category varchar(10) primary key,
@@ -12,9 +17,10 @@ create table tb_food_category(
 	food_idx INT(10)
 );
 
+drop table tb_food_wish;
 
 create table tb_food_wish(
-	food_wish int(10) primary key,
+	food_wish int(10) AUTO_INCREMENT primary key,
 	food_idx int(10),
 	member_number int(10)
 );

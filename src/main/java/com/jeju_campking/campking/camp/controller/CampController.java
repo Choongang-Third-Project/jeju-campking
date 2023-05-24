@@ -112,6 +112,7 @@ public class CampController {
         List<PartyListResponseDTO> partyList = rankService.getPartyList();
         List<Board> recentTwo = boardService.findRecentTwo();
 
+        session.setAttribute("count", count);
         model.addAttribute("c", campCount);
         model.addAttribute("campRank", campRankList);
         model.addAttribute("partyRank", partyList);
