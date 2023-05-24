@@ -1,29 +1,14 @@
--- tb_highcost_category Table Create SQL
--- 테이블 생성 SQL - tb_highcost_category
-CREATE TABLE tb_highcost_category
-(
-    highcost_category  VARCHAR(10)      NOT NULL,
-    highcost_img       VARCHAR(2000)    NOT NULL,
-    highcost_idx       INT(10)          NOT NULL,
-    PRIMARY KEY (highcost_category)
-);
-
-
 -- tb_highcost_wish Table Create SQL
 -- 테이블 생성 SQL - tb_highcost_wish
 CREATE TABLE tb_highcost_wish
 (
-    highcost_idx   INT(10)    NOT NULL,
-    member_number  INT(10)    NOT NULL,
-    highcost_wish  INT(10)    NOT NULL,
+    highcost_wish  INT(10)		 NOT NULL    AUTO_INCREMENT,
+    highcost_idx   INT(10)       NOT NULL,
+    member_number  INT(10)       NOT NULL,
+    is_like  	   VARCHAR(1)    NOT NULL    DEFAULT 'N',
     PRIMARY KEY (highcost_wish)
-);
-
-
--- Foreign Key 설정 SQL - tb_highcost_wish(member_number) -> tb_member(member_number)
-ALTER TABLE tb_highcost_wish
-    ADD CONSTRAINT member_number FOREIGN KEY (member_number)
-        REFERENCES tb_member (member_number) ON DELETE RESTRICT ON UPDATE RESTRICT;
+)
+;
 
 
 -- tb_highcost Table Create SQL
@@ -35,21 +20,30 @@ CREATE TABLE tb_highcost
     highcost_price     INT(10)         NOT NULL,
     highcost_info      VARCHAR(200)    NOT NULL,
     highcost_category  VARCHAR(10)     NOT NULL,
-    highcost_wish      INT(10)         NOT NULL,
+    highcost_img       VARCHAR(2000)   NOT NULL,
     PRIMARY KEY (highcost_idx)
 );
 
 
--- Foreign Key 설정 SQL - tb_highcost(highcost_category) -> tb_highcost_category(highcost_category)
-ALTER TABLE tb_highcost
-    ADD CONSTRAINT highcost_category FOREIGN KEY (highcost_category)
-        REFERENCES tb_highcost_category (highcost_category) ON DELETE RESTRICT ON UPDATE RESTRICT;
+-- 카테고리 나누기
+-- 1 ~ 99 - 텐트
+-- 100 ~ 199 - 침낭/매트
+-- 200 ~ 299 - 테이블
+-- 300 ~ 399 - 스토브
+update tb_highcost
+set highcost_category = '침낭/매트'
+where highcost_idx >= 101 and highcost_idx <= 200
+;
 
+update tb_highcost
+set highcost_category = '테이블'
+where highcost_idx >= 201 and highcost_idx <= 300
+;
 
--- Foreign Key 설정 SQL - tb_highcost(highcost_wish) -> tb_highcost_wish(highcost_wish)
-ALTER TABLE tb_highcost
-    ADD CONSTRAINT highcost_wish FOREIGN KEY (highcost_wish)
-        REFERENCES tb_highcost_wish (highcost_wish) ON DELETE RESTRICT ON UPDATE RESTRICT;
+update tb_highcost
+set highcost_category = '스토브'
+where highcost_idx >= 301 and highcost_idx <= 400
+;
 
 
 -- 고가장비 더미데이터 399개
@@ -62,7 +56,7 @@ INSERT INTO tb_highcost (highcost_name,
                          highcost_price,
                          highcost_info,
                          highcost_category,
-                         highcost_wish)
+                         highcost_img)
 VALUES
     ('고가장비0', 100000, '짱조은 고가장비입니다~', '텐트', 0),
     ('고가장비1', 100001, '짱조은 고가장비입니다~', '텐트', 1),
@@ -465,28 +459,6 @@ VALUES
     ('고가장비398', 100398, '짱조은 고가장비입니다~', '텐트', 398),
     ('고가장비399', 100399, '짱조은 고가장비입니다~', '텐트', 399)
 ;
-
-
--- 카테고리 나누기
--- 1 ~ 99 - 텐트
--- 100 ~ 199 - 침낭/매트
--- 200 ~ 299 - 테이블
--- 300 ~ 399 - 스토브
-update tb_highcost
-set highcost_category = '침낭/매트'
-where highcost_idx >= 101 and highcost_idx <= 200
-;
-
-update tb_highcost
-set highcost_category = '테이블'
-where highcost_idx >= 201 and highcost_idx <= 300
-;
-
-update tb_highcost
-set highcost_category = '스토브'
-where highcost_idx >= 301 and highcost_idx <= 400
-;
-
 
 
 /**

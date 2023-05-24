@@ -15,7 +15,7 @@ public interface HighcostMapper {
             "highcost_price,\n" +
             "highcost_info,\n" +
             "highcost_category,\n" +
-            "highcost_wish\n" +
+            "highcost_img\n" +
             "FROM tb_highcost\n" +
             ";")
     List<HighcostResponseDTO> findAll();
@@ -26,7 +26,7 @@ public interface HighcostMapper {
             "highcost_price,\n" +
             "highcost_info,\n" +
             "highcost_category,\n" +
-            "highcost_wish\n" +
+            "highcost_img\n" +
             "from tb_highcost\n" +
             "where highcost_idx = #{highcostIdx}\n" +
             ";")
@@ -38,20 +38,52 @@ public interface HighcostMapper {
             "highcost_price,\n" +
             "highcost_info,\n" +
             "highcost_category,\n" +
-            "highcost_wish\n" +
+            "highcost_img\n" +
             "from tb_highcost\n" +
-            "where \n" +
-            "<if test=\"#{category == 'tent'}\">\n" +
-            "highcost_category = \"텐트\"\n" +
-            "</if>\n" +
-            "<if test=\"#{category == 'sleeping-back'}\">\n" +
-            "highcost_category = \"침낭/매트\"\n" +
-            "</if>\n" +
-            "<if test=\"#{category == 'table'}\">\n" +
-            "highcost_category = \"테이블\"\n" +
-            "</if>\n" +
-            "<if test=\"#{category == 'stove'}\">\n" +
-            "highcost_category = \"스토브\"\n" +
-            "</if>")
+            "where highcost_category = #{category}")
     List<HighcostResponseDTO> findByCategory(String category);
+
+    @Select("select\n" +
+            "highcost_name,\n" +
+            "highcost_price,\n" +
+            "highcost_info,\n" +
+            "highcost_category,\n" +
+            "highcost_img\n" +
+            "from tb_highcost\n" +
+            "order by highcost_price asc\n" +
+            ";")
+    List<HighcostResponseDTO> sortedByPriceAsc(int priceNumber);
+
+    @Select("select\n" +
+            "highcost_name,\n" +
+            "highcost_price,\n" +
+            "highcost_info,\n" +
+            "highcost_category,\n" +
+            "highcost_img\n" +
+            "from tb_highcost\n" +
+            "order by highcost_price desc\n" +
+            ";")
+    List<HighcostResponseDTO> sortedByPriceDesc(int priceNumber);
+
+    @Select("select\n" +
+            "highcost_name,\n" +
+            "highcost_price,\n" +
+            "highcost_info,\n" +
+            "highcost_category,\n" +
+            "highcost_img\n" +
+            "from tb_highcost\n" +
+            "order by highcost_price desc\n" +
+            ";")
+    List<HighcostResponseDTO> sortedByPopularAsc(int popularNumber);
+
+    @Select("select\n" +
+            "highcost_name,\n" +
+            "highcost_price,\n" +
+            "highcost_info,\n" +
+            "highcost_category,\n" +
+            "highcost_img\n" +
+            "from tb_highcost\n" +
+            "order by highcost_price desc\n" +
+            ";")
+    List<HighcostResponseDTO> sortedByPopularDesc(int popularNumber);
 }

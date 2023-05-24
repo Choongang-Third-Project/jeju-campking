@@ -23,7 +23,35 @@ public class HighcostService {
         return highcostMapper.findOne(highcostInx);
     }
 
-    public List<HighcostResponseDTO> findByCategory(String category) {
+    public List<HighcostResponseDTO> findByCategory(int categoryNumber) {
+        String category = null;
+        switch (categoryNumber) {
+            case 1 : category = "텐트";
+                break;
+            case 2 : category = "침낭/매트";
+                break;
+            case 3 : category = "테이블";
+                break;
+            case 4 : category = "스토브";
+                break;
+        }
         return highcostMapper.findByCategory(category);
+    }
+
+    /**
+     * @param priceNumber - 1 이면 가격 오름차순 정렬, 2면 가격 내림차순 정렬
+     * @return 가격에 따라 정렬을 진행하는 매퍼를 리턴합니다.
+     */
+    public List<HighcostResponseDTO> sortedByPrice(int priceNumber) {
+        if (priceNumber == 1) return highcostMapper.sortedByPriceAsc(priceNumber);
+        return highcostMapper.sortedByPriceDesc(priceNumber);
+    }
+
+    /**
+     * 위와 동일.
+     */
+    public List<HighcostResponseDTO> sortedByPopular(int popularNumber) {
+        if (popularNumber == 1) return highcostMapper.sortedByPopularAsc(popularNumber);
+        return highcostMapper.sortedByPopularDesc(popularNumber);
     }
 }

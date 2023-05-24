@@ -18,5 +18,5 @@ public class Highcost {
     private Long highcostPrice;
     private String highcostInfo;
     private String highcostCategory;
-    private Long highcostWish;
+    private String highcostImg;
 }

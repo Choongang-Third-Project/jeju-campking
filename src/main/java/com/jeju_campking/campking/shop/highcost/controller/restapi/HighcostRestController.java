@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/highcost")
+@RequestMapping("/api/v1/items/highcost")
 @Slf4j
 public class HighcostRestController {
 
@@ -24,7 +24,7 @@ public class HighcostRestController {
      * 고가장비 데이터 전체를 조회하여 리스트로 반환합니다.
      * @return - 고가장비 리스트
      */
-    @GetMapping("/highcosts")
+    @GetMapping()
     public ApplicationResponse<List<HighcostResponseDTO>> findAll() {
         List<HighcostResponseDTO> highcostList = highcostService.findAll();
         log.info("HighcostRestController/findAll - highcostList : {}", highcostList);
@@ -32,9 +32,9 @@ public class HighcostRestController {
     }
 
     /**
-     * 파라미터로 받은 장비번호의 고가장비 데이터 1개를 반환합니다.
+     * 장비번호에 따른 고가장비 데이터 1개를 반환합니다.
      * @param highcostInx - 장비번호
-     * @return 고가장비 데이터 1개
+     * @return - 고가장비 데이터 1개
      */
     @GetMapping("/{highcostInx}")
     public ApplicationResponse<HighcostResponseDTO> findOne(@PathVariable Long highcostInx) {
@@ -44,14 +44,32 @@ public class HighcostRestController {
     }
 
     /**
-     * 파라미터로 받은 카테고리와 카테고리 값이 동일한 고가장비 리스트를 반환합니다. 
-     * @param category - 카테고리
-     * @return 고가장비 리스트
+     * @param categoryNumber - 카테고리
+     * @return - 카테고리에 따라 분류된 고가장비 리스트
      */
-    @GetMapping("/{category}")
-    public ApplicationResponse<List<HighcostResponseDTO>> findByCategory(@PathVariable String category) {
-        List<HighcostResponseDTO> highcostListByCategory = highcostService.findByCategory(category);
+    @GetMapping("/category/{categoryNumber}")
+    public ApplicationResponse<List<HighcostResponseDTO>> findByCategory(@PathVariable int categoryNumber) {
+        List<HighcostResponseDTO> highcostListByCategory = highcostService.findByCategory(categoryNumber);
         log.info("HighcostRestController/findByCategory - highcost : {}", highcostListByCategory);
         return ApplicationResponse.ok(highcostListByCategory);
     }
+
+    /**
+     * @param priceNumber - 1 (오름차순) 또는 2 (내림차순)
+     * @return - 가격순으로 조회한 고가장비 리스트를 반환합니다.
+     */
+    @GetMapping("/price/{priceNumber}")
+    public ApplicationResponse<List<HighcostResponseDTO>> SortedByPrice(@PathVariable int priceNumber) {
+        List<HighcostResponseDTO> highcostListByPrice = highcostService.sortedByPrice(priceNumber);
+        log.info("HighcostRestController/SortedByPrice - highcost : {}", highcostListByPrice);
+        return ApplicationResponse.ok(highcostListByPrice);
+    }
+
+    @GetMapping("/popular/{popularNumber}")
+    public ApplicationResponse<List<HighcostResponseDTO>> SortedByPopular(@PathVariable int popularNumber) {
+        List<HighcostResponseDTO> highcostListByPopular = highcostService.sortedByPopular(popularNumber);
+        log.info("HighcostRestController/SortedByPrice - highcost : {}", highcostListByPopular);
+        return ApplicationResponse.ok(highcostListByPopular);
+    }
+
 }

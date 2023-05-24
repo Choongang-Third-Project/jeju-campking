@@ -18,6 +18,29 @@ class HighcostMapperTest {
     private HighcostMapper highcostMapper;
 
     @Test
+    @DisplayName("더미데이터 400개 생성 쿼리")
+    void createDummyData() {
+        System.out.println("INSERT INTO tb_highcost (" +
+                "highcost_idx, \n" +
+                "highcost_name, \n" +
+                "highcost_price,\n" +
+                "highcost_info,\n" +
+                "highcost_category,\n" +
+                "highcost_img)\n" +
+                "VALUES ");
+        for (int i = 0; i < 400; i++) {
+            System.out.println("(" +
+                    i + ", " +
+                    "'고가장비" + i + "', " +
+                    (100000 + i) + ", " +
+                    "'짱조은 고가장비입니다~'" + ", " +
+                    "'텐트', " +
+                    i +
+                    "),");
+        }
+    }
+
+    @Test
     @DisplayName("고가장비의 전체 데이터의 개수는 400개여야 한다.")
     void findAll() {
         // given
@@ -28,7 +51,7 @@ class HighcostMapperTest {
     }
 
     @Test
-    @DisplayName("장비번호가 10인 데이터의 카테고리는 텐트여야 하고, 찜번호는 10이어야 하고, 가격은 100010원이어야 한다.")
+    @DisplayName("장비번호가 10인 데이터의 카테고리는 텐트여야 하고, 가격은 100,010원이어야 한다.")
     void findOne() {
         // given
         Long highcostIdx = 10L;
@@ -36,8 +59,8 @@ class HighcostMapperTest {
         HighcostResponseDTO highcost = highcostMapper.findOne(highcostIdx);
         // then
         assertEquals("텐트", highcost.getHighcostCategory());
-        assertEquals(10, highcost.getHighcostWish());
-        assertEquals(100010, highcost.getHighcostPrice());
+        System.out.println(highcost);
+        assertEquals("100,010원", highcost.getHighcostPrice());
     }
 
     @Test
