@@ -13,9 +13,9 @@ import java.util.List;
 public interface EventMapper {
 
     @Insert("insert into tb_event\n" +
-            "\t(event_idx, event_name, event_price, event_info, event_category)\n" +
-            "\tvalues\n" +
-            "\t(#{eventIdx},#{eventName},#{eventPrice},#{eventInfo},#{eventCategory})")
+            "(event_name, event_price, event_info, event_category)\n" +
+            "values\n" +
+            "(#{event.eventName},#{event.eventPrice},#{event.eventInfo},#{event.eventCategory})")
     int insertEvent(@Param("event")Event event);
 
 
@@ -25,24 +25,17 @@ public interface EventMapper {
     List<Event> findAll();
 
 
-    @Select("<script>" +
-            "SELECT event_idx, event_name, event_price, event_info, event_category, event_wish " +
+    @Select("SELECT event_idx, event_name, event_price, event_info, event_category, event_wish " +
             "FROM tb_event " +
-            "WHERE " +
-            "<if test=\"category.equals('생일파티')\">" +
-            "   event_category = '생일파티'" +
-            "</if>" +
-            "<if test=\"category.equals('프로포즈')\">" +
-            "   event_category = '프로포즈'" +
-            "</if>" +
-            "<if test=\"category.equals('어버이날')\">" +
-            "   event_category = '어버이날'" +
-            "</if>" +
-            "<if test=\"category.equals('기타')\">" +
-            "   event_category = '기타'" +
-            "</if>" +
-            "</script>")
-    List<Event> getEventsByCategory(String category);
+            "WHERE event_category = #{eventCategory}")
+    List<Event> getEventsByCategory(String eventCategory);
+
+
+    @Select("select\n" +
+            "event_idx, event_name, event_price, event_info, event_category, event_wish\n" +
+            "from tb_event \n" +
+            "where event_idx = #{eventIdx}")
+    List<Event> findOne(Long eventIdx);
 
 
 
