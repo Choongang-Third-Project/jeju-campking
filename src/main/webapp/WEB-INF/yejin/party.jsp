@@ -15,6 +15,11 @@
         <link rel="stylesheet" href="/assets/include/common.css">
         <link rel="stylesheet" href="/assets/party/css/susu.css">
         <link rel="stylesheet" href="/assets/footer/css/footer.css">
+        <link rel="stylesheet" href="/assets/header/css/header.css">
+
+        
+            <!-- favicon -->
+        <link rel="icon" type="image/x-icon" href="/assets/header/img/camp.ico">
         <style>
 
         </style>
@@ -108,7 +113,7 @@
             같이 갈 사람 😁
         </h1>
         <button class="write" id="writebtn">글쓰기</button>
-        <div class="orderby">정렬</div>
+        <!-- <div class="orderby">정렬</div> -->
         <nav>
             <div class="roundbar">
 
@@ -122,10 +127,10 @@
                 </div>
 
 
-                <input id="search_content" class="search" type="text">
+               <!-- <input id="search_content" class="search" type="text">
                 <span class="material-symbols-outlined" id="search_btn">
                     search
-                </span>
+                </span> -->
             </div>
         </nav>
 
@@ -311,14 +316,14 @@
 
 
         // 검색 하기 기능 
-        const $search = document.getElementById('search_content');
-        // 돋보기 버튼 누르면 검색
-        const $searchbtn = document.getElementById('search_btn');
-        $searchbtn.onclick = e => {
-            // 필터링해서 가져오기  <- 백엔드에서 구현하기 
-            // 필터링한 데이터 랜더링함수
-            getSearchPartyList();
-        }
+        // const $search = document.getElementById('search_content');
+        // // 돋보기 버튼 누르면 검색
+        // const $searchbtn = document.getElementById('search_btn');
+        // $searchbtn.onclick = e => {
+        //     // 필터링해서 가져오기  <- 백엔드에서 구현하기 
+        //     // 필터링한 데이터 랜더링함수
+        //     getSearchPartyList();
+        // }
 
         // 키워드 검색 파티 게시물 리스트 불러오기함수 
         function getSearchPartyList() {

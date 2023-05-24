@@ -14,6 +14,11 @@
     <script src="https://kit.fontawesome.com/68f79e919f.js" crossorigin="anonymous"></script>
     <!-- footer css -->
     <link rel="stylesheet" href="/assets/footer/css/footer.css">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/header/img/camp.ico">
+    <!-- header, footer css -->
+    <link rel="stylesheet" href="/assets/header/css/header.css">
+    <link rel="stylesheet" href="/assets/footer/css/footer.css">
     <!-- toaster set -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
@@ -417,18 +422,6 @@
     <!-- set-up -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-
-<<<<<<< HEAD
-    <!-- 헤더 -->
-    <%@ include file="../include/header.jsp" %>
-=======
-    
-
-
-
-
-
->>>>>>> feat/lkd/partyModify
 
     <div id="wrapper" class="flex justify-between flex-col items-center p-10">
 
