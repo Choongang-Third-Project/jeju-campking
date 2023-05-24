@@ -1,0 +1,17 @@
+{
+	"info": {
+		"_postman_id": "57f09c98-201a-4680-8eba-75e4d2991a40",
+		"name": "FoodAPI 테스트",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "food 전체조회 기능",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

@@ -14,7 +14,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/food")
+@RequestMapping("/api/v1/items/food/")
 @Slf4j
 public class FoodController {
 

@@ -15,5 +15,5 @@ public class Food {
     private Long foodPrice;
     private String foodInfo;
     private String foodCategory;
-    private Long food_wish;
+    private String foodImg;
 }
