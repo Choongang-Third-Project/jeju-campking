@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -19,8 +21,11 @@ public class FoodService {
 
 
     public List<FoodResponseDTO> findAll(){
-        List<FoodResponseDTO> list = foodMapper.findAll();
-        log.info("food findAll {} ", list);
+        List<Food> foodList = foodMapper.findAll();
+//        log.info("food findAll {} ", list);
+
+        List<FoodResponseDTO> list = foodList.stream().map(FoodResponseDTO::convertFood).toList();
+
         return list;
     }
 

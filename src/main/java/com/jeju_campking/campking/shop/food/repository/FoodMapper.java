@@ -1,8 +1,8 @@
 package com.jeju_campking.campking.shop.food.repository;
 
 import com.jeju_campking.campking.shop.food.dto.response.FoodResponseDTO;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import com.jeju_campking.campking.shop.food.entity.Food;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -11,17 +11,28 @@ public interface FoodMapper {
 
 
     @Select("select \n" +
-            "f.food_idx,\n" +
-            "f.food_name,\n" +
-            "f.food_price,\n" +
-            "f.food_info,\n" +
-            "f.food_category,\n" +
-            "f.food_wish,\n" +
-            "p.food_img,\n" +
-            "r.member_number\n" +
-            "from tb_food f\n" +
-            "left join tb_food_category p using(food_idx)\n" +
-            "left join tb_food_wish r using(food_idx);")
-    public List<FoodResponseDTO> findAll();
+            "\tfood_name,\n" +
+            "\tfood_price,\n" +
+            "\tfood_info,\n" +
+            "\tfood_category,\n" +
+            "\tfood_img\n" +
+            "from tb_food;"
+            )
+    public List<Food> findAll();
+
+
+    @Insert("insert into tb_food " +
+            "(food_name, " +
+            "food_price, " +
+            "food_info, " +
+            "food_category, " +
+            "food_img)\n" +
+            "\t\tvalues " +
+            "(#{food.foodName}, " +
+            "#{food.foodPrice}, " +
+            "#{food.foodInfo}, " +
+            "#{food.foodCategory}, " +
+            "#{food.foodImg})\t")
+    public int insert(@Param("food") Food food);
 
 }
