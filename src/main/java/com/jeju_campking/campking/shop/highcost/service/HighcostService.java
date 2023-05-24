@@ -22,4 +22,8 @@ public class HighcostService {
     public HighcostResponseDTO findOne(Long highcostInx) {
         return highcostMapper.findOne(highcostInx);
     }
+
+    public List<HighcostResponseDTO> findByCategory(String category) {
+        return highcostMapper.findByCategory(category);
+    }
 }

@@ -9,13 +9,6 @@ CREATE TABLE tb_highcost_category
 );
 
 
-INSERT INTO tb_highcost_category (highcost_category, highcost_img, highcost_idx)
-VALUES ('텐트', '', );
-VALUES ('침낭/매트', '', '');
-VALUES ('테이블', '', '');
-VALUES ('스토브', '', '');
-
-
 -- tb_highcost_wish Table Create SQL
 -- 테이블 생성 SQL - tb_highcost_wish
 CREATE TABLE tb_highcost_wish
@@ -474,9 +467,25 @@ VALUES
 ;
 
 
+-- 카테고리 나누기
+-- 1 ~ 99 - 텐트
+-- 100 ~ 199 - 침낭/매트
+-- 200 ~ 299 - 테이블
+-- 300 ~ 399 - 스토브
+update tb_highcost
+set highcost_category = '침낭/매트'
+where highcost_idx >= 101 and highcost_idx <= 200
+;
 
+update tb_highcost
+set highcost_category = '테이블'
+where highcost_idx >= 201 and highcost_idx <= 300
+;
 
-
+update tb_highcost
+set highcost_category = '스토브'
+where highcost_idx >= 301 and highcost_idx <= 400
+;
 
 
 
