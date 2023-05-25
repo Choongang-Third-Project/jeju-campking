@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +28,8 @@ class FoodMapperTest {
 
     @Test
     @DisplayName("Dummy Data 넣어보기")
+    @Transactional
+    @Rollback
     void dummy() {
         //given
         //when
@@ -86,4 +90,22 @@ class FoodMapperTest {
 
 
     }
+
+
+    @Test
+    @DisplayName("가격순 오름차순, 내림차순을 정렬해본다")
+    void orderByPrice(){
+
+//        List<Food> foods = mapper.priceAsc();
+        List<Food> foods = mapper.priceDesc();
+        foods.forEach(System.out::println);
+
+
+    }
+
+
+
+
+
+
 }

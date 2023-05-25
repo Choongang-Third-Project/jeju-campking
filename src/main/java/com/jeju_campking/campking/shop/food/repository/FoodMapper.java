@@ -23,13 +23,39 @@ public interface FoodMapper {
 
 
 
-    @Select("")
+    @Select("  select \n" +
+            "\tfood_idx,\n" +
+            "\tfood_name,\n" +
+            "\tfood_price,\n" +
+            "\tfood_info,\n" +
+            "\tfood_category,\n" +
+            "\tfood_img\n" +
+            "  from tb_food\n" +
+            "  order by food_price desc;\n" +
+            " ")
     public List<Food> priceDesc();
 
-    @Select("")
+    @Select("select \n" +
+            "\tfood_idx,\n" +
+            "\tfood_name,\n" +
+            "\tfood_price,\n" +
+            "\tfood_info,\n" +
+            "\tfood_category,\n" +
+            "\tfood_img\n" +
+            "  from tb_food\n" +
+            "  order by food_price asc;")
     public List<Food> priceAsc();
 
-
+    @Select("select \n" +
+            "\tfood_idx,\n" +
+            "\tfood_name,\n" +
+            "\tfood_price,\n" +
+            "\tfood_info,\n" +
+            "\tfood_category,\n" +
+            "\tfood_img\n" +
+            "  from tb_food\n" +
+            "  order by food_price asc;")
+    public List<Food> category();
 
     @Insert("insert into tb_food " +
             "(food_name, " +

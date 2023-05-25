@@ -66,6 +66,8 @@ CREATE TABLE TB_BOARD (
 	board_content VARCHAR(2000) NOT NULL,
 	board_time TIMESTAMP NOT NULL default current_timestamp,
 	member_number INT(10),
+	board_view INT(6),
+	board_recommend INT(6),
 	PRIMARY KEY (board_number),
 	FOREIGN KEY (member_number) REFERENCES TB_MEMBER(member_number)
 );
@@ -593,7 +595,7 @@ CREATE TABLE TB_PARTY_MESSAGE (
 	party_message_read VARCHAR(1) DEFAULT 'N',
 	party_number INT(10),
 	PRIMARY KEY (party_message_number),
-	FOREIGN KEY (party_number) REFERENCES TB_PARTY(party_number) ON DELETE SET NULL,
+	FOREIGN KEY (party_number) REFERENCES TB_PARTY(party_number) ON DELETE CASCADE,
 	FOREIGN KEY (party_message_sender) REFERENCES TB_MEMBER(member_number),
 	FOREIGN KEY (party_message_recipient) REFERENCES TB_MEMBER(member_number)
 );
