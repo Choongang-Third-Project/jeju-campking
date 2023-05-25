@@ -525,11 +525,11 @@
                     <div class="avatar">
                         <div class="img w-24 rounded-full">
                             <!-- <img id="profile" src="/assets/party/img/profile.png" /> -->
-                            <c:if test="${LOGIN == null || LOGIN.profile == null}">
+                            <c:if test="${detail.profileImg == null}">
                                 <img src="/assets/mypage/img/profile.png" alt="사진없음">
                             </c:if>
-                            <c:if test="${LOGIN != null && LOGIN.profile != null}">
-                                <img src="/local${LOGIN.profile}" alt="프사">
+                            <c:if test="${detail.profileImg != null}">
+                                <img src="/local${detail.profileImg}" alt="프사">
                             </c:if>
                         </div>
                     </div>
@@ -803,19 +803,11 @@
             "hideMethod": "fadeOut"
         }
 
-        // $('.btn-remove').on('click', function () {
-        //     toastr.error('삭제 권한이 없습니다!');
-        // });
-        // $('.btn-modify').on('click', function () {
-        //     toastr.warning('수정 권한이 없습니다!');
-        // });
-        // toastr.success('메세지가 성공적으로 보내졌습니다!');
-        // toastr.error('삭제 권한이 없습니다!');
-        // toastr.warning('수정 권한이 없습니다!');
     </script>
 
 
     <script>
+        console.log('${detail}');
         const loginMember = +'${LOGIN.memberNumber}';
         const partyMember = +'${detail.memberNumber}';
         const $partyNumber = +'${detail.partyNumber}';

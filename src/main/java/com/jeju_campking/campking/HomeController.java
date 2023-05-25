@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
+    @GetMapping("api/v1/items")
+    public String food() {
+        return "/item/items";
+    }
+
     @GetMapping("/")
     public String index() {
         //todo: 나중에 index 파일로 변경하기!
@@ -21,7 +26,7 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         //todo : 로그인 페이지로 이동하기
         return "/member/login";
     }
@@ -33,23 +38,22 @@ public class HomeController {
 //    }
 
     @GetMapping("/jeju-camps/info")
-    public String camp(@RequestParam(value ="search", required = false, defaultValue = "") String search, Model model){
+    public String camp(@RequestParam(value = "search", required = false, defaultValue = "") String search, Model model) {
         //todo : 캠핑장 페이지로 이동하기
         model.addAttribute("s", search);
         return "/campBoard/list";
     }
 
     @GetMapping("/jeju-camps/parties")
-    public String party(){
+    public String party() {
         //todo : 같이갈 사람 페이지로 이동하기
         return "/yejin/party";
     }
 
     @GetMapping("/jeju-camps/notices")
-    public String notice(){
+    public String notice() {
         return "/board/list";
     }
-
 
 
 }

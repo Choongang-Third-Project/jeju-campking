@@ -17,11 +17,12 @@ public interface PartyDetailMapper {
             "P.party_end_date,\n" +
             "P.party_size,\n" +
             "P.member_number,\n" +
-            "M.member_nickname\n" +
+            "M.member_nickname,\n" +
+            "M.profile_image\n" +
             "FROM TB_PARTY AS P\n" +
             "JOIN TB_MEMBER AS M\n" +
             "ON P.member_number = M.member_number\n" +
-            "WHERE party_number = #{partyNumber}")
+            "WHERE P.party_number = #{partyNumber}")
     PartyDetailResponseDTO detailView(@Param("partyNumber") Long partyNumber);
 
     @Insert("INSERT INTO TB_PARTY_MESSAGE (\n" +
