@@ -69,7 +69,7 @@ public interface ConsumableMapper {
                     "FROM TB_CONSUMABLE\n"+
                     "ORDER BY consumable_price DESC"
     )
-    List<Consumable> priceHighList();
+    List<Consumable> priceHighList(int priceNum);
 
     //가격순으로 조회 하기(낮은순)
     @Select(
@@ -78,19 +78,19 @@ public interface ConsumableMapper {
                     "FROM TB_CONSUMABLE\n"+
                     "ORDER BY consumable_price ASC"
     )
-    List<Consumable> priceLowList();
+    List<Consumable> priceLowList(int priceNum);
 
 
     //찜갯수(인기) 별로 보여주기
-    @Select(
-            "SELECT * FROM TB_CONSUMABLE\n" +
-                    "WHERE consumable_wish = \n" +
-                    "SELECT consumable_wish FROM TB_WISH \n" +
-                    "GROUP BY consumable_idx \n"+
-                    "HAVING count(consumable_idx) \n" +
-                    "ORDER BY DESC"
-    )
-    List<Consumable> likeList();
+//    @Select(
+//            "SELECT * FROM TB_CONSUMABLE\n" +
+//                    "WHERE consumable_wish = \n" +
+//                    "SELECT consumable_wish FROM TB_WISH \n" +
+//                    "GROUP BY consumable_idx \n"+
+//                    "HAVING count(consumable_idx) \n" +
+//                    "ORDER BY DESC"
+//    )
+//    List<Consumable> likeList();
 
 
 
