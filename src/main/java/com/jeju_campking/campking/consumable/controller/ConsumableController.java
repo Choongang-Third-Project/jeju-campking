@@ -37,7 +37,7 @@ public class ConsumableController {
     @GetMapping("price/{priceNum}")
     public ApplicationResponse<?> findByPrice(@PathVariable int priceNum) {
 
-        List<ConsumableResponseDTO> dtoList = consumableService.priceList(priceNum);
+        List<ConsumableResponseDTO> dtoList = consumableService.findByPrice(priceNum);
         log.info("/api/v1/items/consumable/price - GET {}", dtoList);
 
         return ApplicationResponse.ok(dtoList);

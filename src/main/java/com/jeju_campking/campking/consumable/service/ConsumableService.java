@@ -36,7 +36,7 @@ public class ConsumableService {
         return consumableList.stream().map(ConsumableResponseDTO::new).collect(Collectors.toList());
     }
 
-    public List<ConsumableResponseDTO> priceList(int priceNum) {
+    public List<ConsumableResponseDTO> findByPrice(int priceNum) {
 
         List<Consumable> consumableList;
         if(priceNum == 1) {
