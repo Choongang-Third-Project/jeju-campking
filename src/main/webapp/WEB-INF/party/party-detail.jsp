@@ -681,7 +681,7 @@
                         <div class="party-chat artboard artboard-demo phone-1 flex justify-between">
 
                             <div class="content-box flex justify-center items-center">
-                                <div class="title">보낸 메시지</div>
+                                <div class="title"></div>
                             </div>
 
                             <div class="chat-box flex flex-col w-full">
@@ -835,7 +835,7 @@
         });
 
 
-        $enterKey.addEventListener('keydown', (e) => {
+        $enterKey.addEventListener('keypress', (e) => {
 
             if (e.code === 'Enter') {
 
