@@ -27,12 +27,12 @@ public class Consumable {
 );
     */
 
-    private int consumableIdx;
-    private String consumableDiscount;
-    private int consumablePrice;
+    private Long consumableIdx;
     private String consumableName;
+    private int consumablePrice;
     private String consumableInfo;
-    private int consumableCount;
     private String consumableCatagory;
+    private Long consumableWish;
+    private String consumableImg;
 
 }
