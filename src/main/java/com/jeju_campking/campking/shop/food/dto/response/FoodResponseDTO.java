@@ -13,6 +13,7 @@ import java.text.NumberFormat;
 @EqualsAndHashCode
 @Builder
 public class FoodResponseDTO {
+    private Long foodIdx;
     private String foodName;
     private String foodPrice;
     private String foodInfo;
@@ -22,6 +23,7 @@ public class FoodResponseDTO {
     public static FoodResponseDTO convertFood(Food food){
         NumberFormat formatter = NumberFormat.getNumberInstance();
         return FoodResponseDTO.builder()
+                .foodIdx(food.getFoodIdx())
                 .foodName(food.getFoodName())
                 .foodPrice(formatter.format(food.getFoodPrice()))
                 .foodInfo(food.getFoodInfo())

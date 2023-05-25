@@ -11,6 +11,7 @@ public interface FoodMapper {
 
 
     @Select("select \n" +
+            "\tfood_idx,\n" +
             "\tfood_name,\n" +
             "\tfood_price,\n" +
             "\tfood_info,\n" +
@@ -19,6 +20,15 @@ public interface FoodMapper {
             "from tb_food;"
             )
     public List<Food> findAll();
+
+
+
+    @Select("")
+    public List<Food> priceDesc();
+
+    @Select("")
+    public List<Food> priceAsc();
+
 
 
     @Insert("insert into tb_food " +
@@ -34,5 +44,8 @@ public interface FoodMapper {
             "#{food.foodCategory}, " +
             "#{food.foodImg})\t")
     public int insert(@Param("food") Food food);
+
+
+
 
 }
