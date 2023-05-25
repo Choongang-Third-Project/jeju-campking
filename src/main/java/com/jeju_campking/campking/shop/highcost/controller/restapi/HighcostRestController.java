@@ -65,6 +65,10 @@ public class HighcostRestController {
         return ApplicationResponse.ok(highcostListByPrice);
     }
 
+    /**
+     * @param popularNumber - 1 (오름차순) 또는 2 (내림차순)
+     * @return - 인기순으로 조회한 고가장비 리스트를 반환합니다.
+     */
     @GetMapping("/popular/{popularNumber}")
     public ApplicationResponse<List<HighcostResponseDTO>> SortedByPopular(@PathVariable int popularNumber) {
         List<HighcostResponseDTO> highcostListByPopular = highcostService.sortedByPopular(popularNumber);

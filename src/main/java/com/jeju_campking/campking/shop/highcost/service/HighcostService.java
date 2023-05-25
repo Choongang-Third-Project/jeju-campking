@@ -39,19 +39,19 @@ public class HighcostService {
     }
 
     /**
-     * @param priceNumber - 1 이면 가격 오름차순 정렬, 2면 가격 내림차순 정렬
+     * @param priceNumber - 1 이면 가격 내림차순 정렬, 2면 가격 오름차순 정렬
      * @return 가격에 따라 정렬을 진행하는 매퍼를 리턴합니다.
      */
     public List<HighcostResponseDTO> sortedByPrice(int priceNumber) {
-        if (priceNumber == 1) return highcostMapper.sortedByPriceAsc(priceNumber);
-        return highcostMapper.sortedByPriceDesc(priceNumber);
+        if (priceNumber == 1) return highcostMapper.sortedByPriceDesc(priceNumber);
+        return highcostMapper.sortedByPriceAsc(priceNumber);
     }
 
     /**
      * 위와 동일.
      */
     public List<HighcostResponseDTO> sortedByPopular(int popularNumber) {
-        if (popularNumber == 1) return highcostMapper.sortedByPopularAsc(popularNumber);
-        return highcostMapper.sortedByPopularDesc(popularNumber);
+        if (popularNumber == 1) return highcostMapper.sortedByPopularDesc(popularNumber);
+        return highcostMapper.sortedByPopularAsc(popularNumber);
     }
 }

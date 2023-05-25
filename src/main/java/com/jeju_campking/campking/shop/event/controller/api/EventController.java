@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/items/event/")
+@RequestMapping("/api/v1/items/event")
 @Slf4j
 public class EventController {
 
@@ -34,7 +34,7 @@ public class EventController {
      * @param priceNum
      * @return
      */
-    @GetMapping("price/{priceNum}")
+    @GetMapping("/price/{priceNum}")
     public ApplicationResponse<?> findByPrice(@PathVariable int priceNum) {
 
         List<EventListResponseDTO> dtoList = eventService.findByPrice(priceNum);
@@ -44,7 +44,7 @@ public class EventController {
     }
 
 
-    @GetMapping("category/{categoryNum}")
+    @GetMapping("/category/{categoryNum}")
     public ApplicationResponse<?> findByCategory(@PathVariable int categoryNum) {
 
         List<EventListResponseDTO> dtoList = eventService.findByCategory(categoryNum);
