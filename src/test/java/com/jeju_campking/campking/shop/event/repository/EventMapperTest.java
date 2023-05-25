@@ -5,12 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class EventMapperTest {
@@ -22,6 +21,7 @@ class EventMapperTest {
     // 더미데이터 생성!
     @Test
     @DisplayName("더미데이터 넣기")
+    @Transactional
     void dummy() {
 
         String[] category = {"생일파티", "프로포즈", "어버이날", "기타파티용품"};

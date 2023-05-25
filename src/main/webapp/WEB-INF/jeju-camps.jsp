@@ -421,9 +421,9 @@
                     <div class="sub-board">
                         <p><i class="fa-solid fa-screwdriver-wrench"></i></p>
                         <h2>장비대여</h2>
-                        <p class="update">
+                        <a href= '/api/v1/items' class="update">
                             <img src="/assets/home/img/update.png" alt="">
-                        </p>
+                        </a>
                     </div>
                 </div>
             </section>
