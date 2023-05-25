@@ -24,7 +24,7 @@ public class FoodService {
     public List<FoodResponseDTO> findAll(){
         List<Food> foodList = foodMapper.findAll();
 
-        List<FoodResponseDTO> list = foodList.stream().map(FoodResponseDTO::convertFood).collect(Collectors.toList());();
+        List<FoodResponseDTO> list = foodList.stream().map(FoodResponseDTO::convertFood).collect(Collectors.toList());
         log.info("food findAll {} ", list);
 
         return list;
