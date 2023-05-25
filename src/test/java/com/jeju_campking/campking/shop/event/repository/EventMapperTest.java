@@ -1,6 +1,7 @@
 package com.jeju_campking.campking.shop.event.repository;
 
 import com.jeju_campking.campking.shop.event.entity.Event;
+import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class EventMapperTest {
@@ -73,37 +73,56 @@ class EventMapperTest {
     // 이벤트장비 전체조회
     @Test
     @DisplayName("이벤트아이템 전체를 조회해야한다")
-    void findAll() {
+    void findAllTest() {
         List<Event> all = eventMapper.findAll();
         for (Event event : all) {
             System.out.println(event);
         }
     }
 
-    // 이벤트장비 가격순 조회
+    // 이벤트장비 가격순 조회 (내림차순)
     @Test
-    @DisplayName("이벤트 장비 가격순 조회할수 있다")
-    void findByPriceDescTest() {
+    @DisplayName("이벤트 장비 가격을 내림차순으로 조회할수 있다")
+    public void findindByPriceDescTest() {
         // given
+        int priceNum = 1;
         // when
-        List<Event> eventList = eventMapper.findByPriceDesc();
+        List<Event> eventList = eventMapper.findByPriceDesc(priceNum);
         // then
+        assertNotNull(eventList);
+        assertFalse(eventList.isEmpty());
+        for (Event event : eventList) {
+            System.out.println(event);
+        }
+    }
+
+    // 이벤트장비 가격순 조회 (오름차순)
+    @Test
+    @DisplayName("이벤트 장비 가격을 오름차순으로 조회할수 있다")
+    public void findindByPriceAscTest() {
+        // given
+        int priceNum = 2;
+        // when
+        List<Event> eventList = eventMapper.findByPriceAsc(priceNum);
+        // when
+        assertNotNull(eventList);
+        assertFalse(eventList.isEmpty());
         for (Event event : eventList) {
             System.out.println(event);
         }
     }
 
     // 카테고리별로 가격순 조회
-    @Test
-    @DisplayName("카테고리별로 가격순으로 조회할 수 있다")
-    void findByCategoryAndPriceDescTest() {
-        // given
-        String eventCategory = "어버이날";
-        // when
-        List<Event> eventList = eventMapper.findByCategoryAndPriceDesc(eventCategory);
-        // then
-        assertEquals(40000, eventList.get(0).getEventPrice());
-    }
+//    @Test
+//    @DisplayName("카테고리별로 가격순으로 조회할 수 있다")
+//    void findByCategoryAndPriceDescTest() {
+//        // given
+//        String eventCategory = "어버이날";
+//        // when
+//        List<Event> eventList = eventMapper.findByCategoryAndPriceDesc(eventCategory);
+//        // then
+//        assertEquals(40000, eventList.get(0).getEventPrice());
+//    }
 
 
 
@@ -112,11 +131,11 @@ class EventMapperTest {
     // 이벤트장비 카테고리별 조회
     @Test
     @DisplayName("카테고리별로 상품을 조회해야한다. ")
-    void getEventsByCategoryTest() {
+    void findByCategoryTest() {
         // given
         String eventCategory = "생일파티";
         // when
-        List<Event> eventList = eventMapper.getEventsByCategory(eventCategory);
+        List<Event> eventList = eventMapper.findByCategory(eventCategory);
         // then
         assertEquals(10, eventList.size());
     }

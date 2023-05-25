@@ -18,9 +18,27 @@ public class EventService {
     private final EventMapper eventMapper;
 
     public List<EventListResponseDTO> findAll() {
-        List<Event> list = eventMapper.findAll();
-        return list.stream().map(EventListResponseDTO::new).collect(Collectors.toList());
+        List<Event> eventList = eventMapper.findAll();
+        return eventList.stream().map(event -> new EventListResponseDTO(event)).collect(Collectors.toList());
     }
+
+
+    public List<EventListResponseDTO> findByPrice(int priceNum) {
+        List<Event> eventList;
+        if (priceNum == 1) {
+            eventList = eventMapper.findByPriceDesc(priceNum);
+        } else {
+            eventList = eventMapper.findByPriceAsc(priceNum);
+        }
+
+        return eventList.stream().map(event -> new EventListResponseDTO(event)).collect(Collectors.toList());
+    }
+
+
+
+
+
+
 
 
 }

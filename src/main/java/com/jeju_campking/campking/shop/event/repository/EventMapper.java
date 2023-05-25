@@ -27,28 +27,26 @@ public interface EventMapper {
     List<Event> findAll();
 
 
-    // 이벤트장비 가격순 조회
+    // 이벤트장비 가격순 조회 (비싼 가격부터)
     @Select("SELECT \n" +
             "event_idx, event_name, event_price, event_info, event_category, event_img\n" +
             "FROM tb_event ORDER BY event_price DESC")
-    List<Event> findByPriceDesc();
+    List<Event> findByPriceDesc(int priceNum);
 
-
-    // 카테고리별로 가격순 조회
-    @Select("select\n" +
+    // 이벤트장비 가격순 조회 (싼 가격부터)
+    @Select("SELECT \n" +
             "event_idx, event_name, event_price, event_info, event_category, event_img\n" +
-            "FROM tb_event \n" +
-            "WHERE event_category = #{eventCategory} \n" +
-            "ORDER BY event_price DESC")
-    List<Event> findByCategoryAndPriceDesc(String eventCategory);
-
+            "FROM tb_event ORDER BY event_price ASC")
+    List<Event> findByPriceAsc(int priceNum);
 
 
     // 이벤트장비 카테고리별 조회
     @Select("SELECT event_idx, event_name, event_price, event_info, event_category, event_img " +
             "FROM tb_event " +
             "WHERE event_category = #{eventCategory}")
-    List<Event> getEventsByCategory(String eventCategory);
+    List<Event> findByCategory(String eventCategory);
+
+
 
 
     // 이벤트장비 개별조회
@@ -59,6 +57,13 @@ public interface EventMapper {
     List<Event> findOne(Long eventIdx);
 
 
+    // 카테고리별로 가격순 조회
+//    @Select("select\n" +
+//            "event_idx, event_name, event_price, event_info, event_category, event_img\n" +
+//            "FROM tb_event \n" +
+//            "WHERE event_category = #{eventCategory} \n" +
+//            "ORDER BY event_price DESC")
+//    List<Event> findByCategoryAndPriceDesc(String eventCategory);
 
 
 
