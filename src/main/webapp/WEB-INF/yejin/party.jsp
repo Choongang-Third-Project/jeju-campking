@@ -230,9 +230,13 @@
                     //tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/ ">';
 
 
-                    tag += "<li>" +
-                        "<div class='item_card clearfix'>" +
-                        "<div class='img-box'>";
+                    tag += "<li>";
+                        if(today<start) {
+                        tag+="<div class='item_card clearfix'>" ;
+                        } else{
+                            tag+="<div class='item_card clearfix' style='background:skyblue'>"; 
+                        }
+                        tag += "<div class='img-box'>";
 
                     // console.log(party);
                     // if (campTypeGlamping === "글램핑") {
@@ -270,7 +274,7 @@
                         "</div>" +
                         "</div>" +
                         "</li>"; 
-                    if(today>start) {
+                    if(today<start) {
                        tag += "</a>";
                     }
                 }
