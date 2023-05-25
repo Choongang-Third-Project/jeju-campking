@@ -1,3 +1,5 @@
+drop table tb_highcost;
+
 -- tb_highcost Table Create SQL
 -- 테이블 생성 SQL - tb_highcost
 CREATE TABLE tb_highcost
@@ -6,7 +8,7 @@ CREATE TABLE tb_highcost
     highcost_name      VARCHAR(20)     NOT NULL,
     highcost_price     INT(10)         NOT NULL,
     highcost_info      VARCHAR(200)    NOT NULL,
-    highcost_category  VARCHAR(10)     NOT NULL,
+    highcost_category  VARCHAR(20)     NOT NULL,
     highcost_img       VARCHAR(2000)   NOT NULL,
     PRIMARY KEY (highcost_idx)
 );
