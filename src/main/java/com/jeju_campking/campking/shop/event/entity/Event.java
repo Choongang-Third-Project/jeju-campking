@@ -12,8 +12,7 @@ public class Event {
     private String eventName;
     private Long eventPrice;
     private String eventInfo;
-
     private String eventCategory;
-    private Long eventWish;
+    private String eventImg;
 
 }
