@@ -219,7 +219,7 @@
         <div class="category-menu">
             <ul class="category-nav">
                 <div>
-                    <button id="item-adsfadsfdsaf" class="btn btn-primary">고가 장비</button>
+                    <button id="item-highcost" class="btn btn-primary">고가 장비</button>
                 </div>
                 <div>
                     <button id="item-event" class="btn btn-primary">이벤트 장비</button>
@@ -302,8 +302,11 @@
 
 <script>
 
+    const $itemContainer = document.getElementsByClassName('item-container')[0];
+
     const $itemFood = document.getElementById('item-food');
     const $itemEvent = document.getElementById('item-event');
+    const $itemHighcost = document.getElementById('item-highcost');
 
 
     $itemFood.onclick = e => {
@@ -312,6 +315,10 @@
 
     $itemEvent.onclick = e => {
         inputTag('/api/v1/items/event/');
+    }
+    
+    $itemHighcost.onclick = e => {
+        inputTag('/api/v1/items/highcost');
     }
 
 
@@ -326,7 +333,8 @@
             })
             .then(response => {
 
-                document.getElementsByClassName('item-container')[0].innerHTML = '';
+                $itemContainer.innerHTML = '';
+                $itemContainer.scrollTo(0, 0);
 
                 for (let input of response.payload) {
 
