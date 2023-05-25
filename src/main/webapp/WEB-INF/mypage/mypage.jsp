@@ -16,6 +16,7 @@
     <!-- css -->
     <link rel="stylesheet" href="/assets/mypage/css/mypage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <%-- js --%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -24,6 +25,9 @@
 </head>
 <body>
 <div class="mp-wrap">
+    <div class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+    </div>
     <!-- header -->
     <header>
 
@@ -383,6 +387,11 @@
             $updateBtn = document.querySelector('.update-btn');
             $updateBtn.onclick = e => {
                 window.location.href='/jeju-camps/mypage/update/' + memberNum;
+            }
+
+            // 뒤로가기 버튼 클릭 이벤트
+            document.querySelector('.back-btn').onclick = e => {
+              window.history.back();
             }
 
             // 메인 실행부

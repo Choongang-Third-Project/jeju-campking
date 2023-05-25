@@ -107,6 +107,14 @@ th, td, .party-num {
     text-align: center;
 }
 
+.back-btn {
+    font-size: 3em;
+    cursor: pointer;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+}
+
 footer {
     height: 300px;
     padding: 25px;

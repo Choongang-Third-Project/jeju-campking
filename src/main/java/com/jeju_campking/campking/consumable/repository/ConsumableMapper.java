@@ -2,6 +2,7 @@ package com.jeju_campking.campking.consumable.repository;
 
 
 import com.jeju_campking.campking.consumable.entity.Consumable;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -29,6 +30,7 @@ CREATE table TB_CONSUMABLE_WISH (
 */
 
 // TODO: 소모품 mapper
+@Mapper
 public interface ConsumableMapper {
     //전체 조회 기능
     @Select(
