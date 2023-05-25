@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -32,9 +31,19 @@
     <style>
     @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+        #wrapper {
+            position: relative;
+        }
         #wrapper .container {
             border: 1px solid #000;
             width: 80%;
+        }
+
+
+        #wrapper #back-btn {
+            position: fixed;
+            bottom: 5%;
+            left: 4.5%;
         }
 
 
@@ -421,6 +430,11 @@
         }
 
         /* -------- end btn-box hover -------- */
+
+
+
+
+
     </style>
 
 </head>
@@ -510,8 +524,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
 
-
     <div id="wrapper" class="flex justify-between flex-col items-center p-10">
+
+
+        <div id="back-btn" class="back-btn">
+            <a href="/jeju-camps/parties">
+                    <button class="btn">
+                        <i class="fa-solid fa-right-from-bracket fa-rotate-180"></i>
+                     </button>
+                </a>
+        </div>
 
         <div class="container flex justify-between flex-col items-center h-full">
 
@@ -663,12 +685,11 @@
                         <label for="modify-modal" class="btn btn-active btn-accent">수정하기</label>
                     </c:if>
                 </div>
-
+                
             </div>
-
+            
         </div>
-
-    
+        
         <!-- party join modal -->
         <input type="checkbox" id="my-modal-4" class="modal-toggle" />
         <label for="my-modal-4" class="modal cursor-pointer">
@@ -772,14 +793,15 @@
 
 
 
-
-            </label>
-        </label>    
-
-
-
+                  
+                </label>
+            </label>    
+            
+            
     </div>   
-
+            
+        
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
@@ -1090,12 +1112,6 @@
 
     diffday();
     setInterval(diffday, 1000);
-
-
-
-
-
-
 
 
 
