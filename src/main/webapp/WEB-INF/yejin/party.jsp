@@ -234,7 +234,7 @@
                         if(today<start) {
                         tag+="<div class='item_card clearfix'>" ;
                         } else{
-                            tag+="<div class='item_card clearfix' style='background:skyblue'>"; 
+                            tag+="<div class='item_card clearfix' style='background:#ccc; cursor: not-allowed;' >"; 
                         }
                         tag += "<div class='img-box'>";
 

@@ -14,7 +14,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/items/food/")
+@RequestMapping("/api/v1/items/food")
 @Slf4j
 public class FoodController {
 
@@ -38,5 +38,8 @@ public class FoodController {
         return ApplicationResponse.bad("요청 오류!!!! ERROR");
     }
 
-
+    @GetMapping("/category/{type}")
+    public ApplicationResponse<?> category(@PathVariable("type")int type){
+        return ApplicationResponse.ok(foodService.category(type));
+    }
 }

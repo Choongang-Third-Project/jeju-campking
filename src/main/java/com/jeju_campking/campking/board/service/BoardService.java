@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -109,8 +110,15 @@ public class BoardService {
     public List<Board> findRecentTwo(){
         log.info("boardService/findRecentTwo");
         List<Board> board = boardMapper.findRecentTwo();
+        List<Board> list = new ArrayList<>();
+        for (Board board1 : board) {
+            if(board1.getBoardTitle().length()>10) {
+                board1.setBoardTitle(board1.getBoardTitle().substring(0, 10));
+            }
+            list.add(board1);
+        }
         log.info("boardService.findRectTwo.info {}", board);
-        return board;
+        return list;
     }
 
 

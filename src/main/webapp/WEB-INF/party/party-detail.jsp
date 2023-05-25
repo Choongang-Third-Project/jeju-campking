@@ -1126,6 +1126,19 @@
       makepartyRegisterClickEvent();
     })();
 
+
+    const $dropContent = document.getElementById("drop-content");
+        const $btn = document.querySelector('.smbtn');
+
+        $btn.onclick = () => {
+            $dropContent.style.display = "block"; 
+        };
+
+        $btn.parentElement.onmouseleave = () => {
+            $dropContent.style.display = "none"; 
+        };
+
+
     </script>
 </body>
 

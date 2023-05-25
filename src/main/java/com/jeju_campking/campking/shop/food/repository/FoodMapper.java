@@ -52,10 +52,17 @@ public interface FoodMapper {
             "\tfood_price,\n" +
             "\tfood_info,\n" +
             "\tfood_category,\n" +
-            "\tfood_img\n" +
-            "  from tb_food\n" +
-            "  order by food_price asc;")
-    public List<Food> category();
+            "\tfood_img \n" +
+            "from tb_food\n" +
+            "where 1=1 \n" +
+            "\tand food_category = #{category}\n")
+    public List<Food> category(@Param("category")String category);
+
+
+
+
+
+
 
     @Insert("insert into tb_food " +
             "(food_name, " +
