@@ -525,11 +525,11 @@
                     <div class="avatar">
                         <div class="img w-24 rounded-full">
                             <!-- <img id="profile" src="/assets/party/img/profile.png" /> -->
-                            <c:if test="${detail.profileImg == null}">
+                            <c:if test="${detail.profileImage == null}">
                                 <img src="/assets/mypage/img/profile.png" alt="사진없음">
                             </c:if>
-                            <c:if test="${detail.profileImg != null}">
-                                <img src="/local${detail.profileImg}" alt="프사">
+                            <c:if test="${detail.profileImage != null}">
+                                <img src="/local${detail.profileImage}" alt="프사">
                             </c:if>
                         </div>
                     </div>
