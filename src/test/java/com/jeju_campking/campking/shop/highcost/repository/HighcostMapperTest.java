@@ -1,6 +1,7 @@
 package com.jeju_campking.campking.shop.highcost.repository;
 
 import com.jeju_campking.campking.shop.highcost.dto.response.HighcostResponseDTO;
+import com.jeju_campking.campking.shop.highcost.entity.Highcost;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +20,16 @@ class HighcostMapperTest {
     private HighcostMapper highcostMapper;
 
     @Test
-    @DisplayName("더미데이터 50개 생성 쿼리")
+    @DisplayName("더미데이터 50개 입력")
     void createDummyData() {
-        String[] nameList = {"'짱텐트", "'침침낭", "'테이블블", "'스토부"};
-        String[] infoList = {"'짱 좋은 텐트~ 방수탁월ㄷㄷ'", "'아주 좋은 침낭/매트~'", "'완전 비싼 테이블~'", "'성능 짱짱 스토브~'"};
-        String[] categoryList = {"'텐트'", "'침낭/매트'", "'테이블'", "'스토브'"};
-        String[] imageList = {"'/assets/shop/highcost/tent.jpg'",
-                "'/assets/shop/highcost/mat.jpg'",
-                "'/assets/shop/highcost/table.jpg'",
-                "'/assets/shop/highcost/stove.jpg'"};
-        Long[] priceList = {100000L, 200000L, 300000L, 400000L};
+        String[] nameList = {"짱텐트", "침침낭", "테이블블", "스토부"};
+        String[] infoList = {"짱 좋은 텐트~ 방수탁월ㄷㄷ", "아주 좋은 침낭/매트~", "완전 비싼 테이블~", "성능 짱짱 스토브~"};
+        String[] categoryList = {"텐트", "침낭/매트", "테이블", "스토브"};
+        String[] imageList = {"/assets/shop/highcost/tent.jpg",
+                "/assets/shop/highcost/mat.jpg",
+                "/assets/shop/highcost/table.jpg",
+                "/assets/shop/highcost/stove.jpg"};
+//        Long[] priceList = {100000L, 200000L, 300000L, 400000L};
         Random random = new Random();
 
         System.out.println("INSERT INTO tb_highcost (" +
@@ -39,14 +40,15 @@ class HighcostMapperTest {
                 "highcost_img)\n" +
                 "VALUES ");
         for (int i = 1; i <= 50; i++) {
-            int randomNum = random.nextInt(4); // 0,1,2,3 랜덤
-            System.out.println("(" +
-                    nameList[randomNum] + i + "', " +
-                    priceList[randomNum] + ", " +
-                    infoList[randomNum] + ", " +
-                    categoryList[randomNum] + ", " +
-                    imageList[randomNum] +
-                    "),");
+            int randomNum = (int) (Math.random() * 4); // 0 1 2 3
+            Long randomPrice = (long) ((Math.random() * 200000) + 100000);
+            highcostMapper.insertHighcost(Highcost.builder()
+                            .highcostName(nameList[randomNum] + i)
+                            .highcostPrice(randomPrice)
+                            .highcostInfo(infoList[randomNum])
+                            .highcostCategory(categoryList[randomNum])
+                            .highcostImg(imageList[randomNum])
+                            .build());
         }
     }
 
@@ -61,16 +63,16 @@ class HighcostMapperTest {
     }
 
     @Test
-    @DisplayName("장비번호가 10인 데이터의 카테고리는 '침낭/매트'여야 하고, 가격은 200,000원이어야 한다.")
+    @DisplayName("장비번호가 10인 데이터의 카테고리는 '침낭/매트'여야 하고, 가격은 259,361원이어야 한다.")
     void findOne() {
         // given
         Long highcostIdx = 10L;
         // when
         HighcostResponseDTO highcost = highcostMapper.findOne(highcostIdx);
         // then
-        assertEquals("침낭/매트", highcost.getHighcostCategory());
+        assertEquals("텐트", highcost.getHighcostCategory());
         System.out.println(highcost);
-        assertEquals("200,000원", highcost.getHighcostPrice());
+        assertEquals("259,361원", highcost.getHighcostPrice());
     }
 
     @Test

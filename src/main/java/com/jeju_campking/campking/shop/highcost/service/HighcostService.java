@@ -1,6 +1,7 @@
 package com.jeju_campking.campking.shop.highcost.service;
 
 import com.jeju_campking.campking.shop.highcost.dto.response.HighcostResponseDTO;
+import com.jeju_campking.campking.shop.highcost.entity.Highcost;
 import com.jeju_campking.campking.shop.highcost.repository.HighcostMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

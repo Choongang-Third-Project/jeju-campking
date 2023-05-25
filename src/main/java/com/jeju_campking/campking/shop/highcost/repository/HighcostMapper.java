@@ -1,13 +1,31 @@
 package com.jeju_campking.campking.shop.highcost.repository;
 
+import com.jeju_campking.campking.shop.food.entity.Food;
 import com.jeju_campking.campking.shop.highcost.dto.response.HighcostResponseDTO;
+import com.jeju_campking.campking.shop.highcost.entity.Highcost;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 @Mapper
 public interface HighcostMapper {
+
+    @Insert("insert into tb_highcost " +
+            "(highcost_name, " +
+            "highcost_price, " +
+            "highcost_info, " +
+            "highcost_category, " +
+            "highcost_img)\n" +
+            "values " +
+            "(#{highcost.highcostName}, " +
+            "#{highcost.highcostPrice}, " +
+            "#{highcost.highcostInfo}, " +
+            "#{highcost.highcostCategory}, " +
+            "#{highcost.highcostImg})\t")
+    int insertHighcost(Highcost highcost);
 
     @Select("SELECT\n" +
             "highcost_idx,\n" +
