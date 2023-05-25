@@ -44,6 +44,14 @@ public class EventController {
     }
 
 
+    @GetMapping("category/{categoryNum}")
+    public ApplicationResponse<?> findByCategory(@PathVariable int categoryNum) {
+
+        List<EventListResponseDTO> dtoList = eventService.findByCategory(categoryNum);
+        log.info("/api/v1/items/event/category - GET {}", dtoList);
+
+        return ApplicationResponse.ok(dtoList);
+    }
 
 
 
