@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,70 +19,79 @@ class HighcostMapperTest {
     private HighcostMapper highcostMapper;
 
     @Test
-    @DisplayName("더미데이터 400개 생성 쿼리")
+    @DisplayName("더미데이터 50개 생성 쿼리")
     void createDummyData() {
+        String[] nameList = {"'짱텐트", "'침침낭", "'테이블블", "'스토부"};
+        String[] infoList = {"'짱 좋은 텐트~ 방수탁월ㄷㄷ'", "'아주 좋은 침낭/매트~'", "'완전 비싼 테이블~'", "'성능 짱짱 스토브~'"};
+        String[] categoryList = {"'텐트'", "'침낭/매트'", "'테이블'", "'스토브'"};
+        String[] imageList = {"'/assets/shop/highcost/tent.jpg'",
+                "'/assets/shop/highcost/mat.jpg'",
+                "'/assets/shop/highcost/table.jpg'",
+                "'/assets/shop/highcost/stove.jpg'"};
+        Long[] priceList = {100000L, 200000L, 300000L, 400000L};
+        Random random = new Random();
+
         System.out.println("INSERT INTO tb_highcost (" +
-                "highcost_idx, \n" +
                 "highcost_name, \n" +
                 "highcost_price,\n" +
                 "highcost_info,\n" +
                 "highcost_category,\n" +
                 "highcost_img)\n" +
                 "VALUES ");
-        for (int i = 0; i < 400; i++) {
+        for (int i = 1; i <= 50; i++) {
+            int randomNum = random.nextInt(4); // 0,1,2,3 랜덤
             System.out.println("(" +
-                    i + ", " +
-                    "'고가장비" + i + "', " +
-                    (100000 + i) + ", " +
-                    "'짱조은 고가장비입니다~'" + ", " +
-                    "'텐트', " +
-                    i +
+                    nameList[randomNum] + i + "', " +
+                    priceList[randomNum] + ", " +
+                    infoList[randomNum] + ", " +
+                    categoryList[randomNum] + ", " +
+                    imageList[randomNum] +
                     "),");
         }
     }
 
     @Test
-    @DisplayName("고가장비의 전체 데이터의 개수는 400개여야 한다.")
+    @DisplayName("고가장비의 전체 데이터의 개수는 50개여야 한다.")
     void findAll() {
         // given
         // when
         List<HighcostResponseDTO> highcostList = highcostMapper.findAll();
         // then
-        assertEquals(400, highcostList.size());
+        assertEquals(50, highcostList.size());
     }
 
     @Test
-    @DisplayName("장비번호가 10인 데이터의 카테고리는 텐트여야 하고, 가격은 100,010원이어야 한다.")
+    @DisplayName("장비번호가 10인 데이터의 카테고리는 '침낭/매트'여야 하고, 가격은 200,000원이어야 한다.")
     void findOne() {
         // given
         Long highcostIdx = 10L;
         // when
         HighcostResponseDTO highcost = highcostMapper.findOne(highcostIdx);
         // then
-        assertEquals("텐트", highcost.getHighcostCategory());
+        assertEquals("침낭/매트", highcost.getHighcostCategory());
         System.out.println(highcost);
-        assertEquals("100,010원", highcost.getHighcostPrice());
+        assertEquals("200,000원", highcost.getHighcostPrice());
     }
 
     @Test
-    @DisplayName("카테고리가 텐트인 데이터의 개수는 100개여야 한다.")
+    @DisplayName("카테고리가 텐트인 데이터의 개수는 12개여야 한다.")
     void findByCategory() {
         // given
         String category = "텐트";
         // when
         List<HighcostResponseDTO> highcostListByCategory = highcostMapper.findByCategory(category);
         // then
-        assertEquals(100, highcostListByCategory.size());
+        assertEquals(12, highcostListByCategory.size());
     }
 
     @Test
-    @DisplayName("장비번호가 250번인 고가장비의 카테고리는 테이블이어야 한다.")
-    void findCategoryByHighcostNumber() {
+    @DisplayName("가격 내림차순으로 조회했을 때, 첫번째 데이터의 가격은 400,000원이어야 한다.")
+    void findByPriceAsc() {
         // given
-        Long highcostIdx = 250L;
+        int priceNumber = 1;
         // when
-        HighcostResponseDTO highcost = highcostMapper.findOne(highcostIdx);
+        List<HighcostResponseDTO> highcostListByPrice = highcostMapper.sortedByPriceDesc(priceNumber);
         // then
-        assertEquals("테이블", highcost.getHighcostCategory());
+        assertEquals("400,000원",highcostListByPrice.get(0).getHighcostPrice());
     }
 }

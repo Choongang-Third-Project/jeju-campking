@@ -44,6 +44,7 @@ public interface HighcostMapper {
     List<HighcostResponseDTO> findByCategory(String category);
 
     @Select("select\n" +
+            "highcost_idx,\n" +
             "highcost_name,\n" +
             "highcost_price,\n" +
             "highcost_info,\n" +
@@ -55,6 +56,7 @@ public interface HighcostMapper {
     List<HighcostResponseDTO> sortedByPriceAsc(int priceNumber);
 
     @Select("select\n" +
+            "highcost_idx,\n" +
             "highcost_name,\n" +
             "highcost_price,\n" +
             "highcost_info,\n" +
@@ -66,6 +68,7 @@ public interface HighcostMapper {
     List<HighcostResponseDTO> sortedByPriceDesc(int priceNumber);
 
     @Select("select\n" +
+            "highcost_idx,\n" +
             "highcost_name,\n" +
             "highcost_price,\n" +
             "highcost_info,\n" +
@@ -77,6 +80,7 @@ public interface HighcostMapper {
     List<HighcostResponseDTO> sortedByPopularAsc(int popularNumber);
 
     @Select("select\n" +
+            "highcost_idx,\n" +
             "highcost_name,\n" +
             "highcost_price,\n" +
             "highcost_info,\n" +
