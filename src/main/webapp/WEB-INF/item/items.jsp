@@ -225,7 +225,7 @@
                     <button id="item-event" class="btn btn-primary">이벤트 장비</button>
                 </div>
                 <div>
-                    <button id="item-adsfadsfdsaf" class="btn btn-primary">소모품</button>
+                    <button id="item-C" class="btn btn-primary">소모품</button>
                 </div>
                 <div>
                     <button id="item-food" class="btn btn-primary">음식</button>
@@ -310,6 +310,7 @@
     const $itemFood = document.getElementById('item-food');
     const $itemEvent = document.getElementById('item-event');
     const $itemHighcost = document.getElementById('item-highcost');
+    const $itemC = document.getElementById('item-C');
 
     // 가격순 보기
     const $priceSort = document.getElementById('price-sort');
@@ -325,6 +326,11 @@
         console.log('--------------------------------------');
 
         inputTag(`/api/v1/items/` + type + `/price/` + typeNumber);
+    }
+
+    $itemC.onclick = e => {
+        type = 'c';
+        inputTag('/api/v1/items/c');
     }
 
     $itemFood.onclick = e => {
