@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -23,7 +24,7 @@ public class FoodService {
     public List<FoodResponseDTO> findAll(){
         List<Food> foodList = foodMapper.findAll();
 
-        List<FoodResponseDTO> list = foodList.stream().map(FoodResponseDTO::convertFood).toList();
+        List<FoodResponseDTO> list = foodList.stream().map(FoodResponseDTO::convertFood).collect(Collectors.toList());();
         log.info("food findAll {} ", list);
 
         return list;
