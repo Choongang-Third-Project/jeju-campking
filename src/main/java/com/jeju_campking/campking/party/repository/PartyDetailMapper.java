@@ -17,6 +17,7 @@ public interface PartyDetailMapper {
             "P.party_end_date,\n" +
             "P.party_size,\n" +
             "P.member_number,\n" +
+            "P.camp_number,\n" +
             "M.member_nickname,\n" +
             "M.profile_image\n" +
             "FROM TB_PARTY AS P\n" +
