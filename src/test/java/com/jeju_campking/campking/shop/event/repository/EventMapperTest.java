@@ -1,8 +1,6 @@
 package com.jeju_campking.campking.shop.event.repository;
 
-import com.jeju_campking.campking.shop.event.dto.EventResponseDTO;
 import com.jeju_campking.campking.shop.event.entity.Event;
-import com.jeju_campking.campking.shop.event.repository.EventMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
