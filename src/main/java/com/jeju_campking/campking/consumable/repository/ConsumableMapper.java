@@ -2,6 +2,9 @@ package com.jeju_campking.campking.consumable.repository;
 
 
 import com.jeju_campking.campking.consumable.entity.Consumable;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -29,7 +32,18 @@ CREATE table TB_CONSUMABLE_WISH (
 */
 
 // TODO: 소모품 mapper
+@Mapper
 public interface ConsumableMapper {
+
+    // 소모품 등록 (벌크테스트용)
+    @Insert("insert into TB_CONSUMABLE\n" +
+            "(consumable_name,consumable_price,consumable_info,consumable_category,consumable_img)\n" +
+            "values\n" +
+            "(#{consumable.consumableName},#{consumable.consumablePrice},#{consumable.consumableInfo},#{consumable.consumableCategory},#{consumable.consumableImg})")
+    int insertConsumable(@Param("consumable")Consumable consumable);
+
+
+
     //전체 조회 기능
     @Select(
         "SELECT \n" +
@@ -79,6 +93,15 @@ public interface ConsumableMapper {
                     "ORDER BY consumable_price ASC"
     )
     List<Consumable> priceLowList(int priceNum);
+
+
+    // 이벤트장비 개별조회
+    @Select("select\n" +
+            "consumable_idx,consumable_name,consumable_price,consumable_info,consumable_category,consumable_img \n" +
+            "from TB_CONSUMABLE \n" +
+            "where consumable_idx = #{consumableIdx}")
+    List<Consumable> findOne(Long consumableidx);
+
 
 
     //찜갯수(인기) 별로 보여주기
