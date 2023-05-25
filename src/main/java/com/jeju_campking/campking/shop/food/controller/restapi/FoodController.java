@@ -14,7 +14,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/items/food/")
+@RequestMapping("/api/v1/items/food")
 @Slf4j
 public class FoodController {
 
@@ -29,7 +29,7 @@ public class FoodController {
         return ApplicationResponse.ok(list);
     }
 
-    @GetMapping("price/{sort}")
+    @GetMapping("/price/{sort}")
     public ApplicationResponse<?> priceOrder(@PathVariable("sort") int sort){
         if(sort==1)
             return ApplicationResponse.ok(foodService.priceDesc());

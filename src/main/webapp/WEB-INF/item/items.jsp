@@ -238,7 +238,7 @@
             <div class="main-box">
                 <ul class="sort-nav">
                     <button class="btn btn-primary">인기순</button>
-                    <button class="btn btn-primary">가격순</button>
+                    <button id="price-sort" class="btn btn-primary">가격순</button>
                     <button class="btn btn-primary">카테고리</button>
                 </ul>
 
@@ -301,23 +301,44 @@
 
 
 <script>
-
     const $itemContainer = document.getElementsByClassName('item-container')[0];
 
+    let type = '';
+    let typeNumber = 1;
+
+    // 카테코리별 보기
     const $itemFood = document.getElementById('item-food');
     const $itemEvent = document.getElementById('item-event');
     const $itemHighcost = document.getElementById('item-highcost');
 
+    // 가격순 보기
+    const $priceSort = document.getElementById('price-sort');
+
+    $priceSort.onclick = e => {
+        if (typeNumber === 1) typeNumber = 2;
+        else typeNumber = 1;
+
+        console.log('--------------------------------------');
+        console.log(`/api/v1/items/` + type + `/price/` + typeNumber);
+        console.log(type);
+        console.log(typeNumber);
+        console.log('--------------------------------------');
+
+        inputTag(`/api/v1/items/` + type + `/price/` + typeNumber);
+    }
 
     $itemFood.onclick = e => {
-        inputTag('/api/v1/items/food/');
+        type = 'food';
+        inputTag('/api/v1/items/food');
     }
 
     $itemEvent.onclick = e => {
-        inputTag('/api/v1/items/event/');
+        type = 'event';
+        inputTag('/api/v1/items/event');
     }
     
     $itemHighcost.onclick = e => {
+        type = 'highcost';
         inputTag('/api/v1/items/highcost');
     }
 
