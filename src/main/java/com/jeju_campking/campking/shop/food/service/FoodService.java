@@ -30,7 +30,15 @@ public class FoodService {
         return list;
     }
 
+    @Transactional
+    public List<FoodResponseDTO> priceDesc(){
+        List<Food> foodList = foodMapper.priceDesc();
+        return foodList.stream().map(FoodResponseDTO::convertFood).collect(Collectors.toList());
+    }
 
-
-
+    @Transactional
+    public List<FoodResponseDTO> priceAsc(){
+        List<Food> foodList = foodMapper.priceAsc();
+        return foodList.stream().map(FoodResponseDTO::convertFood).collect(Collectors.toList());
+    }
 }

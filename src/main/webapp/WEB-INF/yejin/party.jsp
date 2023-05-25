@@ -202,13 +202,19 @@
                         memberNumber,
                         campNumber
                     } = party;
-
-
+                    
+                    
+                    var today = new Date();  
+                    var start = new Date(partyStartDate);
+                    console.log(start);  
                     //console.log(partyNumber);
 
 
-                    // console.log(party);
-                    if (campTypeGlamping) {
+                    // console.log(party);  
+
+                    if(today<start) {
+                    
+                        if (campTypeGlamping) {
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/glamping">';
                     } else if (campTypeCar) {
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/car">';
@@ -217,7 +223,7 @@
                     } else  {
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/normal">';
                     }
-
+                    } 
 
 
 
@@ -263,8 +269,10 @@
                         "by" + memberNickName +
                         "</div>" +
                         "</div>" +
-                        "</li>" +
-                       "</a>";
+                        "</li>"; 
+                    if(today>start) {
+                       tag += "</a>";
+                    }
                 }
 
                 // 생성된 파티 tag 렌더링
