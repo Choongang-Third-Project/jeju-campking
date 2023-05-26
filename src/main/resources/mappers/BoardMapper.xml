@@ -41,8 +41,8 @@
         board_view,
         board_recommend
         FROM TB_BOARD
-        WHERE board_title LIKE CONCAT('%',#{keyword},'%')
-        OR board_content LIKE CONCAT('%',#{keyword},'%')
+        WHERE board_title LIKE CONCAT('%',#{k},'%')
+        OR board_content LIKE CONCAT('%',#{k},'%')
         ORDER BY board_number desc
         LIMIT #{p.pageStart}, #{p.amount};
     </select>
