@@ -4,6 +4,7 @@ header {
     height: 150px;
     background-color: rgba(0, 0, 0, 0.4);
     margin-bottom: 50px;
+    background: url('../img/header.png') no-repeat center / cover fixed;
 }
 
 .inner-header {
@@ -131,8 +132,9 @@ header {
 
 .inner-header .tnb li:nth-child(3) {
     margin-top: 15px;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
+    border-radius: 5%;
     /* overflow: hidden; */
     /* border: 4px solid red; */
 }

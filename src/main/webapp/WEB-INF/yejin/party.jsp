@@ -15,6 +15,11 @@
         <link rel="stylesheet" href="/assets/include/common.css">
         <link rel="stylesheet" href="/assets/party/css/susu.css">
         <link rel="stylesheet" href="/assets/footer/css/footer.css">
+        <link rel="stylesheet" href="/assets/header/css/header.css">
+
+        
+            <!-- favicon -->
+        <link rel="icon" type="image/x-icon" href="/assets/header/img/camp.ico">
         <style>
 
         </style>
@@ -57,14 +62,16 @@
         
                         <li>
                             <button>
-                                <div class="indicator">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                    </svg>
-                                    <span class="badge badge-xs badge-primary indicator-item">${count}</span>
-                                </div>
+                                <a href='/jeju-camps/mypage/${LOGIN.memberNumber}'>
+                                    <div class="indicator">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                        </svg>
+                                        <span class="badge badge-xs badge-primary indicator-item">${count}</span>
+                                    </div>
+                                </a>
                             </button>
                         </li>
         
@@ -108,7 +115,7 @@
             같이 갈 사람 😁
         </h1>
         <button class="write" id="writebtn">글쓰기</button>
-        <div class="orderby">정렬</div>
+        <!-- <div class="orderby">정렬</div> -->
         <nav>
             <div class="roundbar">
 
@@ -122,10 +129,10 @@
                 </div>
 
 
-                <input id="search_content" class="search" type="text">
+               <!-- <input id="search_content" class="search" type="text">
                 <span class="material-symbols-outlined" id="search_btn">
                     search
-                </span>
+                </span> -->
             </div>
         </nav>
 
@@ -197,13 +204,19 @@
                         memberNumber,
                         campNumber
                     } = party;
-
-
+                    
+                    
+                    var today = new Date();  
+                    var start = new Date(partyStartDate);
+                    console.log(start);  
                     //console.log(partyNumber);
 
 
-                    // console.log(party);
-                    if (campTypeGlamping) {
+                    // console.log(party);  
+
+                    if(today<start) {
+                    
+                        if (campTypeGlamping) {
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/glamping">';
                     } else if (campTypeCar) {
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/car">';
@@ -212,16 +225,20 @@
                     } else  {
                         tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/normal">';
                     }
-
+                    } 
 
 
 
                     //tag += '<a href="/jeju-camps/parties/'+ partyNumber +'/ ">';
 
 
-                    tag += "<li>" +
-                        "<div class='item_card clearfix'>" +
-                        "<div class='img-box'>";
+                    tag += "<li>";
+                        if(today<start) {
+                        tag+="<div class='item_card clearfix'>" ;
+                        } else{
+                            tag+="<div class='item_card clearfix' style='background:#ccc; cursor: not-allowed;' >"; 
+                        }
+                        tag += "<div class='img-box'>";
 
                     // console.log(party);
                     // if (campTypeGlamping === "글램핑") {
@@ -258,8 +275,10 @@
                         "by" + memberNickName +
                         "</div>" +
                         "</div>" +
-                        "</li>" +
-                       "</a>";
+                        "</li>"; 
+                    if(today<start) {
+                       tag += "</a>";
+                    }
                 }
 
                 // 생성된 파티 tag 렌더링
@@ -311,14 +330,14 @@
 
 
         // 검색 하기 기능 
-        const $search = document.getElementById('search_content');
-        // 돋보기 버튼 누르면 검색
-        const $searchbtn = document.getElementById('search_btn');
-        $searchbtn.onclick = e => {
-            // 필터링해서 가져오기  <- 백엔드에서 구현하기 
-            // 필터링한 데이터 랜더링함수
-            getSearchPartyList();
-        }
+        // const $search = document.getElementById('search_content');
+        // // 돋보기 버튼 누르면 검색
+        // const $searchbtn = document.getElementById('search_btn');
+        // $searchbtn.onclick = e => {
+        //     // 필터링해서 가져오기  <- 백엔드에서 구현하기 
+        //     // 필터링한 데이터 랜더링함수
+        //     getSearchPartyList();
+        // }
 
         // 키워드 검색 파티 게시물 리스트 불러오기함수 
         function getSearchPartyList() {

@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <%@ include file = "../include/static-head.jsp" %>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -143,9 +143,9 @@
             <!-- 가입하기 버튼 -->
             <div class="btn-area">
                  <input type="button" id="signup-btn" value="가입하기">
-                <a href="/member/login">
+                <!-- <a href="/member/login">
                     <input type="button" id="login-btn" value="바로 로그인하기">
-                </a>
+                </a> -->
 
             </div>
     </form>

@@ -23,7 +23,7 @@ public interface BoardMapper {
 
     List<Board> findAll(Page page);
 
-    List<Board> findByKeyword(String keyword, @Param("p") Page page);
+    List<Board> findByKeyword(@Param("k")String keyword, @Param("p") Page page);
 
     BoardDetailResponseDTO findOne(Long boardNumber);
 

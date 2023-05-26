@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -8,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jeju Camp King</title>
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +15,10 @@
     <!-- 폰트어썸 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/68f79e919f.js" crossorigin="anonymous"></script>
-    <!-- footer css -->
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/header/img/camp.ico">
+    <!-- header, footer css -->
+    <link rel="stylesheet" href="/assets/header/css/header.css">
     <link rel="stylesheet" href="/assets/footer/css/footer.css">
     <!-- toaster set -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
@@ -29,9 +31,19 @@
     <style>
     @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+        #wrapper {
+            position: relative;
+        }
         #wrapper .container {
             border: 1px solid #000;
             width: 80%;
+        }
+
+
+        #wrapper #back-btn {
+            position: fixed;
+            bottom: 5%;
+            left: 4.5%;
         }
 
 
@@ -418,18 +430,112 @@
         }
 
         /* -------- end btn-box hover -------- */
+
+
+
+
+
     </style>
 
 </head>
 
 <body>
+
+    <header>
+        <div class="inner-header">
+            <div class="logo">
+                <a href="/jeju-camps">
+                    <img src="/assets/header/img/logo02.png" alt="">
+                </a>
+            </div>
+    
+            <nav class="gnb">
+                <ul>
+                    <li><a href="/jeju-camps/notices">공지사항</a></li>
+                    <li><a href="/jeju-camps/info">캠핑장</a></li>
+                    <li><a href="/jeju-camps/parties">같이갈사람</a></li>
+                </ul>
+                <!-- <ul class="api">
+                    <li>날씨 맑음</li>
+                    <li>미세먼지 없음</li>
+                </ul> -->
+            </nav>
+    
+            <nav class="tnb">
+                <ul>
+    
+                    <li>
+                        <p>
+                            <c:if test="${LOGIN == null}">
+                                침입자
+                            </c:if>
+                            <c:if test="${LOGIN != null}">
+                                ${LOGIN.memberNickname}님
+                            </c:if>
+                        </p>
+                    </li>
+    
+                    <li>
+                        <button>
+                            <a href='/jeju-camps/mypage/${LOGIN.memberNumber}'>
+                                <div class="indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                    </svg>
+                                    <span class="badge badge-xs badge-primary indicator-item">${count}</span>
+                                </div>
+                            </a>
+                        </button>
+                    </li>
+    
+                    <li>
+                        <div class="profile dropdowns">
+                            <button class="smbtn">
+                                <div class="profile-box">
+                                    <c:if test="${LOGIN == null || LOGIN.profile == null}">
+                                        <img src="/assets/mypage/img/profile.png" alt="미로그인">
+                                    </c:if>
+                                    <c:if test="${LOGIN != null && LOGIN.profile != null}">
+                                        <img src="/local${LOGIN.profile}" alt="프사">
+                                    </c:if>
+                                   
+                                </div>
+                            </button>
+                            <div id="drop-content">
+                                <a href='/jeju-camps/mypage/${LOGIN.memberNumber}'>마이페이지</a>
+                                <a href='/member/logout'>로그아웃</a>
+                            </div>
+                        </div>
+                    </li>
+    
+                    <li> 오늘은 어디로 떠나세요?</li>
+    
+                </ul>
+            </nav>
+    
+    
+        </div>
+      </header>
+
+
+
     <!-- set-up -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
 
-
     <div id="wrapper" class="flex justify-between flex-col items-center p-10">
+
+
+        <div id="back-btn" class="back-btn">
+            <a href="/jeju-camps/parties">
+                    <button class="btn">
+                        <i class="fa-solid fa-right-from-bracket fa-rotate-180"></i>
+                     </button>
+                </a>
+        </div>
 
         <div class="container flex justify-between flex-col items-center h-full">
 
@@ -443,11 +549,11 @@
                     <div class="avatar">
                         <div class="img w-24 rounded-full">
                             <!-- <img id="profile" src="/assets/party/img/profile.png" /> -->
-                            <c:if test="${LOGIN == null || LOGIN.profile == null}">
+                            <c:if test="${detail.profileImage == null}">
                                 <img src="/assets/mypage/img/profile.png" alt="사진없음">
                             </c:if>
-                            <c:if test="${LOGIN != null && LOGIN.profile != null}">
-                                <img src="/local${LOGIN.profile}" alt="프사">
+                            <c:if test="${detail.profileImage != null}">
+                                <img src="/local${detail.profileImage}" alt="프사">
                             </c:if>
                         </div>
                     </div>
@@ -581,26 +687,11 @@
                         <label for="modify-modal" class="btn btn-active btn-accent">수정하기</label>
                     </c:if>
                 </div>
-
+                
             </div>
-
+            
         </div>
-
-
-        <!-- footer -->   
-        <footer>
-            <div class="foot-wrapper">
-                <h3>CAMPKING</h3>
-                <div class="foot">
-                    <p>주식회사 캠프킹 | 대표이사 : 홍순구 | 사업자 등록번호 : 000-00-000000</p>
-                    <p>국내여행업 등록번호 : 2023-0000000호 | 자동차대여사업 등록번호 : 서울시 2023-00호 | 통신판매 신고번호 : 2023-서울강남-00000호</p>
-                    <p>대표전화 : 02-000-0000 | 팩스 : 0000-000-0000 | E-mail : info@campking.cooom</p>
-                    <p>Copyright ⓒ CampKing inc.</p>
-                </div>
-            </div>
-        </footer>
-
-    
+        
         <!-- party join modal -->
         <input type="checkbox" id="my-modal-4" class="modal-toggle" />
         <label for="my-modal-4" class="modal cursor-pointer">
@@ -613,7 +704,7 @@
                         <div class="party-chat artboard artboard-demo phone-1 flex justify-between">
 
                             <div class="content-box flex justify-center items-center">
-                                <div class="title">보낸 메시지</div>
+                                <div class="title"></div>
                             </div>
 
                             <div class="chat-box flex flex-col w-full">
@@ -696,7 +787,7 @@
                         <label for="content" class="modify-content">수정할 내용</label>
                         <!--  여러줄의 데이터를 입력하고 하고자 할때 textarea 태그를 사용한다. -->
                         <!--  textarea 안에 있는 모든 글자는 그대로 나타난다. 공백문자, tag, enter -->
-                        <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용 작성"></textarea>
+                        <textarea class="form-control" rows="5" id="content-modify" name="content" placeholder="내용 작성"></textarea>
                       </div>
                       <button id="modifyBtn" type="submit" class="btn btn-default">수정 완료</button>
                     <!-- </form> -->
@@ -704,15 +795,15 @@
 
 
 
-
-            </label>
-        </label>    
-
-
-
-    </div>
+                  
+                </label>
+            </label>    
+            
+            
+    </div>   
+            
+        
     
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
@@ -736,19 +827,11 @@
             "hideMethod": "fadeOut"
         }
 
-        // $('.btn-remove').on('click', function () {
-        //     toastr.error('삭제 권한이 없습니다!');
-        // });
-        // $('.btn-modify').on('click', function () {
-        //     toastr.warning('수정 권한이 없습니다!');
-        // });
-        // toastr.success('메세지가 성공적으로 보내졌습니다!');
-        // toastr.error('삭제 권한이 없습니다!');
-        // toastr.warning('수정 권한이 없습니다!');
     </script>
 
 
     <script>
+        console.log('${detail}');
         const loginMember = +'${LOGIN.memberNumber}';
         const partyMember = +'${detail.memberNumber}';
         const $partyNumber = +'${detail.partyNumber}';
@@ -776,7 +859,7 @@
         });
 
 
-        $enterKey.addEventListener('keydown', (e) => {
+        $enterKey.addEventListener('keypress', (e) => {
 
             if (e.code === 'Enter') {
 
@@ -921,7 +1004,7 @@
         // 게시물 제목
         const $title = document.getElementById('inputTitle');
         // 게시물 내용
-        const $content = document.querySelector('.form-control');
+        const $content = document.getElementById('content-modify');
         //  파티원 정원 수
         const $count = document.getElementById('people_count');
         //시작 날짜
@@ -1035,12 +1118,6 @@
 
 
 
-
-
-
-
-
-
     //메인 실행부
     (function() {
 
@@ -1050,6 +1127,19 @@
       // 게시글 등록 처리 이벤트
       makepartyRegisterClickEvent();
     })();
+
+
+    const $dropContent = document.getElementById("drop-content");
+        const $btn = document.querySelector('.smbtn');
+
+        $btn.onclick = () => {
+            $dropContent.style.display = "block"; 
+        };
+
+        $btn.parentElement.onmouseleave = () => {
+            $dropContent.style.display = "none"; 
+        };
+
 
     </script>
 </body>

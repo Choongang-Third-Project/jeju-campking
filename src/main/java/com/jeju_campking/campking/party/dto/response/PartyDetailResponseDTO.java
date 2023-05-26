@@ -16,9 +16,9 @@ public class PartyDetailResponseDTO {
     private String partyStartDate;
     private String partyEndDate;
     private String partySize;
-
-    private String memberNickname;
     private Long memberNumber;
     private Long campNumber;
+    private String memberNickname;
+    private String profileImage;
 
 }

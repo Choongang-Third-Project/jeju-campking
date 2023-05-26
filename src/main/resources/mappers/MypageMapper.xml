@@ -35,6 +35,7 @@
         JOIN tb_member M
         ON P.party_message_sender = M.member_number
         WHERE party_message_sender = #{memberNumber}
+        ORDER BY P.party_message_time desc
     </select>
 
     <select id="findReceiveMessage" resultType="partyPartyMessageDTO">
@@ -48,6 +49,7 @@
         JOIN tb_member M
         ON P.party_message_sender = M.member_number
         WHERE party_message_recipient = #{memberNumber}
+        ORDER BY P.party_message_time desc
     </select>
 
     <delete id="removeParty">

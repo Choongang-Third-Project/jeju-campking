@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    
-    <link rel="stylesheet" href="/assets/header/css/header.css">
    
    <style>
         
@@ -240,14 +239,16 @@
 
                 <li>
                     <button>
-                        <div class="indicator">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        <a href='/jeju-camps/mypage/${LOGIN.memberNumber}'>
+                            <div class="indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                            </svg>
-                            <span class="badge badge-xs badge-primary indicator-item">${count}</span>
-                        </div>
+                                </svg>
+                                <span class="badge badge-xs badge-primary indicator-item">${count}</span>
+                            </div>
+                        </a>
                     </button>
                 </li>
 
@@ -285,11 +286,12 @@
         <div class="author">
             <div class="profile-image">
                 <!-- 프로필 이미지 -->
-                <c:if test="${LOGIN == null || LOGIN.profile == null}">
+                <c:if test="${board.profileImage == null}">
                     <img src="/assets/mypage/img/profile.png" alt="사진없음">
                 </c:if>
-                <c:if test="${LOGIN != null && LOGIN.profile != null}">
-                    <img src="/local${LOGIN.profile}" alt="프사">
+                <c:if test="${board.profileImage != null}">
+                <img src="/local${board.profileImage}" alt="프사">
+                  
                 </c:if>
             </div>
             <div class="notice-info">
@@ -619,7 +621,7 @@
                         }
                     tag+='</div>';
                   tag+='</div>';
-                tag+='<div class="reply-text" style="display:block">'+replyContent+'</div>';
+                tag+='<div class="reply-text" style="display:block; padding-left: 5%;">'+replyContent+'</div>';
                 tag+='<div class="reply-text2" style="display:none">';
                     tag+='<input type="text" value="'+replyContent+'" class=" input input-bordered input-primary w-full max-w-xs"/>';
                     tag+='<button class="btn btn-primary" id="replyOk" data-replyNum='+replyNumber+'>확인</button>';

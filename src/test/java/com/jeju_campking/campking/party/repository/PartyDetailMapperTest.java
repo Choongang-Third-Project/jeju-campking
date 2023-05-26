@@ -17,7 +17,7 @@ class PartyDetailMapperTest {
     @Test
     @DisplayName("detail View Test")
     void detailViewTest() {
-        Long partyNumber = 3L;
+        Long partyNumber = 27L;
         PartyDetailResponseDTO partyDetailResponseDTO = partyDetailMapper.detailView(partyNumber);
         System.out.println("partyDetailResponseDTO = " + partyDetailResponseDTO);
     }

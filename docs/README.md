@@ -84,23 +84,21 @@ timeline
             : 🎯
             : [Back] 마이페이지 프로필 사진 처리
             : [Back] 파티 모집 게시판 디데이 구현
-    2023-05-24: []
-            : [Front] 
-            : [Front] 
+    2023-05-24: [✅] 캠프킹의 장비 REST API
+            : [Front] 음식 카테고리 구현
+            : [Front] 이벤트 카테고리 구현
             : 🎯
-            : [Back]
-            : [Back]
-    2023-05-25: []
-            : [Front]
-            : [Front]
+            : [Back] 음식 카테고리 구현
+            : [Back] 이벤트 카테고리 구현
+    2023-05-25: [✅] 발표 준비
+            : [docs] PPT 작성
+            : [Front] 캠프킹의 장비 페이지 연결
             : 🎯
+            : [Back] bug hotfix
             : [Back] 
-            : [Back] 
-    2023-05-26: [] 프로젝트 발표
-            : [Front]
+    2023-05-26: [✅] 프로젝트 발표
             : [Front]
             : 🎯
-            : [Back]
             : [Back]
 ```
 
@@ -384,6 +382,46 @@ erDiagram
 
 ```
 
+### 📜 캠프킹의 장비
+
+```mermaid
+erDiagram
+    TB_WISH ||--o{ TB_EVENT: wish-event
+    TB_WISH ||--o{ TB_FOOD: wish-food
+    TB_WISH ||--o{ TB_HIGHCOST: wish-highcost
+
+    TB_WISH {}
+        
+    TB_EVENT {
+        event_idx INT(10) PK "AUTO_INCREMENT = 3000"
+        event_name VARCHAR(20) "NOT NULL"
+        event_price INT(10) "NOT NULL"
+        event_info VARCHAR(200) "NOT NULL"
+        event_category VARCHAR(20) "NOT NULL"
+        event_img VARCHAR(2000) "NOT NULL"
+    }
+
+    TB_FOOD {
+        food_idx INT(10) PK "AUTO_INCREMENT = 3000"
+        food_name VARCHAR(20) "NOT NULL"
+        food_price INT(10) "NOT NULL"
+        food_info VARCHAR(200) "NOT NULL"
+        food_category VARCHAR(20) "NOT NULL"
+        food_img VARCHAR(2000) "NOT NULL"
+    }
+
+    TB_HIGHCOST {
+        highcost_idx INT(10) PK "AUTO_INCREMENT"
+        highcost_name VARCHAR(20) "NOT NULL"
+        highcost_price INT(10) "NOT NULL"
+        highcost_info VARCHAR(200) "NOT NULL"
+        highcost_category VARCHAR(20) "NOT NULL"
+        highcost_img VARCHAR(2000) "NOT NULL"
+    }
+    
+    
+```
+
 <br>
 <br>
 <br>
@@ -392,6 +430,30 @@ erDiagram
 ### 📍 MindMap
 
 ---
+
+
+#### 📌 2023.05.22 ~ 2023.05.26 V3.0.0
+
+<br>
+
+```mermaid
+mindmap
+  root((Campking App))
+    BugFix
+        프로필 사진
+        쪽지 보내기
+        Http Request, Response error
+    캠프킹의 장비
+     고가장비
+        전체 조회
+        가격순 정렬
+     이벤트장비
+        전체 조회
+        가격순 정렬
+     음식
+        전체 조회
+        가격순 정렬
+```
 
 <br>
 
