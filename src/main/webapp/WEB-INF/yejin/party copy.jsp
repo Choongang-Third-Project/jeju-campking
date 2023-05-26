@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<<<<<< HEAD
-=======
 <button%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
->>>>>>> feat/lkd/partyModify
     <!DOCTYPE html>
     <html>
 
@@ -25,7 +22,6 @@
     </head>
 
     <body>
-<<<<<<< HEAD
         <header>
             <div class="inner-header">
                 <div class="logo">
@@ -62,14 +58,16 @@
         
                         <li>
                             <button>
-                                <div class="indicator">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                    </svg>
-                                    <span class="badge badge-xs badge-primary indicator-item">${count}</span>
-                                </div>
+                                <a href='/jeju-camps/mypage/${LOGIN.memberNumber}'>
+                                    <div class="indicator">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                        </svg>
+                                        <span class="badge badge-xs badge-primary indicator-item">${count}</span>
+                                    </div>
+                                </a>
                             </button>
                         </li>
         
@@ -102,12 +100,10 @@
             </div>
           </header>
         
-=======
         <!-- set-up -->        
         <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
         <script src="https://cdn.tailwindcss.com"></script>
 
->>>>>>> feat/lkd/partyModify
 
         <h1 class="title">
             같이 갈 사람 😁
