@@ -31,7 +31,7 @@ public class Consumable {
     private String consumableName;
     private int consumablePrice;
     private String consumableInfo;
-    private String consumableCatagory;
+    private String consumableCategory;
     private Long consumableWish;
     private String consumableImg;
 

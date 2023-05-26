@@ -16,20 +16,20 @@ import java.util.stream.Collectors;
 public class ConsumableService {
     private final ConsumableMapper consumableMapper;
 
-    public List<ConsumableResponseDTO> findAll(){
+    public List<ConsumableResponseDTO> findAll() {
         List<Consumable> consumableList = consumableMapper.findAll();
         return consumableList.stream().map(consumable -> new ConsumableResponseDTO(consumable)).collect(Collectors.toList());
     }
 
-    public List<ConsumableResponseDTO> findByCategory(int categoryNum){
+    public List<ConsumableResponseDTO> findByCategory(int categoryNum) {
         String category = null;
-        if(categoryNum == 1){
+        if (categoryNum == 1) {
             category = "토치";
-        } else if(categoryNum == 2){
+        } else if (categoryNum == 2) {
             category = "장작";
-        } else if(categoryNum == 3){
+        } else if (categoryNum == 3) {
             category = "랜턴";
-        } else if(categoryNum == 4) {
+        } else if (categoryNum == 4) {
             category = "물티슈";
         }
         List<Consumable> consumableList = consumableMapper.findByCategory(category);
@@ -39,20 +39,13 @@ public class ConsumableService {
     public List<ConsumableResponseDTO> findByPrice(int priceNum) {
 
         List<Consumable> consumableList;
-        if(priceNum == 1) {
+        if (priceNum == 1) {
             consumableList = consumableMapper.priceHighList(priceNum);
-        } else{
+        } else {
             consumableList = consumableMapper.priceLowList(priceNum);
         }
         return consumableList.stream().map(consumable -> new ConsumableResponseDTO(consumable)).collect(Collectors.toList());
     }
-
-
-
-
-
-
-
 
 
 }

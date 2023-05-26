@@ -37,12 +37,10 @@ public interface ConsumableMapper {
 
     // 소모품 등록 (벌크테스트용)
     @Insert("insert into TB_CONSUMABLE\n" +
-            "(consumable_name,consumable_price,consumable_info,consumable_category,consumable_img)\n" +
+            "(consumable_name, consumable_price, consumable_info, consumable_category, consumable_img)\n" +
             "values\n" +
             "(#{consumable.consumableName},#{consumable.consumablePrice},#{consumable.consumableInfo},#{consumable.consumableCategory},#{consumable.consumableImg})")
     int insertConsumable(@Param("consumable")Consumable consumable);
-
-
 
     //전체 조회 기능
     @Select(
@@ -68,13 +66,17 @@ public interface ConsumableMapper {
     int allCount();
 
     //카테고리별 소모품 조회하기
-    @Select(
-            "SELECT \n" +
-                    "consumable_idx,consumable_name,consumable_price,consumable_info,consumable_category,consumable_img \n" +
-                    " FROM TB_CONSUMABLE" +
-                    "WHERE consumable_category = #{consumableCatagory}"
+    @Select("SELECT\n" +
+            "    consumable_idx,\n" +
+            "    consumable_name,\n" +
+            "    consumable_price,\n" +
+            "    consumable_info,\n" +
+            "    consumable_category,\n" +
+            "    consumable_img\n" +
+            "FROM TB_CONSUMABLE\n" +
+            "WHERE consumable_category = #{category}"
     )
-    List<Consumable> findByCategory(String category);
+    List<Consumable> findByCategory(@Param("category") String category);
 
     //가격순으로 조회 하기(높은순)
     @Select(

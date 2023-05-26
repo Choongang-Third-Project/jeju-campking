@@ -50,7 +50,7 @@ public class EventService {
                 eventCategory = "어버이날";
                 break;
             case 4:
-                eventCategory = "기타";
+                eventCategory = "기타파티용품";
                 break;
             default:
                 return Collections.emptyList();

@@ -229,7 +229,7 @@
                     <button id="item-event" class="btn btn-primary">이벤트 장비</button>
                 </div>
                 <div>
-                    <button id="item-C" class="btn btn-primary">소모품</button>
+                    <button id="item-consumable" class="btn btn-primary">소모품</button>
                 </div>
                 <div>
                     <button id="item-food" class="btn btn-primary">음식</button>
@@ -316,6 +316,8 @@
     let $foodCategory = [];
     let $eventCategory = [];
     let $highcostCategory = [];
+    let $consumableCategory = [];
+
     const $price = 'price';
 
 
@@ -323,7 +325,7 @@
     const $itemFood = document.getElementById('item-food');
     const $itemEvent = document.getElementById('item-event');
     const $itemHighcost = document.getElementById('item-highcost');
-    const $itemC = document.getElementById('item-C');
+    const $itemConsumable = document.getElementById('item-consumable');
     
 
     // 카테고리 보기
@@ -340,22 +342,25 @@
 
     function inputCategory() {
         if (type === 'food') {
-            $categorySort1.innerText = $foodCategory[0];
-            $categorySort2.innerText = $foodCategory[1];
-            $categorySort3.innerText = $foodCategory[2];
-            $categorySort4.innerText = $foodCategory[3];
+            $categorySort1.innerText = '과일';
+            $categorySort2.innerText = '채소';
+            $categorySort3.innerText = '고기';
+            $categorySort4.innerText = '해산물';
         } else if (type === 'event') {
-            $categorySort1.innerText = $eventCategory[0];
-            $categorySort2.innerText = $eventCategory[1];
-            $categorySort3.innerText = $eventCategory[2];
-            $categorySort4.innerText = $eventCategory[3];
+            $categorySort1.innerText = '생일파티';
+            $categorySort2.innerText = '프로포즈';
+            $categorySort3.innerText = '어버이날';
+            $categorySort4.innerText = '기타파티용품';
         } else if (type === 'highcost') {
-            $categorySort1.innerText = $highcostCategory[0];
-            $categorySort2.innerText = $highcostCategory[1];
-            $categorySort3.innerText = $highcostCategory[2];
-            $categorySort4.innerText = $highcostCategory[3];
-        } else if (type === 'ccccccc') {
-            
+            $categorySort1.innerText = '텐트';
+            $categorySort2.innerText = '침낭';
+            $categorySort3.innerText = '테이블';
+            $categorySort4.innerText = '스토브';
+        } else if (type === 'consumable') {
+            $categorySort1.innerText = '토치';
+            $categorySort2.innerText = '장작';
+            $categorySort3.innerText = '랜턴';
+            $categorySort4.innerText = '물티슈';
         }
     }
 
@@ -363,6 +368,38 @@
     // 가격순 보기
     const $priceSort = document.getElementById('price-sort');
 
+
+    $categorySort1.addEventListener('click', e => {
+        inputTag(`/api/v1/items/` + type + `/category/1`);
+    });
+
+
+    $categorySort2.addEventListener('click', e => {
+        inputTag(`/api/v1/items/` + type + `/category/2`);
+    });
+
+
+    $categorySort3.addEventListener('click', e => {
+        inputTag(`/api/v1/items/` + type + `/category/3`);
+    });
+
+
+    $categorySort4.addEventListener('click', e => {
+        inputTag(`/api/v1/items/` + type + `/category/4`);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+    
     $priceSort.addEventListener('click', e => {
         $priceSort.classList.toggle($price);
         
@@ -377,10 +414,10 @@
 
 
     // ------------------------ item click event ------------------------ //
-    $itemC.addEventListener('click', e => {
-        type = 'c';
+    $itemConsumable.addEventListener('click', e => {
+        type = 'consumable';
         $priceSort.classList.remove($price);
-        inputTag('/api/v1/items/c');
+        inputTag('/api/v1/items/consumable');
         inputCategory();
     });
     
@@ -435,6 +472,10 @@
                     } else if ($highcostCategory.length !== 4 && type === 'highcost') {
                         if ($highcostCategory.indexOf(list[4]) === -1) {
                             $highcostCategory.push(list[4]);
+                        }
+                    } else if ($consumableCategory.length !== 4 && type === 'consumable') {
+                        if ($consumableCategory.indexOf(list[4]) === -1) {
+                            $consumableCategory.push(list[4]);
                         }
                     }
 

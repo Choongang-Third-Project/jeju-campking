@@ -14,12 +14,12 @@ import java.text.DecimalFormat;
 @Builder
 public class ConsumableResponseDTO {
     private Long consumableIdx;
-    private String consumablePrice;
     private String consumableName;
+    private String consumablePrice;
     private String consumableInfo;
-    private String consumableCatagory;
-    private Long consumableWish;
+    private String consumableCategory;
     private String consumableImg;
+    private Long consumableWish;
 
 
     public  ConsumableResponseDTO(Consumable consumable){
@@ -27,7 +27,7 @@ public class ConsumableResponseDTO {
         this.consumableName = consumable.getConsumableName();
         this.consumablePrice = PriceFormat(consumable.getConsumablePrice());
         this.consumableInfo = consumable.getConsumableInfo();
-        this.consumableCatagory = consumable.getConsumableCatagory();
+        this.consumableCategory = consumable.getConsumableCategory();
         this.consumableImg = consumable.getConsumableImg();
         this.consumableWish = consumable.getConsumableWish();
     }

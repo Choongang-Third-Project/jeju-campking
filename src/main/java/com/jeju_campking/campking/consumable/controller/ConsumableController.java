@@ -5,7 +5,6 @@ import com.jeju_campking.campking.consumable.dto.response.ConsumableResponseDTO;
 import com.jeju_campking.campking.consumable.service.ConsumableService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/items/consumable/")
+@RequestMapping("/api/v1/items/consumable")
 @Slf4j
 public class ConsumableController {
     private final ConsumableService consumableService;
@@ -34,7 +33,7 @@ public class ConsumableController {
      * @param priceNum
      * @return
      */
-    @GetMapping("price/{priceNum}")
+    @GetMapping("/price/{priceNum}")
     public ApplicationResponse<?> findByPrice(@PathVariable int priceNum) {
 
         List<ConsumableResponseDTO> dtoList = consumableService.findByPrice(priceNum);
@@ -44,7 +43,7 @@ public class ConsumableController {
     }
 
 
-    @GetMapping("category/{categoryNum}")
+    @GetMapping("/category/{categoryNum}")
     public ApplicationResponse<?> findByCategory(@PathVariable int categoryNum) {
 
         List<ConsumableResponseDTO> dtoList = consumableService.findByCategory(categoryNum);

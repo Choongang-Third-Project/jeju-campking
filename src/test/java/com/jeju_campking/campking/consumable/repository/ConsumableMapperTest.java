@@ -1,52 +1,44 @@
 package com.jeju_campking.campking.consumable.repository;
 
-import com.jeju_campking.campking.camp.entity.Camp;
 import com.jeju_campking.campking.consumable.entity.Consumable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
-import java.util.List;
-
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 @SpringBootTest
 class ConsumableMapperTest {
     @Autowired
     ConsumableMapper consumableMapper;
 
-//    // 더미데이터 생성!
-//    @Test
-//    @DisplayName("더미데이터 넣기")
-//    void dummy() {
-//
-//        String[] category = {"토치", "장작", "랜턴", "물티슈"};
-//        String[] name = {"다타토치", "편백나무", "불빛", "깨끗티슈"};
-//        String[] info = {"불이야~~<br>불조심", "편백나무는<br>냄새가 좋아용","밝아용밝아용<br>밝습니다" ,"물티슈로<br>깨끗하게" };
-//        String[] img = {"/assets/shop/consumable/torch.jpeg"
-//                , "/assets/shop/consumable/wood.jpeg"
-//                , "/assets/shop/consumable/lamp.jpeg"
-//                , "/assets/shop/consumable/watertisu.jpeg"
-//        };
-//
-//        Long[] price = {5000L, 3000L, 10000L, 15000L};
-//
-//        for (int i = 0; i < 50; i++) {
-//            int index = (int) (Math.random() * 4); // 0 1 2 3
-//
-//            consumableMapper.insertConsumable(Consumable.builder()
-//                    .consumableName(name[index] + i)
-//                    .consumablePrice((int) (Math.random() * 5000 + price[index]))
-//                    .consumableInfo(info[index])
-//                    .consumableCatagory(category[index])
-//                    .consumableImg(img[index])
-//                    .build());
-//        }
-    }
+    // 더미데이터 생성!
+    @Test
+    @DisplayName("더미데이터 넣기")
+    void dummy() {
+
+        String[] category = {"토치", "장작", "랜턴", "물티슈"};
+        String[] name = {"다타토치", "편백나무", "불빛", "깨끗티슈"};
+        String[] info = {"불이야~~<br>불조심", "편백나무는<br>냄새가 좋아용","밝아용밝아용<br>밝습니다" ,"물티슈로<br>깨끗하게" };
+        String[] img = {"/assets/shop/consumable/torch.jpeg"
+                , "/assets/shop/consumable/wood.jpeg"
+                , "/assets/shop/consumable/lamp.jpeg"
+                , "/assets/shop/consumable/watertisu.jpeg"
+        };
+
+        Long[] price = {5000L, 3000L, 10000L, 15000L};
+
+        for (int i = 0; i < 50; i++) {
+            int index = (int) (Math.random() * 4); // 0 1 2 3
+
+            consumableMapper.insertConsumable(Consumable.builder()
+                    .consumableName(name[index] + i)
+                    .consumablePrice((int) (Math.random() * 5000 + price[index]))
+                    .consumableInfo(info[index])
+                    .consumableCategory(category[index])
+                    .consumableImg(img[index])
+                    .build());
+        }
+    }}
 
 
 
