@@ -2,6 +2,8 @@ package com.jeju_campking.campking.rank.dto.response;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @ToString

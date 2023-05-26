@@ -411,7 +411,7 @@
                         <c:forEach var="p" items="${partyRank}">
                             <a href="/jeju-camps/parties/${p.partyNumber}/caravan">
                                 <div class="rank">
-                                    <h4>${p.partyNumber}</h4>
+                                    <h4>${p.formattedPartyStartDate}</h4>
                                     <span class="ranklist">${p.partyTitle}</span>
                                 </div>
                             </a>
