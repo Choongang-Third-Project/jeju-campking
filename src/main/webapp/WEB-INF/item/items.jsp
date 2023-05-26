@@ -25,12 +25,16 @@
 
 
 <style>
-    #wrap .menu-container .content-box .main-box .sort-nav * {
+    #wrap .menu-container .content-box .main-box .sort-nav .btn-primary {
         border: 2px solid #000;
         font-size: 1.2em;
-
+        
         background: #4021FF;
     }
+    #wrap .menu-container .content-box .main-box .sort-nav .btn.btn-primary.price { 
+        background: rgb(200, 45, 45);
+    }
+
 
     #wrap .menu-container .content-box .main-box .content {
         height: 85%;
@@ -239,7 +243,10 @@
                 <ul class="sort-nav">
                     <button class="btn btn-primary">인기순</button>
                     <button id="price-sort" class="btn btn-primary">가격순</button>
-                    <button class="btn btn-primary">카테고리</button>
+                    <button id="category-sort1"class="btn btn-primary">카테고리</button>
+                    <button id="category-sort2"class="btn btn-primary">카테고리</button>
+                    <button id="category-sort3"class="btn btn-primary">카테고리</button>
+                    <button id="category-sort4"class="btn btn-primary">카테고리</button>
                 </ul>
 
                 <div class="content">
@@ -305,53 +312,103 @@
 
     let type = '';
     let typeNumber = 1;
+    
+    let $foodCategory = [];
+    let $eventCategory = [];
+    let $highcostCategory = [];
+    const $price = 'price';
+
 
     // 카테코리별 보기
     const $itemFood = document.getElementById('item-food');
     const $itemEvent = document.getElementById('item-event');
     const $itemHighcost = document.getElementById('item-highcost');
     const $itemC = document.getElementById('item-C');
+    
+
+    // 카테고리 보기
+    const $categorySort = document.getElementById('category-sort');
+    const $categorySort1 = document.getElementById('category-sort1');
+    const $categorySort2 = document.getElementById('category-sort2');
+    const $categorySort3 = document.getElementById('category-sort3');
+    const $categorySort4 = document.getElementById('category-sort4');
+
+
+
+
+    // 
+
+    function inputCategory() {
+        if (type === 'food') {
+            $categorySort1.innerText = $foodCategory[0];
+            $categorySort2.innerText = $foodCategory[1];
+            $categorySort3.innerText = $foodCategory[2];
+            $categorySort4.innerText = $foodCategory[3];
+        } else if (type === 'event') {
+            $categorySort1.innerText = $eventCategory[0];
+            $categorySort2.innerText = $eventCategory[1];
+            $categorySort3.innerText = $eventCategory[2];
+            $categorySort4.innerText = $eventCategory[3];
+        } else if (type === 'highcost') {
+            $categorySort1.innerText = $highcostCategory[0];
+            $categorySort2.innerText = $highcostCategory[1];
+            $categorySort3.innerText = $highcostCategory[2];
+            $categorySort4.innerText = $highcostCategory[3];
+        } else if (type === 'ccccccc') {
+            
+        }
+    }
+
 
     // 가격순 보기
     const $priceSort = document.getElementById('price-sort');
 
-    $priceSort.onclick = e => {
-        if (typeNumber === 1) typeNumber = 2;
-        else typeNumber = 1;
-
-        console.log('--------------------------------------');
-        console.log(`/api/v1/items/` + type + `/price/` + typeNumber);
-        console.log(type);
-        console.log(typeNumber);
-        console.log('--------------------------------------');
+    $priceSort.addEventListener('click', e => {
+        $priceSort.classList.toggle($price);
+        
+        if ($priceSort.classList.contains($price)) {
+            typeNumber = 2;
+        } else {
+            typeNumber = 1;
+        }
 
         inputTag(`/api/v1/items/` + type + `/price/` + typeNumber);
-    }
+    });
 
-    $itemC.onclick = e => {
+
+    // ------------------------ item click event ------------------------ //
+    $itemC.addEventListener('click', e => {
         type = 'c';
+        $priceSort.classList.remove($price);
         inputTag('/api/v1/items/c');
-    }
-
-    $itemFood.onclick = e => {
-        type = 'food';
-        inputTag('/api/v1/items/food');
-    }
-
-    $itemEvent.onclick = e => {
-        type = 'event';
-        inputTag('/api/v1/items/event');
-    }
+        inputCategory();
+    });
     
-    $itemHighcost.onclick = e => {
+    
+    $itemFood.addEventListener('click', e => {
+        type = 'food';
+        $priceSort.classList.remove($price);
+        inputTag('/api/v1/items/food');        
+        inputCategory();
+    });
+    
+    
+    $itemEvent.addEventListener('click', e => {
+        type = 'event';
+        $priceSort.classList.remove($price);
+        inputTag('/api/v1/items/event');
+        inputCategory();
+    });
+    
+    
+    $itemHighcost.addEventListener('click', e => {
         type = 'highcost';
+        $priceSort.classList.remove($price);
         inputTag('/api/v1/items/highcost');
-    }
-
-
-
-
-
+        inputCategory();
+    });
+    
+    
     //---------------------- tag 생성 함수 ----------------------//
     function inputTag(url) {
         fetch(url)
@@ -366,6 +423,20 @@
                 for (let input of response.payload) {
 
                     let list = Object.values(input);
+
+                    if ($foodCategory.length !== 4 && type === 'food') {
+                        if ($foodCategory.indexOf(list[4]) === -1) {
+                            $foodCategory.push(list[4]);
+                        }
+                    } else if ($eventCategory.length !== 4 && type === 'event') {
+                        if ($eventCategory.indexOf(list[4]) === -1) {
+                            $eventCategory.push(list[4]);
+                        }
+                    } else if ($highcostCategory.length !== 4 && type === 'highcost') {
+                        if ($highcostCategory.indexOf(list[4]) === -1) {
+                            $highcostCategory.push(list[4]);
+                        }
+                    }
 
                     let tag = `<li class="item-box">
                 <div class="item">
