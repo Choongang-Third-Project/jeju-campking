@@ -286,11 +286,12 @@
         <div class="author">
             <div class="profile-image">
                 <!-- 프로필 이미지 -->
-                <c:if test="${LOGIN == null || LOGIN.profile == null}">
+                <c:if test="${board.profileImage == null}">
                     <img src="/assets/mypage/img/profile.png" alt="사진없음">
                 </c:if>
-                <c:if test="${LOGIN != null && LOGIN.profile != null}">
-                    <img src="/local${LOGIN.profile}" alt="프사">
+                <c:if test="${board.profileImage != null}">
+                <img src="/local${board.profileImage}" alt="프사">
+                  
                 </c:if>
             </div>
             <div class="notice-info">
@@ -620,7 +621,7 @@
                         }
                     tag+='</div>';
                   tag+='</div>';
-                tag+='<div class="reply-text" style="display:block">'+replyContent+'</div>';
+                tag+='<div class="reply-text" style="display:block; padding-left: 5%;">'+replyContent+'</div>';
                 tag+='<div class="reply-text2" style="display:none">';
                     tag+='<input type="text" value="'+replyContent+'" class=" input input-bordered input-primary w-full max-w-xs"/>';
                     tag+='<button class="btn btn-primary" id="replyOk" data-replyNum='+replyNumber+'>확인</button>';

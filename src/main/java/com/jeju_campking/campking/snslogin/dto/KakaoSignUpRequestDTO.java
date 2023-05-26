@@ -17,16 +17,14 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Builder
 public class KakaoSignUpRequestDTO {
-    @NotBlank
-    @Size(min = 4, max = 14)
+//    @NotBlank
     private String account;
-    @NotBlank
+//    @NotBlank
     private String password;
-    @NotBlank
-    @Size(min = 2, max = 6)
+//    @NotBlank
     private String name;
-    @NotBlank
-    @Email
+//    @NotBlank
+//    @Email
     private String email;
 
     private MultipartFile profileImage;

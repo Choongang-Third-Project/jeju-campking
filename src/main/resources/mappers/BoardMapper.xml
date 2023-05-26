@@ -56,7 +56,8 @@
         b.board_view,
         b.board_recommend,
         m.member_number,
-        m.member_nickname
+        m.member_nickname,
+        m.profile_image
         from tb_board b
         join tb_member m using(member_number)
         WHERE board_number = #{boardNumber};

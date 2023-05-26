@@ -79,7 +79,7 @@ public class KakaoLoginService {
         HttpHeaders httpHeaders = new HttpHeaders();
 
         log.info("----------------------------------");
-        httpHeaders.add("Authorization", "Bearer" + accessToken);
+        httpHeaders.add("Authorization", "Bearer " + accessToken);
 
         log.info("----------------------------------");
 
@@ -90,6 +90,7 @@ public class KakaoLoginService {
 
         ResponseEntity<KakaoUserDTO> responseEntity = template.exchange(
                 requestURI
+
                 , HttpMethod.GET
                 , new HttpEntity<>(httpHeaders)
                 , KakaoUserDTO.class

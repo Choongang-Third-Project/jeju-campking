@@ -787,7 +787,7 @@
                         <label for="content" class="modify-content">수정할 내용</label>
                         <!--  여러줄의 데이터를 입력하고 하고자 할때 textarea 태그를 사용한다. -->
                         <!--  textarea 안에 있는 모든 글자는 그대로 나타난다. 공백문자, tag, enter -->
-                        <textarea class="form-control" rows="5" id="content" name="content" placeholder="내용 작성"></textarea>
+                        <textarea class="form-control" rows="5" id="content-modify" name="content" placeholder="내용 작성"></textarea>
                       </div>
                       <button id="modifyBtn" type="submit" class="btn btn-default">수정 완료</button>
                     <!-- </form> -->
@@ -1004,7 +1004,7 @@
         // 게시물 제목
         const $title = document.getElementById('inputTitle');
         // 게시물 내용
-        const $content = document.querySelector('.form-control');
+        const $content = document.getElementById('content-modify');
         //  파티원 정원 수
         const $count = document.getElementById('people_count');
         //시작 날짜

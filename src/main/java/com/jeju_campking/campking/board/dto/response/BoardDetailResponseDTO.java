@@ -21,5 +21,6 @@ public class BoardDetailResponseDTO {
     private Integer boardRecommend;
     private Long memberNumber;
     private String memberNickname;
+    private String profileImage;
 
 }

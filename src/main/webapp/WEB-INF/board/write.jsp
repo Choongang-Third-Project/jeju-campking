@@ -73,7 +73,7 @@
 									</svg>
 									<span class="badge badge-xs badge-primary indicator-item">${count}</span>
 								</div>
-							</a>
+							</a>	
 						</button>
 					</li>
 	

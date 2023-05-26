@@ -246,10 +246,10 @@
       <input type="text" class="form-control" id="people_count" placeholder="2명~10명" name="writer">
       <br>
       <label for="date" id="startdate">시작날짜를 선택하세요:
-        <input type="date" id="date" max="2025-12-31" min="2000-01-01" value="2023-05-21">
+        <input type="date" id="date" max="2023-08-31" min="2023-05-26" value="2023-05-27">
       </label>
       <label for="date" id="enddate">마감날짜를 선택하세요:
-        <input type="date" id="date" max="2025-12-31" min="2000-01-01" value="2023-05-21">
+        <input type="date" id="date" max="2023-08-31" min="2023-05-26" value="2023-05-27">
       </label>
 
       <div class="form-group">
