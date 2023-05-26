@@ -243,7 +243,7 @@ getBirth();
 
 
  // 연락처 입력값 검증
- const phonePattern = /^\d{3}-\d{3,4}-\d{4}$/;
+ const phonePattern = /^010-?([0-9]{3,4})-?([0-9]{4})$/;
 
  const $phoneInput = document.getElementById('phone');
 
