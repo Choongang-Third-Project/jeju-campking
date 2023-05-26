@@ -16,4 +16,4 @@ create table TB_CONSUMABLE (
 	consumable_category VARCHAR(30) NOT NULL,
 	consumable_img VARCHAR(2000) NOT NULL,
 	PRIMARY KEY(consumable_idx)
-) auto_incremenent = 3000;
+) AUTO_INCREMENT = 3000;
