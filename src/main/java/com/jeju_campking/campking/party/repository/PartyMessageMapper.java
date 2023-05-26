@@ -28,5 +28,8 @@ public interface PartyMessageMapper {
     // 내가 받은 메세지 갯수
     int unreadCount(Long partyMessageRecipient);
 
+    // 메세지 읽음 처리
+    void readUpdate(Long partyMessageRecipient);
+
 
 }

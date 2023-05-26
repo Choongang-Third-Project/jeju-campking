@@ -43,6 +43,12 @@
         WHERE party_message_recipient = #{partyMessageRecipient}
         AND party_message_read = 'N'
     </select>
+    
+    <update id="readUpdate">
+        UPDATE TB_PARTY_MESSAGE
+        SET PARTY_MESSAGE_READ = 'Y'
+        WHERE party_message_recipient = #{partyMessageRecipient}
+    </update>
 
 
 
