@@ -59,4 +59,11 @@ public class PartyMessageService {
     public int unreadCount(Long partyMessageRecipient) {
         return partyMessageMapper.unreadCount(partyMessageRecipient);
     }
+
+
+    public void readUpdate(Long partyMessageRecipient) {
+        partyMessageMapper.readUpdate(partyMessageRecipient);
+
+    }
+
 }
