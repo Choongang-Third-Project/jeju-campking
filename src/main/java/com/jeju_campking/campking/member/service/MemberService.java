@@ -6,6 +6,7 @@ import com.jeju_campking.campking.member.dto.request.MemberLoginRequestDTO;
 import com.jeju_campking.campking.member.dto.response.LoginUserResponseDTO;
 import com.jeju_campking.campking.member.entity.Member;
 import com.jeju_campking.campking.member.repository.MemberMapper;
+import com.jeju_campking.campking.snslogin.dto.KakaoSignUpRequestDTO;
 import com.jeju_campking.campking.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,8 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 import static com.jeju_campking.campking.member.service.LoginResult.*;
-import static com.jeju_campking.campking.util.LoginUtil.*;
+import static com.jeju_campking.campking.util.LoginUtil.AUTO_LOGIN_COOKIE;
+import static com.jeju_campking.campking.util.LoginUtil.LOGIN_KEY;
 
 @Service
 @RequiredArgsConstructor
@@ -59,6 +61,38 @@ public class MemberService {
 
         return true;
     }
+
+
+    // 회원가입 처리 서비스
+    public boolean sign(KakaoSignUpRequestDTO dto, String savePath) throws SQLException {
+
+        Member member = Member.builder()
+                .memberPassword(dto.getPassword())
+                .memberName(dto.getName())
+                .memberNickname(dto.getName())
+                .memberEmail(dto.getEmail())
+                .profileImage(savePath)
+                .build();
+
+        log.info("memberService sign : {} ", member.getProfileImage());
+        member.setMemberPassword(encoder.encode(member.getMemberPassword()));
+
+        boolean isSign = memberMapper.sign(member);
+
+        if (!isSign) {
+            log.warn("memberService : 회원가입 실패 !");
+            return false;
+//            throw new SQLException("memberService : 회원가입 실패 !");
+        }
+
+        return true;
+    }
+
+
+
+
+
+
 
     // 회원가입 시 이메일, 닉네임, 전화번호 중복 검사 처리 서비스
     // 중복일 시 true 리턴, 중복이 아닐 시 false 리턴

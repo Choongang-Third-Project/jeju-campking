@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 
 @Controller
@@ -28,7 +29,7 @@ public class KakaoLoginController {
     }
 
     @GetMapping("/sns/kakao")
-    public String snsKaKao(String code) {
+    public String snsKaKao(String code, HttpSession session) {
         log.info("{}", code);
 
         HashMap<String, String> map = new HashMap<>();
@@ -36,9 +37,9 @@ public class KakaoLoginController {
         map.put("redirect", kakaoRedirectURI);
         map.put("code", code);
 
-        kakaoLoginService.kakaoService(map);
+        kakaoLoginService.kakaoService(map, session);
 
-        return "";
+        return "redirect:/login";
     }
 
 
