@@ -8,6 +8,7 @@ import com.jeju_campking.campking.mypage.dto.response.MypageMemberResponseDTO;
 import com.jeju_campking.campking.mypage.dto.response.MypageUpdateMemberResponseDTO;
 import com.jeju_campking.campking.mypage.service.MypageService;
 import com.jeju_campking.campking.mypage.service.MypageUpdateService;
+import com.jeju_campking.campking.party.service.PartyMessageService;
 import com.jeju_campking.campking.util.upload.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,7 @@ public class MypageViewController {
     @Value("D:/campking-prj/upload/")
     private String rootPath;
     private final MypageUpdateService mypageUpdateService;
+    private final PartyMessageService partyMessageService;
 
     // 마이페이지
     @GetMapping("/{memberNumber}")
@@ -46,6 +48,7 @@ public class MypageViewController {
             return "redirect:/jeju-camps";
         }
 
+        partyMessageService.readUpdate(memberNumber);
 
         return "mypage/mypage";
 
