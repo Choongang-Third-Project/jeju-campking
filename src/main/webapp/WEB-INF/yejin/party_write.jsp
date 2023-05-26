@@ -359,7 +359,9 @@
         // 게시물 제목
         const $title = document.getElementById('title');
         // 게시물 내용
-        const $content = document.querySelector('.form-control');
+        // const $content = document.querySelector('.form-control');
+        const $content = document.getElementById('content');
+
         //  파티원 정원 수
         const $count = document.getElementById('people_count');
         //시작 날짜
