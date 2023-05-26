@@ -1,6 +1,10 @@
 package com.jeju_campking.campking.snslogin.service;
 
+import com.jeju_campking.campking.member.service.MemberService;
+import com.jeju_campking.campking.snslogin.dto.KakaoSignUpRequestDTO;
 import com.jeju_campking.campking.snslogin.dto.KakaoUserDTO;
+import com.jeju_campking.campking.snslogin.entity.LoginMethod;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -9,33 +13,81 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class KakaoLoginService {
 
-    public void kakaoService(Map<String, String> requestMap) {
+    private final MemberService memberService;
 
-//        String accessToken = getKakaoAccessToken(requestMap);
-//        log.info("token : {}", accessToken);
+
+    public void kakaoService(Map<String, String> requestMap, HttpSession session) {
+
+        String accessToken = getKakaoAccessToken(requestMap);
+        log.info("---------------------------------- token : {}", accessToken);
 //
-//        KakaoUserDTO kakaoUserDTO = getKakaoUserDTO(accessToken);
-//        log.info("kakaoUserDTO : {} ", kakaoUserDTO);
+        KakaoUserDTO kakaoUserDTO = getKakaoUserDTO(accessToken);
+        log.info("---------------------------------- kakaoUserDTO : {} ", kakaoUserDTO);
+
+
+        KakaoUserDTO.KakaoAccount kakaoAccount = kakaoUserDTO.getKakaoAccount();
+        log.info("---------------------------------- kakaoAccount : {}", kakaoAccount);
+
+
+        if (memberService.checkSignUpValue("email", kakaoAccount.getEmail())) {
+
+            log.info("check signup value");
+            try {
+                boolean sign = memberService.sign(
+                        KakaoSignUpRequestDTO.builder()
+                                .email(kakaoAccount.getEmail())
+                                .name(kakaoAccount.getProfile().getNickname())
+                                .password("9999")
+                                .loginMethod(LoginMethod.KAKAO)
+//                                .memberPassword(dto.getPassword())
+//                                .memberName(dto.getName())
+//                                .memberNickname(dto.getName())
+//                                .memberEmail(dto.getEmail())
+//                                .profileImage(savePath)
+//                                .build();
+                                .build()
+                        , kakaoAccount.getProfile().getProfileImageUrl()
+                );
+
+                memberService.maintainLoginState(session, kakaoAccount.getEmail());
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
 
     }
 
     private KakaoUserDTO getKakaoUserDTO(String accessToken) {
+        log.info("------------------------ accessToken : {}", accessToken);
         String requestURI = "https://kapi.kakao.com/v2/user/me";
 
+        log.info("------------------------ requestURI : {}", requestURI);
         HttpHeaders httpHeaders = new HttpHeaders();
 
+        log.info("----------------------------------");
         httpHeaders.add("Authorization", "Bearer" + accessToken);
 
+        log.info("----------------------------------");
+
+
         RestTemplate template = new RestTemplate();
+        log.info("---------------------------------- {}", httpHeaders);
+
+
         ResponseEntity<KakaoUserDTO> responseEntity = template.exchange(
                 requestURI
                 , HttpMethod.GET
@@ -43,7 +95,11 @@ public class KakaoLoginService {
                 , KakaoUserDTO.class
         );
 
+
+        log.info("----------------------------------");
+
         KakaoUserDTO responseData = responseEntity.getBody();
+        log.info("----------------------------------");
         log.info("응답 데이터 : {}", responseData);
 
         return responseData;
