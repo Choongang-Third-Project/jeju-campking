@@ -28,8 +28,8 @@ class FoodMapperTest {
 
     @Test
     @DisplayName("Dummy Data 넣어보기")
-    @Transactional
-    @Rollback
+//    @Transactional
+//    @Rollback
     void dummy() {
         //given
         //when
